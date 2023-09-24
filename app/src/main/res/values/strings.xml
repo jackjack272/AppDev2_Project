@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">AppDevProject</string>
+
+<!--    User Registration page.
+    prefix this page with:
+
+     landPage_
+
+ -->
+
+    <string name="landPage_inspire">Two year of budgeting leads to a life of abundance.</string>
+
+    <string name="landPage_register">Register</string>
+    <string name="landPage_login">LogIn</string>
+
+    <string name="landPage_Email">Email? </string>
+    <string name="landPage_UserName">UserName? </string>
+    <string name="landPage_DateOfBirth">Date Of Birth?</string>
+    <string name="landPage_Password">Password?</string>
+
+
+    <!--    -->
+
+</resources>
