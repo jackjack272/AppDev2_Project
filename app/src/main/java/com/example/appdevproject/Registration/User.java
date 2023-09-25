@@ -1,5 +1,8 @@
 package com.example.appdevproject.Registration;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class User {
     private Integer id; // this is the primary key
     private String userName;
@@ -16,7 +19,7 @@ public class User {
     //constructors
     public User(String userName, String password, String email, String dob) {
         this.userName = userName;
-        this.password = password;
+        this.password = md5HashEncrypt(password);
         this.email = email;
         this.dob = dob;
     }
@@ -24,14 +27,39 @@ public class User {
     public User(Integer id, String userName, String password, String email, String dob) {
         this.id = id;
         this.userName = userName;
-        this.password = password;
+        this.password = md5HashEncrypt(password);
         this.email = email;
         this.dob = dob;
     }
 
     //be able to get the user's age , if they are loggin in on their bday show happy bday
 
+    // encrypt
+    public static String md5HashEncrypt(String text){
+        try{
+            MessageDigest md= MessageDigest.getInstance("md5");
+            md.update(text.getBytes());
+            byte[] digestedBytes= md.digest();
 
+            StringBuilder sb= new StringBuilder();
+            for(byte b: digestedBytes){
+                    sb.append(String.format("%02x",b));
+            }
+            return sb.toString();
+        }catch (NoSuchAlgorithmException e){
+            e.printStackTrace();
+
+        }
+        return "failedToHash";
+    }
+
+    // compare passwords
+    public static Boolean comparePasswords(String passwordAttempt, String passwordHash){
+        if(md5HashEncrypt(passwordHash).equals(passwordHash)){
+            return true;
+        }
+        return false;
+    }
 
 
 

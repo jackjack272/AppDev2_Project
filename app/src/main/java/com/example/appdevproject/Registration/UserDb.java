@@ -6,9 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.Date;
-
-public class TheDb extends SQLiteOpenHelper {
+public class UserDb extends SQLiteOpenHelper {
     //db info
         private static final String db_name="fall23_AndroidApp";
             // how do i put more tables into this db?
@@ -25,8 +23,8 @@ public class TheDb extends SQLiteOpenHelper {
 
 
 
-    public TheDb(Context context) {
-        super(context, table_name, null , db_version);
+    public UserDb(Context context) {
+        super(context, db_name, null , db_version);
     }
 
 
@@ -42,7 +40,8 @@ public class TheDb extends SQLiteOpenHelper {
             +")";
 
         db.execSQL(make_table);
-        db.close();
+        // if i close the db here it crash the project
+
     }
 
     @Override
@@ -62,14 +61,14 @@ public class TheDb extends SQLiteOpenHelper {
             cv.put(email, user.getEmail());
             cv.put(date_of_birth, user.getDob());
 
-        long x=db.insert(table_name, null, new ContentValues());
+        long x=db.insert(table_name, null, cv);
         db.close();
 
         return x;
     }
 
 //Read one
-    public User readByUserName(String username){
+    public User getUserByUsername(String username){
 
         String getUser=String.format("SELECT %d,   %s,    %s FORM       %s WHERE "+this.username+" == %s ",
                                          id, email, date_of_birth, table_name,   username

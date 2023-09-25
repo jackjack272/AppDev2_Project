@@ -62,7 +62,7 @@
         app:layout_constraintTop_toTopOf="@+id/switch1" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/nextPage"
         android:layout_width="171dp"
         android:layout_height="43dp"
         android:layout_marginBottom="64dp"
@@ -101,7 +101,7 @@
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="@string/landPage_DateOfBirth"
-        android:inputType="date"
+        android:inputType="date|textAutoCorrect"
         app:layout_constraintStart_toStartOf="@+id/getEmail"
         app:layout_constraintTop_toBottomOf="@+id/getEmail" />
 
