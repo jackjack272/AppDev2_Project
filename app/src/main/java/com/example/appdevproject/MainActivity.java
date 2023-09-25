@@ -90,12 +90,16 @@ public class MainActivity extends AppCompatActivity {
                     //register
                     try{
                         user= getUserRegistrationObject();
+
+                        // need to check if the username already exists to prevent collisions
+                         userDb.getUserByUsername(user.getUserName());
+
                     }catch (Exception e){
                         return; // kill the control since there is an empty field.
                     }
                     userDb.makeUser(user);
 
-                    Toast.makeText(MainActivity.this, user.getEmail(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "user was registered", Toast.LENGTH_SHORT).show();
                 }
 
 //                SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
@@ -158,6 +162,8 @@ public class MainActivity extends AppCompatActivity {
             filledFields=false;
             throw new MissingField();
         }
+
+
 
         if(filledFields) {
             return new User(
