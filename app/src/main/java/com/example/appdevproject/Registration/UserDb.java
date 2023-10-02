@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class UserDb extends SQLiteOpenHelper {
     //db info
@@ -68,23 +69,29 @@ public class UserDb extends SQLiteOpenHelper {
     }
 
 //Read one
-    public User getUserByUsername(String username){
+    public User getUserByUsername(String _username){
 
-        String getUser=String.format("SELECT %d,   %s,    %s FORM       %s WHERE "+this.username+" == %s ",
-                                         id, email, date_of_birth, table_name,   username
-        );
-            // i dont want to take out the password
+        // this needs to be parameretised- injection attack
+        String getUser = String.format("SELECT %s, %s, %s FROM %s WHERE " + this.username + " = '%s';", id, email, date_of_birth, table_name, _username);
+
+        // i dont want to take out the password
             //wierd spacing to see the parameters better
 
         SQLiteDatabase db= this.getReadableDatabase();
-        Cursor cursor= db.rawQuery(getUser,null);
+//        Cursor cursor= db.rawQuery(getUser,null);
 
-        db.close();
-        return new User(
+        Cursor cursor= db.rawQuery(getUser , null);
+
+        User x= new User(
+                cursor.getString(cursor.getColumnIndexOrThrow(id)),
                 cursor.getString(cursor.getColumnIndexOrThrow(username)),
                 cursor.getString(cursor.getColumnIndexOrThrow(email)),
                 cursor.getString(cursor.getColumnIndexOrThrow(date_of_birth))
         );
+
+        // i think i was closing the db before i was done with it.
+        db.close();
+        return x;
         //id will be in shared preferences for the logged in user so dont need it here.
     }
 

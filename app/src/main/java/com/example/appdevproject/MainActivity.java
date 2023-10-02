@@ -18,6 +18,12 @@ import com.example.appdevproject.Registration.User;
 public class MainActivity extends AppCompatActivity {
     // i want a menue on the left hand side with all the avialble activities.
 
+    /**
+     *      The user is being saved to the database , but i need to check if the username exists
+     *          username is going to be PK for the db     *
+     */
+
+
     UserDb userDb;
     EditText userName, password, email, dateOfBirth;
     Switch toggle;
@@ -63,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
                 if(toggle.isChecked()){
                     //login
-
                     if(!userName.getText().equals("")   ){
                         try{
                             user=userDb.getUserByUsername(String.valueOf(userName.getText()));
@@ -82,7 +87,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Password is wrong. ", Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                }
+
+                else{
                     email.setVisibility(View.VISIBLE);
                     dateOfBirth.setVisibility(View.VISIBLE);
                     nextPage.setText("Register!");
@@ -90,9 +97,17 @@ public class MainActivity extends AppCompatActivity {
                     //register
                     try{
                         user= getUserRegistrationObject();
-
                         // need to check if the username already exists to prevent collisions
-                         userDb.getUserByUsername(user.getUserName());
+
+                        User x= userDb.getUserByUsername(user.getUserName());
+
+
+
+                        if(x !=null){
+                            //throw username exists
+                            Toast.makeText(MainActivity.this, "This username exits, pick another one", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
                     }catch (Exception e){
                         return; // kill the control since there is an empty field.
