@@ -2,6 +2,7 @@ package com.example.appdevproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +13,11 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.appdevproject.CustomException.MissingField;
-import com.example.appdevproject.Registration.UserDb;
-import com.example.appdevproject.Registration.User;
+import com.example.appdevproject.LandingPage.LandingPage;
+import com.example.appdevproject.User.UserDb;
+import com.example.appdevproject.User.User;
 
-public class MainActivity extends AppCompatActivity {
+public class RegistrationPage extends AppCompatActivity {
     // i want a menue on the left hand side with all the avialble activities.
 
     /**
@@ -23,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
      *          username is going to be PK for the db     *
      */
 
+
+    //the log in and registration dosent work properly ill have to ask prof for help
+        // the id throws an error immediately, why?
+
+    // how do i secure the db from sql injection attacks?
 
     UserDb userDb;
     EditText userName, password, email, dateOfBirth;
@@ -37,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         makeAssociates();
         admin_prePopulate();
 
-        userDb=new UserDb(MainActivity.this);
+        userDb=new UserDb(RegistrationPage.this);
 
         // i can get the username from the login screen
 //         i can keep it in the shared prefrences and find user in db from the username.
@@ -75,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                             // throws if there is no match
                         }catch (Exception e){
                             //throw toast saying user dosent extist
-                            Toast.makeText(MainActivity.this, "User Dosent Exist :(- did you register?", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegistrationPage.this, "User Dosent Exist :(- did you register?", Toast.LENGTH_SHORT).show();
                         }
                     }else{
                         return;
@@ -84,54 +91,46 @@ public class MainActivity extends AppCompatActivity {
                     // have the user.
                     loggedIn=User.comparePasswords(user.getPassword(), String.valueOf(password.getText()));
                     if(!loggedIn){
-                        Toast.makeText(MainActivity.this, "Password is wrong. ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrationPage.this, "Password is wrong. ", Toast.LENGTH_SHORT).show();
+                        return ;
                     }
-
                 }
-
+                /**
+                 * Registration has a bug, when it tries to find the id in the db if crashes the app.
+                 */
                 else{
                     email.setVisibility(View.VISIBLE);
                     dateOfBirth.setVisibility(View.VISIBLE);
                     nextPage.setText("Register!");
-
                     //register
                     try{
+                        // if the username dosent exist it will throw an error, else it will return with toast.
                         user= getUserRegistrationObject();
-                        // need to check if the username already exists to prevent collisions
-
                         User x= userDb.getUserByUsername(user.getUserName());
-
-
-
                         if(x !=null){
-                            //throw username exists
-                            Toast.makeText(MainActivity.this, "This username exits, pick another one", Toast.LENGTH_SHORT).show();
-                            return;
+                            Toast.makeText(RegistrationPage.this, "This username exits, pick another one", Toast.LENGTH_SHORT).show();
+                            return;// user exists so kill control
                         }
-
                     }catch (Exception e){
-                        return; // kill the control since there is an empty field.
-                    }
-                    userDb.makeUser(user);
+                        e.printStackTrace();
 
-                    Toast.makeText(MainActivity.this, "user was registered", Toast.LENGTH_SHORT).show();
+                        userDb.makeUser(user); // make the user
+                        Toast.makeText(RegistrationPage.this, "user was registered", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
-//                SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-//                SharedPreferences.Editor myEdit = sharedPreferences.edit();
-//
-//                myEdit.putString("username",user.getUserName());
-//                myEdit.apply();
+                SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+
+                myEdit.putString("username",user.getUserName());
+                myEdit.apply();
 
                 // go next intent.
 
-                Toast.makeText(MainActivity.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrationPage.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
                 //sleep 750 milsec
 
-//                startActivity(new Intent(MainActivity.this, Second.class));
-                //second dosent exist yet.
-
-
+                startActivity(new Intent(RegistrationPage.this, LandingPage.class));
             }
         });
 

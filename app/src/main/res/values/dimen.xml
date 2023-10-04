@@ -3,6 +3,12 @@
 <!--    landing page-->
     <dimen name="reg_log">24sp</dimen>
 
+<!-- h6-->
+    <dimen name="banners">30sp</dimen>
 
-<!--    -->
+<!--    h5-->
+    <dimen name="subheadings">25sp</dimen>
+
+    <dimen name="h4">20dp</dimen>
+
 </resources>

@@ -1,11 +1,10 @@
-package com.example.appdevproject.Registration;
+package com.example.appdevproject.User;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class UserDb extends SQLiteOpenHelper {
     //db info
@@ -72,19 +71,20 @@ public class UserDb extends SQLiteOpenHelper {
     public User getUserByUsername(String _username){
 
         // this needs to be parameretised- injection attack
-        String getUser = String.format("SELECT %s, %s, %s FROM %s WHERE " + this.username + " = '%s';", id, email, date_of_birth, table_name, _username);
+        String getUser = String.format("SELECT %s, %s, %s, %s, %s FROM %s WHERE " + this.username + " = '%s';"
+                ,id, username, password, email,date_of_birth, table_name, _username);
 
         // i dont want to take out the password
             //wierd spacing to see the parameters better
 
-        SQLiteDatabase db= this.getReadableDatabase();
-//        Cursor cursor= db.rawQuery(getUser,null);
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor= db.rawQuery(getUser,null);
 
-        Cursor cursor= db.rawQuery(getUser , null);
 
         User x= new User(
-                cursor.getString(cursor.getColumnIndexOrThrow(id)),
+                cursor.getInt(cursor.getColumnIndexOrThrow(id)), // this causes errors
                 cursor.getString(cursor.getColumnIndexOrThrow(username)),
+                cursor.getString(cursor.getColumnIndexOrThrow(password)),
                 cursor.getString(cursor.getColumnIndexOrThrow(email)),
                 cursor.getString(cursor.getColumnIndexOrThrow(date_of_birth))
         );
@@ -96,7 +96,43 @@ public class UserDb extends SQLiteOpenHelper {
     }
 
 
+//update one
+    public void updateUser(User user){
+        SQLiteDatabase db= getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+            cv.put(password, user.getPassword());
+            cv.put(email, user.getEmail());
+            cv.put(date_of_birth, user.getDob());
+
+        db.update(table_name, cv, this.username+" =?", new String[] {String.valueOf(user.getUserName())});
+    }
+
+
+
+//delete one
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

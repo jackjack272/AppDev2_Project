@@ -13,7 +13,22 @@
         android:theme="@style/Theme.AppDevProject"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".Loans.Loans"
+            android:exported="false" />
+        <activity
+            android:name=".Budget.Income"
+            android:exported="false" />
+        <activity
+            android:name=".Budget.Budget"
+            android:exported="false" />
+        <activity
+            android:name=".User.EditUserPage"
+            android:exported="false" />
+        <activity
+            android:name=".LandingPage.LandingPage"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrationPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

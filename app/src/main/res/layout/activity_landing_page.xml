@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LandingPage.LandingPage">
+
+    <TextView
+        android:id="@+id/welcomeBanner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="14dp"
+        android:text="welcome"
+        android:textSize="@dimen/banners"
+        app:layout_constraintEnd_toStartOf="@+id/home_moneyRemaning"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/home_invest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="241dp"
+        android:text="@string/home_invest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/home_budget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="38dp"
+        android:text="@string/home_budget"
+        app:layout_constraintBottom_toTopOf="@+id/home_invest"
+        app:layout_constraintStart_toStartOf="@+id/home_invest" />
+
+    <Button
+        android:id="@+id/home_editUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="47dp"
+        android:text="@string/home_edit"
+        app:layout_constraintBottom_toTopOf="@+id/home_budget"
+        app:layout_constraintStart_toStartOf="@+id/home_budget" />
+
+    <TextView
+        android:id="@+id/home_income"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="2dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/home_expenses"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeBanner" />
+
+    <TextView
+        android:id="@+id/home_expenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="2dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/home_moneyRemaning"
+        app:layout_constraintStart_toEndOf="@+id/home_income"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeBanner" />
+
+    <TextView
+        android:id="@+id/home_moneyRemaning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="21dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/home_expenses"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeBanner" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

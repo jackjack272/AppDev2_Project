@@ -1,4 +1,4 @@
-package com.example.appdevproject.Registration;
+package com.example.appdevproject.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,13 +10,20 @@ public class User {
     private String email;
     private String dob; //saved as a date in the db.
 
+    private Boolean empty;
+
+
+    //constructors
+    public User(){}
+
+
     public User(String userName, String email, String dob) {
         this.userName = userName;
         this.email = email;
         this.dob = dob;
     }
 
-    //constructors
+
     public User(String userName, String password, String email, String dob) {
         this.userName = userName;
         this.password = md5HashEncrypt(password);
@@ -24,7 +31,8 @@ public class User {
         this.dob = dob;
     }
 
-    public User(Integer id, String userName, String password, String email, String dob) {
+    public User(Integer id, String userName, String password, String email,
+                String dob) {
         this.id = id;
         this.userName = userName;
         this.password = md5HashEncrypt(password);
@@ -89,7 +97,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = md5HashEncrypt(password);
     }
 
     public String getEmail() {
@@ -106,5 +114,13 @@ public class User {
 
     public void setDob(String dob) {
         this.dob = dob;
+    }
+
+
+    public void setEmpty(Boolean f){
+        this.empty= f;
+    }
+    public Boolean isEmpty(){
+        return this.empty;
     }
 }

@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">AppDevProject</string>
 
-<!--    User Registration page.
-    prefix this page with:
-
-     landPage_
-
+    <!--    User Registration page.
+    prefix this page with:     landPage_
  -->
 
     <string name="landPage_inspire">Two year of budgeting leads to a life of abundance.</string>
@@ -19,6 +16,72 @@
     <string name="landPage_Password">Password?</string>
 
 
-    <!--    -->
+    <!--landing page
+    prefix: home_
+-->
+    <string name="home_budget"> Take me to budget</string>
+    <string name="home_invest">Take me to investments</string>
+    <string name="home_edit">Edit profile</string>
+
+
+    <!--  Edit User Page.
+       prefix: edit_
+       -->
+    <string name="edit_name">Change your name</string>
+    <string name="edit_password">Change your password</string>
+    <string name="edit_confirm_password">Confirm your new password</string>
+    <string name="edit_email">Change your email</string>
+    <string name="edit_dob">Change your date of birth</string>
+    <string name="edit_save_btn">Im all new</string>
+
+
+    <!--    budget
+        prefix:bud_
+    -->
+
+    <string name="bud_heading">Budgeting</string>
+    <string name="bud_subHeading">Completely transform your personal finances in 30 months!</string>
+    <string name="bud_taxSide">Tax ?</string>
+
+    <!--    income
+    prefix: inc_
+    -->
+
+    <string name="inc_banner">🤑 Income 🤑 📈</string>
+    <string name="inc_labour">I laboured for: $5000 </string>
+    <string name="inc_interest">I invested for:$2500 </string>
+    <string name="inc_taxBracket">My Govt wants: </string>
+
+
+<!--    investment page
+    prefix: invest_
+-->
+    <string name="invest_banner">Investments</string>
+    <string name="invest_switch">invest in </string>
+    <string name="invest_self">My Self</string>
+
+    <string name="invest_selfWhy">Repaying a credit card is a 25% return on your investment. You\'re at home warren buffet. </string>
+    <string name="invest_others">Others </string>
+
+    <string name="invest_sortBy">Sort by</string>
+
+    <string name="invest_bySize">Size</string>
+    <string name="invest_byInterest">Interest </string>
+    <string name="invest_dividend">Div </string>
+
+    <string name="invest_moneyOut">Monthly Loss: </string>
+    <string name="invest_moneyIn">Monthly Gain: </string>
+
+    <string name="invest_repayOver">50 </string>
+
+
+
+    <string name="invest_repayMin">min repayment: 200 </string>
+
+
+<!--    <string name="invest_"> </string>-->
+<!--    <string name="invest_"> </string>-->
+<!--    <string name="invest_"> </string>-->
+
 
 </resources>
