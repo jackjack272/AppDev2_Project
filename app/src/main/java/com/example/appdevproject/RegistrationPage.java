@@ -13,6 +13,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.appdevproject.CustomException.MissingField;
+import com.example.appdevproject.LandingPage.IntroActivity;
 import com.example.appdevproject.LandingPage.LandingPage;
 import com.example.appdevproject.User.UserDb;
 import com.example.appdevproject.User.User;
@@ -130,7 +131,7 @@ public class RegistrationPage extends AppCompatActivity {
                 Toast.makeText(RegistrationPage.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
                 //sleep 750 milsec
 
-                startActivity(new Intent(RegistrationPage.this, LandingPage.class));
+                startActivity(new Intent(RegistrationPage.this, IntroActivity.class));
             }
         });
 

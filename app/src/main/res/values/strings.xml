@@ -53,7 +53,7 @@
     <string name="inc_taxBracket">My Govt wants: </string>
 
 
-<!--    investment page
+    <!--    investment page
     prefix: invest_
 -->
     <string name="invest_banner">Investments</string>
@@ -75,13 +75,12 @@
     <string name="invest_repayOver">50 </string>
 
 
-
     <string name="invest_repayMin">min repayment: 200 </string>
 
 
-<!--    <string name="invest_"> </string>-->
-<!--    <string name="invest_"> </string>-->
-<!--    <string name="invest_"> </string>-->
+    <!--    <string name="invest_"> </string>-->
+    <!--    <string name="invest_"> </string>-->
+    <!--    <string name="invest_"> </string>-->
 
 
 </resources>
