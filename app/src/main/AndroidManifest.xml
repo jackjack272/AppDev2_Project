@@ -16,19 +16,19 @@
             android:name=".Loans.Loans"
             android:exported="false" />
         <activity
-            android:name=".Budget.Income"
+            android:name=".Pages.IncomePage"
             android:exported="false" />
         <activity
-            android:name=".Budget.Budget"
+            android:name=".Pages.BudgetPage"
             android:exported="false" />
         <activity
-            android:name=".User.EditUserPage"
+            android:name=".Pages.EditUserPage"
             android:exported="false" />
         <activity
-            android:name=".LandingPage.LandingPage"
+            android:name=".Pages.LandingPage"
             android:exported="false" />
         <activity
-            android:name=".RegistrationPage"
+            android:name=".Pages.RegistrationPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

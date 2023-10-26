@@ -43,6 +43,23 @@
     <string name="bud_subHeading">Completely transform your personal finances in 30 months!</string>
     <string name="bud_taxSide">Tax ?</string>
 
+    <!--  item stuff  -->
+
+<!--        add new item -->
+    <string name="item_Heading">Add a new monthly item.</string>
+    <string name="item_name">Name of Item</string>
+    <string-array name="item_category">
+        <item>what is the category it belongs to?</item>
+        <item>housing</item>
+    </string-array>
+    <string name="item_price">Price of Item</string>
+    <string name="item_yearlyRenewal">Yearly Renewal Fee</string>
+    <string name="item_canel_fee">Cancelation Fee</string>
+    <string name="item_term">2 year contract?</string>
+    <string name="item_button">add new</string>
+
+<!--        diplay of new item -->
+
     <!--    income
     prefix: inc_
     -->

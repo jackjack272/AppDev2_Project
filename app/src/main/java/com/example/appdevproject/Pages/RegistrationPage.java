@@ -1,4 +1,4 @@
-package com.example.appdevproject;
+package com.example.appdevproject.Pages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,9 +12,9 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.appdevproject.CustomException.MissingField;
-import com.example.appdevproject.LandingPage.LandingPage;
-import com.example.appdevproject.User.UserDb;
+import com.example.appdevproject.InterFaces.CustomException.MissingField;
+import com.example.appdevproject.R;
+import com.example.appdevproject.Utility.ProjectDb;
 import com.example.appdevproject.User.User;
 
 public class RegistrationPage extends AppCompatActivity {
@@ -31,7 +31,7 @@ public class RegistrationPage extends AppCompatActivity {
 
     // how do i secure the db from sql injection attacks?
 
-    UserDb userDb;
+    ProjectDb projectDb;
     EditText userName, password, email, dateOfBirth;
     Switch toggle;
     Button nextPage;
@@ -39,12 +39,12 @@ public class RegistrationPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.user_registration);
 
         makeAssociates();
         admin_prePopulate();
 
-        userDb=new UserDb(RegistrationPage.this);
+        projectDb =new ProjectDb(RegistrationPage.this);
 
         // i can get the username from the login screen
 //         i can keep it in the shared prefrences and find user in db from the username.
@@ -78,7 +78,7 @@ public class RegistrationPage extends AppCompatActivity {
                     //login
                     if(!userName.getText().equals("")   ){
                         try{
-                            user=userDb.getUserByUsername(String.valueOf(userName.getText()));
+                            user= projectDb.getUserByUsername(String.valueOf(userName.getText()));
                             // throws if there is no match
                         }catch (Exception e){
                             //throw toast saying user dosent extist
@@ -106,7 +106,7 @@ public class RegistrationPage extends AppCompatActivity {
                     try{
                         // if the username dosent exist it will throw an error, else it will return with toast.
                         user= getUserRegistrationObject();
-                        User x= userDb.getUserByUsername(user.getUserName());
+                        User x= projectDb.getUserByUsername(user.getUserName());
                         if(x !=null){
                             Toast.makeText(RegistrationPage.this, "This username exits, pick another one", Toast.LENGTH_SHORT).show();
                             return;// user exists so kill control
@@ -114,7 +114,7 @@ public class RegistrationPage extends AppCompatActivity {
                     }catch (Exception e){
                         e.printStackTrace();
 
-                        userDb.makeUser(user); // make the user
+                        projectDb.makeUser(user); // make the user
                         Toast.makeText(RegistrationPage.this, "user was registered", Toast.LENGTH_SHORT).show();
                     }
                 }

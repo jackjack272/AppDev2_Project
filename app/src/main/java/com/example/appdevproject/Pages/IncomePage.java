@@ -1,4 +1,4 @@
-package com.example.appdevproject.Budget;
+package com.example.appdevproject.Pages;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.appdevproject.R;
 
-public class Income extends AppCompatActivity {
+public class IncomePage extends AppCompatActivity {
 
     private TextView labourFor, investFor, govWants;
     private RecyclerView labour_recycle, invest_recycle;

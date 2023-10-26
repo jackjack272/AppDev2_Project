@@ -1,4 +1,4 @@
-package com.example.appdevproject.LandingPage;
+package com.example.appdevproject.Pages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.appdevproject.Budget.Budget;
-import com.example.appdevproject.User.EditUserPage;
 import com.example.appdevproject.R;
 
 public class LandingPage extends AppCompatActivity {
@@ -46,7 +44,7 @@ public class LandingPage extends AppCompatActivity {
         budget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LandingPage.this, Budget.class));
+                startActivity(new Intent(LandingPage.this, BudgetPage.class));
             }
         });
         invest.setOnClickListener(new View.OnClickListener() {

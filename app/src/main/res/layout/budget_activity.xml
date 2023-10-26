@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Budget.Budget">
+    tools:context=".Pages.BudgetPage">
 
     <TextView
         android:id="@+id/bud_subHeader"
@@ -12,7 +12,7 @@
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="49dp"
         android:text="@string/bud_subHeading"
         app:layout_constraintBottom_toTopOf="@+id/bud_yearlyNet"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,16 +31,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bud_recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="406dp"
+        android:layout_height="396dp"
+        android:layout_marginBottom="84dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bud_yearlyNet" />
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/bud_taxBtn"
@@ -66,18 +63,17 @@
         android:id="@+id/bud_yearlyExp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="12dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bud_Banner" />
+        app:layout_constraintBottom_toTopOf="@+id/bud_yearlyNet"
+        app:layout_constraintEnd_toEndOf="@+id/bud_subHeader" />
 
     <TextView
         android:id="@+id/bud_postTaxincome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="15dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/bud_yearlyExp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,8 +84,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginBottom="9dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/bud_yearlyExp"
-        app:layout_constraintTop_toBottomOf="@+id/bud_yearlyExp" />
+        app:layout_constraintBottom_toTopOf="@+id/bud_recyclerView"
+        app:layout_constraintStart_toStartOf="@+id/bud_yearlyExp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bud_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/baseline_attach_money_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
