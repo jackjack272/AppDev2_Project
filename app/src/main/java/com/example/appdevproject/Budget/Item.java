@@ -34,25 +34,30 @@ public class Item {
 
 
 
+    public Item(String nameOfItem, Double priceOfItem, Integer category, Integer contractLength, Double yearlyRenewalFee, Double cancelationFee, Integer forenKey) {
+        this.nameOfItem = nameOfItem;
+        this.priceOfItem = priceOfItem;
+        this.category = category;
+        this.contractLength = contractLength;
+        this.yearlyRenewalFee = yearlyRenewalFee;
+        this.cancelationFee = cancelationFee;
+        this.forenKey = forenKey;
+    }
 
 
-
-
-
-
-
-    // constructor, getters and setters below
+// constructor, getters and setters below
     // put methods above.
 
     public Item(Integer id, String nameOfItem, Integer category,
-                Integer frequencyOfPurchase, Double priceOfItem,
+                 Double priceOfItem,
                 Double yearlyRenewalFee, Double cancelationFee,
                 Integer contractLength, Integer forenKey
     ) {
         this.id= id;
         this.nameOfItem = nameOfItem;
         this.category = category;
-        this.frequencyOfPurchase = frequencyOfPurchase;
+//        this.frequencyOfPurchase = frequencyOfPurchase;
+//        Integer frequencyOfPurchase,
         this.priceOfItem = priceOfItem;
         this.yearlyRenewalFee = yearlyRenewalFee;
         this.cancelationFee = cancelationFee;

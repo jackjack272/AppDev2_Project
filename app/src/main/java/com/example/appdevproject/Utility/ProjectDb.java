@@ -123,13 +123,15 @@ public class ProjectDb extends SQLiteOpenHelper {
                 cu.getInt(cu.getColumnIndexOrThrow(ITEM_ID)),
                 cu.getString(cu.getColumnIndexOrThrow(ITEM_NAME)),
                 cu.getInt(cu.getColumnIndexOrThrow(ITEM_CATEGORY)),
-                cu.getInt(cu.getColumnIndexOrThrow(ITEM_FREQUENCYOFPURCHASE)),
+
                 cu.getDouble(cu.getColumnIndexOrThrow(ITEM_PRICE)),
                 cu.getDouble(cu.getColumnIndexOrThrow(ITEM_RENEWALFEE)),
                 cu.getDouble(cu.getColumnIndexOrThrow(ITEM_CANCELATIONFEE)),
                 cu.getInt(cu.getColumnIndexOrThrow(ITEM_CONTRACTLEN)),
                 cu.getInt(cu.getColumnIndexOrThrow(ITEM_FOREIGN_KEY))
         );
+
+//                cu.getInt(cu.getColumnIndexOrThrow(ITEM_FREQUENCYOFPURCHASE)),
         db.close();
         return item;
     }

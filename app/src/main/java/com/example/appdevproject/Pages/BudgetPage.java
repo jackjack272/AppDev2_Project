@@ -1,7 +1,6 @@
 package com.example.appdevproject.Pages;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.appdevproject.AddNewItemToBudget;
+import com.example.appdevproject.Budget.AddNewItemToBudget;
 import com.example.appdevproject.Budget.Adapter.BudgetAdapter;
 import com.example.appdevproject.R;
 import com.example.appdevproject.Utility.ProjectDb;
@@ -67,11 +66,10 @@ public class BudgetPage extends AppCompatActivity {
                 startActivity(new Intent(BudgetPage.this, IncomePage.class));
             }
         });
-
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(budgetAdapter);
+//
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.setAdapter(budgetAdapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,8 +78,8 @@ public class BudgetPage extends AppCompatActivity {
                     .show(
                         getSupportFragmentManager(),
                         AddNewItemToBudget.TAG
+            //category number item are hard coded in AddNewItemToBudget
                     );
-
             }
         });
 
