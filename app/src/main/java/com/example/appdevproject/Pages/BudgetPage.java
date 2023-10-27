@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -60,16 +62,30 @@ public class BudgetPage extends AppCompatActivity {
         makeAssoications();
 
 
+        //next section
         taxPoriton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(BudgetPage.this, IncomePage.class));
             }
         });
-//
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setAdapter(budgetAdapter);
+
+
+
+
+
+
+
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(budgetAdapter);
+
+        SharedPreferences sharedPreferences=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        int foreignKey= myDb.getUserById(sharedPreferences.
+                getString("username",""));
+        budgetAdapter.setItems(foreignKey);
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
