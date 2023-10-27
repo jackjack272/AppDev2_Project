@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D9DDF4"
+    android:orientation="vertical"
+    tools:context=".Investment.NewInvestmentActivity">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="346dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:text="CREATE NEW INVESTMENT"
+        android:textColor="@color/blue"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        tools:layout_conversion_absoluteHeight="32dp"
+        tools:layout_conversion_absoluteWidth="180dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="200dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"></LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/invesCard"
+        android:layout_width="390dp"
+        android:layout_height="600dp"
+        android:layout_margin="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:elevation="12dp"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="251dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="60dp"
+                android:text="Investment Name"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/InvesName"
+                android:layout_width="332dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:ems="10"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="251dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Investment Type"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/InvesType"
+                android:layout_width="332dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:ems="10"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="251dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Investment Amount"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/InvesAmount"
+                android:layout_width="332dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:ems="10"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/btnInvesSave"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="70dp"
+                android:text="SAVE"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

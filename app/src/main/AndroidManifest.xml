@@ -13,6 +13,12 @@
         android:theme="@style/Theme.AppDevProject"
         tools:targetApi="31">
         <activity
+            android:name=".Investment.NewInvestmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Investment.InvestmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".LandingPage.IntroActivity"
             android:exported="false" />
         <activity
