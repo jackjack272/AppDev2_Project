@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.example.appdevproject.R;
 
 public class NewInvestmentActivity extends AppCompatActivity {
-
     Button saveBtn;
     EditText iname,itype,iamount;
     Intent intent;

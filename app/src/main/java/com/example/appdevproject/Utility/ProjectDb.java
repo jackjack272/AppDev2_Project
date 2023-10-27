@@ -13,6 +13,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectDb extends SQLiteOpenHelper {
+
+    /** This is the Database for the project
+     *  user -> item (one ->many)
+     *  user -> investment (one ->many)
+     *      // might be good idea to split investment into : stock and bond : table
+     *
+     *
+     *
+     * there will be a large load to do consolodation queries if there are mnany users
+     *      SELECT * FROM items WHERE USERID=3 ;
+     *      //would be a good idea to have a consolated table...
+     *
+     *
+     */
+
+
+
     //db info
         private static final String db_name="fall23_AndroidApp";
             // how do i put more tables into this db?
@@ -40,7 +57,7 @@ public class ProjectDb extends SQLiteOpenHelper {
         private static final String ITEM_RENEWALFEE="renewal_fee";
         private static final String ITEM_CANCELATIONFEE="cancel_fee";
         private static final String ITEM_CONTRACTLEN="contract_len";
-        private static final String ITEM_FOREIGN_KEY="PersonId";
+//        private static final String ITEM_FOREIGN_KEY="PersonId";
 //---------------
 
 
@@ -73,7 +90,7 @@ public class ProjectDb extends SQLiteOpenHelper {
                 + ITEM_RENEWALFEE + " REAL,"
                 + ITEM_CANCELATIONFEE + " REAL,"
                 + ITEM_CONTRACTLEN + " INTEGER, "
-                + "FOREIGN KEY (" + ITEM_FOREIGN_KEY + ") REFERENCES " + USER_TABLE + "(" + USER_ID + ")"
+                + "FOREIGN KEY (" + USER_ID + ") REFERENCES " + USER_TABLE + "(" + USER_ID + ")"
                 + ")";  // Add a space before the closing parenthesis
         db.execSQL(makeItem);
 
@@ -102,7 +119,7 @@ public class ProjectDb extends SQLiteOpenHelper {
             cv.put(ITEM_RENEWALFEE,item.getYearlyRenewalFee()  );
             cv.put(ITEM_CANCELATIONFEE,item.getCancelationFee()  );
             cv.put(ITEM_CONTRACTLEN,item.getContractLength()  );
-            cv.put(ITEM_FOREIGN_KEY, item.getForenKey());
+            cv.put(USER_ID, item.getForenKey());
 
         db.insert(ITEM_TABLE, null, cv);
         db.close();
@@ -124,7 +141,7 @@ public class ProjectDb extends SQLiteOpenHelper {
                 cu.getDouble(cu.getColumnIndexOrThrow(ITEM_RENEWALFEE)),
                 cu.getDouble(cu.getColumnIndexOrThrow(ITEM_CANCELATIONFEE)),
                 cu.getInt(cu.getColumnIndexOrThrow(ITEM_CONTRACTLEN)),
-                cu.getInt(cu.getColumnIndexOrThrow(ITEM_FOREIGN_KEY))
+                cu.getInt(cu.getColumnIndexOrThrow(USER_ID))
         );
 
 //                cu.getInt(cu.getColumnIndexOrThrow(ITEM_FREQUENCYOFPURCHASE)),
@@ -137,7 +154,7 @@ public class ProjectDb extends SQLiteOpenHelper {
 
 
         String getAll=String.format("SELECT %s FROM %s WHERE %s == %d",
-                "*", ITEM_TABLE , ITEM_FOREIGN_KEY, userId);
+                "*", ITEM_TABLE , USER_ID, userId);
 
         SQLiteDatabase db= getReadableDatabase();
 

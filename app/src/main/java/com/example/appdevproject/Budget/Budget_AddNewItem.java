@@ -16,12 +16,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.appdevproject.Budget.InterFaces.Budget_onDialogCloseListener;
 import com.example.appdevproject.Pages.BudgetPage;
 import com.example.appdevproject.R;
 import com.example.appdevproject.Utility.ProjectDb;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class AddNewItemToBudget extends BottomSheetDialogFragment {
+public class Budget_AddNewItem extends BottomSheetDialogFragment {
     // this is so the class can be callled
     public static final String TAG="AddNewItemToBudget";
 
@@ -34,8 +35,8 @@ public class AddNewItemToBudget extends BottomSheetDialogFragment {
 
 
     //be able to create new instance.
-    public static AddNewItemToBudget newInstace(){
-        return new AddNewItemToBudget();
+    public static Budget_AddNewItem newInstace(){
+        return new Budget_AddNewItem();
     }
 
 
@@ -78,6 +79,10 @@ public class AddNewItemToBudget extends BottomSheetDialogFragment {
                 if(item ==null){
                     return;
                 }
+
+                //notify that it works.
+
+
                 myDb.item_makeOne(item);
                 dismiss();
             }
@@ -94,9 +99,12 @@ public class AddNewItemToBudget extends BottomSheetDialogFragment {
         category_spinner=view.findViewById(R.id.item_getCategory);
         saveButton= view.findViewById(R.id.item_btn_addNew);
 
+
         myDb= new ProjectDb(getActivity());
 
+
     }
+    
     private int getCategorySelected(){
         String[] categories= getResources().getStringArray(R.array.item_category);
         String selected=category_spinner.getSelectedItem().toString();
@@ -180,19 +188,14 @@ public class AddNewItemToBudget extends BottomSheetDialogFragment {
     };
 
 
-
-
-
-
-
     // i belive this one closes the window.
     @Override
     public void onDismiss(@NonNull DialogInterface dialogInterface){
         super.onDismiss(dialogInterface);
         Activity activity= getActivity();
 
-        if(activity instanceof  onDialogCloseListener){
-            ((onDialogCloseListener)activity).onDialogClose(dialogInterface);
+        if(activity instanceof Budget_onDialogCloseListener){
+            ((Budget_onDialogCloseListener)activity).onDialogClose(dialogInterface);
         }
     }
 

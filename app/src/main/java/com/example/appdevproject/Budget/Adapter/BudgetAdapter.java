@@ -1,7 +1,6 @@
 package com.example.appdevproject.Budget.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdevproject.Budget.Item;
-import com.example.appdevproject.InterFaces.Budget;
 import com.example.appdevproject.Pages.BudgetPage;
 import com.example.appdevproject.R;
 import com.example.appdevproject.Utility.ProjectDb;

@@ -14,7 +14,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 //<<<<<<< HEAD:app/src/main/java/com/example/appdevproject/Pages/RegistrationPage.java
-import com.example.appdevproject.InterFaces.CustomException.MissingField;
+import com.example.appdevproject.Utility.CustomException.MissingField;
 import com.example.appdevproject.R;
 import com.example.appdevproject.Utility.ProjectDb;
 //=======
@@ -102,9 +102,9 @@ public class RegistrationPage extends AppCompatActivity {
                         return ;
                     }
                 }
-                /**
-                 * Registration has a bug, when it tries to find the id in the db if crashes the app.
-                 */
+
+
+
                 else{
                     email.setVisibility(View.VISIBLE);
                     dateOfBirth.setVisibility(View.VISIBLE);
@@ -134,7 +134,6 @@ public class RegistrationPage extends AppCompatActivity {
 
                 // go next intent.
 
-                Handler handler= new Handler ();
 
                 Toast.makeText(RegistrationPage.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
                 //sleep 750 milsec

@@ -6,7 +6,7 @@ package com.example.appdevproject.Utility;
  */
 
 
-public class UtilityClass {
+public class UtilityClass implements UtilityMethods{
 
 
     //get the compounding interest.

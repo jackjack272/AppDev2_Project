@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.appdevproject.Budget.AddNewItemToBudget;
+import com.example.appdevproject.Budget.Budget_AddNewItem;
 import com.example.appdevproject.Budget.Adapter.BudgetAdapter;
 import com.example.appdevproject.Budget.Budget_RecylerViewTouchHelper;
 import com.example.appdevproject.R;
@@ -78,10 +78,10 @@ public class BudgetPage extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddNewItemToBudget.newInstace()
+                Budget_AddNewItem.newInstace()
                     .show(
                         getSupportFragmentManager(),
-                        AddNewItemToBudget.TAG
+                        Budget_AddNewItem.TAG
             //category number item are hard coded in AddNewItemToBudget
                     );
             }
