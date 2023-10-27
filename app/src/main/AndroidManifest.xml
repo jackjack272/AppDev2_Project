@@ -13,14 +13,30 @@
         android:theme="@style/Theme.AppDevProject"
         tools:targetApi="31">
         <activity
+            android:name=".Investment.NewInvestmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Investment.InvestmentActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Pages.LandingPage"
+            android:exported="false" />
+
+
+        <activity
             android:name=".Loans.Loans"
             android:exported="false" />
         <activity
             android:name=".Pages.IncomePage"
             android:exported="false" />
+
         <activity
             android:name=".Pages.BudgetPage"
             android:exported="false" />
+
+
+
         <activity
             android:name=".Pages.EditUserPage"
             android:exported="false" />
@@ -35,6 +51,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 

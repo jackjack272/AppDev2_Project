@@ -6,12 +6,54 @@
     android:layout_height="match_parent">
 
 
+    <EditText
+        android:id="@+id/item_getCancelFee"
+        android:layout_width="238dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="13dp"
+        android:ems="10"
+        android:hint="@string/item_canel_fee"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/item_getCategory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_getYearlyFee" />
+
+    <EditText
+        android:id="@+id/item_getYearlyFee"
+        android:layout_width="237dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        android:ems="10"
+        android:hint="@string/item_yearlyRenewal"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/item_getCancelFee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_getPrice" />
+
+    <EditText
+        android:id="@+id/item_getContract"
+        android:layout_width="238dp"
+        android:layout_height="53dp"
+
+        android:layout_marginTop="53dp"
+        android:layout_marginBottom="52dp"
+        android:ems="10"
+        android:hint="@string/item_term"
+        android:inputType="number"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/item_getCancelFee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_getPrice" />
+
     <TextView
         android:id="@+id/addItemHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/item_Heading"
         android:textSize="@dimen/reg_log"
         app:layout_constraintBottom_toTopOf="@+id/item_getName"
@@ -19,28 +61,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <EditText
-        android:id="@+id/item_getName"
+    <Button
+        android:id="@+id/item_btn_addNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="@string/item_name"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/item_getPrice"
-        app:layout_constraintStart_toStartOf="@+id/addItemHeader"
-        app:layout_constraintTop_toBottomOf="@+id/addItemHeader" />
+        android:layout_marginBottom="148dp"
+        android:background="@color/black"
+        android:text="@string/item_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_getCategory" />
 
     <Spinner
         android:id="@+id/item_getCategory"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="64dp"
+
+        android:layout_marginStart="47dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="32dp"
         android:entries="@array/item_category"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/item_btn_addNew"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,63 +90,29 @@
 
     <EditText
         android:id="@+id/item_getPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="26dp"
+        android:layout_width="238dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="51dp"
         android:ems="10"
         android:hint="@string/item_price"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/item_getContract"
-        app:layout_constraintStart_toStartOf="@+id/item_getName"
-        app:layout_constraintTop_toBottomOf="@+id/item_getName" />
-
-    <EditText
-        android:id="@+id/item_getYearlyFee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="@string/item_yearlyRenewal"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/item_getCancelFee"
-        app:layout_constraintStart_toStartOf="@+id/item_getContract"
-        app:layout_constraintTop_toBottomOf="@+id/item_getContract" />
-
-    <EditText
-        android:id="@+id/item_getCancelFee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:ems="10"
-        android:hint="@string/item_canel_fee"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/item_getCategory"
-        app:layout_constraintStart_toStartOf="@+id/item_getYearlyFee"
-        app:layout_constraintTop_toBottomOf="@+id/item_getYearlyFee" />
-
-    <Button
-        android:id="@+id/item_btn_addNew"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="63dp"
-        android:text="@string/item_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_getCategory" />
-
-    <EditText
-        android:id="@+id/item_getContract"
-        android:layout_width="214dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="28dp"
-        android:ems="10"
-        android:hint="@string/item_term"
-        android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/item_getYearlyFee"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_getPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/item_getName" />
+
+    <EditText
+        android:id="@+id/item_getName"
+        android:layout_width="238dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="3dp"
+        android:ems="10"
+        android:hint="@string/item_name"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/item_getPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addItemHeader" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

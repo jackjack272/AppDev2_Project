@@ -20,7 +20,6 @@ public class ProjectDb extends SQLiteOpenHelper {
         private static final Integer db_version=1;
 
 
-
 //data memebers for Budget..
         private static final String USER_TABLE ="user";
         private static final String USER_ID ="id";
@@ -52,37 +51,34 @@ public class ProjectDb extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String makeUser="CREATE TABLE "+ USER_TABLE
-            +"("
-                + USER_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
-                +USER_USERNAME+" TEXT,"
-                + USER_PASSWORD +" TEXT,"
-                + USER_EMAIL +" TEXT,"
-                + USER_DOB +" String"
-            +")";
+        // Create the User table
+        String makeUser = "CREATE TABLE " + USER_TABLE
+                + "("
+                + USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + USER_USERNAME + " TEXT,"
+                + USER_PASSWORD + " TEXT,"
+                + USER_EMAIL + " TEXT,"
+                + USER_DOB + " TEXT"  // Change "String" to "TEXT"
+                + ")";
         db.execSQL(makeUser);
-        // if i close the db here it crash the project
 
-
-    //table linked to user
-        String makeItem="CREATE TABLE "+ITEM_TABLE
-                +"(" +
-                ITEM_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                ITEM_NAME +" TEXT," +
-                ITEM_CATEGORY +" INTEGER, "+
-                ITEM_FREQUENCYOFPURCHASE +" INTEGER, "+
-                ITEM_PRICE+" REAL, "+
-                ITEM_RENEWALFEE+" REAL,"+
-                ITEM_CANCELATIONFEE+" REAL,"+
-                ITEM_CONTRACTLEN+" INTEGER, "+
-                "FOREIGN KEY ("+ITEM_FOREIGN_KEY+") REFERENCES "+ USER_TABLE +"("+ USER_ID +" )"
-                    // this references user table and uses its id.
-                +");";
-
+        // Create the Item table
+        String makeItem = "CREATE TABLE " + ITEM_TABLE
+                + "("
+                + ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ITEM_NAME + " TEXT,"
+                + ITEM_CATEGORY + " INTEGER, "
+//                + ITEM_FREQUENCYOFPURCHASE + " INTEGER, "
+                + ITEM_PRICE + " REAL, "
+                + ITEM_RENEWALFEE + " REAL,"
+                + ITEM_CANCELATIONFEE + " REAL,"
+                + ITEM_CONTRACTLEN + " INTEGER, "
+                + "FOREIGN KEY (" + ITEM_FOREIGN_KEY + ") REFERENCES " + USER_TABLE + "(" + USER_ID + ")"
+                + ")";  // Add a space before the closing parenthesis
         db.execSQL(makeItem);
 
-
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -101,7 +97,7 @@ public class ProjectDb extends SQLiteOpenHelper {
         ContentValues cv= new ContentValues();
             cv.put(ITEM_NAME,item.getNameOfItem()  );
             cv.put(ITEM_CATEGORY,item.getCategory()  );
-            cv.put(ITEM_FREQUENCYOFPURCHASE,item.getFrequencyOfPurchase()  );
+//            cv.put(ITEM_FREQUENCYOFPURCHASE,item.getFrequencyOfPurchase()  );
             cv.put(ITEM_PRICE,item.getPriceOfItem()  );
             cv.put(ITEM_RENEWALFEE,item.getYearlyRenewalFee()  );
             cv.put(ITEM_CANCELATIONFEE,item.getCancelationFee()  );
@@ -137,7 +133,11 @@ public class ProjectDb extends SQLiteOpenHelper {
     }
     //read all
     public List<Item> item_getAll(int userId){
-        String getAll= "SELECT * FROM "+ITEM_TABLE+" WHERE "+ITEM_FOREIGN_KEY+" == "+userId;
+
+
+
+        String getAll=String.format("SELECT %s FROM %s WHERE %s == %d",
+                "*", ITEM_TABLE , ITEM_FOREIGN_KEY, userId);
 
         SQLiteDatabase db= getReadableDatabase();
 
@@ -210,6 +210,9 @@ public class ProjectDb extends SQLiteOpenHelper {
 
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cursor= db.rawQuery(getUser,null);
+//        cursor.moveToFirst();
+        //uncomment above to remove duplicate user registration
+
 
 
         User x= new User(
@@ -228,9 +231,20 @@ public class ProjectDb extends SQLiteOpenHelper {
 
 
     public int getUserById(String username){
-        String sql= "SELECT "+ USER_ID +" FROM "+ USER_TABLE +" WHERE "+USER_USERNAME+" == "+username;
-        Cursor cursor= (getReadableDatabase()).rawQuery(sql,null) ;
-        return cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID));
+        String sql= String.format("SELECT %s FROM %s WHERE %s == '%s'; ",USER_ID, USER_TABLE, USER_USERNAME, username);
+
+        SQLiteDatabase db= getReadableDatabase();
+        Cursor cursor= db.rawQuery(sql,null);
+        cursor.moveToFirst();
+
+        Integer userId= cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID));
+
+        return userId;
+
+
+//      Cursor cursor= (getReadableDatabase()).rawQuery(sql,null) ;
+//      return cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID));
+//        SELECT id FROM user WHERE username == James James
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.appdevproject.Pages;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.appdevproject.Budget.AddNewItemToBudget;
 import com.example.appdevproject.Budget.Adapter.BudgetAdapter;
+import com.example.appdevproject.Budget.Budget_RecylerViewTouchHelper;
 import com.example.appdevproject.R;
 import com.example.appdevproject.Utility.ProjectDb;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -71,21 +73,7 @@ public class BudgetPage extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(budgetAdapter);
-
-        SharedPreferences sharedPreferences=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-        int foreignKey= myDb.getUserById(sharedPreferences.
-                getString("username",""));
-        budgetAdapter.setItems(foreignKey);
-
+//        setRecuclerAdapter();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,11 +89,26 @@ public class BudgetPage extends AppCompatActivity {
 
         //recucler view touch helper need to be an implemented class
         //based on lab15 class of same name.
+        ItemTouchHelper itemTouchHelper= new ItemTouchHelper(new Budget_RecylerViewTouchHelper(budgetAdapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
 
-//        ItemTouchHelper itemTouchHelper= new ItemTouchHelper(new RecyclerViewTouchHelper(budgetAdapter));
-//        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
+
+
+
+
+    private void setRecuclerAdapter(){
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(budgetAdapter);
+
+        SharedPreferences sharedPreferences=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        int foreignKey= myDb.getUserById(
+                sharedPreferences.getString("username",""));
+        budgetAdapter.setItems(foreignKey);
+    }
+
 
     private void makeAssoications(){
         taxPoriton= findViewById(R.id.bud_taxBtn);

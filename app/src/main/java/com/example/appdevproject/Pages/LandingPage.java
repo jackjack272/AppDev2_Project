@@ -47,10 +47,11 @@ public class LandingPage extends AppCompatActivity {
                 startActivity(new Intent(LandingPage.this, BudgetPage.class));
             }
         });
+
         invest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent());
+//                startActivity(new Intent());
             }
         });
 

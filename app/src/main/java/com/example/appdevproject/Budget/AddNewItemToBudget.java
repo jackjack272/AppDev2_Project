@@ -68,17 +68,16 @@ public class AddNewItemToBudget extends BottomSheetDialogFragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences= getActivity()
-                        .getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-                int foreignKey= myDb.getUserById(sharedPreferences.
-                        getString("username",""));
+                SharedPreferences sharedPreferences= requireContext().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+                String userName=sharedPreferences.getString("username","");
+                int foreignKey= myDb.getUserById(userName);
 
                 //check the values are not null
                 Item item= makeItem(foreignKey);
-//                if(item !=null){
-//                    saveButton.setEnabled(true);
-//                }
 
+                if(item ==null){
+                    return;
+                }
                 myDb.item_makeOne(item);
                 dismiss();
             }
@@ -94,6 +93,9 @@ public class AddNewItemToBudget extends BottomSheetDialogFragment {
         cancelationFee= view.findViewById(R.id.item_getCancelFee);
         category_spinner=view.findViewById(R.id.item_getCategory);
         saveButton= view.findViewById(R.id.item_btn_addNew);
+
+        myDb= new ProjectDb(getActivity());
+
     }
     private int getCategorySelected(){
         String[] categories= getResources().getStringArray(R.array.item_category);
@@ -106,34 +108,61 @@ public class AddNewItemToBudget extends BottomSheetDialogFragment {
         }
         return categorySelected;
     }
+
     private Item makeItem(int foreignKey) {
         //fields to fill
         String name;
         Double price, yearlyNewalFee, cancelationFee;
         Integer contractLen, catSelected;
 
-
         //fill the fields
-        name= nameOfItem.getText().toString();
-        price= Double.parseDouble(priceOfItem.getText().toString());
-        contractLen=Integer.parseInt(yearContract.getText().toString());
-        yearlyNewalFee=Double.parseDouble( renewalFee.getText().toString());
-        cancelationFee= Double.parseDouble(this.cancelationFee.getText().toString());
+        try{
+            name= nameOfItem.getText().toString();
+        }catch (Exception e){
+            nameOfItem.setHint("enter a name");
+            name="";
+        }
+
+        try{
+            price= Double.parseDouble(priceOfItem.getText().toString());
+        }catch (Exception e){
+            priceOfItem.setHint("enter the price of the item");
+            price=-1.0;
+        }
+
+        try{
+            contractLen=Integer.parseInt(yearContract.getText().toString());
+        }catch (Exception e){
+            yearContract.setHint("cant be <0");
+            contractLen=-1;
+        }
+
+        try{
+            yearlyNewalFee=Double.parseDouble( renewalFee.getText().toString());
+        }catch (Exception e){
+            renewalFee.setHint("cant be <0");
+            yearlyNewalFee =-1.0; }
+
+        try{
+            cancelationFee= Double.parseDouble(this.cancelationFee.getText().toString());
+        }catch (Exception e){
+            this.cancelationFee.setHint("cant be <0");
+            cancelationFee=-1.0;
+        }
+
+        //idk how else to indicate which field failed to parse
 
 
         //check for bad values
         boolean badValues=false;
 
-        String emptyField="field cant be empty";
-        String negativeVal="value cant be <=0";
         if(name.equals("")){
-            nameOfItem.setHint(emptyField);
             badValues=true;
         }
         if(price <0 || contractLen < 0 || yearlyNewalFee < 0 ||cancelationFee < 0 ) {
-            priceOfItem.setHint(negativeVal);
             badValues = true;
         }
+
         catSelected= getCategorySelected();
         if(catSelected == -1){
             badValues=true;
