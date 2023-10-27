@@ -13,10 +13,10 @@
         android:theme="@style/Theme.AppDevProject"
         tools:targetApi="31">
         <activity
-            android:name=".Investment.NewInvestmentActivity"
+            android:name=".Investment.Invest_AddNew"
             android:exported="false" />
         <activity
-            android:name=".Investment.InvestmentActivity"
+            android:name=".Pages.InvestPage"
             android:exported="false" />
 
         <activity

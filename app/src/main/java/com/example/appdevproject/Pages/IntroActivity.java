@@ -3,13 +3,10 @@ package com.example.appdevproject.Pages;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.appdevproject.Investment.InvestmentActivity;
 import com.example.appdevproject.Loans.Loans;
 import com.example.appdevproject.R;
 
@@ -43,7 +40,7 @@ public class IntroActivity extends AppCompatActivity {
         txtInvestment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(IntroActivity.this, InvestmentActivity.class));
+                startActivity(new Intent(IntroActivity.this, InvestPage.class));
             }
         });
     }

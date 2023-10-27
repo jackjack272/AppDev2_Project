@@ -27,7 +27,6 @@ public class MyBudget implements Budget {
     private Integer userId;
     private ProjectDb myDb;
 
-
     public MyBudget(Context context, Integer id){
 //         myCategories = getResources().getString(R.string.item_select_category);
         // why dose this not work?
@@ -38,8 +37,6 @@ public class MyBudget implements Budget {
 
     @Override
     public double getMonthlyExpense() {
-
-
 
         return 0;
     }

@@ -7,7 +7,7 @@
     android:background="#D9DDF4"
     android:orientation="vertical"
     android:outlineProvider="background"
-    tools:context=".Investment.InvestmentActivity">
+    tools:context=".Pages.InvestPage">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/invest_maketValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -86,23 +86,19 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="200dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAddInves"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/invest_addOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="4dp"
-            android:outlineProvider="none"
-            android:text="ADD NEW"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginTop="50px"
+            android:layout_marginLeft="50px"
+            android:src="@drawable/baseline_attach_money_24"
+            />
 
     </LinearLayout>
 
     <ListView
-        android:id="@+id/investList"
+        android:id="@+id/invest_list"
         android:layout_width="match_parent"
         android:layout_height="463dp" />
 
