@@ -13,6 +13,14 @@
         android:theme="@style/Theme.AppDevProject"
         tools:targetApi="31">
         <activity
+            android:name=".LandingPage.OnboardingActivity"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
+        <activity
             android:name=".Investment.NewInvestmentActivity"
             android:exported="false" />
         <activity
@@ -38,12 +46,8 @@
             android:exported="false" />
         <activity
             android:name=".RegistrationPage"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
