@@ -19,20 +19,19 @@
         android:id="@+id/invest_add_debt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="19dp"
+        android:layout_marginStart="40dp"
         android:text="debt"
         app:layout_constraintBaseline_toBaselineOf="@+id/invest_add_stock"
-        app:layout_constraintEnd_toStartOf="@+id/invest_add_stock" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/invest_add_stock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="49dp"
         android:text="stock"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/invest_add_debt"
         app:layout_constraintTop_toBottomOf="@+id/invest_choice_heading" />
 
     <Button
@@ -49,13 +48,10 @@
         android:name="com.example.appdevproject.Investment.Fragments.Invest_fragmentDebt"
         android:layout_width="383dp"
         android:layout_height="460dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/invest_add_stock"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!--    android:name="com.example.appdevproject.Investment.Fab.Invest_AddNewInvest"-->
 

@@ -1,0 +1,11 @@
+this method can make items and add them to the database.
+
+need to implement the show item method
+in the header need 3 sql queries
+    1. show total expenses
+    2. show total debt
+    3. show total monthly loss
+
+
+should add a button navigation to see items per category.
+    sql: select * from items where category == user_input

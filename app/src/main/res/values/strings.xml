@@ -103,10 +103,19 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+<!--    investment debt fragment
+    prefix: invest_debt_frag
+-->
 
-    <!--    <string name="invest_"> </string>-->
-    <!--    <string name="invest_"> </string>-->
-    <!--    <string name="invest_"> </string>-->
+    <string name="invest_debt_frag_heading">New Debt</string>
+    <string name="invest_debt_frag_amount">Amount borrowed</string>
+    <string name="invest_debt_frag_interest">interest rate</string>
+    <string name="invest_debt_frag_compounds">compounds per year</string>
+    <string name="invest_debt_frag_term">How many months?</string>
+    <string name="invest_debt_frag_button">Add new debt</string>
+
+
+
 
 
 </resources>

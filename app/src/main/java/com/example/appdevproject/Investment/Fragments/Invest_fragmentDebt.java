@@ -1,5 +1,7 @@
 package com.example.appdevproject.Investment.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -13,7 +15,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.appdevproject.Investment.Money.Invest_Debt;
 import com.example.appdevproject.R;
+import com.example.appdevproject.Utility.ProjectDb;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,32 +63,97 @@ public class Invest_fragmentDebt extends Fragment {
 
 //my code
 
-    TextView output;
-    Button btn;
-    EditText editText;
-
+    EditText amountBorrowed, interestRate, compoundsPerYear, monthsOnLoan;
+    Button saveBtn;
+    ProjectDb projectDb;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle saveInstanceState){
+        makeAssocications();
 
+        //save a debt to the db
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-//        makeAssocications();
-//
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getContext(), "fragment 1 ", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+                Invest_Debt newDebt= createNewDebt();
+                if(newDebt ==null){
+                    return;
+                }
+
+                newDebt.setForeinKey(getUserId());
+//                projectDb.debt_makeOne();
+
+            }
+        });
+
     }
 
     public void makeAssocications(){
-        output= getView().findViewById(R.id.invest_debt_heading);
-        btn= getView().findViewById(R.id.invest_debt_btn);
-        editText=getView().findViewById(R.id.invest_debt_inputField);
+        amountBorrowed= getView().findViewById(R.id.invest_debt_getAmountBorrowed);
+        interestRate= getView().findViewById(R.id.invest_debt_getInterestRate);
+        compoundsPerYear=getView().findViewById(R.id.invest_debt_getCompoundsPerYear);
+        monthsOnLoan=getView().findViewById(R.id.invest_debt_getTimeInMonths);
+
+        saveBtn=getView().findViewById(R.id.invest_debt_btn);
+
+        projectDb= new ProjectDb(getContext());
     }
 
+    public Invest_Debt createNewDebt(){
+        Double amountBorrowed, interestRate;
+        Integer compounds, loanterm;
 
+        Boolean badValues=false;
+        try{
+            amountBorrowed= Double.parseDouble(this.amountBorrowed.getText().toString() );
+        }catch (Exception e){
+            this.amountBorrowed.setHint("bad amount borrowed");
+            badValues=true;
+            amountBorrowed=0.0;
+        }
 
+        try{
+            interestRate= Double.parseDouble( this.interestRate.getText().toString());
+        }catch (Exception e){
+            this.interestRate.setHint("bad interest rate");
+            badValues=true;
+            interestRate=0.0;
+        }
+
+        try{
+            compounds= Integer.parseInt( this.compoundsPerYear.getText().toString());
+        }catch (Exception e){
+            this.compoundsPerYear.setHint("bad compounds");
+            badValues=true;
+            compounds=0;
+        }
+
+        try{
+            loanterm= Integer.parseInt(this.monthsOnLoan.getText().toString());
+        }catch (Exception e){
+            this.monthsOnLoan.setHint("bad loan term");
+            badValues=true;
+            loanterm=0;
+        }
+
+        if(badValues){
+            Toast.makeText(getContext(), "Please correct the indicated values", Toast.LENGTH_SHORT).show();
+        }else {
+            if(amountBorrowed >0 && interestRate> 0 &&
+                    compounds>0 && loanterm >0){
+                return new Invest_Debt(amountBorrowed, interestRate, compounds, loanterm);
+            }
+        }
+        return  null;
+    }
+
+    public Integer getUserId(){
+        SharedPreferences sharedPreferences= requireContext()
+                .getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        String userName=sharedPreferences.getString("username","");
+        Integer id= projectDb.getUserById(userName);
+        return id;
+    }
 
 }

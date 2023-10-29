@@ -60,6 +60,18 @@ public class ProjectDb extends SQLiteOpenHelper {
 //        private static final String ITEM_FOREIGN_KEY="PersonId";
 //---------------
 
+// DEBT data memebers
+
+
+    private static final String DEBT_TABLE="loans";
+    private static final String DEBT_ID="id";
+    private static final String DEBT_AMOUNTBORROWED="amount_borrowed";
+    private static final String DEBT_INTERESTRATE="interest_rate";
+    private static final String DEBT_COMPOUNDSPERYEAR="yearly_compounds";
+    private static final String DEBT_LOANTERM="loan_term_months";
+//-----------
+
+
 
     public ProjectDb(Context context) {
         super(context, db_name, null , db_version);
@@ -90,9 +102,22 @@ public class ProjectDb extends SQLiteOpenHelper {
                 + ITEM_RENEWALFEE + " REAL,"
                 + ITEM_CANCELATIONFEE + " REAL,"
                 + ITEM_CONTRACTLEN + " INTEGER, "
-                + "FOREIGN KEY (" + USER_ID + ") REFERENCES " + USER_TABLE + "(" + USER_ID + ")"
+                + "FOREIGN KEY (" + USER_ID + ") " +
+                    "REFERENCES " + USER_TABLE + "(" + USER_ID + ")"
                 + ")";  // Add a space before the closing parenthesis
         db.execSQL(makeItem);
+
+        //Create a table for Debt.
+        String makeDebt= "CREATE TABLE "+DEBT_TABLE+" ("
+                + DEBT_ID+"INTEGER PRIMARY KEY AUTOINCREMENT, "
+                +DEBT_AMOUNTBORROWED+ "REAL, "
+                +DEBT_COMPOUNDSPERYEAR+ " INTEGER,"
+                +DEBT_INTERESTRATE+ " REAL, "
+                +DEBT_LOANTERM+ " INTEGER, "
+                +"FOREIGN KEY ("+USER_ID+") REFERENCES "+USER_TABLE+" ("+USER_ID+")" +
+                ");"
+                ;
+        db.execSQL(makeDebt);
 
     }
 
@@ -104,9 +129,17 @@ public class ProjectDb extends SQLiteOpenHelper {
     }
 
 
+//DEBT CRUD
+
+
+
+
+
+//----------
+
+
 
 //ITEM CRUD
-
     //create one
     public void item_makeOne(Item item){
         SQLiteDatabase db= getWritableDatabase();

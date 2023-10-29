@@ -66,7 +66,8 @@ public class Budget_AddNewItem extends BottomSheetDialogFragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences= requireContext().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences= requireContext()
+                        .getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
                 String userName=sharedPreferences.getString("username","");
                 int foreignKey= myDb.getUserById(userName);
 
