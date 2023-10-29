@@ -1,5 +1,6 @@
 package com.example.appdevproject.Utility;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.appdevproject.Budget.Item;
+import com.example.appdevproject.Investment.Money.Invest_Debt;
 import com.example.appdevproject.User.User;
 
 import java.util.ArrayList;
@@ -65,6 +67,7 @@ public class ProjectDb extends SQLiteOpenHelper {
 
     private static final String DEBT_TABLE="loans";
     private static final String DEBT_ID="id";
+    private static final String DEBT_NAME="name";
     private static final String DEBT_AMOUNTBORROWED="amount_borrowed";
     private static final String DEBT_INTERESTRATE="interest_rate";
     private static final String DEBT_COMPOUNDSPERYEAR="yearly_compounds";
@@ -110,7 +113,8 @@ public class ProjectDb extends SQLiteOpenHelper {
         //Create a table for Debt.
         String makeDebt= "CREATE TABLE "+DEBT_TABLE+" ("
                 + DEBT_ID+"INTEGER PRIMARY KEY AUTOINCREMENT, "
-                +DEBT_AMOUNTBORROWED+ "REAL, "
+                +DEBT_NAME+" TEXT,"
+                +DEBT_AMOUNTBORROWED+ " REAL,"
                 +DEBT_COMPOUNDSPERYEAR+ " INTEGER,"
                 +DEBT_INTERESTRATE+ " REAL, "
                 +DEBT_LOANTERM+ " INTEGER, "
@@ -130,6 +134,70 @@ public class ProjectDb extends SQLiteOpenHelper {
 
 
 //DEBT CRUD
+    public void debt_makeOne(Invest_Debt debt){
+        SQLiteDatabase db= getWritableDatabase();
+        ContentValues cv= new ContentValues();
+            cv.put(DEBT_NAME, debt.getDebtName());
+            cv.put(DEBT_AMOUNTBORROWED, debt.getAmountBorred());
+            cv.put(DEBT_INTERESTRATE, debt.getInterestRate());
+            cv.put(DEBT_COMPOUNDSPERYEAR, debt.getCompoundsPerYear());
+            cv.put(DEBT_LOANTERM, debt.getLoanTermInMonths());
+            cv.put(USER_ID, debt.getForeinKey());
+
+        db.insert(DEBT_TABLE, null, cv);
+        db.close();
+    }
+    public Invest_Debt debt_readOne(int id){
+        String getOne=String.format("SELECT * FROM %s WHERE ID == %d",
+                DEBT_TABLE, id );
+
+        SQLiteDatabase db= getReadableDatabase();
+        Cursor cursor= db.rawQuery(getOne,null);
+
+        return new Invest_Debt(
+            cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ID)),
+            cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID)),
+            cursor.getString(cursor.getColumnIndexOrThrow(DEBT_NAME)),
+            cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_AMOUNTBORROWED)),
+            cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_INTERESTRATE)),
+            cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_COMPOUNDSPERYEAR)),
+            cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_LOANTERM))
+        );
+    }
+    public List<Invest_Debt>  debt_readAll(){
+        String getAllSql="SELECT * FROM "+DEBT_TABLE;
+
+        SQLiteDatabase db  = getReadableDatabase();
+
+        Cursor cursor= db.rawQuery(getAllSql,null);
+        cursor.moveToFirst();
+
+        List<Invest_Debt> myDebts= new ArrayList<>();
+
+        while (cursor.moveToNext()){
+            Invest_Debt debt=new Invest_Debt(
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ID)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DEBT_NAME)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_AMOUNTBORROWED)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_INTERESTRATE)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_COMPOUNDSPERYEAR)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_LOANTERM))
+            );
+            myDebts.add(debt);
+        }
+        return myDebts;
+    }
+
+
+    public void debt_updateOne(int position, Invest_Debt debt){
+
+
+    }
+    public void debt_deleteOne(int position){
+
+
+    }
 
 
 

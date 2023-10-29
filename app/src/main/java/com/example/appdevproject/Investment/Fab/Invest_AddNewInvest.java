@@ -34,15 +34,15 @@ public class Invest_AddNewInvest extends BottomSheetDialogFragment {
                 //start fragment for
 
                 Toast.makeText(getContext(), "Debt", Toast.LENGTH_SHORT).show();
-
-            FragmentTransaction transaction = requireActivity().
-                        getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.invest_fab_fragment,
-                        new Invest_fragmentDebt(),null);
-                transaction.addToBackStack(null);
-                transaction.commit();
-
-                Toast.makeText(getContext(), "Debt", Toast.LENGTH_SHORT).show();
+//
+//            FragmentTransaction transaction = requireActivity().
+//                        getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.invest_fab_fragment,
+//                        new Invest_fragmentDebt(),null);
+//                transaction.addToBackStack(null);
+//                transaction.commit();
+//
+//                Toast.makeText(getContext(), "Debt", Toast.LENGTH_SHORT).show();
 
             }
         });

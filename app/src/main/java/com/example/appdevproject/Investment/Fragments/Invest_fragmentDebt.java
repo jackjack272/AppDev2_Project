@@ -61,9 +61,11 @@ public class Invest_fragmentDebt extends Fragment {
         return inflater.inflate(R.layout.fragment_invest__debt, container, false);
     }
 
-//my code
 
-    EditText amountBorrowed, interestRate, compoundsPerYear, monthsOnLoan;
+
+//coding area.
+
+    EditText debtName, amountBorrowed, interestRate, compoundsPerYear, monthsOnLoan;
     Button saveBtn;
     ProjectDb projectDb;
 
@@ -80,16 +82,16 @@ public class Invest_fragmentDebt extends Fragment {
                 if(newDebt ==null){
                     return;
                 }
-
                 newDebt.setForeinKey(getUserId());
-//                projectDb.debt_makeOne();
-
+                projectDb.debt_makeOne(newDebt);
+                Toast.makeText(getContext(), "added a new debt", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
     public void makeAssocications(){
+        debtName= getView().findViewById(R.id.invest_debt_Name);
         amountBorrowed= getView().findViewById(R.id.invest_debt_getAmountBorrowed);
         interestRate= getView().findViewById(R.id.invest_debt_getInterestRate);
         compoundsPerYear=getView().findViewById(R.id.invest_debt_getCompoundsPerYear);
@@ -103,11 +105,13 @@ public class Invest_fragmentDebt extends Fragment {
     public Invest_Debt createNewDebt(){
         Double amountBorrowed, interestRate;
         Integer compounds, loanterm;
+        String name= debtName.getText().toString();
 
         Boolean badValues=false;
         try{
             amountBorrowed= Double.parseDouble(this.amountBorrowed.getText().toString() );
         }catch (Exception e){
+            this.amountBorrowed.setText("");
             this.amountBorrowed.setHint("bad amount borrowed");
             badValues=true;
             amountBorrowed=0.0;
@@ -116,6 +120,7 @@ public class Invest_fragmentDebt extends Fragment {
         try{
             interestRate= Double.parseDouble( this.interestRate.getText().toString());
         }catch (Exception e){
+            this.interestRate.setText("");
             this.interestRate.setHint("bad interest rate");
             badValues=true;
             interestRate=0.0;
@@ -124,6 +129,7 @@ public class Invest_fragmentDebt extends Fragment {
         try{
             compounds= Integer.parseInt( this.compoundsPerYear.getText().toString());
         }catch (Exception e){
+            this.compoundsPerYear.setText("");
             this.compoundsPerYear.setHint("bad compounds");
             badValues=true;
             compounds=0;
@@ -132,17 +138,19 @@ public class Invest_fragmentDebt extends Fragment {
         try{
             loanterm= Integer.parseInt(this.monthsOnLoan.getText().toString());
         }catch (Exception e){
+            this.monthsOnLoan.setHint("");
             this.monthsOnLoan.setHint("bad loan term");
             badValues=true;
             loanterm=0;
         }
+
 
         if(badValues){
             Toast.makeText(getContext(), "Please correct the indicated values", Toast.LENGTH_SHORT).show();
         }else {
             if(amountBorrowed >0 && interestRate> 0 &&
                     compounds>0 && loanterm >0){
-                return new Invest_Debt(amountBorrowed, interestRate, compounds, loanterm);
+                return new Invest_Debt(name,amountBorrowed, interestRate, compounds, loanterm);
             }
         }
         return  null;

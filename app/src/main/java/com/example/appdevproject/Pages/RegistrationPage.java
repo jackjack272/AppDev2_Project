@@ -54,6 +54,9 @@ public class RegistrationPage extends AppCompatActivity {
 
         projectDb =new ProjectDb(RegistrationPage.this);
 
+//        projectDb.onUpgrade( null,1,2);
+        //use this code to drop db and reinitalise with new tables
+
         // i can get the username from the login screen
 //         i can keep it in the shared prefrences and find user in db from the username.
 
