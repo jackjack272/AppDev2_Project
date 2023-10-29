@@ -1,0 +1,6 @@
+need to make a general class that the investment and the loan in inherit from since
+    loans to other and investments are the same idea but with interest going/coming.
+
+10/29
+working on debt, items are being generated in the fragment need to make CRUD in db.
+    there is an error when trying to change the framents in the FAB... wating for answers on stack over flow/reddit.

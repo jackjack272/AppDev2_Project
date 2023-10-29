@@ -1,4 +1,4 @@
-package com.example.appdevproject.User;
+package com.example.appdevproject.Pages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appdevproject.R;
+import com.example.appdevproject.User.User;
+import com.example.appdevproject.Utility.ProjectDb;
 
 
 /**
@@ -27,12 +29,12 @@ public class EditUserPage extends AppCompatActivity {
     private SharedPreferences username;
     private Button save;
 
-    UserDb db;
+    ProjectDb db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_user_page);
+        setContentView(R.layout.user_edit);
         makeAssocications();
 
         greetUser("You want to change? okay but only this one time, ");
@@ -77,7 +79,7 @@ public class EditUserPage extends AppCompatActivity {
 
         save = findViewById(R.id.edit_save_btn);
         //db
-        db = new UserDb(EditUserPage.this);
+        db = new ProjectDb(EditUserPage.this);
     }
 
     private void greetUser(String greet) {

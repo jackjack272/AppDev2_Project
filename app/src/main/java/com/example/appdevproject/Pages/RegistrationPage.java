@@ -1,10 +1,11 @@
-package com.example.appdevproject;
+package com.example.appdevproject.Pages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -12,10 +13,16 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.appdevproject.CustomException.MissingField;
-import com.example.appdevproject.LandingPage.IntroActivity;
-import com.example.appdevproject.LandingPage.LandingPage;
-import com.example.appdevproject.User.UserDb;
+//<<<<<<< HEAD:app/src/main/java/com/example/appdevproject/Pages/RegistrationPage.java
+import com.example.appdevproject.Utility.CustomException.MissingField;
+import com.example.appdevproject.R;
+import com.example.appdevproject.Utility.ProjectDb;
+//=======
+//import com.example.appdevproject.CustomException.MissingField;
+//import com.example.appdevproject.LandingPage.IntroActivity;
+//import com.example.appdevproject.LandingPage.LandingPage;
+//import com.example.appdevproject.User.UserDb;
+//>>>>>>> 33761130263a0631cbbdc82cebe34b13e61f2660:app/src/main/java/com/example/appdevproject/RegistrationPage.java
 import com.example.appdevproject.User.User;
 
 public class RegistrationPage extends AppCompatActivity {
@@ -32,7 +39,7 @@ public class RegistrationPage extends AppCompatActivity {
 
     // how do i secure the db from sql injection attacks?
 
-    UserDb userDb;
+    ProjectDb projectDb;
     EditText userName, password, email, dateOfBirth;
     Switch toggle;
     Button nextPage;
@@ -40,12 +47,15 @@ public class RegistrationPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.user_registration);
 
         makeAssociates();
         admin_prePopulate();
 
-        userDb=new UserDb(RegistrationPage.this);
+        projectDb =new ProjectDb(RegistrationPage.this);
+
+//        projectDb.onUpgrade( null,1,2);
+        //use this code to drop db and reinitalise with new tables
 
         // i can get the username from the login screen
 //         i can keep it in the shared prefrences and find user in db from the username.
@@ -63,7 +73,6 @@ public class RegistrationPage extends AppCompatActivity {
                     nextPage.setText("Register");
                     email.setVisibility(View.VISIBLE);
                     dateOfBirth.setVisibility(View.VISIBLE);
-
                 }
             }
         });
@@ -79,7 +88,7 @@ public class RegistrationPage extends AppCompatActivity {
                     //login
                     if(!userName.getText().equals("")   ){
                         try{
-                            user=userDb.getUserByUsername(String.valueOf(userName.getText()));
+                            user= projectDb.getUserByUsername(String.valueOf(userName.getText()));
                             // throws if there is no match
                         }catch (Exception e){
                             //throw toast saying user dosent extist
@@ -96,9 +105,9 @@ public class RegistrationPage extends AppCompatActivity {
                         return ;
                     }
                 }
-                /**
-                 * Registration has a bug, when it tries to find the id in the db if crashes the app.
-                 */
+
+
+
                 else{
                     email.setVisibility(View.VISIBLE);
                     dateOfBirth.setVisibility(View.VISIBLE);
@@ -107,7 +116,7 @@ public class RegistrationPage extends AppCompatActivity {
                     try{
                         // if the username dosent exist it will throw an error, else it will return with toast.
                         user= getUserRegistrationObject();
-                        User x= userDb.getUserByUsername(user.getUserName());
+                        User x= projectDb.getUserByUsername(user.getUserName());
                         if(x !=null){
                             Toast.makeText(RegistrationPage.this, "This username exits, pick another one", Toast.LENGTH_SHORT).show();
                             return;// user exists so kill control
@@ -115,7 +124,7 @@ public class RegistrationPage extends AppCompatActivity {
                     }catch (Exception e){
                         e.printStackTrace();
 
-                        userDb.makeUser(user); // make the user
+                        projectDb.makeUser(user); // make the user
                         Toast.makeText(RegistrationPage.this, "user was registered", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -128,13 +137,13 @@ public class RegistrationPage extends AppCompatActivity {
 
                 // go next intent.
 
+
                 Toast.makeText(RegistrationPage.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
                 //sleep 750 milsec
 
-                startActivity(new Intent(RegistrationPage.this, IntroActivity.class));
+                startActivity(new Intent(RegistrationPage.this, LandingPage.class));
             }
         });
-
 
     }
 

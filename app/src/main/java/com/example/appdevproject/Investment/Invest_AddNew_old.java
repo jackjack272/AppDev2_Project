@@ -9,10 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.appdevproject.Pages.InvestPage;
 import com.example.appdevproject.R;
 
-public class NewInvestmentActivity extends AppCompatActivity {
-
+public class Invest_AddNew_old extends AppCompatActivity {
     Button saveBtn;
     EditText iname,itype,iamount;
     Intent intent;
@@ -35,11 +35,11 @@ public class NewInvestmentActivity extends AppCompatActivity {
                 String type = itype.getText().toString();
                 String amount = iamount.getText().toString();
 
-                DbHandlerInvestment dbHandler = new DbHandlerInvestment(NewInvestmentActivity.this);
+                Invest_Db dbHandler = new Invest_Db(Invest_AddNew_old.this);
 
                 dbHandler.insertInvestments(userId, name,type,amount);
                 Toast.makeText(getApplicationContext(), "New Investment Added Successfully!",Toast.LENGTH_LONG).show();
-                intent = new Intent(NewInvestmentActivity.this, InvestmentActivity.class);
+                intent = new Intent(Invest_AddNew_old.this, InvestPage.class);
                 startActivity(intent);
             }
         });

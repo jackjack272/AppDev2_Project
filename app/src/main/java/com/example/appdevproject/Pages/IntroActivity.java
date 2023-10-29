@@ -1,19 +1,14 @@
-package com.example.appdevproject.LandingPage;
+package com.example.appdevproject.Pages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.appdevproject.Budget.Budget;
-import com.example.appdevproject.Investment.InvestmentActivity;
-import com.example.appdevproject.Loans.Loans;
+import com.example.appdevproject.Loans.Loans_old;
 import com.example.appdevproject.R;
-import com.example.appdevproject.User.EditUserPage;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -32,20 +27,20 @@ public class IntroActivity extends AppCompatActivity {
         txtBudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(IntroActivity.this, Budget.class));
+                startActivity(new Intent(IntroActivity.this, BudgetPage.class));
             }
         });
 
         txtDebt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(IntroActivity.this, Loans.class));
+                startActivity(new Intent(IntroActivity.this, Loans_old.class));
             }
         });
         txtInvestment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(IntroActivity.this, InvestmentActivity.class));
+                startActivity(new Intent(IntroActivity.this, InvestPage.class));
             }
         });
     }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#D9DDF4"
     android:orientation="vertical"
-    tools:context=".Investment.NewInvestmentActivity">
+    tools:context=".Investment.Invest_AddNew_old">
 
     <TextView
         android:id="@+id/textView4"

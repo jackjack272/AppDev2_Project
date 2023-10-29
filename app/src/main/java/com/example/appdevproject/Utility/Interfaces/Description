@@ -1,0 +1,7 @@
+should add CRUD signatures for each of the tables that's indide the db
+    this will ensure that cant call wrong methods
+
+
+//restructed to this interface
+    DebtInterface inter= db.projectDb().getAllDebt();
+        // this will make query building easier laster on i think
