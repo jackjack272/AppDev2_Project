@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.example.appdevproject.Pages.InvestPage;
 import com.example.appdevproject.R;
 
-public class Invest_AddNew extends AppCompatActivity {
+public class Invest_AddNew_old extends AppCompatActivity {
     Button saveBtn;
     EditText iname,itype,iamount;
     Intent intent;
@@ -35,11 +35,11 @@ public class Invest_AddNew extends AppCompatActivity {
                 String type = itype.getText().toString();
                 String amount = iamount.getText().toString();
 
-                Invest_Db dbHandler = new Invest_Db(Invest_AddNew.this);
+                Invest_Db dbHandler = new Invest_Db(Invest_AddNew_old.this);
 
                 dbHandler.insertInvestments(userId, name,type,amount);
                 Toast.makeText(getApplicationContext(), "New Investment Added Successfully!",Toast.LENGTH_LONG).show();
-                intent = new Intent(Invest_AddNew.this, InvestPage.class);
+                intent = new Intent(Invest_AddNew_old.this, InvestPage.class);
                 startActivity(intent);
             }
         });

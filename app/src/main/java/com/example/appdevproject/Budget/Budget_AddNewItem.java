@@ -63,9 +63,6 @@ public class Budget_AddNewItem extends BottomSheetDialogFragment {
             //check for null's else allow update
 
 
-        //blank out the button.
-//        saveButton.setEnabled(true);
-
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

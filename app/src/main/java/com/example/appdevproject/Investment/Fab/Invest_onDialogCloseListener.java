@@ -1,7 +1,7 @@
-package com.example.appdevproject.Budget.InterFaces;
+package com.example.appdevproject.Investment.Fab;
 
 import android.content.DialogInterface;
 
-public interface Budget_onDialogCloseListener {
+public interface Invest_onDialogCloseListener {
     void onDialogClose(DialogInterface dialogInterface);
 }

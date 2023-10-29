@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.appdevproject.R;
 
-public class Loans extends AppCompatActivity {
+public class Loans_old extends AppCompatActivity {
     private Switch investIn;
     private Button size, interes, div;
 

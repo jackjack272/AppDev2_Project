@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/invest_choice_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="What kind of investment are we adding?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/invest_add_debt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="19dp"
+        android:text="debt"
+        app:layout_constraintBaseline_toBaselineOf="@+id/invest_add_stock"
+        app:layout_constraintEnd_toStartOf="@+id/invest_add_stock" />
+
+    <Button
+        android:id="@+id/invest_add_stock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="49dp"
+        android:text="stock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/invest_choice_heading" />
+
+    <Button
+        android:id="@+id/invest_add_bond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:text="bond"
+        app:layout_constraintBaseline_toBaselineOf="@+id/invest_add_stock"
+        app:layout_constraintStart_toEndOf="@+id/invest_add_stock" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/invest_fab_fragment"
+        android:name="com.example.appdevproject.Investment.Fragments.Invest_fragmentDebt"
+        android:layout_width="383dp"
+        android:layout_height="460dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/invest_add_stock"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <!--    android:name="com.example.appdevproject.Investment.Fab.Invest_AddNewInvest"-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -87,7 +87,7 @@
             tools:layout_editor_absoluteY="200dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/invest_addOne"
+            android:id="@+id/invest_fab_addOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50px"

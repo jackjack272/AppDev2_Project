@@ -51,7 +51,7 @@ public class LandingPage extends AppCompatActivity {
         invest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent());
+                startActivity(new Intent(LandingPage.this, InvestPage.class));
             }
         });
 

@@ -16,8 +16,4 @@ public class Invest_Stock implements Invest_I_Stock {
 
 
 
-
-
-
-
 }

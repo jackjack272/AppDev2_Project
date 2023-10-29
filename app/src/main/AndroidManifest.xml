@@ -13,7 +13,7 @@
         android:theme="@style/Theme.AppDevProject"
         tools:targetApi="31">
         <activity
-            android:name=".Investment.Invest_AddNew"
+            android:name=".Investment.Invest_AddNew_old"
             android:exported="false" />
         <activity
             android:name=".Pages.InvestPage"
@@ -25,7 +25,7 @@
 
 
         <activity
-            android:name=".Loans.Loans"
+            android:name=".Loans.Loans_old"
             android:exported="false" />
         <activity
             android:name=".Pages.IncomePage"

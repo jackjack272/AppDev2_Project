@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.appdevproject.Loans.Loans;
+import com.example.appdevproject.Loans.Loans_old;
 import com.example.appdevproject.R;
 
 public class IntroActivity extends AppCompatActivity {
@@ -34,7 +34,7 @@ public class IntroActivity extends AppCompatActivity {
         txtDebt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(IntroActivity.this, Loans.class));
+                startActivity(new Intent(IntroActivity.this, Loans_old.class));
             }
         });
         txtInvestment.setOnClickListener(new View.OnClickListener() {
