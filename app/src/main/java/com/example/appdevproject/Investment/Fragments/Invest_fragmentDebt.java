@@ -12,10 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.appdevproject.Investment.Money.Invest_Debt;
+import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.R;
 import com.example.appdevproject.Utility.ProjectDb;
 

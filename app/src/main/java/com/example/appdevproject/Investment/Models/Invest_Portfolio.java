@@ -1,6 +1,4 @@
-package com.example.appdevproject.Investment.Money;
-
-import java.util.List;
+package com.example.appdevproject.Investment.Models;
 
 public class Invest_Portfolio {
 

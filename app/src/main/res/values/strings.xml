@@ -115,4 +115,14 @@
     <string name="invest_debt_frag_button">Add new debt</string>
 
 
+<!--
+    invest_frag_stock
+    : 
+-->
+    <string name="invest_frag_stock_heading">Stocks </string>
+    <string name="invest_frag_stock_ticker">Ticker of the stock</string>
+    <string name="invest_frag_stock_number">Quantity of stock</string>
+    <string name="invest_frag_stock_btn">Save</string>
+
+
 </resources>

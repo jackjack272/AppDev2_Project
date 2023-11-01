@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Investment.Fragments.Invest_fragmentStock">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+
+        <EditText
+            android:id="@+id/invest_stock_ticker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="24dp"
+            android:ems="10"
+            android:hint="@string/invest_frag_stock_ticker"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/invest_stock_quantity"
+            app:layout_constraintEnd_toEndOf="@+id/invest_stock_quantity" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="66dp"
+            android:layout_marginEnd="66dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/invest_frag_stock_heading"
+            android:textSize="@dimen/subheadings"
+            app:layout_constraintBottom_toTopOf="@+id/invest_stock_ticker"
+            app:layout_constraintEnd_toEndOf="@+id/invest_stock_ticker"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/invest_stock_quantity" />
+
+        <EditText
+            android:id="@+id/invest_stock_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="296dp"
+            android:ems="10"
+            android:hint="@string/invest_frag_stock_number"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/invest_stock_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@string/invest_frag_stock_btn"
+            app:layout_constraintEnd_toEndOf="@+id/invest_stock_ticker"
+            app:layout_constraintHorizontal_bias="0.524"
+            app:layout_constraintStart_toStartOf="@+id/invest_stock_ticker"
+            app:layout_constraintTop_toBottomOf="@+id/invest_stock_quantity" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>

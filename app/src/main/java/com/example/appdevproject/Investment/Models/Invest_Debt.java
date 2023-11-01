@@ -1,4 +1,4 @@
-package com.example.appdevproject.Investment.Money;
+package com.example.appdevproject.Investment.Models;
 
 import com.example.appdevproject.Investment.Interfaces.Debt;
 

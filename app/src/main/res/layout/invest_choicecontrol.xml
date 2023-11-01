@@ -45,7 +45,9 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/invest_fab_fragment"
-        android:name="com.example.appdevproject.Investment.Fragments.Invest_fragmentDebt"
+
+        android:name="com.example.appdevproject.Investment.Fragments.Invest_fragmentStock"
+
         android:layout_width="0dp"
         android:layout_height="526dp"
         android:layout_marginBottom="1dp"

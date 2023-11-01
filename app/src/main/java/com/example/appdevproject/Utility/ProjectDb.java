@@ -1,6 +1,5 @@
 package com.example.appdevproject.Utility;
 
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.appdevproject.Budget.Item;
-import com.example.appdevproject.Investment.Money.Invest_Debt;
+import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.User.User;
 
 import java.util.ArrayList;

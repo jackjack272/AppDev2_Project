@@ -47,6 +47,8 @@ public class InvestPage extends AppCompatActivity {
         fab=findViewById(R.id.invest_fab_addOne);
     }
 
+
+
     public void ogImpl(){
         Invest_Db db = new Invest_Db(this);
         ArrayList<HashMap<String, String>> investmentList = db.GetInvestments();
@@ -71,9 +73,6 @@ public class InvestPage extends AppCompatActivity {
         });
 
     }
-
-
-
 
 
 }
