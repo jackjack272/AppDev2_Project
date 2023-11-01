@@ -2,6 +2,8 @@ package com.example.appdevproject.Investment.Models;
 
 import com.example.appdevproject.Investment.Interfaces.Debt;
 
+
+
 public class Invest_Debt implements Debt {
     private Integer id, foreinKey;
     private String debtName;
@@ -39,6 +41,8 @@ public class Invest_Debt implements Debt {
 
 
     //what should my payments be to pay off the loan in 10 months?
+
+
 
 
 

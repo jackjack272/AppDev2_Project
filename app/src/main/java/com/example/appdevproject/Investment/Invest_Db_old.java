@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Invest_Db extends SQLiteOpenHelper {
+public class Invest_Db_old extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
     private static final String DB_NAME = "temp_db";
@@ -23,11 +23,11 @@ public class Invest_Db extends SQLiteOpenHelper {
     private static final String KEY_TYPE = "investtype";
     private static final String KEY_AMOUNT = "investamount";
 
-    public Invest_Db(Context context){
+    public Invest_Db_old(Context context){
         super(context,DB_NAME, null, DB_VERSION);
     }
 
-    public Invest_Db(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public Invest_Db_old(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 

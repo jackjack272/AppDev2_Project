@@ -67,11 +67,7 @@ public class Invest_AddNewInvest extends BottomSheetDialogFragment {
         stock= getView().findViewById(R.id.invest_add_stock);
         bond= getView().findViewById(R.id.invest_add_bond);
         output= getView().findViewById(R.id.invest_fab_fragment);
-
     }
-
-
-
 
 //boiler plate
     public static final String TAG="AddNewItemToInvest";

@@ -12,7 +12,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.appdevproject.Investment.Fab.Invest_AddNewInvest;
-import com.example.appdevproject.Investment.Invest_Db;
+import com.example.appdevproject.Investment.Invest_Db_old;
 import com.example.appdevproject.Investment.Invest_AddNew_old;
 import com.example.appdevproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -50,7 +50,7 @@ public class InvestPage extends AppCompatActivity {
 
 
     public void ogImpl(){
-        Invest_Db db = new Invest_Db(this);
+        Invest_Db_old db = new Invest_Db_old(this);
         ArrayList<HashMap<String, String>> investmentList = db.GetInvestments();
         ListView lv = (ListView) findViewById(R.id.invest_list);
 

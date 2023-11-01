@@ -15,7 +15,7 @@ import com.example.appdevproject.R;
 public class LandingPage extends AppCompatActivity {
     private TextView welcomeBanner;
 
-    private Button edit, budget, invest;
+    private Button edit, budget, invest, tax;
 
     private TextView income, expense, remaining;
 
@@ -55,6 +55,16 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
+        tax.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LandingPage.this, TaxPage.class));
+            }
+        });
+
+
+
+
     }
 
     private void makeAssociations(){
@@ -66,6 +76,7 @@ public class LandingPage extends AppCompatActivity {
         edit= findViewById(R.id.home_editUser);
         budget=findViewById(R.id.home_budget);
         invest=findViewById(R.id.home_invest);
+        tax=findViewById(R.id.home_tax);
 
         username= getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
     }

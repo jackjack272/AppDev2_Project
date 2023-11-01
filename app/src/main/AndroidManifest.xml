@@ -34,7 +34,7 @@
             android:name=".Loans.Loans_old"
             android:exported="false" />
         <activity
-            android:name=".Pages.IncomePage"
+            android:name=".Pages.TaxPage"
             android:exported="false" />
 
         <activity

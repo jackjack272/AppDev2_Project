@@ -68,7 +68,7 @@ public class BudgetPage extends AppCompatActivity {
         taxPoriton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BudgetPage.this, IncomePage.class));
+                startActivity(new Intent(BudgetPage.this, TaxPage.class));
             }
         });
 

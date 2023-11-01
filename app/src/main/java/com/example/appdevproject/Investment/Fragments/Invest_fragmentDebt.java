@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appdevproject.Investment.Models.Invest_Debt;
@@ -99,9 +100,18 @@ public class Invest_fragmentDebt extends Fragment {
         saveBtn=getView().findViewById(R.id.invest_debt_btn);
 
         projectDb= new ProjectDb(getContext());
+
+        //this isent used any where else and is for the consmetic
+        TextView heading= getView().findViewById(R.id.invest_debt_heading);
+        heading.setText(getString(R.string.invest_debt_frag_heading));
     }
 
     public Invest_Debt createNewDebt(){
+
+
+
+
+
         Double amountBorrowed, interestRate;
         Integer compounds, loanterm;
         String name= debtName.getText().toString();
@@ -149,6 +159,11 @@ public class Invest_fragmentDebt extends Fragment {
         }else {
             if(amountBorrowed >0 && interestRate> 0 &&
                     compounds>0 && loanterm >0){
+
+                // borrowed needs to be negative.
+                    // bonds will be possitive.
+                amountBorrowed= amountBorrowed*-1; // check if user put in -value
+
                 return new Invest_Debt(name,amountBorrowed, interestRate, compounds, loanterm);
             }
         }

@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.appdevproject.R;
 
-public class IncomePage extends AppCompatActivity {
+public class TaxPage extends AppCompatActivity {
 
     private TextView labourFor, investFor, govWants;
     private RecyclerView labour_recycle, invest_recycle;

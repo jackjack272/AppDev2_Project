@@ -35,7 +35,7 @@ public class Invest_AddNew_old extends AppCompatActivity {
                 String type = itype.getText().toString();
                 String amount = iamount.getText().toString();
 
-                Invest_Db dbHandler = new Invest_Db(Invest_AddNew_old.this);
+                Invest_Db_old dbHandler = new Invest_Db_old(Invest_AddNew_old.this);
 
                 dbHandler.insertInvestments(userId, name,type,amount);
                 Toast.makeText(getApplicationContext(), "New Investment Added Successfully!",Toast.LENGTH_LONG).show();
