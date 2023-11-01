@@ -17,7 +17,9 @@
         android:theme="@style/Theme.AppDevProject"
         tools:targetApi="31">
         <activity
+
             android:name=".Investment.Invest_AddNew_old"
+
             android:exported="false" />
         <activity
             android:name=".Pages.InvestPage"
@@ -48,6 +50,7 @@
             android:name=".Pages.LandingPage"
             android:exported="false" />
         <activity
+
             android:name=".Pages.RegistrationPage"
             android:exported="true">
             <intent-filter>
@@ -55,6 +58,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
 
         </activity>
     </application>
