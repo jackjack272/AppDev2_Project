@@ -252,7 +252,7 @@ public class ProjectDb extends SQLiteOpenHelper {
 
 
         String getAll=String.format("SELECT %s FROM %s WHERE %s == %d",
-                "*", ITEM_TABLE , USER_ID, userId);
+                "*", ITEM_TABLE , ITEM_FORENKEY, userId);
 
         SQLiteDatabase db= getReadableDatabase();
 
@@ -266,11 +266,11 @@ public class ProjectDb extends SQLiteOpenHelper {
                     cu.getInt(cu.getColumnIndexOrThrow(ITEM_ID)),
                     cu.getString(cu.getColumnIndexOrThrow(ITEM_NAME)),
                     cu.getInt(cu.getColumnIndexOrThrow(ITEM_CATEGORY)),
-                    cu.getInt(cu.getColumnIndexOrThrow(ITEM_FREQUENCYOFPURCHASE)),
                     cu.getDouble(cu.getColumnIndexOrThrow(ITEM_PRICE)),
                     cu.getDouble(cu.getColumnIndexOrThrow(ITEM_RENEWALFEE)),
                     cu.getDouble(cu.getColumnIndexOrThrow(ITEM_CANCELATIONFEE)),
-                    cu.getInt(cu.getColumnIndexOrThrow(ITEM_CONTRACTLEN))
+                    cu.getInt(cu.getColumnIndexOrThrow(ITEM_CONTRACTLEN)),
+                    cu.getInt(cu.getColumnIndexOrThrow(ITEM_FORENKEY))
                 )
             );
         }

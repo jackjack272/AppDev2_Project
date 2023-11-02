@@ -72,10 +72,9 @@ public class BudgetAdapterTwo extends RecyclerView.Adapter<BudgetAdapterTwo.Inte
     public void onBindViewHolder(@NonNull BudgetAdapterTwo.Internal holder, int position) {
         holder.item_name.setText(myItems.get(position).getNameOfItem());
 
-        holder.item_amount.setText(String.valueOf( 0 ));
-        holder.item_renewalFee.setText(String.valueOf(0));
-        holder.item_leftOnContract.setText(String.valueOf(0));
-        holder.item_leftOnContract.setText(String.valueOf(0));
+        holder.item_amount.setText(String.valueOf( myItems.get(position).getPriceOfItem() ));
+        holder.item_leftOnContract.setText(String.valueOf(myItems.get(position).getContractLength()));
+        holder.item_renewalFee.setText(String.valueOf(myItems.get(position).getYearlyRenewalFee()));
     }
 
     @Override
