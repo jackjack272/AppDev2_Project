@@ -10,11 +10,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.appdevproject.Budget.Adapter.BudgetAdapterTwo;
 import com.example.appdevproject.Budget.Fab.Budget_AddNewItem;
 import com.example.appdevproject.Budget.Adapter.BudgetAdapter;
+import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.R;
 import com.example.appdevproject.Utility.ProjectDb;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 
 /**
@@ -42,27 +46,27 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class BudgetPage extends AppCompatActivity {
 
-    private TextView monthlyExp, yearlyExp, postTaxIncome, yearlyNet;
-
-
-
-        // if we can set up 3 buttons for differnt queries,
-            // query 1: Sort by balance // query 2: Sort by yearly Total //  q 3:?
+//----- adapter stuff
+    // if we can set up 3 buttons for differnt queries,
+    // query 1: Sort by balance // query 2: Sort by yearly Total //  q 3:?
     private RecyclerView recyclerView; // i want this to show budget items.
+    RecyclerView.LayoutManager layoutManager;
+    private BudgetAdapterTwo budgetAdapter;
+
+
+//----- page stuff
+    private TextView monthlyExp, yearlyExp, postTaxIncome, yearlyNet;
     private FloatingActionButton fab;
     private ProjectDb myDb;
-    private BudgetAdapter budgetAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.budget_activity);
+
         makeAssoications();
 
-
-
-
-        setRecuclerAdapter();
+        setAdapter();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,19 +89,21 @@ public class BudgetPage extends AppCompatActivity {
     }
 
 
-    private void setRecuclerAdapter(){
 
-        budgetAdapter= new BudgetAdapter(myDb, BudgetPage.this);
+    private void setAdapter(){
+        layoutManager= new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        budgetAdapter= new BudgetAdapterTwo(BudgetPage.this);
+
+        //set the item s
+        SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        int foreignKey= myDb.getUserById(s.getString("username",""));
+        List<Item> myItems= myDb.item_getAll(foreignKey);
+        budgetAdapter.setItems(myItems);
+
+
         recyclerView.setAdapter(budgetAdapter);
-
-        SharedPreferences sharedPreferences=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-        int foreignKey= myDb.getUserById(
-                sharedPreferences.getString("username",""));
-
-        budgetAdapter.setItems(foreignKey);
 
     }
 
@@ -115,6 +121,26 @@ public class BudgetPage extends AppCompatActivity {
         myDb= new ProjectDb(BudgetPage.this);
 
     }
+
+
+
+    //this is old non working impl
+//    private void setRecuclerAdapter(){
+//        budgetAdapter= new BudgetAdapter(myDb, BudgetPage.this);
+//
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.setAdapter(budgetAdapter);
+//
+//        SharedPreferences sharedPreferences=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+//        int foreignKey= myDb.getUserById(
+//                sharedPreferences.getString("username",""));
+//        List<Item> myItems= myDb.item_getAll(foreignKey);
+//
+//
+//        budgetAdapter.setItems(myItems);
+//
+//    }
 
 
 }

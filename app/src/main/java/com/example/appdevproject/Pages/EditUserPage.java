@@ -61,7 +61,6 @@ public class EditUserPage extends AppCompatActivity {
             ch_email.setHint(user.getEmail());
             ch_dob.setHint(user.getDob());
 
-
         }catch (Exception e){
             e.printStackTrace();
             Toast.makeText(this, "Failed to find user in Db", Toast.LENGTH_SHORT).show();
@@ -89,13 +88,13 @@ public class EditUserPage extends AppCompatActivity {
 
     private User getEditValues() {
         // make sure the passwords match
-        if (ch_pass.getText().equals(ch_confirm_pass.getText())) {
+        if (ch_pass.getText().toString().equals(ch_confirm_pass.getText().toString())) {
             //get the rest of the object
             User updateMe= new User();
             updateMe.setEmpty(false);
-            updateMe.setDob(String.valueOf(ch_dob.getText()));
-            updateMe.setEmail(String.valueOf(ch_email.getText()));
-            updateMe.setPassword(String.valueOf(ch_pass.getText()));
+            updateMe.setDob(String.valueOf(ch_dob.getText().toString()));
+            updateMe.setEmail(String.valueOf(ch_email.getText().toString()));
+            updateMe.setPassword(String.valueOf(ch_pass.getText().toString()));
 
             return updateMe;
         } else {

@@ -58,6 +58,8 @@ public class ProjectDb extends SQLiteOpenHelper {
         private static final String ITEM_RENEWALFEE="renewal_fee";
         private static final String ITEM_CANCELATIONFEE="cancel_fee";
         private static final String ITEM_CONTRACTLEN="contract_len";
+
+        private static final String ITEM_FORENKEY= USER_ID+"_foreign";
 //        private static final String ITEM_FOREIGN_KEY="PersonId";
 //---------------
 
@@ -104,6 +106,7 @@ public class ProjectDb extends SQLiteOpenHelper {
                 + ITEM_RENEWALFEE + " REAL,"
                 + ITEM_CANCELATIONFEE + " REAL,"
                 + ITEM_CONTRACTLEN + " INTEGER, "
+                + ITEM_FORENKEY +" INTEGER, "
                 + "FOREIGN KEY (" + USER_ID + ") " +
                     "REFERENCES " + USER_TABLE + "(" + USER_ID + ")"
                 + ")";  // Add a space before the closing parenthesis
@@ -111,7 +114,7 @@ public class ProjectDb extends SQLiteOpenHelper {
 
         //Create a table for Debt.
         String makeDebt= "CREATE TABLE "+DEBT_TABLE+" ("
-                + DEBT_ID+"INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + DEBT_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
                 +DEBT_NAME+" TEXT,"
                 +DEBT_AMOUNTBORROWED+ " REAL,"
                 +DEBT_COMPOUNDSPERYEAR+ " INTEGER,"
@@ -188,14 +191,9 @@ public class ProjectDb extends SQLiteOpenHelper {
         return myDebts;
     }
 
-
     public void debt_updateOne(int position, Invest_Debt debt){
-
-
     }
     public void debt_deleteOne(int position){
-
-
     }
 
 
@@ -219,7 +217,7 @@ public class ProjectDb extends SQLiteOpenHelper {
             cv.put(ITEM_RENEWALFEE,item.getYearlyRenewalFee()  );
             cv.put(ITEM_CANCELATIONFEE,item.getCancelationFee()  );
             cv.put(ITEM_CONTRACTLEN,item.getContractLength()  );
-            cv.put(USER_ID, item.getForenKey());
+            cv.put(ITEM_FORENKEY, item.getForenKey());
 
         db.insert(ITEM_TABLE, null, cv);
         db.close();
@@ -319,33 +317,33 @@ public class ProjectDb extends SQLiteOpenHelper {
     // Read one
     public User getUserByUsername(String _username){
         // this needs to be parameretised- injection attack
-        String getUser = String.format("SELECT %s, %s, %s, %s, %s FROM %s WHERE " + this.USER_USERNAME + " = '%s';"
+        String getUser = String.format("SELECT %s, %s, %s, %s, %s FROM %s WHERE "
+                        + this.USER_USERNAME + " = '%s';"
                 , USER_ID, USER_USERNAME, USER_PASSWORD, USER_EMAIL, USER_DOB, USER_TABLE, _username);
 
         // i dont want to take out the password
             //wierd spacing to see the parameters better
+        User x=null;
 
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cursor= db.rawQuery(getUser,null);
-//        cursor.moveToFirst();
-        //uncomment above to remove duplicate user registration
 
-
-
-        User x= new User(
-                cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID)), // this causes errors
-                cursor.getString(cursor.getColumnIndexOrThrow(USER_USERNAME)),
-                cursor.getString(cursor.getColumnIndexOrThrow(USER_PASSWORD)),
-                cursor.getString(cursor.getColumnIndexOrThrow(USER_EMAIL)),
-                cursor.getString(cursor.getColumnIndexOrThrow(USER_DOB))
-        );
-
-        // i think i was closing the db before i was done with it.
-        db.close();
+        if (cursor.getCount() ==1){
+            //if there is a user with this user name return them.
+            cursor.moveToFirst();
+            x = new User(
+                    cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID)), // this causes errors
+                    cursor.getString(cursor.getColumnIndexOrThrow(USER_USERNAME)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(USER_PASSWORD)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(USER_EMAIL)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(USER_DOB))
+            );
+            // i think i was closing the db before i was done with it.
+            db.close();
+        }
         return x;
         //id will be in shared preferences for the logged in user so dont need it here.
     }
-
 
     public int getUserById(String username){
         String sql= String.format("SELECT %s FROM %s WHERE %s == '%s'; ",USER_ID, USER_TABLE, USER_USERNAME, username);
@@ -363,7 +361,6 @@ public class ProjectDb extends SQLiteOpenHelper {
 //      return cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID));
 //        SELECT id FROM user WHERE username == James James
     }
-
 
     //update one
     public void updateUser(User user){

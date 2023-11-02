@@ -1,9 +1,14 @@
 package com.example.appdevproject.User;
 
+import android.util.Log;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class User {
+
+    private static final String TAG= User.class.getSimpleName();
+
     private Integer id; // this is the primary key
     private String userName;
     private String password;
@@ -26,7 +31,7 @@ public class User {
 
     public User(String userName, String password, String email, String dob) {
         this.userName = userName;
-        this.password = md5HashEncrypt(password);
+        this.password = password;
         this.email = email;
         this.dob = dob;
     }
@@ -35,7 +40,7 @@ public class User {
                 String dob) {
         this.id = id;
         this.userName = userName;
-        this.password = md5HashEncrypt(password);
+        this.password = password;
         this.email = email;
         this.dob = dob;
     }
@@ -54,16 +59,22 @@ public class User {
                     sb.append(String.format("%02x",b));
             }
             return sb.toString();
+
         }catch (NoSuchAlgorithmException e){
             e.printStackTrace();
-
         }
         return "failedToHash";
     }
 
     // compare passwords
-    public static Boolean comparePasswords(String passwordAttempt, String passwordHash){
-        if(md5HashEncrypt(passwordHash).equals(passwordHash)){
+    public static Boolean comparePasswords(String passwordAttempt, String realPassword){
+//        Log.e(TAG, realPassword);
+//        Log.e(TAG, passwordAttempt);
+//        Log.e(TAG, md5HashEncrypt("apple1"));
+
+        String attemp=md5HashEncrypt(passwordAttempt);
+
+        if(realPassword.equals(attemp)){
             return true;
         }
         return false;

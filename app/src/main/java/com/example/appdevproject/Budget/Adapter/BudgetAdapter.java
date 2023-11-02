@@ -51,7 +51,8 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.InternalCl
     @Override
     public BudgetAdapter.InternalClass onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.budget_item_layout, parent, false);
+                .inflate(R.layout.budget_item_layout,
+                        parent, false);
         return new InternalClass(v);
     }
 
@@ -59,7 +60,7 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.InternalCl
     //populate the fields for one card with the content from db.
     @Override
     public void onBindViewHolder(@NonNull BudgetAdapter.InternalClass holder, int position) {
-        Item item = myItems.get(position);
+        final Item item = myItems.get(position);
 
         holder.item_name.setText(item.getNameOfItem());
         holder.item_amount.setText(String.valueOf( item.getPriceOfItem()) );
@@ -81,14 +82,12 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.InternalCl
     // be able to set the list from outside call
 
     private static final String TAG=BudgetAdapter.class.getSimpleName();
-    public void setItems(int userID){
+
+
+    public void setItems(List<Item> items){
         //db.getAllItems(); // method not made yet.
+        this.myItems=items;
 
-        tag(String.valueOf(userID));
-        myItems= myDb.item_getAll(userID);
-        tag(myItems.toString());
-
-        notifyDataSetChanged();
     }
 // Create many
     public void updateItem(int position){

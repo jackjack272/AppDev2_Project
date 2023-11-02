@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,40 +23,21 @@ import com.example.appdevproject.Utility.ProjectDb;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class Budget_AddNewItem extends BottomSheetDialogFragment {
-    // this is so the class can be callled
-    public static final String TAG="AddNewItemToBudget";
+
 
     // these are the data fields that need to be used to get the value.
     private EditText nameOfItem, priceOfItem, yearContract, renewalFee, cancelationFee;
     private Button saveButton;
     private ProjectDb myDb;
     private Spinner category_spinner;
-    //--------
 
-
-    //be able to create new instance.
-    public static Budget_AddNewItem newInstace(){
-        return new Budget_AddNewItem();
-    }
-
-
-
-    // which view do you want to pop up?
-    @Nullable
-    @Override
-    public View onCreateView(
-        @NonNull LayoutInflater inflater,@Nullable ViewGroup container,
-        @Nullable Bundle saveInstanceState
-    ){
-        View v = inflater.inflate(R.layout.budget_add_item, container, false);
-        return v;
-    }
 
 
     // link the fields here.
     public void onViewCreated(@NonNull View view, @Nullable Bundle saveInstanceState){
         makeAssociations(view);
 
+        admin_fillFields();
 
         //check if its an update request.
             // fill in the fields with values.
@@ -65,9 +47,9 @@ public class Budget_AddNewItem extends BottomSheetDialogFragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences= requireContext()
-                        .getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-                String userName=sharedPreferences.getString("username","");
+                SharedPreferences username= getContext().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+                String userName= username.getString("username","failed to find username");
+
                 int foreignKey= myDb.getUserById(userName);
 
                 //check the values are not null
@@ -81,6 +63,7 @@ public class Budget_AddNewItem extends BottomSheetDialogFragment {
 
 
                 myDb.item_makeOne(item);
+                Toast.makeText(getContext(), "Added a new item!", Toast.LENGTH_SHORT).show();
                 dismiss();
             }
         });
@@ -185,6 +168,34 @@ public class Budget_AddNewItem extends BottomSheetDialogFragment {
     };
 
 
+
+    private void admin_fillFields() {
+        nameOfItem.setText("admin");
+        priceOfItem.setText("10");
+        yearContract.setText("10");
+        renewalFee.setText("10");
+        cancelationFee.setText("10");
+    }
+
+
+
+
+
+
+
+
+
+
+//--- below is the core functionality.
+
+    //be able to create new instance.
+    public static Budget_AddNewItem newInstace(){
+        return new Budget_AddNewItem();
+    }
+
+    // this is so the class can be callled
+    public static final String TAG="AddNewItemToBudget";
+
     // i belive this one closes the window.
     @Override
     public void onDismiss(@NonNull DialogInterface dialogInterface){
@@ -194,6 +205,13 @@ public class Budget_AddNewItem extends BottomSheetDialogFragment {
         if(activity instanceof Budget_onDialogCloseListener){
             ((Budget_onDialogCloseListener)activity).onDialogClose(dialogInterface);
         }
+    }
+
+    // which view do you want to pop up?
+    @Nullable@Override
+    public View onCreateView(@NonNull LayoutInflater inflater,@Nullable ViewGroup container,@Nullable Bundle saveInstanceState){
+        View v = inflater.inflate(R.layout.budget_add_item, container, false);
+        return v;
     }
 
 }

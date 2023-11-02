@@ -79,6 +79,7 @@ public class LandingPage extends AppCompatActivity {
         tax=findViewById(R.id.home_tax);
 
         username= getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+
     }
 
     private void welcomeUser(String s){

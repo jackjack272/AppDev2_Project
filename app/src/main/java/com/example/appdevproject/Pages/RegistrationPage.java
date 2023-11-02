@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -26,6 +27,8 @@ import com.example.appdevproject.Utility.ProjectDb;
 import com.example.appdevproject.User.User;
 
 public class RegistrationPage extends AppCompatActivity {
+    private static final String TAG=RegistrationPage.class.getSimpleName();
+
     // i want a menue on the left hand side with all the avialble activities.
 
     /**
@@ -81,66 +84,69 @@ public class RegistrationPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Boolean loggedIn=false;
                 User user = null;
 
                 if(toggle.isChecked()){
                     //login
-                    if(!userName.getText().equals("")   ){
-                        try{
-                            user= projectDb.getUserByUsername(String.valueOf(userName.getText()));
-                            // throws if there is no match
-                        }catch (Exception e){
-                            //throw toast saying user dosent extist
-                            Toast.makeText(RegistrationPage.this, "User Dosent Exist :(- did you register?", Toast.LENGTH_SHORT).show();
-                        }
-                    }else{
+                    String userToLogIn=userName.getText().toString();
+                    String passWord=password.getText().toString();
+
+                    if(userToLogIn.equals("")){
+                        return;
+                    } //check for empty.
+
+                    //get the user.
+                    user= projectDb.getUserByUsername(userToLogIn);
+                    if(user ==null){
+                        Toast.makeText(RegistrationPage.this, "This user dosent exist", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    // have the user.
-                    loggedIn=User.comparePasswords(user.getPassword(), String.valueOf(password.getText()));
-                    if(!loggedIn){
-                        Toast.makeText(RegistrationPage.this, "Password is wrong. ", Toast.LENGTH_SHORT).show();
-                        return ;
-                    }
+//                    if(! User.md5HashEncrypt(passWord).equals(user.getPassword())){
+//                        return;
+//                    }
+                    //compare passwords.
+//                    if(! User.comparePasswords(passWord, user.getPassword())){
+//                        Toast.makeText(RegistrationPage.this, "user or password is wrong", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+                    //the hashes dont match.
+
                 }
-
-
 
                 else{
                     email.setVisibility(View.VISIBLE);
                     dateOfBirth.setVisibility(View.VISIBLE);
                     nextPage.setText("Register!");
-                    //register
-                    try{
-                        // if the username dosent exist it will throw an error, else it will return with toast.
-                        user= getUserRegistrationObject();
-                        User x= projectDb.getUserByUsername(user.getUserName());
-                        if(x !=null){
-                            Toast.makeText(RegistrationPage.this, "This username exits, pick another one", Toast.LENGTH_SHORT).show();
-                            return;// user exists so kill control
-                        }
-                    }catch (Exception e){
-                        e.printStackTrace();
 
-                        projectDb.makeUser(user); // make the user
-                        Toast.makeText(RegistrationPage.this, "user was registered", Toast.LENGTH_SHORT).show();
+
+                    //register
+                    user= getUserRegistrationObject();
+                    User x= projectDb.getUserByUsername(user.getUserName());
+                    if(x ==null){
+
+                        Log.e(TAG, "before encrypt "+ user.getPassword());
+
+                        user.setPassword(User.md5HashEncrypt(user.getPassword()) );
+                        Log.e(TAG, "after encrypt "+ user.getPassword());
+
+                        projectDb.makeUser(user);
+
+                    }else{
+                        Toast.makeText(RegistrationPage.this, "This username exits, pick another one", Toast.LENGTH_SHORT).show();
+                        return;// user exists so kill control
                     }
+
                 }
 
+                //save the username
                 SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
                 SharedPreferences.Editor myEdit = sharedPreferences.edit();
-
                 myEdit.putString("username",user.getUserName());
                 myEdit.apply();
 
                 // go next intent.
-
-
                 Toast.makeText(RegistrationPage.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
-                //sleep 750 milsec
-
                 startActivity(new Intent(RegistrationPage.this, LandingPage.class));
             }
         });
@@ -149,10 +155,12 @@ public class RegistrationPage extends AppCompatActivity {
 
 
     private void admin_prePopulate(){
-        userName.setText("James James");
+        userName.setText("smith jones");
         password.setText("apple1");
         email.setText("james@gmail.com");
         dateOfBirth.setText("2222");
+
+
     }
 
     private void makeAssociates(){
@@ -166,28 +174,24 @@ public class RegistrationPage extends AppCompatActivity {
 
     };
 
-    private User getUserRegistrationObject() throws MissingField {
+    private User getUserRegistrationObject()  {
         String msg="please fill me";
         Boolean filledFields=true;
+
+
         if( String.valueOf(userName.getText()).equals("") ){
             userName.setHint(msg);
             filledFields=false;
-            throw new MissingField();
         } else if (String.valueOf( password.getText()).equals("")) {
             password.setHint(msg);
             filledFields=false;
-            throw new MissingField();
         }else if(String.valueOf( email.getText()).equals("")){
             email.setHint(msg);
             filledFields=false;
-            throw new MissingField();
         } else if (String.valueOf( dateOfBirth.getText()).equals("")) {
             dateOfBirth.setHint(msg);
             filledFields=false;
-            throw new MissingField();
         }
-
-
 
         if(filledFields) {
             return new User(
@@ -197,7 +201,7 @@ public class RegistrationPage extends AppCompatActivity {
                     String.valueOf(dateOfBirth.getText())
             );
         }
-        throw new MissingField();
+        return null;
     }
 
 
