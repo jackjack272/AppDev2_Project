@@ -1,11 +1,10 @@
-package com.example.appdevproject.Budget;
+package com.example.appdevproject.Budget.Model;
 
 
 import android.content.Context;
 
 import com.example.appdevproject.Budget.InterFaces.Budget;
-import com.example.appdevproject.R;
-import com.example.appdevproject.User.User;
+import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.Utility.ProjectDb;
 
 import java.util.List;

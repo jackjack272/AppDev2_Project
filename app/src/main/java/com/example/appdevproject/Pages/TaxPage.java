@@ -4,16 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.appdevproject.R;
+import com.example.appdevproject.Tax.Tax_AddNewWage;
+import com.example.appdevproject.Utility.ProjectDb;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class TaxPage extends AppCompatActivity {
 
     private TextView labourFor, investFor, govWants;
     private RecyclerView labour_recycle, invest_recycle;
-
-
+    private FloatingActionButton fab;
+    private ProjectDb myDb;
 
 
     @Override
@@ -22,6 +26,20 @@ public class TaxPage extends AppCompatActivity {
         setContentView(R.layout.activity_income);
         makeAssocications();
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Tax_AddNewWage.newInstace()
+                        .show(
+                                getSupportFragmentManager(),
+                                Tax_AddNewWage.TAG
+                        );
+
+
+
+            }
+        });
 
 
     }
@@ -33,6 +51,9 @@ public class TaxPage extends AppCompatActivity {
 
         labour_recycle= findViewById(R.id.inc_labourRecycle);
         invest_recycle=findViewById(R.id.inc_investRecycle);
+
+        myDb= new ProjectDb(TaxPage.this);
+        fab= findViewById(R.id.inc_fab);
     }
 
 

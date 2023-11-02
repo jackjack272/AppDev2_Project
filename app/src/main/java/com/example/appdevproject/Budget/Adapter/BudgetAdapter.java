@@ -1,6 +1,7 @@
 package com.example.appdevproject.Budget.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appdevproject.Budget.Item;
+import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.Pages.BudgetPage;
 import com.example.appdevproject.R;
 import com.example.appdevproject.Utility.ProjectDb;
@@ -17,7 +18,6 @@ import com.example.appdevproject.Utility.ProjectDb;
 import java.util.List;
 
 public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.InternalClass> {
-
     private List<Item> myItems;// list of the items to be displayed
     private BudgetPage budgetPage;// linked to budget page
     private ProjectDb myDb;
@@ -31,6 +31,19 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.InternalCl
 
     //return this context.
     public Context getContext(){ return budgetPage;}
+
+
+    // get reference to the card view fields.
+    public static class InternalClass extends RecyclerView.ViewHolder {
+        TextView item_name, item_amount , item_leftOnContract, item_renewalFee;
+        public InternalClass(@NonNull View itemView) {
+            super(itemView);
+            item_name=itemView.findViewById(R.id.item_name);
+            item_amount=itemView.findViewById(R.id.item_amount);
+            item_leftOnContract= itemView.findViewById(R.id.item_value_of_contract);
+            item_renewalFee= itemView.findViewById(R.id.budget_yearly_renewal);
+        }
+    }
 
 
     //link budget page scroll view with budget .
@@ -52,31 +65,29 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.InternalCl
         holder.item_amount.setText(String.valueOf( item.getPriceOfItem()) );
         holder.item_renewalFee.setText(String.valueOf(item.getYearlyRenewalFee()));
 
-
         holder.item_leftOnContract.setText(String.valueOf(item.getFrequencyOfPurchase()));
             //left on contract would be (2 year contract)+renewal fee *monthly cost / .
             //idk its a formual of some sort that we can make up
-
     }
 
-    // get reference to the card view fields.
-    public static class InternalClass extends RecyclerView.ViewHolder {
-        TextView item_name, item_amount , item_leftOnContract, item_renewalFee;
-        public InternalClass(@NonNull View itemView) {
-            super(itemView);
-            item_name=itemView.findViewById(R.id.item_name);
-            item_amount=itemView.findViewById(R.id.item_amount);
-            item_leftOnContract= itemView.findViewById(R.id.item_value_of_contract);
-            item_renewalFee= itemView.findViewById(R.id.budget_yearly_renewal);
-        }
+    @Override
+    public int getItemCount() {
+        return myItems.size();
     }
+
 
 
 // Crud on items.
     // be able to set the list from outside call
+
+    private static final String TAG=BudgetAdapter.class.getSimpleName();
     public void setItems(int userID){
         //db.getAllItems(); // method not made yet.
+
+        tag(String.valueOf(userID));
         myItems= myDb.item_getAll(userID);
+        tag(myItems.toString());
+
         notifyDataSetChanged();
     }
 // Create many
@@ -90,12 +101,11 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.InternalCl
     }
 // delete
 
-    @Override
-    public int getItemCount() {
-        return myItems.size();
+
+
+    public void tag(String msg){
+        Log.e(TAG,msg);
     }
-
-
 
 
 }

@@ -1,4 +1,4 @@
-package com.example.appdevproject.Budget;
+package com.example.appdevproject.Budget.Fab;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,13 +11,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.appdevproject.Budget.InterFaces.Budget_onDialogCloseListener;
-import com.example.appdevproject.Pages.BudgetPage;
+import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.R;
 import com.example.appdevproject.Utility.ProjectDb;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -196,7 +195,6 @@ public class Budget_AddNewItem extends BottomSheetDialogFragment {
             ((Budget_onDialogCloseListener)activity).onDialogClose(dialogInterface);
         }
     }
-
 
 }
 

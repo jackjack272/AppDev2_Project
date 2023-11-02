@@ -1,21 +1,17 @@
 package com.example.appdevproject.Pages;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.appdevproject.Budget.Budget_AddNewItem;
+import com.example.appdevproject.Budget.Fab.Budget_AddNewItem;
 import com.example.appdevproject.Budget.Adapter.BudgetAdapter;
-import com.example.appdevproject.Budget.Budget_RecylerViewTouchHelper;
 import com.example.appdevproject.R;
 import com.example.appdevproject.Utility.ProjectDb;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -47,7 +43,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class BudgetPage extends AppCompatActivity {
 
     private TextView monthlyExp, yearlyExp, postTaxIncome, yearlyNet;
-    private Button taxPoriton;
+
 
 
         // if we can set up 3 buttons for differnt queries,
@@ -64,16 +60,9 @@ public class BudgetPage extends AppCompatActivity {
         makeAssoications();
 
 
-        //next section
-        taxPoriton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(BudgetPage.this, TaxPage.class));
-            }
-        });
 
 
-//        setRecuclerAdapter();
+        setRecuclerAdapter();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,16 +78,17 @@ public class BudgetPage extends AppCompatActivity {
 
         //recucler view touch helper need to be an implemented class
         //based on lab15 class of same name.
-        ItemTouchHelper itemTouchHelper= new ItemTouchHelper(new Budget_RecylerViewTouchHelper(budgetAdapter));
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+//        ItemTouchHelper itemTouchHelper= new ItemTouchHelper(new Budget_RecylerViewTouchHelper(budgetAdapter));
+//        itemTouchHelper.attachToRecyclerView(recyclerView);
 
 
     }
 
 
-
-
     private void setRecuclerAdapter(){
+
+        budgetAdapter= new BudgetAdapter(myDb, BudgetPage.this);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(budgetAdapter);
@@ -106,12 +96,14 @@ public class BudgetPage extends AppCompatActivity {
         SharedPreferences sharedPreferences=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         int foreignKey= myDb.getUserById(
                 sharedPreferences.getString("username",""));
+
         budgetAdapter.setItems(foreignKey);
+
     }
 
 
     private void makeAssoications(){
-        taxPoriton= findViewById(R.id.bud_taxBtn);
+
         monthlyExp= findViewById(R.id.bud_monthlyExp);
         yearlyExp= findViewById(R.id.bud_yearlyExp);
         postTaxIncome= findViewById(R.id.bud_postTaxincome);
@@ -121,7 +113,6 @@ public class BudgetPage extends AppCompatActivity {
         recyclerView= findViewById(R.id.bud_recyclerView);
         fab=findViewById(R.id.bud_fab);
         myDb= new ProjectDb(BudgetPage.this);
-        budgetAdapter= new BudgetAdapter(myDb, BudgetPage.this);
 
     }
 

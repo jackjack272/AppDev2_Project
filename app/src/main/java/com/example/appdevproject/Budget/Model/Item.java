@@ -1,4 +1,4 @@
-package com.example.appdevproject.Budget;
+package com.example.appdevproject.Budget.Model;
 
 
 /**

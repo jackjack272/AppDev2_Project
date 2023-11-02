@@ -1,4 +1,4 @@
-package com.example.appdevproject.Budget;
+package com.example.appdevproject.Budget.Adapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

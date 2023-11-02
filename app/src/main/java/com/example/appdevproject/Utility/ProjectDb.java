@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.appdevproject.Budget.Item;
+import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.User.User;
 
