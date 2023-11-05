@@ -1,4 +1,4 @@
-package com.example.appdevproject.Investment.Interfaces;
+package com.example.appdevproject.Investment.Models.Interfaces;
 
 public interface Debt {
 
@@ -12,4 +12,7 @@ public interface Debt {
 
 
     //what should my payments be to pay off the loan in 10 months?
+
+    public double getAnnualCompoundrate();
+
 }

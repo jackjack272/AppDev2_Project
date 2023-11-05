@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.Pages.BudgetPage;
 import com.example.appdevproject.R;
-import com.example.appdevproject.Utility.ProjectDb;
+import com.example.appdevproject.DataBase.ProjectDb;
 
 import java.util.List;
 

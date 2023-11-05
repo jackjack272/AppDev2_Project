@@ -1,4 +1,4 @@
-package com.example.appdevproject.Utility;
+package com.example.appdevproject.DataBase;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,81 +7,34 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.appdevproject.Budget.Model.Item;
+import com.example.appdevproject.DataBase.Interfaces.Debts;
+import com.example.appdevproject.DataBase.Interfaces.Items;
+import com.example.appdevproject.DataBase.Interfaces.Totals;
+import com.example.appdevproject.DataBase.Interfaces.Users;
 import com.example.appdevproject.Investment.Models.Invest_Debt;
+import com.example.appdevproject.Investment.Models.Sum;
 import com.example.appdevproject.User.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectDb extends SQLiteOpenHelper {
+public class ProjectDb extends SQLiteOpenHelper
+        implements Debts, Items, Users, Totals
 
+{
     /** This is the Database for the project
      *  user -> item (one ->many)
      *  user -> investment (one ->many)
-     *      // might be good idea to split investment into : stock and bond : table
-     *
-     *
-     *
-     * there will be a large load to do consolodation queries if there are mnany users
-     *      SELECT * FROM items WHERE USERID=3 ;
-     *      //would be a good idea to have a consolated table...
-     *
-     *
      */
 
 
-
-    //db info
-        private static final String db_name="fall23_AndroidApp";
-            // how do i put more tables into this db?
-            // if i make a new db that extends SQLiteOpenHelper ill need to give it a new name...
-        private static final Integer db_version=1;
-
-
-//data memebers for Budget..
-        private static final String USER_TABLE ="user";
-        private static final String USER_ID ="id";
-        private static final String USER_USERNAME="username";
-        private static final String USER_PASSWORD ="password";
-        private static final String USER_EMAIL ="email";
-        private static final String USER_DOB ="DateOfBirth";
-
-//--------------------
-
-//  Data members of Item
-        private static final String ITEM_TABLE ="items";
-        private static final String ITEM_ID="id";
-        private static final String ITEM_NAME="name";
-        private static final String ITEM_CATEGORY="category";
-        private static final String ITEM_FREQUENCYOFPURCHASE="frequency";
-        private static final String ITEM_PRICE="price";
-        private static final String ITEM_RENEWALFEE="renewal_fee";
-        private static final String ITEM_CANCELATIONFEE="cancel_fee";
-        private static final String ITEM_CONTRACTLEN="contract_len";
-
-        private static final String ITEM_FORENKEY= USER_ID+"_foreign";
-//        private static final String ITEM_FOREIGN_KEY="PersonId";
-//---------------
-
-// DEBT data memebers
-
-
-    private static final String DEBT_TABLE="loans";
-    private static final String DEBT_ID="id";
-    private static final String DEBT_NAME="name";
-    private static final String DEBT_AMOUNTBORROWED="amount_borrowed";
-    private static final String DEBT_INTERESTRATE="interest_rate";
-    private static final String DEBT_COMPOUNDSPERYEAR="yearly_compounds";
-    private static final String DEBT_LOANTERM="loan_term_months";
-//-----------
-
+    private static final String db_name="fall23_AndroidApp";
+    private static final Integer db_version=1;
 
 
     public ProjectDb(Context context) {
         super(context, db_name, null , db_version);
     }
-
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create the User table
@@ -94,6 +47,7 @@ public class ProjectDb extends SQLiteOpenHelper {
                 + USER_DOB + " TEXT"  // Change "String" to "TEXT"
                 + ")";
         db.execSQL(makeUser);
+
 
         // Create the Item table
         String makeItem = "CREATE TABLE " + ITEM_TABLE
@@ -120,14 +74,13 @@ public class ProjectDb extends SQLiteOpenHelper {
                 +DEBT_COMPOUNDSPERYEAR+ " INTEGER,"
                 +DEBT_INTERESTRATE+ " REAL, "
                 +DEBT_LOANTERM+ " INTEGER, "
+                +DEBT_FORENKEY+" INTEGER, "
                 +"FOREIGN KEY ("+USER_ID+") REFERENCES "+USER_TABLE+" ("+USER_ID+")" +
                 ");"
                 ;
         db.execSQL(makeDebt);
 
     }
-
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+ USER_TABLE);
@@ -144,7 +97,7 @@ public class ProjectDb extends SQLiteOpenHelper {
             cv.put(DEBT_INTERESTRATE, debt.getInterestRate());
             cv.put(DEBT_COMPOUNDSPERYEAR, debt.getCompoundsPerYear());
             cv.put(DEBT_LOANTERM, debt.getLoanTermInMonths());
-            cv.put(USER_ID, debt.getForeinKey());
+            cv.put(DEBT_FORENKEY, debt.getForeinKey());
 
         db.insert(DEBT_TABLE, null, cv);
         db.close();
@@ -166,8 +119,11 @@ public class ProjectDb extends SQLiteOpenHelper {
             cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_LOANTERM))
         );
     }
-    public List<Invest_Debt>  debt_readAll(){
-        String getAllSql="SELECT * FROM "+DEBT_TABLE;
+    public List<Invest_Debt>  debt_readDebt(int foreignKey){
+        String getAllSql=String
+    .format("SELECT %s FROM %s WHERE %s == %d ORDER BY amount_borrowed ",
+            "*",DEBT_TABLE, DEBT_FORENKEY, foreignKey);
+
 
         SQLiteDatabase db  = getReadableDatabase();
 
@@ -190,22 +146,20 @@ public class ProjectDb extends SQLiteOpenHelper {
         }
         return myDebts;
     }
+    public List<Invest_Debt> debt_readBonds(int foreignKey){
 
+
+
+        return null ;
+    }
     public void debt_updateOne(int position, Invest_Debt debt){
     }
     public void debt_deleteOne(int position){
     }
-
-
-
-
-
 //----------
 
 
-
 //ITEM CRUD
-    //create one
     public void item_makeOne(Item item){
         SQLiteDatabase db= getWritableDatabase();
 
@@ -222,8 +176,6 @@ public class ProjectDb extends SQLiteOpenHelper {
         db.insert(ITEM_TABLE, null, cv);
         db.close();
     }
-
-    //read one
     public Item item_getOne(int position){
         String getById= "SELECT * FROM "+ITEM_TABLE +" WHERE "+ USER_ID +" == "+position;
 
@@ -246,7 +198,6 @@ public class ProjectDb extends SQLiteOpenHelper {
         db.close();
         return item;
     }
-    //read all
     public List<Item> item_getAll(int userId){
 
 
@@ -278,28 +229,20 @@ public class ProjectDb extends SQLiteOpenHelper {
 
         return items;
     }
-
-    //update one
     public void item_update(int id, Item item){
 
 
     }
-
-
-    //remove one
     public void item_remove(int position){
         SQLiteDatabase db= getWritableDatabase();
 //        db.delete(ITEM_TABLE, ITEM_ID+"== ",)
         //dont remeber the code for this
     }
-
 //---------------
 
 
 
 // USER CRUD
-
-    //Create
     public long makeUser(User user){
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues cv= new ContentValues();
@@ -313,8 +256,6 @@ public class ProjectDb extends SQLiteOpenHelper {
 
         return x;
     }
-
-    // Read one
     public User getUserByUsername(String _username){
         // this needs to be parameretised- injection attack
         String getUser = String.format("SELECT %s, %s, %s, %s, %s FROM %s WHERE "
@@ -344,7 +285,6 @@ public class ProjectDb extends SQLiteOpenHelper {
         return x;
         //id will be in shared preferences for the logged in user so dont need it here.
     }
-
     public int getUserById(String username){
         String sql= String.format("SELECT %s FROM %s WHERE %s == '%s'; ",USER_ID, USER_TABLE, USER_USERNAME, username);
 
@@ -361,8 +301,6 @@ public class ProjectDb extends SQLiteOpenHelper {
 //      return cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID));
 //        SELECT id FROM user WHERE username == James James
     }
-
-    //update one
     public void updateUser(User user){
         SQLiteDatabase db= getWritableDatabase();
 
@@ -373,10 +311,27 @@ public class ProjectDb extends SQLiteOpenHelper {
 
         db.update(USER_TABLE, cv, this.USER_USERNAME+" =?", new String[] {String.valueOf(user.getUserName())});
     }
-
-    //delete one
-
 //---------------
+
+
+
+//Totals
+    public Sum totals_GetBond(int forenKey){
+        List<Invest_Debt> myBonds= this.debt_readBonds(forenKey);
+
+
+        return new Sum("needs impl", -1.0,-1.0 );
+    }
+
+    public Sum totals_GetDebt(int forenKey){
+        return new Sum("needs impl",-1.0,-1.0);
+
+    }
+    public Sum totals_GetStock(int forenKey){
+        return new Sum("needs impl",-1.0,-1.0);
+
+    }
+
 
 
 }

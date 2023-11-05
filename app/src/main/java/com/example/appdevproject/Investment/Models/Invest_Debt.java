@@ -1,6 +1,6 @@
 package com.example.appdevproject.Investment.Models;
 
-import com.example.appdevproject.Investment.Interfaces.Debt;
+import com.example.appdevproject.Investment.Models.Interfaces.Debt;
 
 
 
@@ -45,12 +45,27 @@ public class Invest_Debt implements Debt {
 
 
 
+    public double getAnnualCompoundrate() {
+        //ear formula https://corporatefinanceinstitute.com/resources/commercial-lending/effective-annual-interest-rate-ear/#:~:text=Apply%20the%20EAR%20Formula%3A%20EAR,n%20%3D%20Compounding%20periods
+
+
+        //EAR=(1+interest/number of compounds per period) ^ num compounds per period -1
+        // (1+10%/2 )^2 -1 =.1025
+
+        double xx=(1+ (this.interestRate/100) / this.compoundsPerYear );
+        xx=Math.pow ( xx,this.compoundsPerYear);
+        xx-=1;
+        xx=xx*100;
+
+        return xx;
+    }
 
 
 
 
 
-//getters and setter
+
+    //getters and setter
     public String getDebtName() {
         return debtName;
     }
@@ -106,5 +121,6 @@ public class Invest_Debt implements Debt {
     public void setLoanTermInMonths(Integer loanTermInMonths) {
         this.loanTermInMonths = loanTermInMonths;
     }
+
 }
 

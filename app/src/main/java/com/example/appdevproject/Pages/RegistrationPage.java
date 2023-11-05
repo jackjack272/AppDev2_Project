@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,9 +14,8 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 //<<<<<<< HEAD:app/src/main/java/com/example/appdevproject/Pages/RegistrationPage.java
-import com.example.appdevproject.Utility.CustomException.MissingField;
 import com.example.appdevproject.R;
-import com.example.appdevproject.Utility.ProjectDb;
+import com.example.appdevproject.DataBase.ProjectDb;
 //=======
 //import com.example.appdevproject.CustomException.MissingField;
 //import com.example.appdevproject.LandingPage.IntroActivity;

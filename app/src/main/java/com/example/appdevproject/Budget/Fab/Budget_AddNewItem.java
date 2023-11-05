@@ -19,7 +19,7 @@ import androidx.annotation.Nullable;
 import com.example.appdevproject.Budget.InterFaces.Budget_onDialogCloseListener;
 import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.R;
-import com.example.appdevproject.Utility.ProjectDb;
+import com.example.appdevproject.DataBase.ProjectDb;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class Budget_AddNewItem extends BottomSheetDialogFragment {

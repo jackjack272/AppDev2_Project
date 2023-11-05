@@ -4,8 +4,7 @@ package com.example.appdevproject.Budget.Model;
 import android.content.Context;
 
 import com.example.appdevproject.Budget.InterFaces.Budget;
-import com.example.appdevproject.Budget.Model.Item;
-import com.example.appdevproject.Utility.ProjectDb;
+import com.example.appdevproject.DataBase.ProjectDb;
 
 import java.util.List;
 

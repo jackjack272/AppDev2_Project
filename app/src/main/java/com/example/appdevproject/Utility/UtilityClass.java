@@ -1,6 +1,9 @@
 package com.example.appdevproject.Utility;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 /**
  * This is a class that will hold methods that can be used thought the application.
  */

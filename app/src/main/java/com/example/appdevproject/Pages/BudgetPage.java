@@ -12,10 +12,9 @@ import android.widget.TextView;
 
 import com.example.appdevproject.Budget.Adapter.BudgetAdapterTwo;
 import com.example.appdevproject.Budget.Fab.Budget_AddNewItem;
-import com.example.appdevproject.Budget.Adapter.BudgetAdapter;
 import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.R;
-import com.example.appdevproject.Utility.ProjectDb;
+import com.example.appdevproject.DataBase.ProjectDb;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;

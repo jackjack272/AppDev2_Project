@@ -2,7 +2,6 @@ package com.example.appdevproject.Investment.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -18,7 +17,7 @@ import android.widget.Toast;
 
 import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.R;
-import com.example.appdevproject.Utility.ProjectDb;
+import com.example.appdevproject.DataBase.ProjectDb;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,6 +70,8 @@ public class Invest_fragmentBond extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle saveInstanceState){
         makeAssocications();
 
+        admin_setValues();
+
 
         //save a debt to the db
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +88,14 @@ public class Invest_fragmentBond extends Fragment {
             }
         });
 
+    }
+
+    public void admin_setValues(){
+        debtName.setText("admin");
+        amountBorrowed.setText("23");
+        interestRate.setText("33");
+        compoundsPerYear.setText("23");
+        monthsOnLoan.setText("12");
     }
 
     public void makeAssocications(){

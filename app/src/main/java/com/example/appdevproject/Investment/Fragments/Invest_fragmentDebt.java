@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.R;
-import com.example.appdevproject.Utility.ProjectDb;
+import com.example.appdevproject.DataBase.ProjectDb;
 
 /**
  * A simple {@link Fragment} subclass.

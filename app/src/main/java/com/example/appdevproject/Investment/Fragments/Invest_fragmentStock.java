@@ -21,7 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.appdevproject.Investment.Fragments.VolySingleton.VollySingleton;
 import com.example.appdevproject.Investment.Models.Invest_Stock;
 import com.example.appdevproject.R;
-import com.example.appdevproject.Utility.ProjectDb;
+import com.example.appdevproject.DataBase.ProjectDb;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

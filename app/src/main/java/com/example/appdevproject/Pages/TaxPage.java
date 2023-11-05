@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.appdevproject.R;
 import com.example.appdevproject.Tax.Tax_AddNewWage;
-import com.example.appdevproject.Utility.ProjectDb;
+import com.example.appdevproject.DataBase.ProjectDb;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class TaxPage extends AppCompatActivity {
