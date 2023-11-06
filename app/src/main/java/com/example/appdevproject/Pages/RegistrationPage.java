@@ -145,7 +145,7 @@ public class RegistrationPage extends AppCompatActivity {
 
                 // go next intent.
                 Toast.makeText(RegistrationPage.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RegistrationPage.this, LandingPage.class));
+                startActivity(new Intent(RegistrationPage.this, IntroActivity.class));
             }
         });
 

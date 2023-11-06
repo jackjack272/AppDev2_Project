@@ -15,6 +15,7 @@ public class IntroActivity extends AppCompatActivity {
     TextView txtBudget;
     TextView txtDebt;
     TextView txtInvestment;
+    TextView txtCharts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,7 @@ public class IntroActivity extends AppCompatActivity {
         txtBudget = findViewById(R.id.txtBudget);
         txtDebt = findViewById(R.id.txtDebt);
         txtInvestment = findViewById(R.id.txtInvestment);
+        txtCharts = findViewById(R.id.txtStat);
 
         txtBudget.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +43,12 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(IntroActivity.this, InvestPage.class));
+            }
+        });
+        txtCharts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(IntroActivity.this, ChartsActivity.class));
             }
         });
     }

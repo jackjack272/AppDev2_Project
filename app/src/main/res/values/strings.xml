@@ -107,8 +107,8 @@
     prefix: invest_debt_frag
 -->
 
-        <string name="invest_debt_frag_heading">New Debt</string>
-        <string name="invest_bond_heading">New Bond</string>
+    <string name="invest_debt_frag_heading">New Debt</string>
+    <string name="invest_bond_heading">New Bond</string>
 
     <string name="invest_debt_frag_amount">Amount borrowed</string>
     <string name="invest_debt_frag_interest">interest rate</string>
@@ -117,7 +117,7 @@
     <string name="invest_debt_frag_button">Add new debt</string>
 
 
-<!--
+    <!--
     invest_frag_stock
     : 
 -->
