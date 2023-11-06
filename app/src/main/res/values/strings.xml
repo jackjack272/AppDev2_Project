@@ -39,7 +39,7 @@
         prefix:bud_
     -->
 
-    <string name="bud_heading">Budgeting</string>
+    <string name="bud_heading">BUDGETING</string>
     <string name="bud_subHeading">Completely transform your personal finances in 30 months!</string>
     <string name="bud_taxSide">Tax ?</string>
 

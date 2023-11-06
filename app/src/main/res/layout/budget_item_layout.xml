@@ -1,57 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
 
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="100dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
 
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/item_name"-->
+        <!--            android:layout_width="51dp"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_marginStart="14dp"-->
+        <!--            android:layout_marginTop="28dp"-->
+        <!--            android:layout_weight="0.4"-->
+        <!--            android:text="Rogers Communication" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/item_amount"-->
+        <!--            android:layout_width="208dp"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_marginTop="27dp"-->
+        <!--            android:layout_marginEnd="200dp"-->
+        <!--            android:layout_weight="0.2"-->
+        <!--            android:text="$50" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/budget_yearly_renewal"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="134dp"-->
+        <!--            android:layout_marginTop="63dp"-->
+        <!--            android:layout_weight="0.3"-->
+        <!--            android:text="yearly renewal fee" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/item_value_of_contract"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="27dp"-->
+        <!--            android:layout_marginEnd="71dp"-->
+        <!--            android:layout_weight="0.3"-->
+        <!--            android:text=" $200 contract" />-->
 
         <TextView
             android:id="@+id/item_name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="28dp"
-            android:text="Rogers Communication" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="name" />
 
         <TextView
             android:id="@+id/item_amount"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="200dp"
-            android:text="$50" />
-
-        <TextView
-            android:id="@+id/budget_yearly_renewal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="134dp"
-            android:layout_marginTop="63dp"
-            android:text="yearly renewal fee" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="amount" />
 
         <TextView
             android:id="@+id/item_value_of_contract"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="71dp"
-            android:text=" $200 contract" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="contract" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/budget_yearly_renewal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="yearly renewal" />
 
+    </LinearLayout>
 
 
 </androidx.cardview.widget.CardView>

@@ -23,7 +23,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:text="@string/bud_heading"
-        android:textSize="@dimen/banners"
+        android:textColor="@color/blue"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -32,6 +32,12 @@ public class Item {
     // this is the foren key
     private Integer forenKey;
 
+    public Item(String nameOfItem, Double priceOfItem, Integer contractLength, Double yearlyRenewalFee) {
+        this.nameOfItem = nameOfItem;
+        this.priceOfItem = priceOfItem;
+        this.contractLength = contractLength;
+        this.yearlyRenewalFee = yearlyRenewalFee;
+    }
 
 
     public Item(String nameOfItem, Double priceOfItem, Integer category, Integer contractLength, Double yearlyRenewalFee, Double cancelationFee, Integer forenKey) {
