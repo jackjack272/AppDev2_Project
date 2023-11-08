@@ -1,6 +1,7 @@
 package com.example.appdevproject.Pages;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,40 +13,40 @@ import com.example.appdevproject.R;
 
 public class IntroActivity extends AppCompatActivity {
 
-    TextView txtBudget;
-    TextView txtDebt;
-    TextView txtInvestment;
-    TextView txtCharts;
+    CardView cardBudget;
+    CardView cardDebt;
+    CardView cardInvestment;
+    CardView cardCharts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        txtBudget = findViewById(R.id.txtBudget);
-        txtDebt = findViewById(R.id.txtDebt);
-        txtInvestment = findViewById(R.id.txtInvestment);
-        txtCharts = findViewById(R.id.txtStat);
+        cardBudget = findViewById(R.id.BudgetCard);
+        cardDebt = findViewById(R.id.DebtCard);
+        cardInvestment = findViewById(R.id.InvestmentCard);
+        cardCharts = findViewById(R.id.StatCard);
 
-        txtBudget.setOnClickListener(new View.OnClickListener() {
+        cardBudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(IntroActivity.this, BudgetPage.class));
             }
         });
 
-        txtDebt.setOnClickListener(new View.OnClickListener() {
+        cardDebt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(IntroActivity.this, Loans_old.class));
             }
         });
-        txtInvestment.setOnClickListener(new View.OnClickListener() {
+        cardInvestment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(IntroActivity.this, InvestPage.class));
             }
         });
-        txtCharts.setOnClickListener(new View.OnClickListener() {
+        cardCharts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(IntroActivity.this, ChartsActivity.class));
