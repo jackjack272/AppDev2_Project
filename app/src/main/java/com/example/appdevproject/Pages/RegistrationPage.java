@@ -51,15 +51,13 @@ public class RegistrationPage extends AppCompatActivity {
         setContentView(R.layout.user_registration);
 
         makeAssociates();
-        admin_prePopulate();
+
+
+        admin_prePopulate("smith jones");
+        admin_quickLogIn("smith jones"); // this one needs to exists
 
         projectDb =new ProjectDb(RegistrationPage.this);
 
-//        projectDb.onUpgrade( null,1,2);
-        //use this code to drop db and reinitalise with new tables
-
-        // i can get the username from the login screen
-//         i can keep it in the shared prefrences and find user in db from the username.
 
 
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -151,9 +149,19 @@ public class RegistrationPage extends AppCompatActivity {
 
     }
 
+    private void admin_quickLogIn(String logInUser){
+        //save the username
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+        myEdit.putString("username",logInUser);
+        myEdit.apply();
 
-    private void admin_prePopulate(){
-        userName.setText("smith jones");
+        // go next intent.
+        Toast.makeText(RegistrationPage.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(RegistrationPage.this, LandingPage.class));
+    }
+    private void admin_prePopulate(String logInUser){
+        userName.setText(logInUser);
         password.setText("apple1");
         email.setText("james@gmail.com");
         dateOfBirth.setText("2222");
