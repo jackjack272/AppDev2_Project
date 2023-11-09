@@ -105,7 +105,7 @@ public class BudgetPage extends AppCompatActivity {
         monthlyExp= findViewById(R.id.bud_monthlyExp);
         yearlyExp= findViewById(R.id.bud_yearlyExp);
         postTaxIncome= findViewById(R.id.bud_postTaxincome);
-        yearlyNet= findViewById(R.id.bud_yearlyNet);
+        //yearlyNet= findViewById(R.id.bud_yearlyNet);
 
 
         recyclerView= findViewById(R.id.bud_recyclerView);

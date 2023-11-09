@@ -174,11 +174,11 @@ public class Budget_AddNewItem extends BottomSheetDialogFragment {
 
 
     private void admin_fillFields() {
-        nameOfItem.setText("admin");
-        priceOfItem.setText("10");
-        yearContract.setText("10");
-        renewalFee.setText("10");
-        cancelationFee.setText("10");
+        nameOfItem.setText("");
+        priceOfItem.setText("");
+        yearContract.setText("");
+        renewalFee.setText("");
+        cancelationFee.setText("");
     }
 
 
