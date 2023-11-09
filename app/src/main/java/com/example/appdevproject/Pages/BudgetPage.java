@@ -57,7 +57,7 @@ public class BudgetPage extends AppCompatActivity {
 
 
 //----- page stuff
-    private TextView monthlyExp, yearlyExp, postTaxIncome, yearlyNet;
+    private TextView monthlyExp, yearlyExp, postTaxIncome, yearlyNet, totalExp;
     private FloatingActionButton fab;
     private ProjectDb myDb;
     private TabLayout tabCategories;
@@ -68,6 +68,13 @@ public class BudgetPage extends AppCompatActivity {
     List<Item> foodList = new ArrayList<>();
     List<Item> entertainmentList = new ArrayList<>();
 
+    double totHousing = 0;
+    double totUtility = 0;
+    double totTransport = 0;
+    double totFood = 0;
+    double totEntertain = 0;
+    double totExpenses = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +82,6 @@ public class BudgetPage extends AppCompatActivity {
         setContentView(R.layout.budget_activity);
 
         makeAssoications();
-//        LoadModelData();
 
         SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         int foreignKey= myDb.getUserById(s.getString("username",""));
@@ -84,22 +90,29 @@ public class BudgetPage extends AppCompatActivity {
         for (int i = 0; i < myItems.size(); i++){
             if(myItems.get(i).getCategory() == 0){
                 housingList.add(myItems.get(i));
+                totHousing = totHousing + myItems.get(i).getPriceOfItem();
             } else if (myItems.get(i).getCategory() == 1) {
                 utilityList.add(myItems.get(i));
+                totUtility = totUtility + myItems.get(i).getPriceOfItem();
             } else if (myItems.get(i).getCategory() == 2) {
                 transportList.add(myItems.get(i));
+                totTransport = totTransport + myItems.get(i).getPriceOfItem();
             } else if (myItems.get(i).getCategory() == 3) {
                 foodList.add(myItems.get(i));
+                totFood = totFood + myItems.get(i).getPriceOfItem();
             } else {
                 entertainmentList.add(myItems.get(i));
+                totEntertain = totEntertain + myItems.get(i).getPriceOfItem();
             }
-
         }
+        totExpenses = totHousing + totUtility + totTransport + totFood + totEntertain;
 
         recyclerView = findViewById(R.id.bud_recyclerView);
         adapter = new BudgetPageAdapter(housingList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        totalExp.setText("Total Housing Expenses: " + totHousing + " $");
+        monthlyExp.setText("Total Expenses: " + totExpenses + " $");
         tabCategories.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -107,22 +120,27 @@ public class BudgetPage extends AppCompatActivity {
                     case 0:
                         adapter.setMyItems(housingList);
                         recyclerView.setAdapter(adapter);
+                        totalExp.setText("Total Housing Expenses: " + totHousing + " $");
                         break;
                     case 1:
                         adapter.setMyItems(utilityList);
                         recyclerView.setAdapter(adapter);
+                        totalExp.setText("Total Utility Expenses: " + totUtility + " $");
                         break;
                     case 2:
                         adapter.setMyItems(foodList);
                         recyclerView.setAdapter(adapter);
+                        totalExp.setText("Total Food Expenses: " + totFood + " $");
                         break;
                     case  3:
                         adapter.setMyItems(transportList);
                         recyclerView.setAdapter(adapter);
+                        totalExp.setText("Total Transportation Expenses: " + totTransport + " $");
                         break;
                     case 4:
                         adapter.setMyItems(entertainmentList);
                         recyclerView.setAdapter(adapter);
+                        totalExp.setText("Total Entertainment Expenses: " + totEntertain + " $");
                         break;
                 }
             }
@@ -155,9 +173,10 @@ public class BudgetPage extends AppCompatActivity {
     private void makeAssoications(){
 
         monthlyExp= findViewById(R.id.bud_monthlyExp);
-        yearlyExp= findViewById(R.id.bud_yearlyExp);
-        postTaxIncome= findViewById(R.id.bud_postTaxincome);
+        //yearlyExp= findViewById(R.id.bud_yearlyExp);
+        //postTaxIncome= findViewById(R.id.bud_postTaxincome);
         //yearlyNet= findViewById(R.id.bud_yearlyNet);
+        totalExp = findViewById(R.id.txtTotal);
 
 
         recyclerView = findViewById(R.id.bud_recyclerView);

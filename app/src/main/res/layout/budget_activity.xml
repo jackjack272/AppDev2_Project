@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/bud_subHeader"
-        android:layout_width="227dp"
+        android:layout_width="374dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
@@ -17,7 +17,8 @@
         android:text="@string/bud_subHeading"
         app:layout_constraintBottom_toTopOf="@+id/bud_monthlyExp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bud_Banner" />
+        app:layout_constraintTop_toBottomOf="@+id/bud_Banner"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/bud_Banner"
@@ -100,35 +101,53 @@
         app:layout_constraintTop_toBottomOf="@+id/tabCategories"
         app:layout_constraintVertical_bias="0.0" />
 
+    <!--    <TextView-->
+<!--        android:id="@+id/bud_yearlyExp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="9dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/bud_subHeader"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/bud_subHeader" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/bud_postTaxincome"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="47dp"-->
+<!--        android:layout_marginBottom="29dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/tabCategories"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
     <TextView
         android:id="@+id/bud_monthlyExp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="29dp"
-        android:text="TextView"
+        android:layout_width="370dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="6dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tabCategories"
-        app:layout_constraintStart_toStartOf="@+id/bud_subHeader" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/bud_yearlyExp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="9dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/bud_subHeader"
-        app:layout_constraintTop_toBottomOf="@+id/bud_subHeader" />
-
-    <TextView
-        android:id="@+id/bud_postTaxincome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="29dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/tabCategories"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:id="@+id/txtTotal"
+        android:layout_width="380dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="80dp"
+        android:freezesText="false"
+        android:gravity="center"
+        android:padding="6dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bud_fab"
