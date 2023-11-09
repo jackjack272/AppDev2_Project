@@ -97,7 +97,6 @@ public class BudgetPage extends AppCompatActivity {
         }
 
         recyclerView = findViewById(R.id.bud_recyclerView);
-        //setAdapter();
         adapter = new BudgetPageAdapter(housingList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -168,15 +167,4 @@ public class BudgetPage extends AppCompatActivity {
 
 
     }
-
-
-//    private void LoadModelData(){
-//        for (int i = 0; i < ItemNames.size(); i++){
-//            Item eachItem = new Item(ItemNames.get(i),ItemAmounts.get(i),ItemContracts.get(i),ItemRenewal.get(i));
-//            Allitems.add(eachItem); //add required empty list not null list
-//        }
-//    }
-
-
-
 }
