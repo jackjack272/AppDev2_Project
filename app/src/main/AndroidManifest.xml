@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AppDevProject"
         tools:targetApi="31">
         <activity
+            android:name=".Pages.BudgetChartActivity"
+            android:exported="false" />
+        <activity
             android:name=".Pages.ChartsActivity"
             android:exported="false" />
         <activity

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -58,7 +59,7 @@ public class BudgetPage extends AppCompatActivity {
 
 //----- page stuff
     private TextView monthlyExp, yearlyExp, postTaxIncome, yearlyNet, totalExp;
-    private FloatingActionButton fab;
+    private FloatingActionButton fab,chart_fab;
     private ProjectDb myDb;
     private TabLayout tabCategories;
 
@@ -168,6 +169,19 @@ public class BudgetPage extends AppCompatActivity {
             }
         });
 
+        chart_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(BudgetPage.this,BudgetChartActivity.class);
+                i.putExtra("totHousing",totHousing);
+                i.putExtra("totUtility",totUtility);
+                i.putExtra("totTransport",totTransport);
+                i.putExtra("totFood",totFood);
+                i.putExtra("totEntertain",totEntertain);
+                startActivity(i);
+            }
+        });
+
     }
 
     private void makeAssoications(){
@@ -181,7 +195,8 @@ public class BudgetPage extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.bud_recyclerView);
         tabCategories = findViewById(R.id.tabCategories);
-        fab=findViewById(R.id.bud_fab);
+        fab = findViewById(R.id.bud_fab);
+        chart_fab = findViewById(R.id.bud_chart_fab);
         myDb= new ProjectDb(BudgetPage.this);
 
 

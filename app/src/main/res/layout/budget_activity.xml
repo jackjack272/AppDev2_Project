@@ -157,12 +157,12 @@
         android:layout_marginBottom="16dp"
         android:src="@drawable/baseline_attach_money_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bud_fab2"
+        app:layout_constraintEnd_toStartOf="@+id/bud_chart_fab"
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/bud_fab2"
+        android:id="@+id/bud_chart_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
