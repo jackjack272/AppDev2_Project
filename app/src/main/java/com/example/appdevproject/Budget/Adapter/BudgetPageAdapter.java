@@ -11,23 +11,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.R;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BudgetPageAdapter extends RecyclerView.Adapter<BudgetPageAdapter.BudgetViewHolder> {
-    private Context context;
     private List<Item> myItems;
 
-    public BudgetPageAdapter(Context context, List<Item> myItems) {
-        this.context = context;
+    public BudgetPageAdapter(List<Item> myItems) {
+        this.myItems = myItems;
+    }
+
+    public List<Item> getMyItems() {
+        return myItems;
+    }
+
+    public void setMyItems(List<Item> myItems) {
         this.myItems = myItems;
     }
 
     @NonNull
     @Override
     public BudgetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.budget_item_layout,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.budget_item_layout,parent,false);
         return new BudgetViewHolder(v);
     }
 

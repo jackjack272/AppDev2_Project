@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="90dp"
+    android:background="#D9DDF4"
+    android:padding="4dp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        android:background="#D9DDF4"
+        android:padding="4dp"
+        android:paddingStart="8dp">
 
 
         <!--        <TextView-->
@@ -46,33 +51,47 @@
         <!--            android:layout_weight="0.3"-->
         <!--            android:text=" $200 contract" />-->
 
-        <TextView
-            android:id="@+id/item_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="157dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="name" />
+            android:layout_weight="2"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/item_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="amount" />
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="match_parent"
+                android:layout_height="97dp"
+                android:layout_weight="2"
+                android:text="name"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/item_amount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="amount"
+                android:textSize="16sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/item_value_of_contract"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="contract" />
+            android:gravity="center"
+            android:text="contract"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/budget_yearly_renewal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="yearly renewal" />
+            android:gravity="center"
+            android:text="yearly renewal"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

@@ -3,9 +3,13 @@ package com.example.appdevproject.Pages;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.appdevproject.Loans.Loans_old;
@@ -17,6 +21,8 @@ public class IntroActivity extends AppCompatActivity {
     CardView cardDebt;
     CardView cardInvestment;
     CardView cardCharts;
+    TextView textUserName;
+    ImageButton btnLogOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +32,12 @@ public class IntroActivity extends AppCompatActivity {
         cardDebt = findViewById(R.id.DebtCard);
         cardInvestment = findViewById(R.id.InvestmentCard);
         cardCharts = findViewById(R.id.StatCard);
+        textUserName = findViewById(R.id.textUserName);
+        btnLogOut = findViewById(R.id.btnLogout);
+
+        SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        String user= s.getString("username","");
+        textUserName.setText("Hello " + user);
 
         cardBudget.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,5 +64,12 @@ public class IntroActivity extends AppCompatActivity {
                 startActivity(new Intent(IntroActivity.this, ChartsActivity.class));
             }
         });
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(IntroActivity.this, RegistrationPage.class));
+            }
+        });
+
     }
 }

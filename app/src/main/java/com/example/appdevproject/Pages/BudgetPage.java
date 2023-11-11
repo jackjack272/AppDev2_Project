@@ -5,21 +5,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.appdevproject.Budget.Adapter.BudgetAdapterTwo;
 import com.example.appdevproject.Budget.Adapter.BudgetPageAdapter;
 import com.example.appdevproject.Budget.Fab.Budget_AddNewItem;
 import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.R;
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -52,34 +53,111 @@ public class BudgetPage extends AppCompatActivity {
     // if we can set up 3 buttons for differnt queries,
     // query 1: Sort by balance // query 2: Sort by yearly Total //  q 3:?
     private RecyclerView recyclerView; // i want this to show budget items.
-//    RecyclerView.LayoutManager layoutManager;
-//    private BudgetAdapterTwo budgetAdapter;
     BudgetPageAdapter adapter;
 
 
 
 //----- page stuff
-    private TextView monthlyExp, yearlyExp, postTaxIncome, yearlyNet;
-    private FloatingActionButton fab;
+    private TextView monthlyExp, yearlyExp, postTaxIncome, yearlyNet, totalExp;
+    private FloatingActionButton fab,chart_fab;
     private ProjectDb myDb;
+    private TabLayout tabCategories;
+
+    List<Item> housingList = new ArrayList<>();
+    List<Item> utilityList = new ArrayList<>();
+    List<Item> transportList = new ArrayList<>();
+    List<Item> foodList = new ArrayList<>();
+    List<Item> entertainmentList = new ArrayList<>();
+
+    double totHousing = 0;
+    double totUtility = 0;
+    double totTransport = 0;
+    double totFood = 0;
+    double totEntertain = 0;
+    double totExpenses = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.budget_activity);
 
-        makeAssoications();
-//        LoadModelData();
+//        makeAssoications();
 
         SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         int foreignKey= myDb.getUserById(s.getString("username",""));
         List<Item> myItems= myDb.item_getAll(foreignKey);
 
-        //setAdapter();
+        for (int i = 0; i < myItems.size(); i++){
+            if(myItems.get(i).getCategory() == 0){
+                housingList.add(myItems.get(i));
+                totHousing = totHousing + myItems.get(i).getPriceOfItem();
+            } else if (myItems.get(i).getCategory() == 1) {
+                utilityList.add(myItems.get(i));
+                totUtility = totUtility + myItems.get(i).getPriceOfItem();
+            } else if (myItems.get(i).getCategory() == 2) {
+                transportList.add(myItems.get(i));
+                totTransport = totTransport + myItems.get(i).getPriceOfItem();
+            } else if (myItems.get(i).getCategory() == 3) {
+                foodList.add(myItems.get(i));
+                totFood = totFood + myItems.get(i).getPriceOfItem();
+            } else {
+                entertainmentList.add(myItems.get(i));
+                totEntertain = totEntertain + myItems.get(i).getPriceOfItem();
+            }
+        }
+        totExpenses = totHousing + totUtility + totTransport + totFood + totEntertain;
+
         recyclerView = findViewById(R.id.bud_recyclerView);
-        adapter = new BudgetPageAdapter(this,myItems);
+        adapter = new BudgetPageAdapter(housingList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        totalExp.setText("Total Housing Expenses: " + totHousing + " $");
+        monthlyExp.setText("Total Expenses: " + totExpenses + " $");
+        tabCategories.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()){
+                    case 0:
+                        adapter.setMyItems(housingList);
+                        recyclerView.setAdapter(adapter);
+                        totalExp.setText("Total Housing Expenses: " + totHousing + " $");
+                        break;
+                    case 1:
+                        adapter.setMyItems(utilityList);
+                        recyclerView.setAdapter(adapter);
+                        totalExp.setText("Total Utility Expenses: " + totUtility + " $");
+                        break;
+                    case 2:
+                        adapter.setMyItems(foodList);
+                        recyclerView.setAdapter(adapter);
+                        totalExp.setText("Total Food Expenses: " + totFood + " $");
+                        break;
+                    case  3:
+                        adapter.setMyItems(transportList);
+                        recyclerView.setAdapter(adapter);
+                        totalExp.setText("Total Transportation Expenses: " + totTransport + " $");
+                        break;
+                    case 4:
+                        adapter.setMyItems(entertainmentList);
+                        recyclerView.setAdapter(adapter);
+                        totalExp.setText("Total Entertainment Expenses: " + totEntertain + " $");
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,80 +165,40 @@ public class BudgetPage extends AppCompatActivity {
                     .show(
                         getSupportFragmentManager(),
                         Budget_AddNewItem.TAG
-            //category number item are hard coded in AddNewItemToBudget
                     );
             }
         });
 
-        //recucler view touch helper need to be an implemented class
-        //based on lab15 class of same name.
-//        ItemTouchHelper itemTouchHelper= new ItemTouchHelper(new Budget_RecylerViewTouchHelper(budgetAdapter));
-//        itemTouchHelper.attachToRecyclerView(recyclerView);
-
-
-    }
-
-    private void makeAssoications(){
-
-        monthlyExp= findViewById(R.id.bud_monthlyExp);
-        yearlyExp= findViewById(R.id.bud_yearlyExp);
-        postTaxIncome= findViewById(R.id.bud_postTaxincome);
-        yearlyNet= findViewById(R.id.bud_yearlyNet);
-
-
-        recyclerView= findViewById(R.id.bud_recyclerView);
-        fab=findViewById(R.id.bud_fab);
-        myDb= new ProjectDb(BudgetPage.this);
+        chart_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(BudgetPage.this,BudgetChartActivity.class);
+                i.putExtra("totHousing",totHousing);
+                i.putExtra("totUtility",totUtility);
+                i.putExtra("totTransport",totTransport);
+                i.putExtra("totFood",totFood);
+                i.putExtra("totEntertain",totEntertain);
+                startActivity(i);
+            }
+        });
 
     }
 
-
-
-//    private void setAdapter(){
-//        layoutManager= new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(layoutManager);
+//    private void makeAssoications(){
 //
-//        budgetAdapter= new BudgetAdapterTwo(BudgetPage.this);
-//
-//        //set the item s
-//        SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-//        int foreignKey= myDb.getUserById(s.getString("username",""));
-//        List<Item> myItems= myDb.item_getAll(foreignKey);
-//        budgetAdapter.setItems(myItems);
+//        monthlyExp= findViewById(R.id.bud_monthlyExp);
+//        //yearlyExp= findViewById(R.id.bud_yearlyExp);
+//        //postTaxIncome= findViewById(R.id.bud_postTaxincome);
+//        //yearlyNet= findViewById(R.id.bud_yearlyNet);
+//        totalExp = findViewById(R.id.txtTotal);
 //
 //
-//        recyclerView.setAdapter(budgetAdapter);
+//        recyclerView = findViewById(R.id.bud_recyclerView);
+//        tabCategories = findViewById(R.id.tabCategories);
+//        fab = findViewById(R.id.bud_fab);
+//        chart_fab = findViewById(R.id.bud_chart_fab);
+//        myDb= new ProjectDb(BudgetPage.this);
+//
 //
 //    }
-
-
-
-
-//    private void LoadModelData(){
-//        for (int i = 0; i < ItemNames.size(); i++){
-//            Item eachItem = new Item(ItemNames.get(i),ItemAmounts.get(i),ItemContracts.get(i),ItemRenewal.get(i));
-//            Allitems.add(eachItem); //add required empty list not null list
-//        }
-//    }
-
-
-    //this is old non working impl
-//    private void setRecuclerAdapter(){
-//        budgetAdapter= new BudgetAdapter(myDb, BudgetPage.this);
-//
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setAdapter(budgetAdapter);
-//
-//        SharedPreferences sharedPreferences=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-//        int foreignKey= myDb.getUserById(
-//                sharedPreferences.getString("username",""));
-//        List<Item> myItems= myDb.item_getAll(foreignKey);
-//
-//
-//        budgetAdapter.setItems(myItems);
-//
-//    }
-
-
 }

@@ -21,7 +21,7 @@
 
     <EditText
         android:id="@+id/item_getYearlyFee"
-        android:layout_width="237dp"
+        android:layout_width="238dp"
         android:layout_height="0dp"
         android:layout_marginBottom="1dp"
         android:ems="10"
@@ -55,9 +55,11 @@
         android:layout_marginTop="58dp"
         android:layout_marginBottom="8dp"
         android:text="@string/item_Heading"
+        android:textColor="@color/blue"
         android:textSize="@dimen/reg_log"
         app:layout_constraintBottom_toTopOf="@+id/item_getName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,13 +72,14 @@
         android:text="@string/item_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_getCategory" />
 
     <Spinner
         android:id="@+id/item_getCategory"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="238dp"
+        android:layout_height="68dp"
 
         android:layout_marginStart="47dp"
         android:layout_marginEnd="47dp"
