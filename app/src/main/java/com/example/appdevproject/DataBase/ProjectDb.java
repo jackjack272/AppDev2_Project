@@ -11,8 +11,8 @@ import com.example.appdevproject.DataBase.Interfaces.Debts;
 import com.example.appdevproject.DataBase.Interfaces.Items;
 import com.example.appdevproject.DataBase.Interfaces.Totals;
 import com.example.appdevproject.DataBase.Interfaces.Users;
+
 import com.example.appdevproject.Investment.Models.Invest_Debt;
-import com.example.appdevproject.Investment.Models.Sum;
 import com.example.appdevproject.User.User;
 
 import java.util.ArrayList;
@@ -38,47 +38,15 @@ public class ProjectDb extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create the User table
-        String makeUser = "CREATE TABLE " + USER_TABLE
-                + "("
-                + USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + USER_USERNAME + " TEXT,"
-                + USER_PASSWORD + " TEXT,"
-                + USER_EMAIL + " TEXT,"
-                + USER_DOB + " TEXT"  // Change "String" to "TEXT"
-                + ")";
         db.execSQL(makeUser);
 
-
         // Create the Item table
-        String makeItem = "CREATE TABLE " + ITEM_TABLE
-                + "("
-                + ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + ITEM_NAME + " TEXT,"
-                + ITEM_CATEGORY + " INTEGER, "
-//                + ITEM_FREQUENCYOFPURCHASE + " INTEGER, "
-                + ITEM_PRICE + " REAL, "
-                + ITEM_RENEWALFEE + " REAL,"
-                + ITEM_CANCELATIONFEE + " REAL,"
-                + ITEM_CONTRACTLEN + " INTEGER, "
-                + ITEM_FORENKEY +" INTEGER, "
-                + "FOREIGN KEY (" + USER_ID + ") " +
-                    "REFERENCES " + USER_TABLE + "(" + USER_ID + ")"
-                + ")";  // Add a space before the closing parenthesis
-        db.execSQL(makeItem);
-
+        db.execSQL(makeItem); //fk user
         //Create a table for Debt.
-        String makeDebt= "CREATE TABLE "+DEBT_TABLE+" ("
-                + DEBT_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
-                +DEBT_NAME+" TEXT,"
-                +DEBT_AMOUNTBORROWED+ " REAL,"
-                +DEBT_COMPOUNDSPERYEAR+ " INTEGER,"
-                +DEBT_INTERESTRATE+ " REAL, "
-                +DEBT_LOANTERM+ " INTEGER, "
-                +DEBT_FORENKEY+" INTEGER, "
-                +"FOREIGN KEY ("+USER_ID+") REFERENCES "+USER_TABLE+" ("+USER_ID+")" +
-                ");"
-                ;
-        db.execSQL(makeDebt);
+        db.execSQL(makeDebt); //fk user
+        //totals table
+        db.execSQL(makeToatls);//fk usr
+
 
     }
     @Override
@@ -97,11 +65,21 @@ public class ProjectDb extends SQLiteOpenHelper
             cv.put(DEBT_INTERESTRATE, debt.getInterestRate());
             cv.put(DEBT_COMPOUNDSPERYEAR, debt.getCompoundsPerYear());
             cv.put(DEBT_LOANTERM, debt.getLoanTermInMonths());
-            cv.put(DEBT_FORENKEY, debt.getForeinKey());
 
+
+            cv.put(DEBT_ISDEBT,booleanToInt( debt.getIsDebt()));
+            cv.put(DEBT_FORENKEY, debt.getForeinKey());
         db.insert(DEBT_TABLE, null, cv);
         db.close();
     }
+    private Integer booleanToInt(boolean isDebt){
+        if(isDebt){
+            return 1;
+        }
+        return 0;
+    }
+
+
     public Invest_Debt debt_readOne(int id){
         String getOne=String.format("SELECT * FROM %s WHERE ID == %d",
                 DEBT_TABLE, id );
@@ -148,9 +126,37 @@ public class ProjectDb extends SQLiteOpenHelper
     }
     public List<Invest_Debt> debt_readBonds(int foreignKey){
 
+        SQLiteDatabase db=getReadableDatabase();
+        String str=String.format("SELECT * FROM %s WHERE %s == %d AND %s == %d;",
+                DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 1);
 
+        Cursor cursor= db.rawQuery(str,null);
+        cursor.moveToFirst();
 
-        return null ;
+        List<Invest_Debt> myDebts= new ArrayList<>();
+        while (true){//since there is 1 item, it will fail to get next thus skip the first parse
+            if(cursor.getCount() <=0){
+                break;
+            }
+
+            myDebts.add(
+                    new Invest_Debt(
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ID)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DEBT_NAME)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_AMOUNTBORROWED)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_INTERESTRATE)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_COMPOUNDSPERYEAR)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_LOANTERM))
+                )
+            );
+
+            if(! cursor.moveToNext()){
+                break;
+            }
+        }
+
+        return myDebts ;
     }
     public void debt_updateOne(int position, Invest_Debt debt){
     }
@@ -316,21 +322,24 @@ public class ProjectDb extends SQLiteOpenHelper
 
 
 //Totals
-    public Sum totals_GetBond(int forenKey){
-        List<Invest_Debt> myBonds= this.debt_readBonds(forenKey);
 
 
-        return new Sum("needs impl", -1.0,-1.0 );
-    }
-
-    public Sum totals_GetDebt(int forenKey){
-        return new Sum("needs impl",-1.0,-1.0);
+    public void saveTotal(Totals totals){
 
     }
-    public Sum totals_GetStock(int forenKey){
-        return new Sum("needs impl",-1.0,-1.0);
+    public List<Totals> readTotal(){
+        return null;
+    };
+    public void updateTotal(Totals totals){
 
-    }
+    };
+
+
+
+
+
+//crud
+
 
 
 

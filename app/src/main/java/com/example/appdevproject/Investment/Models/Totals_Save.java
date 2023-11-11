@@ -1,18 +1,26 @@
 package com.example.appdevproject.Investment.Models;
 
-public class Sum {
+public class Totals_Save {
     private String name;
     private Double monthlyInterest;
     private Double totalAmount;
+    private Double amountChanged;
 
 
-    public Sum(String name, Double monthlyInterest, Double totalAmount) {
+    public Totals_Save(String name, Double monthlyInterest, Double totalAmount, Double amountChanged) {
         this.name = name;
         this.monthlyInterest = monthlyInterest;
         this.totalAmount = totalAmount;
+        this.amountChanged =amountChanged;
     }
 
+    public Double getAmountChanged() {
+        return amountChanged;
+    }
 
+    public void setAmountChanged(Double amountChanged) {
+        this.amountChanged = amountChanged;
+    }
 
     public String getName() {
         return name;
@@ -37,4 +45,10 @@ public class Sum {
     public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
+
+
+
+
+
+
 }

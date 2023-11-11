@@ -11,6 +11,16 @@ public interface Users {
     static final String USER_DOB ="DateOfBirth";
 
 
+
+    static final String makeUser = "CREATE TABLE " + USER_TABLE
+            + "("
+            + USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + USER_USERNAME + " TEXT,"
+            + USER_PASSWORD + " TEXT,"
+            + USER_EMAIL + " TEXT,"
+            + USER_DOB + " TEXT"  // Change "String" to "TEXT"
+            + ")";
+
     public long makeUser(User user);
     public User getUserByUsername(String _username);
     public int getUserById(String username);

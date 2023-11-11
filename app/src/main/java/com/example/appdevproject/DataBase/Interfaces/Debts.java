@@ -1,6 +1,7 @@
 package com.example.appdevproject.DataBase.Interfaces;
 
 import static com.example.appdevproject.DataBase.Interfaces.Users.USER_ID;
+import static com.example.appdevproject.DataBase.Interfaces.Users.USER_TABLE;
 
 import com.example.appdevproject.Investment.Models.Invest_Debt;
 
@@ -14,7 +15,22 @@ public interface Debts {
     static final String DEBT_INTERESTRATE="interest_rate";
     static final String DEBT_COMPOUNDSPERYEAR="yearly_compounds";
     static final String DEBT_LOANTERM="loan_term_months";
+    static final String DEBT_ISDEBT="isdebt";
     static final String DEBT_FORENKEY=USER_ID+"_foreign";
+
+
+    static final String makeDebt= "CREATE TABLE "+DEBT_TABLE+" ("
+            + DEBT_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
+            +DEBT_NAME+" TEXT,"
+            +DEBT_AMOUNTBORROWED+ " REAL,"
+            +DEBT_COMPOUNDSPERYEAR+ " INTEGER,"
+            +DEBT_INTERESTRATE+ " REAL, "
+            +DEBT_LOANTERM+ " INTEGER, "
+            +DEBT_ISDEBT + " INTEGER,"
+            +DEBT_FORENKEY+" INTEGER, "
+            +"FOREIGN KEY ("+USER_ID+") REFERENCES "+USER_TABLE+" ("+USER_ID+")" +
+            ");"
+            ;
 
 
 

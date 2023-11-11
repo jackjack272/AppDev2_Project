@@ -31,8 +31,6 @@ public class LandingPage extends AppCompatActivity {
         welcomeUser("Welcome! ");
 
 
-
-
         //in page nav
         edit.setOnClickListener(new View.OnClickListener() {
             @Override

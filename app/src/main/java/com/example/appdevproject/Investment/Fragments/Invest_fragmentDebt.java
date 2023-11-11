@@ -73,6 +73,7 @@ public class Invest_fragmentDebt extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle saveInstanceState){
         makeAssocications();
 
+        admin_setValues();
         //save a debt to the db
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,11 +84,21 @@ public class Invest_fragmentDebt extends Fragment {
                     return;
                 }
                 newDebt.setForeinKey(getUserId());
+                newDebt.setIsDebt(true);
+
+
                 projectDb.debt_makeOne(newDebt);
                 Toast.makeText(getContext(), "added a new debt", Toast.LENGTH_SHORT).show();
             }
         });
 
+    }
+    public void admin_setValues(){
+        debtName.setText("admin");
+        amountBorrowed.setText("23");
+        interestRate.setText("33");
+        compoundsPerYear.setText("23");
+        monthsOnLoan.setText("12");
     }
 
     public void makeAssocications(){
@@ -159,10 +170,6 @@ public class Invest_fragmentDebt extends Fragment {
         }else {
             if(amountBorrowed >0 && interestRate> 0 &&
                     compounds>0 && loanterm >0){
-
-                // borrowed needs to be negative.
-                    // bonds will be possitive.
-                amountBorrowed= amountBorrowed*-1; // check if user put in -value
 
                 return new Invest_Debt(name,amountBorrowed, interestRate, compounds, loanterm);
             }

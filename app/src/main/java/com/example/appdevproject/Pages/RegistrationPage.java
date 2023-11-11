@@ -49,9 +49,7 @@ public class RegistrationPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_registration);
-
         makeAssociates();
-
 
         admin_prePopulate("smith jones");
         admin_quickLogIn("smith jones"); // this one needs to exists

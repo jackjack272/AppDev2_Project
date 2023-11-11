@@ -13,6 +13,6 @@ public interface Debt {
 
     //what should my payments be to pay off the loan in 10 months?
 
-    public double getAnnualCompoundrate();
+    public double getAnnualCompoundRate();
 
 }

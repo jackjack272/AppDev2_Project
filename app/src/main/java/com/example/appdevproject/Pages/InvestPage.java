@@ -20,7 +20,8 @@ import com.example.appdevproject.Investment.Adapters.SumsAdapter;
 import com.example.appdevproject.Investment.Fab.Invest_AddNewInvest;
 import com.example.appdevproject.Investment.Invest_Db_old;
 import com.example.appdevproject.Investment.Invest_AddNew_old;
-import com.example.appdevproject.Investment.Models.Sum;
+import com.example.appdevproject.Investment.Models.Totals_Find;
+import com.example.appdevproject.Investment.Models.Totals_Save;
 import com.example.appdevproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -54,8 +55,6 @@ public class InvestPage extends AppCompatActivity {
 
         setAdapter();
 
-
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,8 +70,6 @@ public class InvestPage extends AppCompatActivity {
     public void makeAssociations(){
         fab=findViewById(R.id.invest_fab_addOne);
         recyclerView=findViewById(R.id.invest_list);
-
-
         myDb= new ProjectDb(InvestPage.this);
     }
 
@@ -81,23 +78,33 @@ public class InvestPage extends AppCompatActivity {
         layoutManager= new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        sumsAdapter = new SumsAdapter();
+        sumsAdapter = new SumsAdapter(InvestPage.this);
 
         sumsAdapter.setSums(getSums());
         recyclerView.setAdapter(sumsAdapter);
     }
 
 
-    public List<Sum> getSums(){
+    public List<Totals_Save> getSums(){
         SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         int foreignKey= myDb.getUserById(s.getString("username",""));
-        List<Sum> mySum=new ArrayList<>();
 
-        mySum.add(myDb.totals_GetBond(foreignKey));
-        mySum.add(myDb.totals_GetDebt(foreignKey));
-        mySum.add(myDb.totals_GetStock(foreignKey));
 
-        return mySum;
+
+        List<Totals_Save> myTotals =new ArrayList<>();
+
+        Totals_Find xx= new Totals_Find(InvestPage.this,foreignKey);
+
+        if(xx!=null){
+            myTotals.add(xx.getBonds());
+        }
+        if(xx!=null){
+            myTotals.add(xx.getDebt());
+        }
+        if(xx!=null){
+            myTotals.add(xx.getStock());
+        }
+        return myTotals;
     }
 
 

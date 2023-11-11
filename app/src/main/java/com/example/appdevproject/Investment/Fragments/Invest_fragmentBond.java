@@ -83,6 +83,8 @@ public class Invest_fragmentBond extends Fragment {
                     return;
                 }
                 newDebt.setForeinKey(getUserId());
+                newDebt.setIsDebt(false);
+
                 projectDb.debt_makeOne(newDebt);
                 Toast.makeText(getContext(), "added a new debt", Toast.LENGTH_SHORT).show();
             }
