@@ -65,6 +65,8 @@ public class InvestPage extends AppCompatActivity {
                     );
             }
         });
+
+
     }
 
     public void makeAssociations(){
@@ -88,7 +90,6 @@ public class InvestPage extends AppCompatActivity {
     public List<Totals_Save> getSums(){
         SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         int foreignKey= myDb.getUserById(s.getString("username",""));
-
 
 
         List<Totals_Save> myTotals =new ArrayList<>();
