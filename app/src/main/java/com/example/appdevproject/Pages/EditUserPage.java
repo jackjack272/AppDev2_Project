@@ -49,14 +49,12 @@ public class EditUserPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 User user=getEditValues();
+
                 if(!user.isEmpty()) {
                     user.setPassword( User.md5HashEncrypt(user.getPassword()));
                     db.updateUser(user);
                 }
                 Toast.makeText(EditUserPage.this, "User Updated", Toast.LENGTH_SHORT).show();
-
-                autoFillTheFieldsWithvalues();
-
             }
         });
 
@@ -67,7 +65,6 @@ public class EditUserPage extends AppCompatActivity {
         ch_dob.setText("01/02/2023");
         ch_pass.setText("apple2");
         ch_confirm_pass.setText("apple2");
-
     }
 
     private void autoFillTheFieldsWithvalues(){
@@ -110,6 +107,8 @@ public class EditUserPage extends AppCompatActivity {
             updateMe.setDob(String.valueOf(ch_dob.getText().toString()));
             updateMe.setEmail(String.valueOf(ch_email.getText().toString()));
             updateMe.setPassword(String.valueOf(ch_pass.getText().toString()));
+            updateMe.setId(getForeighnkey());
+
 
             return updateMe;
         } else {
@@ -121,5 +120,11 @@ public class EditUserPage extends AppCompatActivity {
 
     }
 
+
+    public int getForeighnkey() {
+        SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        int foreignKey= db.getUserById(s.getString("username",""));
+        return foreignKey;
+    }
 
 }

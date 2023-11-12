@@ -337,8 +337,7 @@ public class ProjectDb extends SQLiteOpenHelper
             cv.put(USER_EMAIL, user.getEmail());
             cv.put(USER_DOB, user.getDob());
 
-        db.update(USER_TABLE, cv, this.USER_USERNAME+" =?",new String[] {(user.getUserName())});
-
+        db.update(USER_TABLE, cv, USER_ID+"=?", new String[]{String.valueOf(user.getId())} );
     }
 //---------------
 
