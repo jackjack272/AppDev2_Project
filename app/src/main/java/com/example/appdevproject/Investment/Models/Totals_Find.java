@@ -32,12 +32,7 @@ public class Totals_Find
 
         for(Invest_Debt xx: myBonds){
 
-            //get the monthly interest per bond.
-             monthylInterest+= xx.getInterestRate()/100/12;
 
-            //amount chnaged.  //get the market Rate
-            amountChanged+= xx.getMarketValue(marketValue)-xx.getAmountBorred(); //1200 -1000 + $ else loose money.
-            totalAmount+=xx.getAmountBorred();
         }
         monthylInterest=monthylInterest/myBonds.size();// get the avg per bond
 

@@ -40,31 +40,48 @@ public class Invest_Debt implements Debt {
 
 
     public double getEffectiveInterestRate() {
-        return -1.0;
+        // Calculate the effective interest rate using the formula
+        // Effective Interest Rate = (1 + (Nominal Rate / Compounds per year)) ^ Compounds per year - 1
+
+        // Convert the annual interest rate to a decimal and calculate periodic interest rate
+        double nominalRate = interestRate / 100;
+        double periodicInterestRate = nominalRate / compoundsPerYear;
+
+        // Calculate effective annual interest rate
+        double effectiveInterestRate = Math.pow(1 + periodicInterestRate, compoundsPerYear) - 1;
+
+        // Return the effective interest rate
+        return effectiveInterestRate * 100; // Convert back to percentage
     }
 
 
-    public double getMarketValue(){
 
-        return -1.0;
-    }
 
 
     public double paymentPerCompound(){
-        return -1.0;
+        return amountBorred*getEffectiveInterestRate()/100/getCompoundsPerYear();
     }
 
     public double valueAtMaturity(){
-        return -1.0;
+        double r = interestRate / 100; // converting interest rate to a decimal
+        double n = compoundsPerYear;
+        double t = (double) loanTermInMonths / 12; // converting loan term to years
+
+        double maturityValue;
+
+        if (isDebt) {
+            maturityValue = this.amountBorred * Math.pow(1 + r / n, n * t);
+        } else {
+            maturityValue = this.amountBorred * (1 + r * t);
+        }
+
+        return maturityValue;
     }
 
     public double getAnnualCompoundRate() {
         return -1.0;
     }
 
-    public double getMarketValue(Double currentMarketRate) {
-        return -1.0;
-    }
 
 
 

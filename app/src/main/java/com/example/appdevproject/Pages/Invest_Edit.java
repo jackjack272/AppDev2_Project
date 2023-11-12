@@ -26,7 +26,7 @@ public class Invest_Edit extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_invest);
+        setContentView(R.layout.invest_edit_activity);
 
         makeAssociateions();
 

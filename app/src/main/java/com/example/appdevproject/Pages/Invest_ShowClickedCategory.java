@@ -40,7 +40,7 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
 
     ProjectDb myDb;
 
-    LineChart stackedChart;
+    BarChart stackedChart;
 
 
     @Override
@@ -50,38 +50,73 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
 
         makeAssocications();
 
-        int choice=showHeading();
-        makeAdapter(choice);
+        showHeading();
+        makeAdapter(getCategory());
 
         showChart();
-
-
     }
 
 
     public void showChart(){
         //https://www.youtube.com/watch?v=jTYi0Q7lLco&list=PLFh8wpMiEi89LcBupeftmAcgDKCeC24bJ&index=12
 
-        ArrayList<Entry> dataVals= new ArrayList<>();
 
-        dataVals.add(new Entry(0,20));
-        dataVals.add(new Entry(1,30));
-        dataVals.add(new Entry(2,40));
-        dataVals.add(new Entry(3,50));
 
-        LineDataSet lineDataSet= new LineDataSet(dataVals,"Bonds price ");
-        ArrayList<ILineDataSet> dataSets= new ArrayList<>();
-        dataSets.add(lineDataSet);
+        ArrayList<BarEntry> dataVals= new ArrayList<>();
 
-        LineData data= new LineData(dataSets);
-        stackedChart.setData(data);
-        stackedChart.invalidate();
+
+
+        float interestGaind= 0.0F;
+        int cat=getCategory();
+
+        String label="";
+        if( cat==0) {
+            label="Total intest gained: ";
+
+            List<Invest_Debt> myDebts= myDb.debt_readBonds(getForeighnkey());
+
+            for(int i=0; i<myDebts.size();i++){
+                float gain=(float) Math.round(myDebts.get(i).valueAtMaturity()-myDebts.get(i).getAmountBorred());
+                dataVals.add(new BarEntry(i,gain));
+                interestGaind+=gain;
+            }
+
+        }
+        else if(cat==1){
+            label="Total intest payable: ";
+
+            List<Invest_Debt> myDebts= myDb.debt_readDebt(getForeighnkey());
+
+            for(int i=0; i<myDebts.size();i++){
+                float gain=(float) Math.round(myDebts.get(i).valueAtMaturity()-myDebts.get(i).getAmountBorred());
+                dataVals.add(new BarEntry(i,gain));
+                interestGaind+=gain;
+            }
+        }
+        else{
+            //stock
+            dataVals.add(new BarEntry(0,20));
+            dataVals.add(new BarEntry(1,30));
+            dataVals.add(new BarEntry(2,40));
+            dataVals.add(new BarEntry(3,50));
+        }
+
+
+
+        BarDataSet barDataSet= new BarDataSet(dataVals,String.format("%s: %.2f",label,interestGaind));
+        BarData barData=new BarData();
+        barData.addDataSet(barDataSet);
+
+        stackedChart.setData(barData);
+
+
 
     }
 
 
 
-    public int showHeading(){
+    public void showHeading(){
+
         String str="See all your ";
         int choice=getCategory();
         switch (choice){
@@ -100,9 +135,8 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
         }
 
         heading.setText(str);
-        return choice;
-    }
 
+    }
     public void makeAdapter(int choice){
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -125,7 +159,6 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
         else {
             stockAdapter=new StockAdapter(Invest_ShowClickedCategory.this);
             recyclerView.setAdapter(stockAdapter);
-
         }
 
     }
@@ -134,14 +167,11 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
         int foreignKey= myDb.getUserById(s.getString("username",""));
         return foreignKey;
     }
-
     public Integer getCategory(){
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
         return bundle.getInt("category",0);
     }
-
-
 
     public void makeAssocications(){
         heading= findViewById(R.id.invest_choice_display);

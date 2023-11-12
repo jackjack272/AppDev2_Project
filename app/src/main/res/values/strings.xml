@@ -130,9 +130,12 @@
 <!--    invest edit
     invest_edit_
 -->
-
     <string name="invest_edit_heading">Edit </string>
-
+    <string name="invest_edit_name">Name</string>
+    <string name="invest_edit_amountBorrwed">Amount Borrowed</string>
+    <string name="invest_edit_interestRate">Interest Rate</string>
+    <string name="invest_edit_compoundsPerYear">Compounds</string>
+    <string name="invest_edit_month">Term In Month</string>
 
 
 

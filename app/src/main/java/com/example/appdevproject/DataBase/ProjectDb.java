@@ -37,7 +37,6 @@ public class ProjectDb extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db) {
         // Create the User table
         db.execSQL(makeUser);
-
         // Create the Item table
         db.execSQL(makeItem); //fk user
         //Create a table for Debt.
@@ -140,8 +139,8 @@ public class ProjectDb extends SQLiteOpenHelper
     public List<Invest_Debt> debt_readBonds(int foreignKey){
 
         SQLiteDatabase db=getReadableDatabase();
-        String str=String.format("SELECT * FROM %s WHERE %s == %d AND %s == %d ORDER BY %s;",
-                DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 0, DEBT_AMOUNTBORROWED);
+        String str=String.format("SELECT * FROM %s WHERE %s == %d AND %s == %d ORDER BY %s %s; ",
+                DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 0, DEBT_AMOUNTBORROWED,"DESC");
 
         Cursor cursor= db.rawQuery(str,null);
         cursor.moveToFirst();
