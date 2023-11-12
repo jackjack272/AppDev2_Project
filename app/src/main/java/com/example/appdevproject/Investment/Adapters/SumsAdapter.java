@@ -47,11 +47,9 @@ public class SumsAdapter extends RecyclerView.Adapter<SumsAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull SumsAdapter.ViewHolder holder, int position) {
         holder.loanName.setText(totals.get(position).getName() );
 
-
-        holder.loanAmountLeft.setText(String.valueOf(totals.get(position).getTotalAmount()));
-        holder.loanMonthlyInterest.setText(String.valueOf(totals.get(position).getMonthlyInterest()));
-        holder.marketValue.setText(String.valueOf(totals.get(position).getAmountChanged()));
-
+        holder.loanAmountLeft.setText(String.format("$ %.2f",totals.get(position).getTotalAmount()));
+        holder.loanMonthlyInterest.setText(String.format("%.2f %%",-1.0));
+        holder.marketValue.setText(String.format("$ %.2f ",-1.0));
     }
 
     @Override

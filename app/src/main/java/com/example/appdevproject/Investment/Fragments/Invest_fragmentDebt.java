@@ -94,12 +94,13 @@ public class Invest_fragmentDebt extends Fragment {
 
     }
     public void admin_setValues(){
-        debtName.setText("admin");
-        amountBorrowed.setText("23");
-        interestRate.setText("33");
-        compoundsPerYear.setText("23");
-        monthsOnLoan.setText("12");
+        debtName.setText("Debt");
+        amountBorrowed.setText("1000");
+        interestRate.setText("10");
+        compoundsPerYear.setText("2");
+        monthsOnLoan.setText("24");
     }
+
 
     public void makeAssocications(){
         debtName= getView().findViewById(R.id.invest_debt_Name);

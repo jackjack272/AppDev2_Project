@@ -68,6 +68,10 @@ public class ProjectDb extends SQLiteOpenHelper
             cv.put(DEBT_ISDEBT,booleanToInt( debt.getIsDebt()));
             cv.put(DEBT_FORENKEY, debt.getForeinKey());
         db.insert(DEBT_TABLE, null, cv);
+
+
+
+
         db.close();
     }
     private Integer booleanToInt(boolean isDebt){
@@ -107,14 +111,13 @@ public class ProjectDb extends SQLiteOpenHelper
 
 
     public List<Invest_Debt>  debt_readDebt(int foreignKey){
-        String getAllSql=String
-    .format("SELECT %s FROM %s WHERE %s == %d ORDER BY amount_borrowed ",
-            "*",DEBT_TABLE, DEBT_FORENKEY, foreignKey);
+        String str=String.format("SELECT * FROM %s WHERE %s == %d AND %s == %d ORDER BY %s;",
+                DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 1, DEBT_AMOUNTBORROWED);
 
 
         SQLiteDatabase db  = getReadableDatabase();
 
-        Cursor cursor= db.rawQuery(getAllSql,null);
+        Cursor cursor= db.rawQuery(str,null);
         cursor.moveToFirst();
 
         List<Invest_Debt> myDebts= new ArrayList<>();
@@ -137,8 +140,8 @@ public class ProjectDb extends SQLiteOpenHelper
     public List<Invest_Debt> debt_readBonds(int foreignKey){
 
         SQLiteDatabase db=getReadableDatabase();
-        String str=String.format("SELECT * FROM %s WHERE %s == %d AND %s == %d;",
-                DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 1);
+        String str=String.format("SELECT * FROM %s WHERE %s == %d AND %s == %d ORDER BY %s;",
+                DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 0, DEBT_AMOUNTBORROWED);
 
         Cursor cursor= db.rawQuery(str,null);
         cursor.moveToFirst();
@@ -180,7 +183,10 @@ public class ProjectDb extends SQLiteOpenHelper
         getWritableDatabase()
                 .update(DEBT_TABLE, contentValue, this.DEBT_ID+" =?",
                         new String[] {String.valueOf(debt.getId())});
+
     }
+
+
     public void debt_deleteOne(int position){
         getWritableDatabase().delete(DEBT_TABLE,DEBT_ID+"==?",new String[]{String.valueOf(position)});
     }

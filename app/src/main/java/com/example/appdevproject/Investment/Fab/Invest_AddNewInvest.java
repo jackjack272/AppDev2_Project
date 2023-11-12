@@ -29,7 +29,6 @@ public class Invest_AddNewInvest extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle saveBundle){
         makeAssocications();
 
-
         debt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +60,6 @@ public class Invest_AddNewInvest extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "bond", Toast.LENGTH_SHORT).show();
-
 
                 // Replace the fragment in the specified container view
                 FragmentTransaction transaction = getChildFragmentManager().beginTransaction();

@@ -25,7 +25,6 @@ public class Totals_Find
 
         if(myBonds.size() ==0){
             return new Totals_Save("Bonds",0.0,0.0,0.0);
-
         }
 
         Double monthylInterest=0.0, totalAmount=0.0, amountChanged=0.0;

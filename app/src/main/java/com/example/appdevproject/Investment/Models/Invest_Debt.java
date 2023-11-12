@@ -38,96 +38,44 @@ public class Invest_Debt implements Debt {
     }
 
 
-    //show the repayment/amortization  schedule
 
-
-    //what if i pay extra $50 per month?
-
-
-    //what is the total value of this loan?
-
-
-    //what should my payments be to pay off the loan in 10 months?
-
-
-
-
-    public double getMonthlyInterest(){
-        //compute effective annual rate /12
-//        https://www.investopedia.com/terms/e/effectiveinterest.asp
-
-        double  interestRate= (1+ (this.interestRate/(this.compoundsPerYear*this.loanTermInMonths)) );
-        interestRate= Math.pow(interestRate,(this.compoundsPerYear*this.loanTermInMonths));
-        interestRate-=1;
-
-        return interestRate/12;
-
-    }
-
-    public double getNewMarketValue(){
-        if (isDebt) {
-            //debt increases
-//            return this.amountBorred +getAnnualCompoundRate() *this.amountBorred/12;
-            return  -1.0;
-        }
-//        bonds differnt formula
-
-        return -23.0;
+    public double getEffectiveInterestRate() {
+        return -1.0;
     }
 
 
+    public double getMarketValue(){
 
+        return -1.0;
+    }
+
+
+    public double paymentPerCompound(){
+        return -1.0;
+    }
+
+    public double valueAtMaturity(){
+        return -1.0;
+    }
 
     public double getAnnualCompoundRate() {
-        //ear formula https://corporatefinanceinstitute.com/resources/commercial-lending/effective-annual-interest-rate-ear/#:~:text=Apply%20the%20EAR%20Formula%3A%20EAR,n%20%3D%20Compounding%20periods
-
-        //EAR=(1+interest/number of compounds per period) ^ num compounds per period -1
-        // (1+10%/2 )^2 -1 =.1025
-
-        double xx=(1+ (this.interestRate/100) / this.compoundsPerYear );
-        xx=Math.pow ( xx,this.compoundsPerYear);
-        xx-=1;
-        xx=xx*100;
-        return xx;
+        return -1.0;
     }
 
     public double getMarketValue(Double currentMarketRate) {
-        /**
-         * Suppose you have a bond with the following characteristics:
-         *
-         * Coupon Rate: 5%
-         * Face Value: $1,000
-         * Time to Maturity: 5 years
-         * YTM (market interest rate): 4%
-         * Calculate the present value of coupon payments:
-         *
-         * Coupon Payment = (0.05 x $1,000) / 1 = $50
-         * n = 5 years
-         * YTM = 0.04 (4% expressed as a decimal)
-         * PV(Coupon Payments) = $50 x [1 - (1 + 0.04)^(-5)] / 0.04 ≈ $215.47
-         *
-         * Calculate the present value of the face value:
-         *
-         * PV(Face Value) = $1,000 / (1 + 0.04)^5 ≈ $822.70
-         * Add the two present values to get the market value:
-         *
-         * Market Value = $215.47 + $822.70 ≈ $1,038.17
-         * So, the market value of the bond in this example is approximately $1,038.17.
-         */
-
-        Double  compounPayment, n, ytm,pv, marketvalue;
-        compounPayment= (this.getInterestRate()/100 ) * this.getAmountBorred()/this.getCompoundsPerYear();
-        n= Double.valueOf(this.getCompoundsPerYear() *(this.getLoanTermInMonths()/12));
-
-
-        pv=compounPayment *(1-  Math.pow ( (1+currentMarketRate),(n *-1) ) ) /n;
-        //coupon payments
-
-        pv+=Math.pow( this.getAmountBorred() /(1+currentMarketRate),n);
-        //face value
-
-        return pv;
+        return -1.0;
     }
+
+
+
+
+
+
+
+
+
+
+
 
     //getters and setter
     public String getDebtName() {

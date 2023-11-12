@@ -79,9 +79,7 @@ public class InvestPage extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         sumsAdapter = new SumsAdapter(InvestPage.this);
-
         sumsAdapter.setSums(getSums());
-
         recyclerView.setAdapter(sumsAdapter);
     }
 
@@ -96,7 +94,10 @@ public class InvestPage extends AppCompatActivity {
         Totals_Save bonds= xx.getBonds(5.5);
         if(bonds != null){
             myTotals.add(bonds);
+
         }
+
+
 
         bonds=xx.getDebt();
         if(bonds!=null){

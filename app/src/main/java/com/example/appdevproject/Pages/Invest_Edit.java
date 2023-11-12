@@ -30,15 +30,21 @@ public class Invest_Edit extends AppCompatActivity {
 
         makeAssociateions();
 
+        adminPutvalues();
 
 
         Intent x=getIntent();
         Bundle bundle= x.getExtras();
-        int id = bundle.getInt("category");
+        int id= bundle.getInt("id");
 
-        Invest_Debt debt= projectDb.debt_readOne(id);
-        setValues(debt);
 
+        setValues(new Invest_Debt(
+                bundle.getString("name"),
+                bundle.getDouble("borrowed"),
+                bundle.getDouble("interest"),
+                bundle.getInt("year"),
+                bundle.getInt("months")
+                ));
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,17 +56,27 @@ public class Invest_Edit extends AppCompatActivity {
                 }
                 projectDb.debt_updateOne(id,xx);
                 Toast.makeText(Invest_Edit.this, "Item "+xx.getDebtName()+" is updated", Toast.LENGTH_SHORT).show();
+
+
+                Intent intent= new Intent( Invest_Edit.this, Invest_ShowClickedCategory.class);
+                Bundle myBundle= new Bundle();
+                myBundle.putInt("category", bundle.getInt("category"));
+
+                intent.putExtras(myBundle);
+                startActivity(intent);
+                //need a bundle with a category
             }
         });
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                projectDb.debt_deleteOne(id);
-                Toast.makeText(Invest_Edit.this, "Deleted item", Toast.LENGTH_SHORT).show();
-            }
-        });
 
+    }
+    public void adminPutvalues(){
+        heading.setText("3");
+        name.setText("3");
+        amountBorrowed.setText("3");
+        interestRate.setText("3");
+        compoundsPerYear.setText("3");
+        numMonths.setText("3");
     }
 
 
@@ -73,7 +89,7 @@ public class Invest_Edit extends AppCompatActivity {
         numMonths=findViewById(R.id.invest_edit_months);
 
         edit =findViewById(R.id.invest_edit_edit);
-        delete=findViewById(R.id.invest_edit_delete);
+
 
         projectDb=new ProjectDb(Invest_Edit.this);
 
@@ -89,17 +105,18 @@ public class Invest_Edit extends AppCompatActivity {
         name.setHint(xx.getDebtName());
         amountBorrowed.setHint(String.valueOf( xx.getAmountBorred() ));
         interestRate.setHint(String.valueOf( xx.getAnnualCompoundRate()));
-        compoundsPerYear.setHint(xx.getCompoundsPerYear());
-        numMonths.setHint(xx.getLoanTermInMonths());
+        compoundsPerYear.setHint(String.valueOf( xx.getCompoundsPerYear()));
+        numMonths.setHint(String.valueOf( xx.getLoanTermInMonths()));
 
     }
 
     public Invest_Debt getUpdatedValues(){
         String name;
-        Double amountBorrowed, interestRate;
-        Integer compoundsPerYear,loanTerm;
+        Double amountBorrowed=-1.0, interestRate=-1.0;
+        Integer compoundsPerYear=-1,loanTerm=-1;
 
         Boolean badValues=false;
+
 
         name=this.name.getText().toString();
         if(name.equals("")){
@@ -107,32 +124,42 @@ public class Invest_Edit extends AppCompatActivity {
             this.name.setHint("enter a name");
         }
 
+        try{
+            amountBorrowed=Double.parseDouble(this.amountBorrowed.getText().toString());
+            if(amountBorrowed<=0){
+                badValues=true;
+                this.amountBorrowed.setHint("enter amount borrowed >1");
 
-        amountBorrowed=Double.parseDouble(this.amountBorrowed.getText().toString());
-        if(amountBorrowed<=0){
-            badValues=true;
-            this.amountBorrowed.setHint("enter a number");
-        }
+            }
+        }catch (Exception e){badValues=true; this.amountBorrowed.setHint("enter amount borrowed");}
 
-        interestRate= Double.parseDouble( this.interestRate.getText().toString());
-        if(interestRate <=0){
-            badValues=true;
-            this.amountBorrowed.setHint("enter a number");
-        }
-
-        compoundsPerYear=Integer.parseInt( this.compoundsPerYear.getText().toString());
-        if(compoundsPerYear<=0){
-            badValues=true;
-            this.amountBorrowed.setHint("enter a number");
-        }
+        try {
+            interestRate= Double.parseDouble( this.interestRate.getText().toString());
+            if(interestRate <=0){
+                badValues=true;
+                this.amountBorrowed.setHint("enter interest rate >1");
+            }
+        }catch (Exception e){badValues=true;this.interestRate.setHint("enter interest rate");}
 
 
-        loanTerm = Integer.parseInt(this.numMonths.getText().toString());
-        if(loanTerm <=0 ){
-            badValues=true;
-            this.numMonths.setHint("enter a number");
-        }
+        try {
+            compoundsPerYear=Integer.parseInt( this.compoundsPerYear.getText().toString());
+            if(compoundsPerYear<=0){
+                badValues=true;
+                this.amountBorrowed.setHint("enter a compounds per year >1");
+            }
 
+        }catch (Exception e){badValues=true;this.compoundsPerYear.setHint("enter a compounds per year");}
+
+
+        try {
+            loanTerm = Integer.parseInt(this.numMonths.getText().toString());
+            if(loanTerm <=0 ){
+                badValues=true;
+                this.numMonths.setHint("enter a number of months on the bond>1");
+            }
+
+        }catch (Exception e){badValues=true;this.numMonths.setHint("enter a number of months on the bond");}
 
 
         if(!badValues){

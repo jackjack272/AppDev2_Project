@@ -7,33 +7,41 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.appdevproject.DataBase.Interfaces.Totals;
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Investment.Adapters.BondsAdapter;
-import com.example.appdevproject.Investment.Adapters.DebtAdapter;
 import com.example.appdevproject.Investment.Adapters.StockAdapter;
-import com.example.appdevproject.Investment.Models.Interfaces.Debt;
 import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.R;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Invest_ShowClickedCategory extends AppCompatActivity {
     TextView heading;
     RecyclerView recyclerView;
     BondsAdapter bondsAdapter;
-    DebtAdapter debtAdapter;
     StockAdapter stockAdapter;
     RecyclerView.LayoutManager layoutManager;
-
-
 //    Adapters
 
 
     ProjectDb myDb;
+
+    LineChart stackedChart;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +50,39 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
 
         makeAssocications();
 
-        String str="See all your ";
+        int choice=showHeading();
+        makeAdapter(choice);
 
+        showChart();
+
+
+    }
+
+
+    public void showChart(){
+        //https://www.youtube.com/watch?v=jTYi0Q7lLco&list=PLFh8wpMiEi89LcBupeftmAcgDKCeC24bJ&index=12
+
+        ArrayList<Entry> dataVals= new ArrayList<>();
+
+        dataVals.add(new Entry(0,20));
+        dataVals.add(new Entry(1,30));
+        dataVals.add(new Entry(2,40));
+        dataVals.add(new Entry(3,50));
+
+        LineDataSet lineDataSet= new LineDataSet(dataVals,"Bonds price ");
+        ArrayList<ILineDataSet> dataSets= new ArrayList<>();
+        dataSets.add(lineDataSet);
+
+        LineData data= new LineData(dataSets);
+        stackedChart.setData(data);
+        stackedChart.invalidate();
+
+    }
+
+
+
+    public int showHeading(){
+        String str="See all your ";
         int choice=getCategory();
         switch (choice){
             case 0:
@@ -60,10 +99,8 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
                 break;
         }
 
-        makeAdapter(choice);
-
-        heading.setText(String.valueOf(str));
-
+        heading.setText(str);
+        return choice;
     }
 
     public void makeAdapter(int choice){
@@ -83,8 +120,8 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
             }
             bondsAdapter.setItems(myItems);
             recyclerView.setAdapter(bondsAdapter);
-
         }
+
         else {
             stockAdapter=new StockAdapter(Invest_ShowClickedCategory.this);
             recyclerView.setAdapter(stockAdapter);
@@ -109,6 +146,8 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
     public void makeAssocications(){
         heading= findViewById(R.id.invest_choice_display);
         recyclerView= findViewById(R.id.invest_choice_card_recycleview);
+
+        stackedChart=findViewById(R.id.bar_chart);
 
         myDb=new ProjectDb(Invest_ShowClickedCategory.this);
 

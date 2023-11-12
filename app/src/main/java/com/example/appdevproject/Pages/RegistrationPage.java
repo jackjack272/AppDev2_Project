@@ -56,7 +56,6 @@ public class RegistrationPage extends AppCompatActivity {
 
         projectDb =new ProjectDb(RegistrationPage.this);
 
-
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
