@@ -78,12 +78,20 @@ public class ProjectDb extends SQLiteOpenHelper
     }
 
     public Invest_Debt debt_readOne(int id){
-        String getOne=String.format("SELECT * FROM %s WHERE %s == %d",
-                DEBT_TABLE, DEBT_ID, id );
+        String getOne=String.format("SELECT * FROM %s WHERE %s == %d;", DEBT_TABLE, DEBT_ID, id );
 
         SQLiteDatabase db= getReadableDatabase();
-        Cursor cursor= db.rawQuery(getOne,null);
-//        cursor.moveToFirst();
+        Cursor cursor = db.query(
+                DEBT_TABLE,                    // Table name
+                null,                          // Columns (null means all columns)
+                DEBT_ID + "=?",                // Selection (where clause)
+                new String[] { String.valueOf(id) },  // Selection arguments
+                null,                          // Group by
+                null,                          // Having
+                null                           // Order by
+        );
+
+        int items= cursor.getCount();
 
          return new Invest_Debt(
                 cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ID)),
@@ -95,8 +103,9 @@ public class ProjectDb extends SQLiteOpenHelper
                 cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_LOANTERM)),
                 cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ISDEBT))
         );
-
     }
+
+
     public List<Invest_Debt>  debt_readDebt(int foreignKey){
         String getAllSql=String
     .format("SELECT %s FROM %s WHERE %s == %d ORDER BY amount_borrowed ",
@@ -324,11 +333,12 @@ public class ProjectDb extends SQLiteOpenHelper
         SQLiteDatabase db= getWritableDatabase();
 
         ContentValues cv = new ContentValues();
-            cv.put(USER_PASSWORD, user.getPassword());
+            cv.put(USER_PASSWORD,  user.getPassword());
             cv.put(USER_EMAIL, user.getEmail());
             cv.put(USER_DOB, user.getDob());
 
-        db.update(USER_TABLE, cv, this.USER_USERNAME+" =?", new String[] {String.valueOf(user.getUserName())});
+        db.update(USER_TABLE, cv, this.USER_USERNAME+" =?",new String[] {(user.getUserName())});
+
     }
 //---------------
 

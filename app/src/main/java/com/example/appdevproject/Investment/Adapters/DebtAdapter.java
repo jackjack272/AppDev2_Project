@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.Investment.Models.Totals_Save;
 import com.example.appdevproject.R;
 
@@ -17,7 +18,7 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.InternalClass>
 
     Context contetxt;
 
-    List<Totals_Save> totalsBaseList;
+    List<Invest_Debt> myDebts;
 
     public DebtAdapter(Context contetxt) {
         this.contetxt=contetxt;
@@ -48,11 +49,8 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.InternalClass>
 
     @Override
     public int getItemCount() {
-        return totalsBaseList.size();
+        return myDebts.size();
     }
-
-
-
 
 
     public class InternalError extends RecyclerView.ViewHolder{
@@ -62,5 +60,9 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.InternalClass>
 
         }
     }
+
+
+
+
 
 }

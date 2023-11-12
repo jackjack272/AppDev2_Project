@@ -72,22 +72,24 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
 
         int foreignKey=getForeighnkey();
 
-        if(choice==0) {
+        if(choice==0 || choice==1) {
             bondsAdapter = new BondsAdapter(Invest_ShowClickedCategory.this);
-            List<Invest_Debt> myBonds= myDb.debt_readBonds(foreignKey);
-            bondsAdapter.setItems(myBonds);
+            List<Invest_Debt> myItems;
+
+            if(choice==0){
+                myItems= myDb.debt_readBonds(foreignKey);
+            }else{
+                myItems= myDb.debt_readDebt(foreignKey);
+            }
+            bondsAdapter.setItems(myItems);
             recyclerView.setAdapter(bondsAdapter);
-        }
-        else if(choice==1){
-            debtAdapter=new DebtAdapter(Invest_ShowClickedCategory.this);
-            recyclerView.setAdapter(debtAdapter);
 
-        }else{
+        }
+        else {
             stockAdapter=new StockAdapter(Invest_ShowClickedCategory.this);
-
             recyclerView.setAdapter(stockAdapter);
-        }
 
+        }
 
     }
     public int getForeighnkey() {

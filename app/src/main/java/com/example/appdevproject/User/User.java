@@ -68,10 +68,6 @@ public class User {
 
     // compare passwords
     public static Boolean comparePasswords(String passwordAttempt, String realPassword){
-//        Log.e(TAG, realPassword);
-//        Log.e(TAG, passwordAttempt);
-//        Log.e(TAG, md5HashEncrypt("apple1"));
-
         String attemp=md5HashEncrypt(passwordAttempt);
 
         if(realPassword.equals(attemp)){
@@ -108,7 +104,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = md5HashEncrypt(password);
+        this.password = (password);
     }
 
     public String getEmail() {

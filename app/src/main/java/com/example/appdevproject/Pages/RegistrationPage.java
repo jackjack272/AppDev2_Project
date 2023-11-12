@@ -52,7 +52,7 @@ public class RegistrationPage extends AppCompatActivity {
         makeAssociates();
 
         admin_prePopulate("smith jones");
-        admin_quickLogIn("smith jones"); // this one needs to exists
+//        admin_quickLogIn("smith jones"); // this one needs to exists
 
         projectDb =new ProjectDb(RegistrationPage.this);
 
@@ -96,15 +96,10 @@ public class RegistrationPage extends AppCompatActivity {
                         return;
                     }
 
-//                    if(! User.md5HashEncrypt(passWord).equals(user.getPassword())){
-//                        return;
-//                    }
-                    //compare passwords.
-//                    if(! User.comparePasswords(passWord, user.getPassword())){
-//                        Toast.makeText(RegistrationPage.this, "user or password is wrong", Toast.LENGTH_SHORT).show();
-//                        return;
-//                    }
-                    //the hashes dont match.
+                    if(! User.comparePasswords(passWord, user.getPassword())){
+                        Toast.makeText(RegistrationPage.this, "user or password is wrong", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
                 }
 
@@ -119,11 +114,7 @@ public class RegistrationPage extends AppCompatActivity {
                     User x= projectDb.getUserByUsername(user.getUserName());
                     if(x ==null){
 
-                        Log.e(TAG, "before encrypt "+ user.getPassword());
-
                         user.setPassword(User.md5HashEncrypt(user.getPassword()) );
-                        Log.e(TAG, "after encrypt "+ user.getPassword());
-
                         projectDb.makeUser(user);
 
                     }else{

@@ -42,16 +42,31 @@ public class EditUserPage extends AppCompatActivity {
         //show the user the values they have already in the db
         autoFillTheFieldsWithvalues(); //not completed
 
+        adminSetValues();
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 User user=getEditValues();
                 if(!user.isEmpty()) {
+                    user.setPassword( User.md5HashEncrypt(user.getPassword()));
                     db.updateUser(user);
                 }
+                Toast.makeText(EditUserPage.this, "User Updated", Toast.LENGTH_SHORT).show();
+
+                autoFillTheFieldsWithvalues();
+
             }
         });
+
+    }
+
+    public void adminSetValues(){
+        ch_email.setText("admin@test.com");
+        ch_dob.setText("01/02/2023");
+        ch_pass.setText("apple2");
+        ch_confirm_pass.setText("apple2");
 
     }
 
