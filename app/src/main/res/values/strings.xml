@@ -127,4 +127,14 @@
     <string name="invest_frag_stock_btn">Save</string>
 
 
+<!--    invest edit
+    invest_edit_
+-->
+
+    <string name="invest_edit_heading">Edit </string>
+
+
+
+
+
 </resources>

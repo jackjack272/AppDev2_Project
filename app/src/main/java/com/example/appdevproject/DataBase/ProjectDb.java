@@ -27,10 +27,8 @@ public class ProjectDb extends SQLiteOpenHelper
      *  user -> investment (one ->many)
      */
 
-
     private static final String db_name="fall23_AndroidApp";
     private static final Integer db_version=1;
-
 
     public ProjectDb(Context context) {
         super(context, db_name, null , db_version);
@@ -79,23 +77,25 @@ public class ProjectDb extends SQLiteOpenHelper
         return 0;
     }
 
-
     public Invest_Debt debt_readOne(int id){
-        String getOne=String.format("SELECT * FROM %s WHERE ID == %d",
-                DEBT_TABLE, id );
+        String getOne=String.format("SELECT * FROM %s WHERE %s == %d",
+                DEBT_TABLE, DEBT_ID, id );
 
         SQLiteDatabase db= getReadableDatabase();
         Cursor cursor= db.rawQuery(getOne,null);
+//        cursor.moveToFirst();
 
-        return new Invest_Debt(
-            cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ID)),
-            cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID)),
-            cursor.getString(cursor.getColumnIndexOrThrow(DEBT_NAME)),
-            cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_AMOUNTBORROWED)),
-            cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_INTERESTRATE)),
-            cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_COMPOUNDSPERYEAR)),
-            cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_LOANTERM))
+         return new Invest_Debt(
+                cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ID)),
+                cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID)),
+                cursor.getString(cursor.getColumnIndexOrThrow(DEBT_NAME)),
+                cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_AMOUNTBORROWED)),
+                cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_INTERESTRATE)),
+                cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_COMPOUNDSPERYEAR)),
+                cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_LOANTERM)),
+                cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ISDEBT))
         );
+
     }
     public List<Invest_Debt>  debt_readDebt(int foreignKey){
         String getAllSql=String
@@ -118,7 +118,8 @@ public class ProjectDb extends SQLiteOpenHelper
                     cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_AMOUNTBORROWED)),
                     cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_INTERESTRATE)),
                     cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_COMPOUNDSPERYEAR)),
-                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_LOANTERM))
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_LOANTERM)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ISDEBT))
             );
             myDebts.add(debt);
         }
@@ -147,8 +148,9 @@ public class ProjectDb extends SQLiteOpenHelper
                     cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_AMOUNTBORROWED)),
                     cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_INTERESTRATE)),
                     cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_COMPOUNDSPERYEAR)),
-                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_LOANTERM))
-                )
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_LOANTERM)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ISDEBT))
+                    )
             );
 
             if(! cursor.moveToNext()){
@@ -159,8 +161,19 @@ public class ProjectDb extends SQLiteOpenHelper
         return myDebts ;
     }
     public void debt_updateOne(int position, Invest_Debt debt){
+        ContentValues contentValue = new ContentValues();
+
+        contentValue.put(DEBT_AMOUNTBORROWED,debt.getAmountBorred());
+        contentValue.put(DEBT_INTERESTRATE,debt.getInterestRate());
+        contentValue.put(DEBT_COMPOUNDSPERYEAR,debt.getCompoundsPerYear());
+        contentValue.put(DEBT_LOANTERM,debt.getLoanTermInMonths());
+
+        getWritableDatabase()
+                .update(DEBT_TABLE, contentValue, this.DEBT_ID+" =?",
+                        new String[] {String.valueOf(debt.getId())});
     }
     public void debt_deleteOne(int position){
+        getWritableDatabase().delete(DEBT_TABLE,DEBT_ID+"==?",new String[]{String.valueOf(position)});
     }
 //----------
 

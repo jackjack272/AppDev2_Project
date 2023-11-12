@@ -46,9 +46,12 @@ public class SumsAdapter extends RecyclerView.Adapter<SumsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull SumsAdapter.ViewHolder holder, int position) {
         holder.loanName.setText(totals.get(position).getName() );
+
+
         holder.loanAmountLeft.setText(String.valueOf(totals.get(position).getTotalAmount()));
         holder.loanMonthlyInterest.setText(String.valueOf(totals.get(position).getMonthlyInterest()));
         holder.marketValue.setText(String.valueOf(totals.get(position).getAmountChanged()));
+
     }
 
     @Override
@@ -56,13 +59,26 @@ public class SumsAdapter extends RecyclerView.Adapter<SumsAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView loanName, loanMonthlyInterest, loanAmountLeft, marketValue;
+
+        TextView totalAmount_title, monthlyInterest,newMarketValue;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            //fields to fill
             loanName= itemView.findViewById(R.id.invest_card_name);
             marketValue=itemView.findViewById(R.id.invest_card_marketValue);
             loanMonthlyInterest= itemView.findViewById(R.id.invest_card_monthylInterest);
             loanAmountLeft=itemView.findViewById(R.id.invest_card_amountLeftOver);
 
+            //title
+            totalAmount_title=itemView.findViewById(R.id.invest_card_marketValueTitle);
+            monthlyInterest=itemView.findViewById(R.id.invest_card_amountLeftOverTitle);
+            newMarketValue=itemView.findViewById(R.id.invest_card_MonthlyInterstTitle);
+
+
+            totalAmount_title.setText("Toatl invested");
+            monthlyInterest.setText("average monthly interest");
+            newMarketValue.setText("new market value");
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

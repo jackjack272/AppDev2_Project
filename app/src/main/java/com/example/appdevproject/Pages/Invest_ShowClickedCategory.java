@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -14,7 +16,10 @@ import com.example.appdevproject.Investment.Adapters.BondsAdapter;
 import com.example.appdevproject.Investment.Adapters.DebtAdapter;
 import com.example.appdevproject.Investment.Adapters.StockAdapter;
 import com.example.appdevproject.Investment.Models.Interfaces.Debt;
+import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.R;
+
+import java.util.List;
 
 public class Invest_ShowClickedCategory extends AppCompatActivity {
     TextView heading;
@@ -52,11 +57,10 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
             default:
                 //show all stock.
                 str+="Stock";
-
                 break;
         }
 
-//        makeAdapter(choice);
+        makeAdapter(choice);
 
         heading.setText(String.valueOf(str));
 
@@ -66,20 +70,30 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        int foreignKey=getForeighnkey();
+
         if(choice==0) {
             bondsAdapter = new BondsAdapter(Invest_ShowClickedCategory.this);
-
+            List<Invest_Debt> myBonds= myDb.debt_readBonds(foreignKey);
+            bondsAdapter.setItems(myBonds);
             recyclerView.setAdapter(bondsAdapter);
         }
         else if(choice==1){
             debtAdapter=new DebtAdapter(Invest_ShowClickedCategory.this);
             recyclerView.setAdapter(debtAdapter);
+
         }else{
             stockAdapter=new StockAdapter(Invest_ShowClickedCategory.this);
 
             recyclerView.setAdapter(stockAdapter);
         }
 
+
+    }
+    public int getForeighnkey() {
+        SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        int foreignKey= myDb.getUserById(s.getString("username",""));
+        return foreignKey;
     }
 
     public Integer getCategory(){

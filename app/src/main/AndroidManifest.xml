@@ -14,13 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppDevProject"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Pages.Invest_Edit"
+            android:exported="false" />
         <activity
             android:name=".Pages.Invest_ShowClickedCategory"
-            android:exported="false"
-            >
-        </activity>
-
+            android:exported="false"></activity>
         <activity
             android:name=".Pages.BudgetChartActivity"
             android:exported="false" />

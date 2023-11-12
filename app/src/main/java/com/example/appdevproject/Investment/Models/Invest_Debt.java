@@ -9,7 +9,6 @@ public class Invest_Debt implements Debt {
     private String debtName;
     private Double amountBorred, interestRate;
     private Integer compoundsPerYear, loanTermInMonths;
-
     private Boolean isDebt;
 
 
@@ -21,7 +20,11 @@ public class Invest_Debt implements Debt {
         this.loanTermInMonths = loanTermInMonths;
     }
 
-    public Invest_Debt(Integer id, Integer foreinKey, String debtName, Double amountBorred, Double interestRate, Integer compoundsPerYear, Integer loanTermInMonths) {
+    public Invest_Debt(Integer id, Integer foreinKey,
+                       String debtName, Double amountBorred,
+                       Double interestRate, Integer compoundsPerYear,
+                       Integer loanTermInMonths, int isDebt)
+    {
         this.id = id;
         this.foreinKey = foreinKey;
         this.debtName = debtName;
@@ -29,6 +32,9 @@ public class Invest_Debt implements Debt {
         this.interestRate = interestRate;
         this.compoundsPerYear = compoundsPerYear;
         this.loanTermInMonths = loanTermInMonths;
+
+
+        this.isDebt = isDebt==0;
     }
 
 
@@ -42,6 +48,32 @@ public class Invest_Debt implements Debt {
 
 
     //what should my payments be to pay off the loan in 10 months?
+
+
+
+
+    public double getMonthlyInterest(){
+        //compute effective annual rate /12
+//        https://www.investopedia.com/terms/e/effectiveinterest.asp
+
+        double  interestRate= (1+ (this.interestRate/(this.compoundsPerYear*this.loanTermInMonths)) );
+        interestRate= Math.pow(interestRate,(this.compoundsPerYear*this.loanTermInMonths));
+        interestRate-=1;
+
+        return interestRate/12;
+
+    }
+
+    public double getNewMarketValue(){
+        if (isDebt) {
+            //debt increases
+//            return this.amountBorred +getAnnualCompoundRate() *this.amountBorred/12;
+            return  -1.0;
+        }
+//        bonds differnt formula
+
+        return -23.0;
+    }
 
 
 

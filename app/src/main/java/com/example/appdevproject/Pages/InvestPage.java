@@ -83,6 +83,7 @@ public class InvestPage extends AppCompatActivity {
         sumsAdapter = new SumsAdapter(InvestPage.this);
 
         sumsAdapter.setSums(getSums());
+
         recyclerView.setAdapter(sumsAdapter);
     }
 
@@ -97,7 +98,7 @@ public class InvestPage extends AppCompatActivity {
         Totals_Find xx= new Totals_Find(InvestPage.this,foreignKey);
 
         if(xx!=null){
-            myTotals.add(xx.getBonds());
+            myTotals.add(xx.getBonds(5.5)); //idk how to mkae it dynamic
         }
         if(xx!=null){
             myTotals.add(xx.getDebt());

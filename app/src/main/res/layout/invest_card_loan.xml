@@ -3,56 +3,85 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+
+    >
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="109dp">
+        android:layout_height="match_parent">
 
 
         <TextView
             android:id="@+id/invest_card_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="13dp"
+            android:layout_marginTop="16dp"
             android:text="Stock"
-            app:layout_constraintBottom_toTopOf="@+id/invest_card_amountLeftOver"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/subheadings"
+            app:layout_constraintStart_toStartOf="@+id/invest_card_monthylInterest"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/invest_card_monthylInterest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
             android:text="Total Amount"
-            app:layout_constraintBottom_toBottomOf="@+id/invest_card_amountLeftOver"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/invest_card_amountLeftOver" />
+            app:layout_constraintStart_toStartOf="@+id/invest_card_amountLeftOver"
+            app:layout_constraintTop_toBottomOf="@+id/invest_card_name" />
 
         <TextView
             android:id="@+id/invest_card_amountLeftOver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="45dp"
             android:text="interest flux"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.557"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/invest_card_name" />
+            app:layout_constraintTop_toBottomOf="@+id/invest_card_monthylInterest" />
 
         <TextView
             android:id="@+id/invest_card_marketValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="51dp"
             android:text="newMarketValue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/invest_card_amountLeftOver"
+            app:layout_constraintTop_toBottomOf="@+id/invest_card_amountLeftOver" />
+
+        <TextView
+            android:id="@+id/invest_card_marketValueTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/invest_card_monthylInterest"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/invest_card_monthylInterest" />
+
+        <TextView
+            android:id="@+id/invest_card_amountLeftOverTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="45dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/invest_card_marketValueTitle" />
+
+        <TextView
+            android:id="@+id/invest_card_MonthlyInterstTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="51dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/invest_card_amountLeftOverTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
