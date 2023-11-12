@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.example.appdevproject.Budget.Model.MyBudget;
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Investment.Adapters.SumsAdapter;
 import com.example.appdevproject.Investment.Fab.Invest_AddNewInvest;
@@ -36,7 +37,6 @@ public class InvestPage extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     SumsAdapter sumsAdapter;
     ProjectDb myDb;
-
 
 
 //Page display stuff
@@ -65,8 +65,6 @@ public class InvestPage extends AppCompatActivity {
                     );
             }
         });
-
-
     }
 
     public void makeAssociations(){
@@ -92,18 +90,21 @@ public class InvestPage extends AppCompatActivity {
         SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         int foreignKey= myDb.getUserById(s.getString("username",""));
 
-
         List<Totals_Save> myTotals =new ArrayList<>();
-
         Totals_Find xx= new Totals_Find(InvestPage.this,foreignKey);
 
-        if(xx!=null){
-            myTotals.add(xx.getBonds(5.5)); //idk how to mkae it dynamic
+        Totals_Save bonds= xx.getBonds(5.5);
+        if(bonds != null){
+            myTotals.add(bonds);
         }
-        if(xx!=null){
-            myTotals.add(xx.getDebt());
+
+        bonds=xx.getDebt();
+        if(bonds!=null){
+            myTotals.add(bonds);
         }
-        if(xx!=null){
+
+        bonds=(xx.getStock());
+        if(bonds !=null){
             myTotals.add(xx.getStock());
         }
         return myTotals;

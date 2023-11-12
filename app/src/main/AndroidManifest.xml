@@ -14,6 +14,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppDevProject"
         tools:targetApi="31">
+
+
+<!--        registration-->
+        <activity
+            android:name=".Pages.RegistrationPage"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+<!--        Landing-->
+        <activity
+            android:name=".Pages.LandingPage"
+            android:exported="false" />
+
+
+<!--     Edit user Page   -->
+
+        <activity
+            android:name=".Pages.EditUserPage"
+            android:exported="false" />
+
+
+
+
         <activity
             android:name=".Pages.Invest_Edit"
             android:exported="false" />
@@ -32,9 +60,7 @@
         <activity
             android:name=".Pages.InvestPage"
             android:exported="false" />
-        <activity
-            android:name=".Pages.LandingPage"
-            android:exported="false" />
+
         <activity
             android:name=".Loans.Loans_old"
             android:exported="false" />
@@ -44,21 +70,15 @@
         <activity
             android:name=".Pages.BudgetPage"
             android:exported="false" />
-        <activity
-            android:name=".Pages.EditUserPage"
-            android:exported="false" />
+
+
+
+
         <activity
             android:name=".Pages.IntroActivity"
             android:exported="false" />
-        <activity
-            android:name=".Pages.RegistrationPage"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
     </application>
 
 </manifest>

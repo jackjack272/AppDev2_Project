@@ -24,10 +24,12 @@ public class Totals_Find
         List<Invest_Debt> myBonds= myDb.debt_readBonds(this.foreignKey);
 
         if(myBonds.size() ==0){
-            return null;
+            return new Totals_Save("Bonds",0.0,0.0,0.0);
+
         }
 
         Double monthylInterest=0.0, totalAmount=0.0, amountChanged=0.0;
+
 
         for(Invest_Debt xx: myBonds){
 
@@ -41,6 +43,8 @@ public class Totals_Find
         monthylInterest=monthylInterest/myBonds.size();// get the avg per bond
 
         return new Totals_Save("Bonds",monthylInterest,totalAmount,amountChanged);
+
+
     }
     //get bonds(1) // return the totals for just that 1 bond.
 
