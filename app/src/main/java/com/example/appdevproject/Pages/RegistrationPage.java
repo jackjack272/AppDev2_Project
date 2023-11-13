@@ -54,6 +54,9 @@ public class RegistrationPage extends AppCompatActivity {
         admin_prePopulate("smith jones");
         admin_quickLogIn("smith jones"); // this one needs to exists
 
+
+
+
         projectDb =new ProjectDb(RegistrationPage.this);
 
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

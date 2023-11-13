@@ -52,7 +52,7 @@ public class BondsAdapter extends RecyclerView.Adapter<BondsAdapter.InternalClas
         holder.heading.setText(myBonds.get(position).getDebtName());
 
         holder.amountBorrowed.setText(String.format("$ %.2f",  myBonds.get(position).getAmountBorred()));
-        holder.effectiveInterestRate.setText(String.format("$ %.2f",  myBonds.get(position).getEffectiveInterestRate()));
+        holder.effectiveInterestRate.setText(String.format("%.2f %%",  myBonds.get(position).getEffectiveInterestRate()));
         holder.payPerPeriod.setText(String.format("$ %.2f",  myBonds.get(position).paymentPerCompound()));
         holder.valueAtMaturity.setText(String.format("$ %.2f",  myBonds.get(position).valueAtMaturity()));
 
@@ -118,6 +118,8 @@ public class BondsAdapter extends RecyclerView.Adapter<BondsAdapter.InternalClas
 
                     int id= myBonds.get(postion).getId();
                     db.debt_deleteOne(id);
+                    edit.setVisibility(View.INVISIBLE);
+
                     Toast.makeText(amountBorrowed.getContext(), "Deleted item", Toast.LENGTH_SHORT).show();
                 }
             });

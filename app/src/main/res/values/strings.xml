@@ -140,4 +140,16 @@
 
 
 
+<!--
+    Sum Adapter
+    sum_adapter_
+-->
+
+
+    <string name="sum_adapter_TotalInvested">Total Invested.</string>
+    <string name="sum_adapter_avgYearlyInterest">Avg Yearly %</string>
+    <string name="sum_adapter_monhtlyPayOut">Monthly Payout!</string>
+
+
+
 </resources>

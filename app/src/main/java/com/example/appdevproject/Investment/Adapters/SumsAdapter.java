@@ -48,8 +48,8 @@ public class SumsAdapter extends RecyclerView.Adapter<SumsAdapter.ViewHolder> {
         holder.loanName.setText(totals.get(position).getName() );
 
         holder.loanAmountLeft.setText(String.format("$ %.2f",totals.get(position).getTotalAmount()));
-        holder.loanMonthlyInterest.setText(String.format("%.2f %%",-1.0));
-        holder.marketValue.setText(String.format("$ %.2f ",-1.0));
+        holder.loanMonthlyInterest.setText(String.format("%.2f %%",totals.get(position).getYearlyGain() ));
+        holder.marketValue.setText(String.format("$ %.2f ",totals.get(position).getYearlyInterestCharge() ));
     }
 
     @Override
@@ -68,15 +68,7 @@ public class SumsAdapter extends RecyclerView.Adapter<SumsAdapter.ViewHolder> {
             loanMonthlyInterest= itemView.findViewById(R.id.invest_card_monthylInterest);
             loanAmountLeft=itemView.findViewById(R.id.invest_card_amountLeftOver);
 
-            //title
-            totalAmount_title=itemView.findViewById(R.id.invest_card_marketValueTitle);
-            monthlyInterest=itemView.findViewById(R.id.invest_card_amountLeftOverTitle);
-            newMarketValue=itemView.findViewById(R.id.invest_card_MonthlyInterstTitle);
-
-
-            totalAmount_title.setText("Toatl invested");
-            monthlyInterest.setText("average monthly interest");
-            newMarketValue.setText("new market value");
+            //titles can come here.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -103,3 +95,15 @@ public class SumsAdapter extends RecyclerView.Adapter<SumsAdapter.ViewHolder> {
 
 
 }
+
+
+
+//            //title
+//            totalAmount_title=itemView.findViewById(R.id.invest_card_marketValueTitle);
+//            monthlyInterest=itemView.findViewById(R.id.invest_card_amountLeftOverTitle);
+//            newMarketValue=itemView.findViewById(R.id.invest_card_MonthlyInterstTitle);
+//
+//
+//            totalAmount_title.setText("Toatl invested");
+//            monthlyInterest.setText("average monthly interest");
+//            newMarketValue.setText("new market value");

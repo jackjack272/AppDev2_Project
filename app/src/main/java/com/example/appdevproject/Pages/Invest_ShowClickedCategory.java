@@ -1,5 +1,7 @@
 package com.example.appdevproject.Pages;
 
+import static com.example.appdevproject.DataBase.Interfaces.Totals.TOTAL_BOND_PK;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -15,16 +16,13 @@ import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Investment.Adapters.BondsAdapter;
 import com.example.appdevproject.Investment.Adapters.StockAdapter;
 import com.example.appdevproject.Investment.Models.Invest_Debt;
+import com.example.appdevproject.Investment.Models.Totals_Find;
+import com.example.appdevproject.Investment.Models.Totals_Save;
 import com.example.appdevproject.R;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,18 +51,56 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
         showHeading();
         makeAdapter(getCategory());
 
+        updateTotals(); //i control the totals table
+
         showChart();
+    }
+
+
+    public void updateTotals(){
+        int choice= getCategory();
+
+        Totals_Save saveMe;
+        switch (choice){
+            case 0:
+
+                Totals_Find find= new Totals_Find(Invest_ShowClickedCategory.this,getForeighnkey());
+
+                saveMe=find.getBonds();
+                saveMe.setForeignKey(getForeighnkey());
+
+                if(! myDb.totals_empty()){
+                    //exists then update
+
+                    //need to save
+                    saveMe.setId(TOTAL_BOND_PK); //DB TOTALS INTERFACE
+                    myDb.totals_update(saveMe);
+                }else{
+                    //save
+                    saveMe.setId(TOTAL_BOND_PK);
+                    myDb.totals_saveOne(saveMe);
+
+                }
+
+                break;
+            case 1:
+//                saveMe.setId(1);
+
+
+                break;
+            case 2:
+//                saveMe.setId(2);
+
+                break;
+
+        }
     }
 
 
     public void showChart(){
         //https://www.youtube.com/watch?v=jTYi0Q7lLco&list=PLFh8wpMiEi89LcBupeftmAcgDKCeC24bJ&index=12
 
-
-
         ArrayList<BarEntry> dataVals= new ArrayList<>();
-
-
 
         float interestGaind= 0.0F;
         int cat=getCategory();
@@ -80,11 +116,9 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
                 dataVals.add(new BarEntry(i,gain));
                 interestGaind+=gain;
             }
-
         }
         else if(cat==1){
             label="Total intest payable: ";
-
             List<Invest_Debt> myDebts= myDb.debt_readDebt(getForeighnkey());
 
             for(int i=0; i<myDebts.size();i++){
@@ -112,9 +146,6 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
 
 
     }
-
-
-
     public void showHeading(){
 
         String str="See all your ";
@@ -152,6 +183,7 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
             }else{
                 myItems= myDb.debt_readDebt(foreignKey);
             }
+
             bondsAdapter.setItems(myItems);
             recyclerView.setAdapter(bondsAdapter);
         }
@@ -172,7 +204,6 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
         Bundle bundle=intent.getExtras();
         return bundle.getInt("category",0);
     }
-
     public void makeAssocications(){
         heading= findViewById(R.id.invest_choice_display);
         recyclerView= findViewById(R.id.invest_choice_card_recycleview);

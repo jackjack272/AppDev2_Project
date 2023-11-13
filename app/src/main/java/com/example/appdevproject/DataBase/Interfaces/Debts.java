@@ -40,6 +40,6 @@ public interface Debts {
     public List<Invest_Debt> debt_readDebt(int foreignKey);
     //bonds have the same properties as debt.
     public List<Invest_Debt> debt_readBonds(int foreignKey);
-    public void debt_updateOne(int position, Invest_Debt debt);
+    public void debt_updateOne( Invest_Debt debt);
     public void debt_deleteOne(int position);
 }

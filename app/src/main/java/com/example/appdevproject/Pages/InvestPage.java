@@ -83,21 +83,23 @@ public class InvestPage extends AppCompatActivity {
         recyclerView.setAdapter(sumsAdapter);
     }
 
+    public int getForenKey(){
 
-    public List<Totals_Save> getSums(){
         SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         int foreignKey= myDb.getUserById(s.getString("username",""));
+        return foreignKey;
+    }
+
+
+    public List<Totals_Save> getSums(){
 
         List<Totals_Save> myTotals =new ArrayList<>();
-        Totals_Find xx= new Totals_Find(InvestPage.this,foreignKey);
+        Totals_Find xx= new Totals_Find(InvestPage.this,getForenKey());
 
-        Totals_Save bonds= xx.getBonds(5.5);
+        Totals_Save bonds= xx.getBonds();
         if(bonds != null){
             myTotals.add(bonds);
-
         }
-
-
 
         bonds=xx.getDebt();
         if(bonds!=null){

@@ -12,6 +12,12 @@ public class Totals_Find
 
         implements com.example.appdevproject.Investment.Models.Interfaces.Totals
 {
+
+    /**
+     * This class will find the totals,
+     *
+     */
+
     ProjectDb myDb;
     Integer foreignKey;
 
@@ -20,25 +26,25 @@ public class Totals_Find
         this.foreignKey= foreignKey;
     }
 
-    public Totals_Save getBonds(Double marketValue) {
+    public Totals_Save getBonds() {
         List<Invest_Debt> myBonds= myDb.debt_readBonds(this.foreignKey);
 
-        if(myBonds.size() ==0){
-            return new Totals_Save("Bonds",0.0,0.0,0.0);
-        }
 
         Double monthylInterest=0.0, totalAmount=0.0, amountChanged=0.0;
 
+        if(myBonds.size() ==0){
+            return new Totals_Save("Bonds",monthylInterest,totalAmount,amountChanged);
+        }
 
         for(Invest_Debt xx: myBonds){
-
-
+            totalAmount+=xx.getAmountBorred();
+            amountChanged+= (xx.valueAtMaturity()- xx.getAmountBorred()) /xx.getLoanTermInMonths(); //in 5 years i get $500 but this year i get 1/5
+            monthylInterest+=xx.getEffectiveInterestRate();
         }
+
         monthylInterest=monthylInterest/myBonds.size();// get the avg per bond
 
-        return new Totals_Save("Bonds",monthylInterest,totalAmount,amountChanged);
-
-
+        return new Totals_Save("Bonds",monthylInterest,totalAmount,  amountChanged);
     }
     //get bonds(1) // return the totals for just that 1 bond.
 

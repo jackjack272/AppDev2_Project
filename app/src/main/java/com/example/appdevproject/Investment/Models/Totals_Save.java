@@ -1,25 +1,49 @@
 package com.example.appdevproject.Investment.Models;
 
 public class Totals_Save {
-    private String name;
-    private Double monthlyInterest;
-    private Double totalAmount;
-    private Double amountChanged;
+
+    /**
+     * This is a object of the table .
+     *
+     *
+     */
+    private Integer id;
+    private Integer foreignKey;
+
+    private String name; //bond
+
+    private Double totalAmount; //  $3000
+
+    private Double yearlyInterestCharge; //10.4%
 
 
-    public Totals_Save(String name, Double monthlyInterest, Double totalAmount, Double amountChanged) {
+    private Double yearlyGain; // 3000*
+
+
+    public Totals_Save(String name, Double yearlyGain, Double totalAmount, Double yearlyInterestCharge) {
         this.name = name;
-        this.monthlyInterest = monthlyInterest;
+        this.yearlyGain = yearlyGain;
         this.totalAmount = totalAmount;
-        this.amountChanged =amountChanged;
+        this.yearlyInterestCharge = yearlyInterestCharge;
     }
 
-    public Double getAmountChanged() {
-        return amountChanged;
+
+
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setAmountChanged(Double amountChanged) {
-        this.amountChanged = amountChanged;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getForeignKey() {
+        return foreignKey;
+    }
+
+    public void setForeignKey(Integer foreignKey) {
+        this.foreignKey = foreignKey;
     }
 
     public String getName() {
@@ -30,12 +54,12 @@ public class Totals_Save {
         this.name = name;
     }
 
-    public Double getMonthlyInterest() {
-        return monthlyInterest;
+    public Double getYearlyGain() {
+        return yearlyGain;
     }
 
-    public void setMonthlyInterest(Double monthlyInterest) {
-        this.monthlyInterest = monthlyInterest;
+    public void setYearlyGain(Double yearlyGain) {
+        this.yearlyGain = yearlyGain;
     }
 
     public Double getTotalAmount() {
@@ -46,9 +70,11 @@ public class Totals_Save {
         this.totalAmount = totalAmount;
     }
 
+    public Double getYearlyInterestCharge() {
+        return yearlyInterestCharge;
+    }
 
-
-
-
-
+    public void setYearlyInterestCharge(Double yearlyInterestCharge) {
+        this.yearlyInterestCharge = yearlyInterestCharge;
+    }
 }

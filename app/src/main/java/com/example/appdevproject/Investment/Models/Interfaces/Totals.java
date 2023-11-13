@@ -21,7 +21,7 @@ public interface Totals {
 
 //total yearly take home
 
-        public Totals_Save getBonds(Double marketValue);
+        public Totals_Save getBonds();
         public Totals_Save getDebt();
         public Totals_Save getStock();
         public Totals_Save getExpenses();

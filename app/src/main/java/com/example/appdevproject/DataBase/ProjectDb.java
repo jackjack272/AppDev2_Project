@@ -13,6 +13,7 @@ import com.example.appdevproject.DataBase.Interfaces.Totals;
 import com.example.appdevproject.DataBase.Interfaces.Users;
 
 import com.example.appdevproject.Investment.Models.Invest_Debt;
+import com.example.appdevproject.Investment.Models.Totals_Save;
 import com.example.appdevproject.User.User;
 
 import java.util.ArrayList;
@@ -107,8 +108,6 @@ public class ProjectDb extends SQLiteOpenHelper
                 cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ISDEBT))
         );
     }
-
-
     public List<Invest_Debt>  debt_readDebt(int foreignKey){
         String str=String.format("SELECT * FROM %s WHERE %s == %d AND %s == %d ORDER BY %s;",
                 DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 1, DEBT_AMOUNTBORROWED);
@@ -171,21 +170,20 @@ public class ProjectDb extends SQLiteOpenHelper
 
         return myDebts ;
     }
-    public void debt_updateOne(int position, Invest_Debt debt){
+    public void debt_updateOne(Invest_Debt debt){
         ContentValues contentValue = new ContentValues();
 
+        contentValue.put(DEBT_NAME,debt.getDebtName());
         contentValue.put(DEBT_AMOUNTBORROWED,debt.getAmountBorred());
         contentValue.put(DEBT_INTERESTRATE,debt.getInterestRate());
         contentValue.put(DEBT_COMPOUNDSPERYEAR,debt.getCompoundsPerYear());
         contentValue.put(DEBT_LOANTERM,debt.getLoanTermInMonths());
 
-        getWritableDatabase()
-                .update(DEBT_TABLE, contentValue, this.DEBT_ID+" =?",
-                        new String[] {String.valueOf(debt.getId())});
+        SQLiteDatabase db= getWritableDatabase();
+        db.update(DEBT_TABLE, contentValue,
+                this.DEBT_ID+" =?",new String[] {String.valueOf(debt.getId())});
 
     }
-
-
     public void debt_deleteOne(int position){
         getWritableDatabase().delete(DEBT_TABLE,DEBT_ID+"==?",new String[]{String.valueOf(position)});
     }
@@ -351,16 +349,55 @@ public class ProjectDb extends SQLiteOpenHelper
 //Totals
 
 
-    public void saveTotal(Totals totals){
+    public List<Totals_Save> totals_readTotal(){
+        SQLiteDatabase db= getWritableDatabase();
+
+        return null;
+    }
+
+
+
+
+    @Override
+    public void totals_saveOne(Totals_Save totals_save) {
+
+        ContentValues cv= new ContentValues();
+
+        cv.put(TOTALS_FOREIGNKEY,  totals_save.getForeignKey());
+        cv.put(TOTALS_GROWTH,  totals_save.getYearlyGain());
+        cv.put(TOTALS_AMOUNT,  totals_save.getTotalAmount());
+        cv.put(TOTALS_INTEREST,  totals_save.getYearlyInterestCharge());
+
+
+        SQLiteDatabase db= getWritableDatabase();
+        db.insert(TOTALS_TABLE,null,cv);
+    }
+
+    public void totals_update(Totals_Save totals_save){
+
+        ContentValues cv= new ContentValues();
+
+        cv.put(TOTALS_GROWTH,  totals_save.getYearlyGain());
+        cv.put(TOTALS_AMOUNT,  totals_save.getTotalAmount());
+        cv.put(TOTALS_INTEREST,  totals_save.getYearlyInterestCharge());
+
+
+        SQLiteDatabase db= getWritableDatabase();
+        db.update(TOTALS_TABLE,cv,TOTALS_ID+"=?",new String[]{String.valueOf(totals_save.getId())});
+    }
+
+
+
+
+    public Boolean totals_empty(){
+        String query=String.format("SELECT %s FROM %s",
+                "*", TOTALS_TABLE);
+
+        SQLiteDatabase db= getReadableDatabase();
+        Cursor cursor= db.rawQuery(query,null);
+        return cursor.getCount()==0;
 
     }
-    public List<Totals> readTotal(){
-        return null;
-    };
-    public void updateTotal(Totals totals){
-
-    };
-
 
 
 

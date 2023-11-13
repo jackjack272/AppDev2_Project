@@ -30,7 +30,7 @@ public class Invest_Edit extends AppCompatActivity {
 
         makeAssociateions();
 
-        adminPutvalues();
+//        adminPutvalues();
 
 
         Intent x=getIntent();
@@ -50,13 +50,15 @@ public class Invest_Edit extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Invest_Debt xx= getUpdatedValues();
+                xx.setId(id);
 
                 if(xx==null){
                     return;
                 }
-                projectDb.debt_updateOne(id,xx);
-                Toast.makeText(Invest_Edit.this, "Item "+xx.getDebtName()+" is updated", Toast.LENGTH_SHORT).show();
 
+
+                projectDb.debt_updateOne(xx);
+                Toast.makeText(Invest_Edit.this, "Item "+xx.getDebtName()+" is updated", Toast.LENGTH_SHORT).show();
 
                 Intent intent= new Intent( Invest_Edit.this, Invest_ShowClickedCategory.class);
                 Bundle myBundle= new Bundle();
@@ -89,7 +91,6 @@ public class Invest_Edit extends AppCompatActivity {
         numMonths=findViewById(R.id.invest_edit_months);
 
         edit =findViewById(R.id.invest_edit_edit);
-
 
         projectDb=new ProjectDb(Invest_Edit.this);
 
