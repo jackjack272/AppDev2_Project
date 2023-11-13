@@ -53,12 +53,27 @@ public class Totals_Find
 
     @Override
     public Totals_Save getDebt() {
-        return new Totals_Save("Debt",0.0,0.0,0.0);
+        List<Invest_Debt> myBonds= myDb.debt_readDebt(this.foreignKey);
 
+        Double monthylInterest=0.0, totalAmount=0.0, amountChanged=0.0;
+
+        if(myBonds.size() ==0){
+            return new Totals_Save("Debt",monthylInterest,totalAmount,amountChanged);
+        }
+
+        for(Invest_Debt xx: myBonds){
+            totalAmount+=xx.getAmountBorred();
+            amountChanged+= (xx.valueAtMaturity()- xx.getAmountBorred()) /xx.getLoanTermInMonths(); //in 5 years i get $500 but this year i get 1/5
+            monthylInterest+=xx.getEffectiveInterestRate();
+        }
+        monthylInterest=monthylInterest/myBonds.size();// get the avg per bond
+
+        return new Totals_Save("Debt",monthylInterest,totalAmount,  amountChanged);
     }
 
     @Override
     public Totals_Save getStock() {
+
 
 
         return new Totals_Save("Stock",0.0,0.0,0.0);
