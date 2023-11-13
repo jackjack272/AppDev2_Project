@@ -39,6 +39,17 @@
             android:name=".Pages.EditUserPage"
             android:exported="false" />
 
+<!--budget page -->
+        <activity
+            android:name=".Pages.BudgetPage"
+            android:exported="false" />
+        <activity
+            android:name=".Pages.BudgetChartActivity"
+            android:exported="false" />
+
+
+
+
 
 
 
@@ -48,9 +59,7 @@
         <activity
             android:name=".Pages.Invest_ShowClickedCategory"
             android:exported="false"></activity>
-        <activity
-            android:name=".Pages.BudgetChartActivity"
-            android:exported="false" />
+
         <activity
             android:name=".Pages.ChartsActivity"
             android:exported="false" />
@@ -66,9 +75,6 @@
             android:exported="false" />
         <activity
             android:name=".Pages.TaxPage"
-            android:exported="false" />
-        <activity
-            android:name=".Pages.BudgetPage"
             android:exported="false" />
 
 

@@ -106,6 +106,7 @@ public class BudgetPage extends AppCompatActivity {
                 totEntertain = totEntertain + myItems.get(i).getPriceOfItem();
             }
         }
+
         totExpenses = totHousing + totUtility + totTransport + totFood + totEntertain;
 
         recyclerView = findViewById(R.id.bud_recyclerView);
@@ -114,6 +115,8 @@ public class BudgetPage extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         totalExp.setText("Total Housing Expenses: " + totHousing + " $");
         monthlyExp.setText("Total Expenses: " + totExpenses + " $");
+
+
         tabCategories.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -187,18 +190,18 @@ public class BudgetPage extends AppCompatActivity {
     private void makeAssoications(){
 
         monthlyExp= findViewById(R.id.bud_monthlyExp);
-        //yearlyExp= findViewById(R.id.bud_yearlyExp);
-        //postTaxIncome= findViewById(R.id.bud_postTaxincome);
-        //yearlyNet= findViewById(R.id.bud_yearlyNet);
-//        totalExp = findViewById(R.id.txtTotal);
-
 
         recyclerView = findViewById(R.id.bud_recyclerView);
-//        tabCategories = findViewById(R.id.tabCategories);
         fab = findViewById(R.id.bud_fab);
-//        chart_fab = findViewById(R.id.bud_chart_fab);
         myDb= new ProjectDb(BudgetPage.this);
 
+
+//        yearlyExp= findViewById(R.id.bud_yearlyExp);
+//        postTaxIncome= findViewById(R.id.bud_postTaxincome);
+//        yearlyNet= findViewById(R.id.bud_yearlyNet);
+        totalExp = findViewById(R.id.txtTotal);
+        tabCategories = findViewById(R.id.tabCategories);
+        chart_fab = findViewById(R.id.bud_chart_fab);
 
     }
 }
