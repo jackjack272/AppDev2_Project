@@ -347,17 +347,11 @@ public class ProjectDb extends SQLiteOpenHelper
 
 
 //Totals
-
-
     public List<Totals_Save> totals_readTotal(){
         SQLiteDatabase db= getWritableDatabase();
 
         return null;
     }
-
-
-
-
     @Override
     public void totals_saveOne(Totals_Save totals_save) {
 
@@ -372,7 +366,6 @@ public class ProjectDb extends SQLiteOpenHelper
         SQLiteDatabase db= getWritableDatabase();
         db.insert(TOTALS_TABLE,null,cv);
     }
-
     public void totals_update(Totals_Save totals_save){
 
         ContentValues cv= new ContentValues();
@@ -385,10 +378,6 @@ public class ProjectDb extends SQLiteOpenHelper
         SQLiteDatabase db= getWritableDatabase();
         db.update(TOTALS_TABLE,cv,TOTALS_ID+"=?",new String[]{String.valueOf(totals_save.getId())});
     }
-
-
-
-
     public Boolean totals_empty(){
         String query=String.format("SELECT %s FROM %s",
                 "*", TOTALS_TABLE);
@@ -399,7 +388,30 @@ public class ProjectDb extends SQLiteOpenHelper
 
     }
 
+    @Override
+    public Boolean totals_emptyBonds() {
+        String query= String.format("SELECT %s FROM %s WHERE %s =%s",
+                "*",TOTALS_TABLE, TOTALS_ID,TOTAL_BOND_PK);
 
+        return getReadableDatabase().rawQuery(query,null).getCount()==0;
+    }
+
+    @Override
+    public Boolean totals_emptyDebts() {
+        String query= String.format("SELECT %s FROM %s WHERE %s =%s",
+                "*",TOTALS_TABLE, TOTALS_ID,TOTAL_DEBT_PK);
+
+        return getReadableDatabase().rawQuery(query,null).getCount()==0;
+
+    }
+
+    @Override
+    public Boolean totals_emptyStocks() {
+        String query= String.format("SELECT %s FROM %s WHERE %s =%s",
+                "*",TOTALS_TABLE, TOTALS_ID,TOTAL_STOCK_PK);
+
+        return getReadableDatabase().rawQuery(query,null).getCount()==0;
+    }
 
 
 //crud

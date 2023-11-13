@@ -8,11 +8,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.appdevproject.Loans.Loans_old;
+import com.example.appdevproject.z_oldImplements.z_Loans.Loans_old;
 import com.example.appdevproject.R;
 
 public class IntroActivity extends AppCompatActivity {

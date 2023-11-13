@@ -15,12 +15,11 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.example.appdevproject.Budget.Model.MyBudget;
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Investment.Adapters.SumsAdapter;
 import com.example.appdevproject.Investment.Fab.Invest_AddNewInvest;
-import com.example.appdevproject.Investment.Invest_Db_old;
-import com.example.appdevproject.Investment.Invest_AddNew_old;
+import com.example.appdevproject.z_oldImplements.z_Loans.Invest_Db_old;
+import com.example.appdevproject.z_oldImplements.z_Loans.Invest_AddNew_old;
 import com.example.appdevproject.Investment.Models.Totals_Find;
 import com.example.appdevproject.Investment.Models.Totals_Save;
 import com.example.appdevproject.R;

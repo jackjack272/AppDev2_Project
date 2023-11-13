@@ -52,7 +52,7 @@ public class RegistrationPage extends AppCompatActivity {
         makeAssociates();
 
         admin_prePopulate("smith jones");
-//        admin_quickLogIn("smith jones"); // this one needs to exists
+        admin_quickLogIn("smith jones"); // this one needs to exists
 
 
 
@@ -122,7 +122,6 @@ public class RegistrationPage extends AppCompatActivity {
                         Toast.makeText(RegistrationPage.this, "This username exits, pick another one", Toast.LENGTH_SHORT).show();
                         return;// user exists so kill control
                     }
-
                 }
 
                 //save the username
@@ -148,7 +147,7 @@ public class RegistrationPage extends AppCompatActivity {
 
         // go next intent.
         Toast.makeText(RegistrationPage.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(RegistrationPage.this, LandingPage.class));
+        startActivity(new Intent(RegistrationPage.this, IntroActivity.class));
     }
     private void admin_prePopulate(String logInUser){
         userName.setText(logInUser);

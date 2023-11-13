@@ -1,6 +1,8 @@
 package com.example.appdevproject.Pages;
 
 import static com.example.appdevproject.DataBase.Interfaces.Totals.TOTAL_BOND_PK;
+import static com.example.appdevproject.DataBase.Interfaces.Totals.TOTAL_DEBT_PK;
+import static com.example.appdevproject.DataBase.Interfaces.Totals.TOTAL_STOCK_PK;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -61,17 +63,15 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
         int choice= getCategory();
 
         Totals_Save saveMe;
+        Totals_Find find= new Totals_Find(Invest_ShowClickedCategory.this,getForeighnkey());
+
         switch (choice){
             case 0:
-
-                Totals_Find find= new Totals_Find(Invest_ShowClickedCategory.this,getForeighnkey());
-
                 saveMe=find.getBonds();
                 saveMe.setForeignKey(getForeighnkey());
 
-                if(! myDb.totals_empty()){
+                if(! myDb.totals_emptyBonds()){
                     //exists then update
-
                     //need to save
                     saveMe.setId(TOTAL_BOND_PK); //DB TOTALS INTERFACE
                     myDb.totals_update(saveMe);
@@ -79,20 +79,39 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
                     //save
                     saveMe.setId(TOTAL_BOND_PK);
                     myDb.totals_saveOne(saveMe);
-
                 }
 
                 break;
             case 1:
-//                saveMe.setId(1);
+                saveMe=find.getDebt();
+                saveMe.setForeignKey(getForeighnkey());
 
-
+                if(! myDb.totals_emptyDebts()){
+                    //exists then update
+                    //need to save
+                    saveMe.setId(TOTAL_DEBT_PK); //DB TOTALS INTERFACE
+                    myDb.totals_update(saveMe);
+                }else{
+                    //save
+                    saveMe.setId(TOTAL_DEBT_PK);
+                    myDb.totals_saveOne(saveMe);
+                }
                 break;
             case 2:
-//                saveMe.setId(2);
+                saveMe=find.getStock();
+                saveMe.setForeignKey(getForeighnkey());
 
+                if(! myDb.totals_emptyStocks()){
+                    //exists then update
+                    //need to save
+                    saveMe.setId(TOTAL_STOCK_PK); //DB TOTALS INTERFACE
+                    myDb.totals_update(saveMe);
+                }else{
+                    //save
+                    saveMe.setId(TOTAL_STOCK_PK);
+                    myDb.totals_saveOne(saveMe);
+                }
                 break;
-
         }
     }
 

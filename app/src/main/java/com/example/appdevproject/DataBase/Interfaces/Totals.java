@@ -18,8 +18,13 @@ public interface Totals {
         public void totals_saveOne(Totals_Save totals_save);
         public List<Totals_Save> totals_readTotal();
         public void totals_update(Totals_Save totals);
-
         public Boolean totals_empty();
+
+        public Boolean totals_emptyBonds();
+
+        public Boolean totals_emptyDebts();
+
+        public Boolean totals_emptyStocks();
 
 
 

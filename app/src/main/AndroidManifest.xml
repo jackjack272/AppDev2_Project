@@ -64,14 +64,14 @@
             android:name=".Pages.ChartsActivity"
             android:exported="false" />
         <activity
-            android:name=".Investment.Invest_AddNew_old"
+            android:name=".z_oldImplements.z_Loans.Invest_AddNew_old"
             android:exported="false" />
         <activity
             android:name=".Pages.InvestPage"
             android:exported="false" />
 
         <activity
-            android:name=".Loans.Loans_old"
+            android:name=".z_oldImplements.z_Loans.Loans_old"
             android:exported="false" />
         <activity
             android:name=".Pages.TaxPage"
