@@ -1,4 +1,4 @@
-package com.example.appdevproject.Pages;
+package com.example.appdevproject.Investment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class InvestPage extends AppCompatActivity {
+public class Invest_Page extends AppCompatActivity {
 
 //recycler view implementation
     RecyclerView recyclerView;
@@ -70,7 +70,7 @@ public class InvestPage extends AppCompatActivity {
     public void makeAssociations(){
         fab=findViewById(R.id.invest_fab_addOne);
         recyclerView=findViewById(R.id.invest_list);
-        myDb= new ProjectDb(InvestPage.this);
+        myDb= new ProjectDb(Invest_Page.this);
     }
 
 
@@ -78,7 +78,7 @@ public class InvestPage extends AppCompatActivity {
         layoutManager= new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        sumsAdapter = new SumsAdapter(InvestPage.this);
+        sumsAdapter = new SumsAdapter(Invest_Page.this);
         sumsAdapter.setSums(getSums());
         recyclerView.setAdapter(sumsAdapter);
     }
@@ -94,7 +94,7 @@ public class InvestPage extends AppCompatActivity {
     public List<Totals_Save> getSums(){
 
         List<Totals_Save> myTotals =new ArrayList<>();
-        Totals_Find xx= new Totals_Find(InvestPage.this,getForenKey());
+        Totals_Find xx= new Totals_Find(Invest_Page.this,getForenKey());
 
         Totals_Save bonds= xx.getBonds();
         if(bonds != null){
@@ -124,7 +124,7 @@ public class InvestPage extends AppCompatActivity {
         ListView lv = (ListView) findViewById(R.id.invest_list);
 
         ListAdapter adapter = new SimpleAdapter(
-                InvestPage.this,
+                Invest_Page.this,
                 investmentList,
                 R.layout.list_row,
                 new String[]{"investname","investtype","investamount"},
@@ -136,7 +136,7 @@ public class InvestPage extends AppCompatActivity {
         btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(InvestPage.this, Invest_AddNew_old.class));
+                startActivity(new Intent(Invest_Page.this, Invest_AddNew_old.class));
 
             }
         });

@@ -1,4 +1,4 @@
-package com.example.appdevproject.Pages;
+package com.example.appdevproject.Investment;
 
 import androidx.appcompat.app.AppCompatActivity;
 

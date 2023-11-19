@@ -15,11 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Investment.Models.Invest_Debt;
-import com.example.appdevproject.Investment.Models.Totals_Save;
-import com.example.appdevproject.Pages.Invest_Edit;
-import com.example.appdevproject.Pages.Invest_ShowClickedCategory;
+import com.example.appdevproject.Investment.Invest_Edit;
 import com.example.appdevproject.R;
-import com.google.android.material.shape.ShapePath;
 
 import java.util.List;
 

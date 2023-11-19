@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -24,8 +23,8 @@ import com.example.appdevproject.DataBase.ProjectDb;
 //>>>>>>> 33761130263a0631cbbdc82cebe34b13e61f2660:app/src/main/java/com/example/appdevproject/RegistrationPage.java
 import com.example.appdevproject.User.User;
 
-public class RegistrationPage extends AppCompatActivity {
-    private static final String TAG=RegistrationPage.class.getSimpleName();
+public class Registration_Page extends AppCompatActivity {
+    private static final String TAG= Registration_Page.class.getSimpleName();
 
     // i want a menue on the left hand side with all the avialble activities.
 
@@ -54,10 +53,7 @@ public class RegistrationPage extends AppCompatActivity {
         admin_prePopulate("smith jones");
         admin_quickLogIn("smith jones"); // this one needs to exists
 
-
-
-
-        projectDb =new ProjectDb(RegistrationPage.this);
+        projectDb =new ProjectDb(Registration_Page.this);
 
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -93,12 +89,12 @@ public class RegistrationPage extends AppCompatActivity {
                     //get the user.
                     user= projectDb.getUserByUsername(userToLogIn);
                     if(user ==null){
-                        Toast.makeText(RegistrationPage.this, "This user dosent exist", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registration_Page.this, "This user dosent exist", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     if(! User.comparePasswords(passWord, user.getPassword())){
-                        Toast.makeText(RegistrationPage.this, "user or password is wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registration_Page.this, "user or password is wrong", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -119,7 +115,7 @@ public class RegistrationPage extends AppCompatActivity {
                         projectDb.makeUser(user);
 
                     }else{
-                        Toast.makeText(RegistrationPage.this, "This username exits, pick another one", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registration_Page.this, "This username exits, pick another one", Toast.LENGTH_SHORT).show();
                         return;// user exists so kill control
                     }
                 }
@@ -131,8 +127,8 @@ public class RegistrationPage extends AppCompatActivity {
                 myEdit.apply();
 
                 // go next intent.
-                Toast.makeText(RegistrationPage.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RegistrationPage.this, IntroActivity.class));
+                Toast.makeText(Registration_Page.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Registration_Page.this, Landing_Page.class));
             }
         });
 
@@ -146,9 +142,12 @@ public class RegistrationPage extends AppCompatActivity {
         myEdit.apply();
 
         // go next intent.
-        Toast.makeText(RegistrationPage.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(RegistrationPage.this, IntroActivity.class));
+        Toast.makeText(Registration_Page.this, "Success! Welcome in!", Toast.LENGTH_SHORT).show();
+//        startActivity(new Intent(RegistrationPage.this, com.example.appdevproject.z_oldImplements.z_Loans.LandingPage.class));
+        startActivity(new Intent(Registration_Page.this, Landing_Page.class));
+
     }
+
     private void admin_prePopulate(String logInUser){
         userName.setText(logInUser);
         password.setText("apple1");

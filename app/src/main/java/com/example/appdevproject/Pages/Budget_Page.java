@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.appdevproject.Budget.Adapter.BudgetPageAdapter;
 import com.example.appdevproject.Budget.Fab.Budget_AddNewItem;
@@ -47,7 +46,7 @@ import java.util.List;
  *
  */
 
-public class BudgetPage extends AppCompatActivity {
+public class Budget_Page extends AppCompatActivity {
 
 //----- adapter stuff
     // if we can set up 3 buttons for differnt queries,
@@ -175,7 +174,7 @@ public class BudgetPage extends AppCompatActivity {
         chart_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(BudgetPage.this,BudgetChartActivity.class);
+                Intent i = new Intent(Budget_Page.this, Budget_ChartPage.class);
                 i.putExtra("totHousing",totHousing);
                 i.putExtra("totUtility",totUtility);
                 i.putExtra("totTransport",totTransport);
@@ -193,7 +192,7 @@ public class BudgetPage extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.bud_recyclerView);
         fab = findViewById(R.id.bud_fab);
-        myDb= new ProjectDb(BudgetPage.this);
+        myDb= new ProjectDb(Budget_Page.this);
 
 
 //        yearlyExp= findViewById(R.id.bud_yearlyExp);

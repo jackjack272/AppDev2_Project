@@ -3,7 +3,6 @@ package com.example.appdevproject.Budget.Fab;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,9 +18,6 @@ import androidx.annotation.Nullable;
 
 import com.example.appdevproject.Budget.InterFaces.Budget_onDialogCloseListener;
 import com.example.appdevproject.Budget.Model.Item;
-import com.example.appdevproject.Pages.BudgetPage;
-import com.example.appdevproject.Pages.ChartsActivity;
-import com.example.appdevproject.Pages.IntroActivity;
 import com.example.appdevproject.R;
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;

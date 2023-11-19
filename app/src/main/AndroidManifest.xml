@@ -18,7 +18,7 @@
 
 <!--        registration-->
         <activity
-            android:name=".Pages.RegistrationPage"
+            android:name=".Pages.Registration_Page"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,22 +29,22 @@
 
 <!--        Landing-->
         <activity
-            android:name=".Pages.LandingPage"
+            android:name=".z_oldImplements.z_Loans.LandingPage"
             android:exported="false" />
 
 
 <!--     Edit user Page   -->
 
         <activity
-            android:name=".Pages.EditUserPage"
+            android:name=".User.Edit_UserPage"
             android:exported="false" />
 
 <!--budget page -->
         <activity
-            android:name=".Pages.BudgetPage"
+            android:name=".Pages.Budget_Page"
             android:exported="false" />
         <activity
-            android:name=".Pages.BudgetChartActivity"
+            android:name=".Pages.Budget_ChartPage"
             android:exported="false" />
 
 
@@ -54,34 +54,34 @@
 
 
         <activity
-            android:name=".Pages.Invest_Edit"
+            android:name=".Investment.Invest_Edit"
             android:exported="false" />
         <activity
-            android:name=".Pages.Invest_ShowClickedCategory"
+            android:name=".Investment.Invest_ShowClickedCategory"
             android:exported="false"></activity>
 
         <activity
-            android:name=".Pages.ChartsActivity"
+            android:name=".Pages.Charts_Page"
             android:exported="false" />
         <activity
             android:name=".z_oldImplements.z_Loans.Invest_AddNew_old"
             android:exported="false" />
         <activity
-            android:name=".Pages.InvestPage"
+            android:name=".Investment.Invest_Page"
             android:exported="false" />
 
         <activity
-            android:name=".z_oldImplements.z_Loans.Loans_old"
+            android:name=".Debt_Repayment.Debt_Repayment"
             android:exported="false" />
         <activity
-            android:name=".Pages.TaxPage"
+            android:name=".Pages.Tax_Page"
             android:exported="false" />
 
 
 
 
         <activity
-            android:name=".Pages.IntroActivity"
+            android:name=".Pages.Landing_Page"
             android:exported="false" />
 
 

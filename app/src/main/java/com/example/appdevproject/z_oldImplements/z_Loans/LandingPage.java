@@ -1,4 +1,4 @@
-package com.example.appdevproject.Pages;
+package com.example.appdevproject.z_oldImplements.z_Loans;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.appdevproject.Pages.Budget_Page;
+import com.example.appdevproject.User.Edit_UserPage;
+import com.example.appdevproject.Investment.Invest_Page;
+import com.example.appdevproject.Pages.Tax_Page;
 import com.example.appdevproject.R;
 
 public class LandingPage extends AppCompatActivity {
@@ -35,28 +39,28 @@ public class LandingPage extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LandingPage.this, EditUserPage.class));
+                startActivity(new Intent(LandingPage.this, Edit_UserPage.class));
             }
         });
 
         budget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LandingPage.this, BudgetPage.class));
+                startActivity(new Intent(LandingPage.this, Budget_Page.class));
             }
         });
 
         invest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LandingPage.this, InvestPage.class));
+                startActivity(new Intent(LandingPage.this, Invest_Page.class));
             }
         });
 
         tax.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LandingPage.this, TaxPage.class));
+                startActivity(new Intent(LandingPage.this, Tax_Page.class));
             }
         });
 

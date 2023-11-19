@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Investment.Models.Totals_Save;
-import com.example.appdevproject.Pages.Invest_ShowClickedCategory;
+import com.example.appdevproject.Investment.Invest_ShowClickedCategory;
 import com.example.appdevproject.R;
 
 import java.util.List;

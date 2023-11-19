@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:icon="@drawable/baseline_attach_money_24"
+    >
+
+    <item
+        android:id="@+id/navigation_budget"
+        android:icon="@drawable/baseline_attach_money_24"
+        android:title="Budget"
+        android:orderInCategory="1"
+        app:showAsAction="never"
+        ></item>
+
+    <item
+        android:id="@+id/navigation_debt"
+        android:title="Debt"
+        android:orderInCategory="2"
+        app:showAsAction="never"
+        ></item>
+
+
+
+    <item
+        android:id="@+id/navigation_investment"
+        android:title="Investment"
+        android:orderInCategory="3"
+        app:showAsAction="never"
+        ></item>
+
+
+    <item
+        android:id="@+id/navigation_Tax"
+        android:title="Tax"
+        android:orderInCategory="4"
+        app:showAsAction="never"
+        ></item>
+
+
+    <item
+        android:id="@+id/navigation_OverView"
+        android:title="OverView"
+        android:orderInCategory="5"
+        app:showAsAction="never"
+        ></item>
+
+
+
+</menu>

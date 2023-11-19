@@ -12,7 +12,7 @@ import com.example.appdevproject.Tax.Tax_AddNewWage;
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class TaxPage extends AppCompatActivity {
+public class Tax_Page extends AppCompatActivity {
 
     private TextView labourFor, investFor, govWants;
     private RecyclerView labour_recycle, invest_recycle;
@@ -52,7 +52,7 @@ public class TaxPage extends AppCompatActivity {
         labour_recycle= findViewById(R.id.inc_labourRecycle);
         invest_recycle=findViewById(R.id.inc_investRecycle);
 
-        myDb= new ProjectDb(TaxPage.this);
+        myDb= new ProjectDb(Tax_Page.this);
         fab= findViewById(R.id.inc_fab);
     }
 

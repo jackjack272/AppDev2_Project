@@ -18,7 +18,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-public class ChartsActivity extends AppCompatActivity {
+public class Charts_Page extends AppCompatActivity {
 
     ArrayList barArraylist;
     ArrayList pieArraylist;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Pages.Invest_Edit">
+    tools:context=".Investment.Invest_Edit">
 
     <TextView
         android:id="@+id/invest_edit_heading"

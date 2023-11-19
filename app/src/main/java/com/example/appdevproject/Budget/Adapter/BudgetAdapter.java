@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdevproject.Budget.Model.Item;
-import com.example.appdevproject.Pages.BudgetPage;
+import com.example.appdevproject.Pages.Budget_Page;
 import com.example.appdevproject.R;
 import com.example.appdevproject.DataBase.ProjectDb;
 
@@ -19,12 +19,12 @@ import java.util.List;
 
 public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.InternalClass> {
     private List<Item> myItems;// list of the items to be displayed
-    private BudgetPage budgetPage;// linked to budget page
+    private Budget_Page budgetPage;// linked to budget page
     private ProjectDb myDb;
 
 
     //make a constructor, gets Activity and db pointers
-    public BudgetAdapter(ProjectDb db, BudgetPage activity){
+    public BudgetAdapter(ProjectDb db, Budget_Page activity){
         budgetPage= activity;
         myDb= db;
     }

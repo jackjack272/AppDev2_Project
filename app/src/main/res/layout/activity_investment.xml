@@ -7,7 +7,7 @@
     android:background="#D9DDF4"
     android:orientation="vertical"
     android:outlineProvider="background"
-    tools:context=".Pages.InvestPage">
+    tools:context=".Investment.Invest_Page">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"

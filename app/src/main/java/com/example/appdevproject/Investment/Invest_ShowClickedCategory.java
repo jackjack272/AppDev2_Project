@@ -1,4 +1,4 @@
-package com.example.appdevproject.Pages;
+package com.example.appdevproject.Investment;
 
 import static com.example.appdevproject.DataBase.Interfaces.Totals.TOTAL_BOND_PK;
 import static com.example.appdevproject.DataBase.Interfaces.Totals.TOTAL_DEBT_PK;
@@ -35,14 +35,11 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
     BondsAdapter bondsAdapter;
     StockAdapter stockAdapter;
     RecyclerView.LayoutManager layoutManager;
+
 //    Adapters
 
-
     ProjectDb myDb;
-
     BarChart stackedChart;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +54,6 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
 
         showChart();
     }
-
-
     public void updateTotals(){
         int choice= getCategory();
 
@@ -114,8 +109,6 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
                 break;
         }
     }
-
-
     public void showChart(){
         //https://www.youtube.com/watch?v=jTYi0Q7lLco&list=PLFh8wpMiEi89LcBupeftmAcgDKCeC24bJ&index=12
 
@@ -187,6 +180,7 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
         heading.setText(str);
 
     }
+
     public void makeAdapter(int choice){
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

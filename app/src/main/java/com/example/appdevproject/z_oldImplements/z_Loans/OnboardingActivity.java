@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.appdevproject.Pages.RegistrationPage;
+import com.example.appdevproject.Pages.Registration_Page;
 import com.example.appdevproject.R;
 
 
@@ -23,7 +23,7 @@ public class OnboardingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(OnboardingActivity.this,
-                        RegistrationPage.class));
+                        Registration_Page.class));
             }
         });
     }

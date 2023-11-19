@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.appdevproject.Pages.InvestPage;
+import com.example.appdevproject.Investment.Invest_Page;
 import com.example.appdevproject.R;
 
 public class Invest_AddNew_old extends AppCompatActivity {
@@ -39,7 +39,7 @@ public class Invest_AddNew_old extends AppCompatActivity {
 
                 dbHandler.insertInvestments(userId, name,type,amount);
                 Toast.makeText(getApplicationContext(), "New Investment Added Successfully!",Toast.LENGTH_LONG).show();
-                intent = new Intent(Invest_AddNew_old.this, InvestPage.class);
+                intent = new Intent(Invest_AddNew_old.this, Invest_Page.class);
                 startActivity(intent);
             }
         });

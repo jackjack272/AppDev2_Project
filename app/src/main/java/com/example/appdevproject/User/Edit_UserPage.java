@@ -1,4 +1,4 @@
-package com.example.appdevproject.Pages;
+package com.example.appdevproject.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appdevproject.R;
-import com.example.appdevproject.User.User;
 import com.example.appdevproject.DataBase.ProjectDb;
 
 
@@ -22,13 +21,11 @@ import com.example.appdevproject.DataBase.ProjectDb;
 
 // This page has not been tested yet.
 
-public class EditUserPage extends AppCompatActivity {
+public class Edit_UserPage extends AppCompatActivity {
     private TextView banner;
     private EditText ch_name, ch_email, ch_dob, ch_pass, ch_confirm_pass;
-
     private SharedPreferences username;
     private Button save;
-
     ProjectDb db;
 
     @Override
@@ -54,7 +51,7 @@ public class EditUserPage extends AppCompatActivity {
                     user.setPassword( User.md5HashEncrypt(user.getPassword()));
                     db.updateUser(user);
                 }
-                Toast.makeText(EditUserPage.this, "User Updated", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Edit_UserPage.this, "User Updated", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -90,7 +87,7 @@ public class EditUserPage extends AppCompatActivity {
 
         save = findViewById(R.id.edit_save_btn);
         //db
-        db = new ProjectDb(EditUserPage.this);
+        db = new ProjectDb(Edit_UserPage.this);
     }
 
     private void greetUser(String greet) {
