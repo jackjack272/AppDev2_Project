@@ -1,5 +1,6 @@
 package com.example.appdevproject.DataBase;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -399,10 +400,42 @@ public class ProjectDb extends SQLiteOpenHelper
 
 
 //Totals
-    public List<Totals_Save> totals_readTotal(){
-        SQLiteDatabase db= getWritableDatabase();
+    public List<Totals_Save> totals_readTotal(Integer foreignKey){
+        String str=String.format("SELECT %s FROM %s WHERE %s == %d",
+                "*",TOTALS_TABLE, TOTALS_FOREIGNKEY, foreignKey);
 
-        return null;
+        SQLiteDatabase db= getReadableDatabase();
+        Cursor cursor= db.rawQuery(str, null);
+        cursor.moveToFirst();
+
+        List<Totals_Save> myItems= new ArrayList<>();
+        String name="";
+        for(int i=0; i<cursor.getCount(); i++){
+
+            switch (cursor.getInt(cursor.getColumnIndexOrThrow(TOTALS_ID))){
+                case TOTAL_BOND_PK:
+                    name="Bond";
+                    break;
+                case TOTAL_DEBT_PK:
+                    name="Debt";
+                    break;
+                case TOTAL_STOCK_PK:
+                    name="Stock";
+                    break;
+                default:
+                    break;
+            }
+
+            myItems.add(new Totals_Save(
+                name,
+                cursor.getDouble(cursor.getColumnIndexOrThrow(TOTALS_GROWTH)),
+                cursor.getDouble(cursor.getColumnIndexOrThrow(TOTALS_AMOUNT)),
+                cursor.getDouble(cursor.getColumnIndexOrThrow(TOTALS_INTEREST))
+            ));
+            cursor.moveToNext();
+        }
+        return myItems;
+
     }
     @Override
     public void totals_saveOne(Totals_Save totals_save) {

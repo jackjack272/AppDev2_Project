@@ -10,20 +10,18 @@ import java.util.List;
 
 public interface Totals {
 
-        public static final Integer TOTAL_BOND_PK=1;
-        public static final Integer TOTAL_DEBT_PK=2;
-        public static final Integer TOTAL_STOCK_PK=3;
+
+        public static final int TOTAL_BOND_PK=1;
+        public static final  int TOTAL_DEBT_PK=2;
+        public static final int TOTAL_STOCK_PK=3;
 
 
         public void totals_saveOne(Totals_Save totals_save);
-        public List<Totals_Save> totals_readTotal();
+        public List<Totals_Save> totals_readTotal(Integer foreignKey);
         public void totals_update(Totals_Save totals);
         public Boolean totals_empty();
-
         public Boolean totals_emptyBonds();
-
         public Boolean totals_emptyDebts();
-
         public Boolean totals_emptyStocks();
 
 
@@ -33,8 +31,6 @@ public interface Totals {
         public static final String TOTALS_ID="id";
 
         public static final String TOTALS_FOREIGNKEY=USER_ID+"_foreign";
-
-
 
         public static final String TOTALS_GROWTH="growth"; // +9%
 

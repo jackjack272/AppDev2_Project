@@ -311,9 +311,9 @@
 
                 <ImageView
                     android:id="@+id/imgGoal"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/goal"
+                    android:layout_width="129dp"
+                    android:layout_height="72dp"
+                    android:src="@drawable/government"
                     app:layout_constraintBottom_toTopOf="@+id/txtGoal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -325,7 +325,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="set a goal"
+                    android:text="Tax"
                     android:textAllCaps="true"
                     android:textColor="@color/blue"
                     android:textSize="14sp"

@@ -17,13 +17,14 @@ import android.widget.TextView;
 import com.example.appdevproject.Debt_Repayment.Debt_Repayment;
 import com.example.appdevproject.Investment.Invest_Page;
 import com.example.appdevproject.R;
+import com.example.appdevproject.Tax.Tax_Page;
 import com.example.appdevproject.User.Edit_UserPage;
 import com.example.appdevproject.User.Registration_Page;
 import com.google.android.material.button.MaterialButton;
 
 public class Landing_Page extends AppCompatActivity {
 
-    CardView cardBudget, cardDebt,cardInvestment,cardCharts;
+    CardView cardBudget, cardDebt,cardInvestment,cardCharts, taxCard;
 
     TextView textUserName;
 
@@ -69,6 +70,14 @@ public class Landing_Page extends AppCompatActivity {
 
 
     public void myNav(){
+
+        taxCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Landing_Page.this, Tax_Page.class));
+            }
+        });
+
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,6 +133,9 @@ public class Landing_Page extends AppCompatActivity {
         btnLogOut = findViewById(R.id.btnLogout);
 
         editProfile=findViewById(R.id.btnEditProfile);
+
+
+        taxCard=findViewById(R.id.GoalCard);
 
 
     }

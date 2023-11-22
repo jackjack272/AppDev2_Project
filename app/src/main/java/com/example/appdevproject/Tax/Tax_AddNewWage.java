@@ -45,6 +45,7 @@ public class Tax_AddNewWage extends BottomSheetDialogFragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle saveInstanceState){
 
+
     }
 
 
