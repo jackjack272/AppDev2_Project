@@ -62,9 +62,6 @@ public class Debt_Repayment extends AppCompatActivity {
                 List<Invest_Debt> myDebts= projectDb.debt_readDebt(foreignKey,1); //default is size.
                 makeAdapter();
                 debt_adapter.setItems(myDebts);
-
-                makeAdapter();
-//                debt_adapter.setItems();
             }
         });
 

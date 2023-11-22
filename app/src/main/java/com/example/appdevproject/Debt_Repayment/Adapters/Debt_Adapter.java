@@ -54,14 +54,16 @@ public class Debt_Adapter extends RecyclerView.Adapter<Debt_Adapter.InternalClas
         holder.debtName.setText(myDebts.get(position).getDebtName());
 
         holder.interestRate.setText(
-                String.format("%.2f" , myDebts.get(position).getEffectiveInterestRate())
+                String.format("%.2f%%" , myDebts.get(position).getEffectiveInterestRate())
         );
 
         holder.interestPay.setText(
-                String.format("%.2f", myDebts.get(position).paymentPerCompound())
+                String.format("$%.2f", myDebts.get(position).paymentPerCompound())
         );
 
-        holder.amount.setText(String.valueOf(myDebts.get(position).getAmountBorred()));
+        holder.amount.setText(
+                String.format("$%.2f",myDebts.get(position).getAmountBorred())
+        );
 
     }
 
