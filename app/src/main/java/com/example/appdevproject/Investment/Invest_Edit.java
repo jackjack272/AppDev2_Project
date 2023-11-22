@@ -30,9 +30,6 @@ public class Invest_Edit extends AppCompatActivity {
 
         makeAssociateions();
 
-//        adminPutvalues();
-
-
         Intent x=getIntent();
         Bundle bundle= x.getExtras();
         int id= bundle.getInt("id");
@@ -105,7 +102,7 @@ public class Invest_Edit extends AppCompatActivity {
     public void setValues(Invest_Debt xx){
         name.setHint(xx.getDebtName());
         amountBorrowed.setHint(String.valueOf( xx.getAmountBorred() ));
-        interestRate.setHint(String.valueOf( xx.getAnnualCompoundRate()));
+        interestRate.setHint(String.valueOf( xx.getEffectiveInterestRate()));
         compoundsPerYear.setHint(String.valueOf( xx.getCompoundsPerYear()));
         numMonths.setHint(String.valueOf( xx.getLoanTermInMonths()));
 

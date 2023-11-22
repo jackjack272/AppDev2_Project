@@ -1,7 +1,9 @@
 package com.example.appdevproject.Investment.Models;
 
+import com.example.appdevproject.Debt_Repayment.Models.RepaySchedualeItem;
 import com.example.appdevproject.Investment.Models.Interfaces.Debt;
 
+import java.util.List;
 
 
 public class Invest_Debt implements Debt {
@@ -20,11 +22,7 @@ public class Invest_Debt implements Debt {
         this.loanTermInMonths = loanTermInMonths;
     }
 
-    public Invest_Debt(Integer id, Integer foreinKey,
-                       String debtName, Double amountBorred,
-                       Double interestRate, Integer compoundsPerYear,
-                       Integer loanTermInMonths, int isDebt)
-    {
+    public Invest_Debt(Integer id, Integer foreinKey,String debtName, Double amountBorred,Double interestRate, Integer compoundsPerYear,Integer loanTermInMonths, int isDebt){
         this.id = id;
         this.foreinKey = foreinKey;
         this.debtName = debtName;
@@ -36,9 +34,6 @@ public class Invest_Debt implements Debt {
 
         this.isDebt = isDebt==0;
     }
-
-
-
     public double getEffectiveInterestRate() {
         // Calculate the effective interest rate using the formula
         // Effective Interest Rate = (1 + (Nominal Rate / Compounds per year)) ^ Compounds per year - 1
@@ -53,15 +48,9 @@ public class Invest_Debt implements Debt {
         // Return the effective interest rate
         return effectiveInterestRate * 100; // Convert back to percentage
     }
-
-
-
-
-
     public double paymentPerCompound(){
         return amountBorred*getEffectiveInterestRate()/100/getCompoundsPerYear();
     }
-
     public double valueAtMaturity(){
         double r = interestRate / 100; // converting interest rate to a decimal
         double n = compoundsPerYear;
@@ -78,8 +67,10 @@ public class Invest_Debt implements Debt {
         return maturityValue;
     }
 
-    public double getAnnualCompoundRate() {
-        return -1.0;
+
+
+    public double getMonthlyPatment(){
+        return getAmountBorred()*getEffectiveInterestRate()/12;
     }
 
 

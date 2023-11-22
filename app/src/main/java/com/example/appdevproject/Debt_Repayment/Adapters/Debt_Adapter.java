@@ -1,6 +1,8 @@
 package com.example.appdevproject.Debt_Repayment.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdevproject.DataBase.ProjectDb;
+import com.example.appdevproject.Investment.Invest_Edit;
 import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.R;
 
@@ -35,6 +38,7 @@ public class Debt_Adapter extends RecyclerView.Adapter<Debt_Adapter.InternalClas
             interestRate=itemView.findViewById(R.id.debt_oneitem_interest);
             interestPay=itemView.findViewById(R.id.debt_oneitem_interestPayment);
             amount=itemView.findViewById(R.id.debt_oneitem_totalBorrowed);
+
         }
     }
 
@@ -65,7 +69,39 @@ public class Debt_Adapter extends RecyclerView.Adapter<Debt_Adapter.InternalClas
                 String.format("$%.2f",myDebts.get(position).getAmountBorred())
         );
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                goToDebt(position);
+//                idk if i like this functionality
+            }
+        });
+
     }
+
+
+    private void goToDebt( int postion){
+        Intent intent= new Intent(this.context, Invest_Edit.class);
+        Bundle bundle= new Bundle();
+
+        bundle.putInt("id",myDebts.get(postion).getId());
+        bundle.putString("name", myDebts.get(postion).getDebtName());
+        bundle.putDouble("borrowed",myDebts.get(postion).getAmountBorred() );
+        bundle.putDouble("interest",myDebts.get(postion).getInterestRate() );
+        bundle.putDouble("year", myDebts.get(postion).getCompoundsPerYear());
+        bundle.putDouble("months",myDebts.get(postion).getLoanTermInMonths() );
+
+        if(myDebts.get(postion).getIsDebt()){
+            bundle.putInt("category",0);
+        }else{
+            bundle.putInt("category",1);
+        }
+
+        intent.putExtras(bundle);
+        this.context.startActivity(intent);
+
+    }
+
 
     @Override
     public int getItemCount() {

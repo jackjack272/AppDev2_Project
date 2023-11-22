@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Debt_Repayment.Adapters.Debt_Adapter;
 import com.example.appdevproject.Debt_Repayment.Adapters.RepaymentScheduale_Adapter;
+import com.example.appdevproject.Debt_Repayment.Models.RepaySchedualeItem;
 import com.example.appdevproject.Investment.Models.Interfaces.Debt;
 import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.R;
@@ -34,7 +35,6 @@ public class Debt_Repayment extends AppCompatActivity {
 
     Debt_Adapter debt_adapter;
     RepaymentScheduale_Adapter scheduale_adapter;
-
     RecyclerView.LayoutManager topLayout, bottomLayout;
 
     @Override
@@ -42,17 +42,32 @@ public class Debt_Repayment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loans);
         makeAssociations();
+        minRepay.setText("just interest: $0");
 
-        int foreignKey=getForeighnkey();
 
         //make a debt adapter
-
+        int foreignKey=getForeighnkey();
         size.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<Invest_Debt> myDebts= projectDb.debt_readDebt(foreignKey); //default is size.
                 makeAdapter();
                 debt_adapter.setItems(myDebts);
+
+                minRepay.setText(String.format("just interest: $%.2f",calcRepay(myDebts)));
+
+                List<RepaySchedualeItem> repay= RepaySchedualeItem
+                        .getRepaymentScheduale(myDebts,calcRepay(myDebts) );
+                    //need to make this one.... ezz.... :,(
+
+                lifeTimeSave.setText(
+                        String.format("Total Cost Of Debt: %.2f", repay.get( repay.size()-1).getTotalAmountRepay())
+                );
+
+
+                makeBottomAdapter();
+                scheduale_adapter.setMyItems(repay);
+
             }
         });
 
@@ -62,11 +77,17 @@ public class Debt_Repayment extends AppCompatActivity {
                 List<Invest_Debt> myDebts= projectDb.debt_readDebt(foreignKey,1); //default is size.
                 makeAdapter();
                 debt_adapter.setItems(myDebts);
+
+
+                minRepay.setText(String.format("just interest: $%.2f",calcRepay(myDebts)));
+
             }
         });
 
 
-        makeBottomAdapter();
+
+
+
     }
 
     public void makeAdapter(){
@@ -89,6 +110,15 @@ public class Debt_Repayment extends AppCompatActivity {
         repayScheduale.setAdapter(scheduale_adapter);
     }
 
+    public double calcRepay(List<Invest_Debt> myDebts){
+        double payment=0.0;
+        for(Invest_Debt one:myDebts ){
+            payment+= one.paymentPerCompound();
+        }
+        minRepay.setText(String.format("min repayment: $%.2f",payment));
+        return payment;
+    }
+
     public void makeAssociations(){
         //buttons to order the data in display
         size= findViewById(R.id.debt_repay_size);
@@ -103,7 +133,7 @@ public class Debt_Repayment extends AppCompatActivity {
 
         //textview //outputfields
         minRepay= findViewById(R.id.debt_repay_tellMinRepay);
-        lifeTimeSave=findViewById(R.id.debt_repay_lifeTimeSave);
+        lifeTimeSave=findViewById(R.id.debt_repay_lifeTimeSave); //lifetime cost of debt.
 
         projectDb=new ProjectDb(Debt_Repayment.this);
     }
@@ -113,6 +143,5 @@ public class Debt_Repayment extends AppCompatActivity {
         int foreignKey= projectDb.getUserById(s.getString("username",""));
         return foreignKey;
     }
-
 
 }

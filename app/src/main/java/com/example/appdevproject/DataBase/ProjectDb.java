@@ -112,13 +112,14 @@ public class ProjectDb extends SQLiteOpenHelper
                 DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 1, DEBT_AMOUNTBORROWED);
 
         SQLiteDatabase db  = getReadableDatabase();
-
         Cursor cursor= db.rawQuery(str,null);
         cursor.moveToFirst();
 
         List<Invest_Debt> myDebts= new ArrayList<>();
-
-        while (cursor.moveToNext()){
+        do{
+            if(cursor.getCount()==0){
+                break;
+            }
             Invest_Debt debt=new Invest_Debt(
                     cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ID)),
                     cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID)),
@@ -130,8 +131,9 @@ public class ProjectDb extends SQLiteOpenHelper
                     cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ISDEBT))
             );
             myDebts.add(debt);
-        }
-        return myDebts;
+
+        }while (cursor.moveToNext());
+        return  myDebts;
     }
 
 
@@ -157,8 +159,6 @@ public class ProjectDb extends SQLiteOpenHelper
         cursor.moveToFirst();
 
         List<Invest_Debt> myDebts= new ArrayList<>();
-
-
         do{
             if(cursor.getCount()==0){
                 break;
@@ -175,7 +175,6 @@ public class ProjectDb extends SQLiteOpenHelper
                     cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ISDEBT))
             );
             myDebts.add(debt);
-
 
         }while (cursor.moveToNext());
 

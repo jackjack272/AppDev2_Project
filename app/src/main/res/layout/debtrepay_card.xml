@@ -1,21 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    android:layout_marginBottom="15dp"
+
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="395dp"
+        android:layout_height="116dp"
+
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="15dp">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="hellow world"
-        />
+        <TextView
+            android:id="@+id/debtrepay_card_payNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
+            android:layout_marginStart="28dp"
+            android:text="paymentNumber"
+            app:layout_constraintBottom_toBottomOf="@+id/debtrepay_card_newPrnce"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/debtrepay_card_newPrnce" />
 
+        <TextView
+            android:id="@+id/debtrepay_card_interest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="14dp"
+            android:text="payment_interest"
+            app:layout_constraintBaseline_toBaselineOf="@+id/debtrepay_card_payPrince"
+            app:layout_constraintStart_toEndOf="@+id/debtrepay_card_payAmount" />
+
+        <TextView
+            android:id="@+id/debtrepay_card_payPrince"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="28dp"
+            android:text="payment_prince"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/debtrepay_card_interest" />
+
+        <TextView
+            android:id="@+id/debtrepay_card_payAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="16dp"
+            android:text="payment_amout"
+            app:layout_constraintBaseline_toBaselineOf="@+id/debtrepay_card_interest"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/debtrepay_card_newPrnce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="84dp"
+            android:text="new_prince"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>
