@@ -18,7 +18,7 @@
 
 <!--        registration-->
         <activity
-            android:name=".Pages.Registration_Page"
+            android:name=".User.Registration_Page"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -74,7 +74,7 @@
             android:name=".Debt_Repayment.Debt_Repayment"
             android:exported="false" />
         <activity
-            android:name=".Pages.Tax_Page"
+            android:name=".Tax.Tax_Page"
             android:exported="false" />
 
 

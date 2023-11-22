@@ -18,6 +18,7 @@ import com.example.appdevproject.Debt_Repayment.Debt_Repayment;
 import com.example.appdevproject.Investment.Invest_Page;
 import com.example.appdevproject.R;
 import com.example.appdevproject.User.Edit_UserPage;
+import com.example.appdevproject.User.Registration_Page;
 import com.google.android.material.button.MaterialButton;
 
 public class Landing_Page extends AppCompatActivity {
@@ -74,15 +75,12 @@ public class Landing_Page extends AppCompatActivity {
                 startActivity(new Intent(Landing_Page.this, Edit_UserPage.class));
             }
         });
-
-
         cardBudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Landing_Page.this, Budget_Page.class));
             }
         });
-
         cardDebt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,13 +99,16 @@ public class Landing_Page extends AppCompatActivity {
                 startActivity(new Intent(Landing_Page.this, Charts_Page.class));
             }
         });
-
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Landing_Page.this, Registration_Page.class));
             }
         });
+
+
+
+
     }
     public void setHeading(){
         SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);

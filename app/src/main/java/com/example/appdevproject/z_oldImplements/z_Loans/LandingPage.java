@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.example.appdevproject.Pages.Budget_Page;
 import com.example.appdevproject.User.Edit_UserPage;
 import com.example.appdevproject.Investment.Invest_Page;
-import com.example.appdevproject.Pages.Tax_Page;
+import com.example.appdevproject.Tax.Tax_Page;
 import com.example.appdevproject.R;
 
 public class LandingPage extends AppCompatActivity {

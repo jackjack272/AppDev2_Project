@@ -1,4 +1,4 @@
-package com.example.appdevproject.Pages;
+package com.example.appdevproject.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 //<<<<<<< HEAD:app/src/main/java/com/example/appdevproject/Pages/RegistrationPage.java
+import com.example.appdevproject.Pages.Landing_Page;
 import com.example.appdevproject.R;
 import com.example.appdevproject.DataBase.ProjectDb;
 //=======
@@ -21,7 +22,7 @@ import com.example.appdevproject.DataBase.ProjectDb;
 //import com.example.appdevproject.LandingPage.LandingPage;
 //import com.example.appdevproject.User.UserDb;
 //>>>>>>> 33761130263a0631cbbdc82cebe34b13e61f2660:app/src/main/java/com/example/appdevproject/RegistrationPage.java
-import com.example.appdevproject.User.User;
+
 
 public class Registration_Page extends AppCompatActivity {
     private static final String TAG= Registration_Page.class.getSimpleName();

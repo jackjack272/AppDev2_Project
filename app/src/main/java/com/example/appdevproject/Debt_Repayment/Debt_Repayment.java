@@ -44,6 +44,9 @@ public class Debt_Repayment extends AppCompatActivity {
         makeAssociations();
         minRepay.setText("just interest: $0");
 
+        //make it so when i enter a new payment it gets accounted for.
+
+
 
         //make a debt adapter
         int foreignKey=getForeighnkey();
@@ -56,21 +59,9 @@ public class Debt_Repayment extends AppCompatActivity {
 
                 minRepay.setText(String.format("just interest: $%.2f",calcRepay(myDebts)));
 
-                List<RepaySchedualeItem> repay= RepaySchedualeItem
-                        .getRepaymentScheduale(myDebts,calcRepay(myDebts) );
-                    //need to make this one.... ezz.... :,(
-
-                lifeTimeSave.setText(
-                        String.format("Total Cost Of Debt: %.2f", repay.get( repay.size()-1).getTotalAmountRepay())
-                );
-
-
-                makeBottomAdapter();
-                scheduale_adapter.setMyItems(repay);
-
+                setBottomAdapterValues(myDebts);
             }
         });
-
         interes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,16 +69,36 @@ public class Debt_Repayment extends AppCompatActivity {
                 makeAdapter();
                 debt_adapter.setItems(myDebts);
 
-
                 minRepay.setText(String.format("just interest: $%.2f",calcRepay(myDebts)));
 
+                setBottomAdapterValues(myDebts);
             }
         });
 
+    }
 
+    public void setBottomAdapterValues(List<Invest_Debt> myDebts){
 
+        double contribution=calcRepay(myDebts);
+        try{
+            double overMin= Double.parseDouble( overMinRepay.getText().toString() );
+            if (overMin >1){
+                contribution+=overMin;
+            }
 
+        }catch (Exception e){}
 
+        List<RepaySchedualeItem> repay= RepaySchedualeItem
+                .getRepaymentScheduale(myDebts,
+                        contribution //im the value that +$50 to make the repay, adjust me
+                );
+
+        //need to make this one.... ezz.... :,(
+        lifeTimeSave.setText(
+                String.format("Total Cost Of Debt: %.2f", repay.get( repay.size()-1).getTotalAmountRepay())
+        );
+        makeBottomAdapter();
+        scheduale_adapter.setMyItems(repay);
     }
 
     public void makeAdapter(){

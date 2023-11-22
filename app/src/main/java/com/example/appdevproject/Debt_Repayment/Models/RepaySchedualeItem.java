@@ -33,11 +33,8 @@ public class RepaySchedualeItem {
         for(Invest_Debt one: myDebts){
             totalPrinciple+= one.getAmountBorred();
             avgInterestRate+=one.getEffectiveInterestRate();
-
-//            totalMonthly+=one.getMonthlyPatment();
-//            avgLoanLen=one.getLoanTermInMonths();
         }
-//        avgLoanLen=avgLoanLen/myDebts.size();
+
         avgInterestRate=avgInterestRate/myDebts.size();
 
         //for this 1 big loan...
@@ -47,7 +44,7 @@ public class RepaySchedualeItem {
         double amountRepaied=0.0;
 
         for (int i=0; 0 <totalPrinciple ;i++){
-            paymentAmount=min_repayment+50;
+            paymentAmount=min_repayment;
             toInterest=totalPrinciple*avgInterestRate/100/12;
             toPrinciple=paymentAmount-toInterest;
             totalPrinciple -=toPrinciple;

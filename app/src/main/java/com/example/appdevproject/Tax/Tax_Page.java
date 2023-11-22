@@ -1,4 +1,4 @@
-package com.example.appdevproject.Pages;
+package com.example.appdevproject.Tax;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.appdevproject.R;
-import com.example.appdevproject.Tax.Tax_AddNewWage;
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

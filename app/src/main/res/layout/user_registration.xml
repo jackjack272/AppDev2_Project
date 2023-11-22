@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gold"
-    tools:context=".Pages.Registration_Page">
+    tools:context=".User.Registration_Page">
 
     <ImageView
         android:id="@+id/imageView"

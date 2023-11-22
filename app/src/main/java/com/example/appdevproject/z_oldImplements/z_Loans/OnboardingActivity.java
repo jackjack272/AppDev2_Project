@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.appdevproject.Pages.Registration_Page;
+import com.example.appdevproject.User.Registration_Page;
 import com.example.appdevproject.R;
 
 
