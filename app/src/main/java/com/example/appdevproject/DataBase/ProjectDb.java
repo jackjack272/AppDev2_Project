@@ -80,7 +80,6 @@ public class ProjectDb extends SQLiteOpenHelper
         }
         return 0;
     }
-
     public Invest_Debt debt_readOne(int id){
         String getOne=String.format("SELECT * FROM %s WHERE %s == %d;", DEBT_TABLE, DEBT_ID, id );
 
@@ -112,7 +111,6 @@ public class ProjectDb extends SQLiteOpenHelper
         String str=String.format("SELECT * FROM %s WHERE %s == %d AND %s == %d ORDER BY %s;",
                 DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 1, DEBT_AMOUNTBORROWED);
 
-
         SQLiteDatabase db  = getReadableDatabase();
 
         Cursor cursor= db.rawQuery(str,null);
@@ -135,6 +133,58 @@ public class ProjectDb extends SQLiteOpenHelper
         }
         return myDebts;
     }
+
+
+    public List<Invest_Debt>  debt_readDebt(int foreignKey,int option){
+        String str=String.format("SELECT * FROM %s WHERE %s == %d AND %s == %d ORDER BY %s;",
+                DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 1, DEBT_AMOUNTBORROWED);
+
+        switch (option){
+            case 1:
+                str=String.format("SELECT * FROM %s WHERE %s == %d AND %s == %d ORDER BY %s %s;",
+                        DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 1, DEBT_INTERESTRATE,"DESC");
+                break;
+            case 2:
+                break;
+            default:
+                break;
+        }
+
+
+        SQLiteDatabase db  = getReadableDatabase();
+
+        Cursor cursor= db.rawQuery(str,null);
+        cursor.moveToFirst();
+
+        List<Invest_Debt> myDebts= new ArrayList<>();
+
+
+        do{
+            if(cursor.getCount()==0){
+                break;
+            }
+
+            Invest_Debt debt=new Invest_Debt(
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ID)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DEBT_NAME)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_AMOUNTBORROWED)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(DEBT_INTERESTRATE)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_COMPOUNDSPERYEAR)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_LOANTERM)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ISDEBT))
+            );
+            myDebts.add(debt);
+
+
+        }while (cursor.moveToNext());
+
+        return myDebts;
+    }
+
+
+
+
     public List<Invest_Debt> debt_readBonds(int foreignKey){
 
         SQLiteDatabase db=getReadableDatabase();
@@ -187,6 +237,9 @@ public class ProjectDb extends SQLiteOpenHelper
     public void debt_deleteOne(int position){
         getWritableDatabase().delete(DEBT_TABLE,DEBT_ID+"==?",new String[]{String.valueOf(position)});
     }
+
+
+
 //----------
 
 
@@ -387,7 +440,6 @@ public class ProjectDb extends SQLiteOpenHelper
         return cursor.getCount()==0;
 
     }
-
     @Override
     public Boolean totals_emptyBonds() {
         String query= String.format("SELECT %s FROM %s WHERE %s =%s",
@@ -395,7 +447,6 @@ public class ProjectDb extends SQLiteOpenHelper
 
         return getReadableDatabase().rawQuery(query,null).getCount()==0;
     }
-
     @Override
     public Boolean totals_emptyDebts() {
         String query= String.format("SELECT %s FROM %s WHERE %s =%s",
@@ -404,7 +455,6 @@ public class ProjectDb extends SQLiteOpenHelper
         return getReadableDatabase().rawQuery(query,null).getCount()==0;
 
     }
-
     @Override
     public Boolean totals_emptyStocks() {
         String query= String.format("SELECT %s FROM %s WHERE %s =%s",
@@ -412,11 +462,6 @@ public class ProjectDb extends SQLiteOpenHelper
 
         return getReadableDatabase().rawQuery(query,null).getCount()==0;
     }
-
-
 //crud
-
-
-
 
 }
