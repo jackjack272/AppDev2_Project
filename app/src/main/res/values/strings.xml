@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppDevProject</string>
+    <string name="app_name">Budget Buddy</string>
 
     <!--    User Registration page.
     prefix this page with:     landPage_

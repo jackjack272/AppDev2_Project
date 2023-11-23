@@ -4,6 +4,7 @@ public class Tax_Calculator {
 
     //get tax consequence
     public static double bondTaxConsequence(){
+
         return -1.0;
     }
 
@@ -13,6 +14,7 @@ public class Tax_Calculator {
     }
 
     public static double debtTaxConsequence(Double amount){
+
         return -1.0;
     }
 
