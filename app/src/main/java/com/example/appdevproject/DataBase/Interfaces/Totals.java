@@ -41,7 +41,7 @@ public interface Totals {
 
 
 
-         public static final String makeToatls ="CREATE TABLE "+TOTALS_TABLE
+         public static final String MAKE_TOTALS_TABLE ="CREATE TABLE "+TOTALS_TABLE
                 +"("
                 +TOTALS_ID+" INTEGER PRIMARY KEY, " // AUTOINCREMENT, "
                 +TOTALS_AMOUNT +" REAL, "

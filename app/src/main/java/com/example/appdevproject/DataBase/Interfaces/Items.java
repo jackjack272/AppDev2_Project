@@ -22,8 +22,7 @@ public interface Items {
 
 
 
-
-    String makeItem = "CREATE TABLE " + ITEM_TABLE
+    static final String  MAKE_ITEM_TABLE = "CREATE TABLE " + ITEM_TABLE
             + "("
             + ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + ITEM_NAME + " TEXT,"

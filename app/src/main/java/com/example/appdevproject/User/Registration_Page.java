@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.appdevproject.Pages.Landing_Page;
 import com.example.appdevproject.R;
 import com.example.appdevproject.DataBase.ProjectDb;
+import com.example.appdevproject.User.Models.User;
 //=======
 //import com.example.appdevproject.CustomException.MissingField;
 //import com.example.appdevproject.LandingPage.IntroActivity;
@@ -53,6 +54,7 @@ public class Registration_Page extends AppCompatActivity {
 
         admin_prePopulate("smith jones");
         admin_quickLogIn("smith jones"); // this one needs to exists
+
 
         projectDb =new ProjectDb(Registration_Page.this);
 

@@ -1,6 +1,5 @@
 package com.example.appdevproject.DataBase;
 
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,19 +8,21 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.DataBase.Interfaces.Debts;
+import com.example.appdevproject.DataBase.Interfaces.Income;
 import com.example.appdevproject.DataBase.Interfaces.Items;
 import com.example.appdevproject.DataBase.Interfaces.Totals;
 import com.example.appdevproject.DataBase.Interfaces.Users;
 
 import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.Investment.Models.Totals_Save;
-import com.example.appdevproject.User.User;
+import com.example.appdevproject.Tax.Models.Tax_Income;
+import com.example.appdevproject.User.Models.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectDb extends SQLiteOpenHelper
-        implements Debts, Items, Users, Totals
+        implements Debts, Items, Users, Totals, Income
 
 {
     /** This is the Database for the project
@@ -38,14 +39,15 @@ public class ProjectDb extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create the User table
-        db.execSQL(makeUser);
+        db.execSQL(MAKE_USER_TABLE);
         // Create the Item table
-        db.execSQL(makeItem); //fk user
+        db.execSQL(MAKE_ITEM_TABLE); //fk user
         //Create a table for Debt.
-        db.execSQL(makeDebt); //fk user
+        db.execSQL(MAKE_DEBT_TABLE); //fk user
         //totals table
-        db.execSQL(makeToatls);//fk usr
+        db.execSQL(MAKE_TOTALS_TABLE);//fk usr
 
+        db.execSQL(MAKE_INCOME_TABLE);//fk usr
 
     }
     @Override
@@ -136,8 +138,6 @@ public class ProjectDb extends SQLiteOpenHelper
         }while (cursor.moveToNext());
         return  myDebts;
     }
-
-
     public List<Invest_Debt>  debt_readDebt(int foreignKey,int option){
         String str=String.format("SELECT * FROM %s WHERE %s == %d AND %s == %d ORDER BY %s;",
                 DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 1, DEBT_AMOUNTBORROWED);
@@ -181,10 +181,6 @@ public class ProjectDb extends SQLiteOpenHelper
 
         return myDebts;
     }
-
-
-
-
     public List<Invest_Debt> debt_readBonds(int foreignKey){
 
         SQLiteDatabase db=getReadableDatabase();
@@ -314,7 +310,6 @@ public class ProjectDb extends SQLiteOpenHelper
         return items;
     }
     public void item_update(int id, Item item){
-
 
     }
     public void item_remove(int position){
@@ -495,5 +490,74 @@ public class ProjectDb extends SQLiteOpenHelper
         return getReadableDatabase().rawQuery(query,null).getCount()==0;
     }
 //crud
+
+
+
+
+
+//Income
+    public Boolean income_saveOne(Tax_Income income){
+        if(income.getForeignKey()==null){
+            return false;
+        }
+        SQLiteDatabase db= getWritableDatabase();
+
+        ContentValues con= new ContentValues();
+            con.put(INCOME_FORENKEY,income.getForeignKey());
+            con.put(INCOME_JOBTITLE,income.getJobTitle());
+            con.put(INCOME_HOURLYWAGE, income.getHourlyWage());
+            con.put(INCOME_BYWEEKLYHOURS,income.getHoursWorked());
+            con.put(INCOME_BONUSES, income.getBonuses());
+
+        db.insert(INCOME_TABLE,null, con);
+        return true;
+    }
+
+    //read one
+
+    //read all
+    public List<Tax_Income> income_readAll(Integer foreignKey){
+        String sql_query=String
+                .format("SELECT %s FROM %s WHERE %s ==%d;",
+                    "*", INCOME_TABLE, INCOME_FORENKEY,foreignKey
+                );
+
+        SQLiteDatabase db= getReadableDatabase();
+
+        Cursor cursor= db.rawQuery(sql_query, null);
+        cursor.moveToFirst();
+
+        List<Tax_Income> myTaxedIncome=new ArrayList<>();
+        do{
+            if(cursor.getCount()==0){
+                return null;
+            }
+            myTaxedIncome.add(new Tax_Income(
+                    cursor.getInt(cursor.getColumnIndexOrThrow(INCOME_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(INCOME_JOBTITLE)),
+
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(INCOME_HOURLYWAGE)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(INCOME_BYWEEKLYHOURS)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(INCOME_BONUSES))
+            ));
+
+        }while (cursor.moveToNext());
+
+        return myTaxedIncome;
+    }
+
+    //delete
+
+
+
+    //update
+
+
+
+
+
+
+
+
 
 }

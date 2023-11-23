@@ -8,13 +8,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.appdevproject.Investment.Models.Totals_Save;
 import com.example.appdevproject.R;
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Tax.Adapters.Tax_InvestRecyAdapter;
+import com.example.appdevproject.Tax.Adapters.Tax_LabourAdapter;
+import com.example.appdevproject.Tax.Fab.Tax_AddNewWage;
+import com.example.appdevproject.Tax.Models.Tax_Income;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -26,9 +28,11 @@ public class Tax_Page extends AppCompatActivity {
     private FloatingActionButton fab;
     private ProjectDb myDb;
 
-    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.LayoutManager layoutManager, labourManager;
+
 
     private Tax_InvestRecyAdapter recyAdapter;
+    private Tax_LabourAdapter labourAdapter;
 
 
     @Override
@@ -51,22 +55,44 @@ public class Tax_Page extends AppCompatActivity {
 
 
     //top recycler
-
-
-
+        makeLabourAdapter();
     //bottom recycler
         makeInvestedAdapter();
 
-//        labourFor.setText("eqeqe");
-//                String.format("I gained: %.2f",recyAdapter.getMyNetGain()));
+        makeHeadings();
 
 
+    }
+
+
+    public void makeLabourAdapter(){
+        //not displaying
+        List<Tax_Income> items= myDb.income_readAll(getForeighnkey());
+
+        labourManager= new LinearLayoutManager(this);
+        labour_recycle.setLayoutManager(labourManager);
+
+        labourAdapter= new Tax_LabourAdapter();
+        labourAdapter.setMyItems(items);
+        labour_recycle.setAdapter(labourAdapter);
+
+    }
+
+    public void makeInvestedAdapter(){
+        List<Totals_Save> myTaxableItems= myDb.totals_readTotal(getForeighnkey());
+
+        layoutManager= new LinearLayoutManager(this);
+        invest_recycle.setLayoutManager(layoutManager);
+
+        recyAdapter= new Tax_InvestRecyAdapter();
+        recyAdapter.setMyItems(myTaxableItems);
+        invest_recycle.setAdapter(recyAdapter);
+    }
+
+
+    private void makeHeadings(){
+        investFor.setText(String.format("I gained: %.2f",recyAdapter.getMyNetGain()));
         govWants.setText(String.format("Gov's cut: $%.2f",recyAdapter.getNetTax()));
-
-
-
-
-
     }
 
     private void makeAssocications(){
@@ -84,17 +110,6 @@ public class Tax_Page extends AppCompatActivity {
         fab= findViewById(R.id.inc_fab);
     }
 
-    public void makeInvestedAdapter(){
-          List<Totals_Save> myTaxableItems= myDb.totals_readTotal(getForeighnkey());
-
-
-        layoutManager= new LinearLayoutManager(this);
-        invest_recycle.setLayoutManager(layoutManager);
-
-        recyAdapter= new Tax_InvestRecyAdapter();
-        recyAdapter.setMyItems(myTaxableItems);
-        invest_recycle.setAdapter(recyAdapter);
-    }
 
     public int getForeighnkey() {
         SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);

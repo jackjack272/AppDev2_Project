@@ -1,6 +1,6 @@
 package com.example.appdevproject.DataBase.Interfaces;
 
-import com.example.appdevproject.User.User;
+import com.example.appdevproject.User.Models.User;
 
 public interface Users {
     static final String USER_TABLE ="user";
@@ -12,7 +12,7 @@ public interface Users {
 
 
 
-    static final String makeUser = "CREATE TABLE " + USER_TABLE
+    static final String MAKE_USER_TABLE = "CREATE TABLE " + USER_TABLE
             + "("
             + USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + USER_USERNAME + " TEXT,"

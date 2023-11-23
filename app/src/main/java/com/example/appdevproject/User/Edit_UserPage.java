@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.appdevproject.R;
 import com.example.appdevproject.DataBase.ProjectDb;
+import com.example.appdevproject.User.Models.User;
 
 
 /**

@@ -19,7 +19,7 @@ public interface Debts {
     static final String DEBT_FORENKEY=USER_ID+"_foreign";
 
 
-    static final String makeDebt= "CREATE TABLE "+DEBT_TABLE+" ("
+    static final String MAKE_DEBT_TABLE = "CREATE TABLE "+DEBT_TABLE+" ("
             + DEBT_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
             +DEBT_NAME+" TEXT,"
             +DEBT_AMOUNTBORROWED+ " REAL,"

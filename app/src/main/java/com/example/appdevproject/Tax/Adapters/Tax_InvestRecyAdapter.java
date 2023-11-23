@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdevproject.Investment.Models.Totals_Save;
 import com.example.appdevproject.R;
-import com.example.appdevproject.Tax.Models.Tax_Model;
+import com.example.appdevproject.Tax.Tax_Calculator;
 
 import java.util.List;
 
@@ -74,13 +74,13 @@ public class Tax_InvestRecyAdapter extends RecyclerView.Adapter<Tax_InvestRecyAd
         double taxConsequnece=0.0;
         switch (position){
             case TOTAL_BOND_PK:
-                taxConsequnece= Tax_Model.bondTaxConsequence();
+                taxConsequnece= Tax_Calculator.bondTaxConsequence();
                 break;
             case TOTAL_DEBT_PK:
-                taxConsequnece=Tax_Model.bondTaxConsequence();
+                taxConsequnece= Tax_Calculator.bondTaxConsequence();
                 break;
             case TOTAL_STOCK_PK:
-                taxConsequnece=Tax_Model.stockTaxConsequence();
+                taxConsequnece= Tax_Calculator.stockTaxConsequence();
                 break;
         }
         return taxConsequnece;

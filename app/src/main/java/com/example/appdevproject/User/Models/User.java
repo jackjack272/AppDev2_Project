@@ -1,6 +1,4 @@
-package com.example.appdevproject.User;
-
-import android.util.Log;
+package com.example.appdevproject.User.Models;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
