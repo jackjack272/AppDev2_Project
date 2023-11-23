@@ -68,12 +68,12 @@ public class Budget_Page extends AppCompatActivity {
     List<Item> foodList = new ArrayList<>();
     List<Item> entertainmentList = new ArrayList<>();
 
-    double totHousing = 0;
-    double totUtility = 0;
-    double totTransport = 0;
-    double totFood = 0;
-    double totEntertain = 0;
-    double totExpenses = 0;
+    float totHousing = 0;
+    float totUtility = 0;
+    float totTransport = 0;
+    float totFood = 0;
+    float totEntertain = 0;
+    float totExpenses = 0;
 
 
     @Override
@@ -90,19 +90,19 @@ public class Budget_Page extends AppCompatActivity {
         for (int i = 0; i < myItems.size(); i++){
             if(myItems.get(i).getCategory() == 0){
                 housingList.add(myItems.get(i));
-                totHousing = totHousing + myItems.get(i).getPriceOfItem();
+                totHousing = totHousing + myItems.get(i).getPriceOfItem().floatValue();
             } else if (myItems.get(i).getCategory() == 1) {
                 utilityList.add(myItems.get(i));
-                totUtility = totUtility + myItems.get(i).getPriceOfItem();
+                totUtility = totUtility + myItems.get(i).getPriceOfItem().floatValue();
             } else if (myItems.get(i).getCategory() == 2) {
                 transportList.add(myItems.get(i));
-                totTransport = totTransport + myItems.get(i).getPriceOfItem();
+                totTransport = totTransport + myItems.get(i).getPriceOfItem().floatValue();
             } else if (myItems.get(i).getCategory() == 3) {
                 foodList.add(myItems.get(i));
-                totFood = totFood + myItems.get(i).getPriceOfItem();
+                totFood = totFood + myItems.get(i).getPriceOfItem().floatValue();
             } else {
                 entertainmentList.add(myItems.get(i));
-                totEntertain = totEntertain + myItems.get(i).getPriceOfItem();
+                totEntertain = totEntertain + myItems.get(i).getPriceOfItem().floatValue();
             }
         }
 
@@ -175,7 +175,9 @@ public class Budget_Page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Budget_Page.this, Budget_ChartPage.class);
-                i.putExtra("totHousing",totHousing);
+
+                // Add data to the Intent using key-value pairs
+                i.putExtra("totHousing", totHousing);
                 i.putExtra("totUtility",totUtility);
                 i.putExtra("totTransport",totTransport);
                 i.putExtra("totFood",totFood);

@@ -38,16 +38,16 @@ public class Budget_ChartPage extends AppCompatActivity {
 
     private void getData(Intent intent)
     {
-//        float totHousing = Float.valueOf(intent.getStringExtra("totHousing"));
-//        float totUtility = Float.parseFloat(intent.getStringExtra("totUtility"));
-//        float totTransport = Float.parseFloat(intent.getStringExtra("totTransport"));
-//        float totFood = Float.parseFloat(intent.getStringExtra("totFood"));
-//        float totEntertain = Float.parseFloat(intent.getStringExtra("totEntertain"));
+        float totHousing = intent.getFloatExtra("totHousing", 0.0f);
+        float totUtility = intent.getFloatExtra("totUtility",0.0f);
+        float totTransport = intent.getFloatExtra("totTransport",0.0f);
+        float totFood = intent.getFloatExtra("totFood",0.0f);
+        float totEntertain = intent.getFloatExtra("totEntertain",0.0f);
         pieArraylist = new ArrayList<>();
-        pieArraylist.add(new PieEntry(200f,200));
-        pieArraylist.add(new PieEntry(30f,30));
-        pieArraylist.add(new PieEntry(80f,80));
-        pieArraylist.add(new PieEntry(150f,150));
-        pieArraylist.add(new PieEntry(50f,50));
+        pieArraylist.add(new PieEntry(totHousing,totHousing));
+        pieArraylist.add(new PieEntry(totUtility,totUtility));
+        pieArraylist.add(new PieEntry(totTransport,totTransport));
+        pieArraylist.add(new PieEntry(totFood,totFood));
+        pieArraylist.add(new PieEntry(totEntertain,totEntertain));
     }
 }
