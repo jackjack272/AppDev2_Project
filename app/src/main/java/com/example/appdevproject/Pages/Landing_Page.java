@@ -23,13 +23,9 @@ import com.example.appdevproject.User.Registration_Page;
 import com.google.android.material.button.MaterialButton;
 
 public class Landing_Page extends AppCompatActivity {
-
     CardView cardBudget, cardDebt,cardInvestment,cardCharts, taxCard;
-
     TextView textUserName;
-
     ImageButton btnLogOut;
-
     MaterialButton editProfile;
 
     @Override

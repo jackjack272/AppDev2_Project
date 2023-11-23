@@ -1,6 +1,7 @@
 package com.example.appdevproject.Tax;
 
 public class Tax_Calculator {
+    //cant belive i git clean -f all the content from this file away..
 
     //get tax consequence
     public static double bondTaxConsequence(){

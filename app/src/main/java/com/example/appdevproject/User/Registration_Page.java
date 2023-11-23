@@ -41,7 +41,7 @@ public class Registration_Page extends AppCompatActivity {
 
     // how do i secure the db from sql injection attacks?
 
-    ProjectDb projectDb;
+    public ProjectDb projectDb;
     EditText userName, password, email, dateOfBirth;
     Switch toggle;
     Button nextPage;
