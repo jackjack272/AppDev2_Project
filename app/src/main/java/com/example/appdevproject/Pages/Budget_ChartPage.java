@@ -3,6 +3,7 @@ package com.example.appdevproject.Pages;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.appdevproject.R;
@@ -32,6 +33,12 @@ public class Budget_ChartPage extends AppCompatActivity {
 
         //color pie data set
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        pieDataSet.setValueTextColor(Color.WHITE);
+        pieDataSet.setValueTextSize(20f);
+        pieDataSet.setSliceSpace(5f);
+        pieData.setDrawValues(true);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setRotationEnabled(true);
 
         pieChart.animateXY(5000,5000);
     }
@@ -44,10 +51,20 @@ public class Budget_ChartPage extends AppCompatActivity {
         float totFood = intent.getFloatExtra("totFood",0.0f);
         float totEntertain = intent.getFloatExtra("totEntertain",0.0f);
         pieArraylist = new ArrayList<>();
-        pieArraylist.add(new PieEntry(totHousing,totHousing));
-        pieArraylist.add(new PieEntry(totUtility,totUtility));
-        pieArraylist.add(new PieEntry(totTransport,totTransport));
-        pieArraylist.add(new PieEntry(totFood,totFood));
-        pieArraylist.add(new PieEntry(totEntertain,totEntertain));
+        if(totHousing != 0){
+            pieArraylist.add(new PieEntry(totHousing,totHousing));
+        }
+        if(totUtility != 0){
+            pieArraylist.add(new PieEntry(totUtility,totUtility));
+        }
+        if(totTransport != 0){
+            pieArraylist.add(new PieEntry(totTransport,totTransport));
+        }
+        if(totFood != 0){
+            pieArraylist.add(new PieEntry(totFood,totFood));
+        }
+        if(totEntertain != 0){
+            pieArraylist.add(new PieEntry(totEntertain,totEntertain));
+        }
     }
 }
