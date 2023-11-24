@@ -41,7 +41,7 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.InternalCl
             item_name=itemView.findViewById(R.id.item_name);
             item_amount=itemView.findViewById(R.id.item_amount);
             item_leftOnContract= itemView.findViewById(R.id.item_value_of_contract);
-            item_renewalFee= itemView.findViewById(R.id.budget_yearly_renewal);
+            //item_renewalFee= itemView.findViewById(R.id.budget_yearly_renewal);
         }
     }
 

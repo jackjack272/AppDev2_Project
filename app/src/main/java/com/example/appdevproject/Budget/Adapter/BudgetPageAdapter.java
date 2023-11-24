@@ -43,7 +43,7 @@ public class BudgetPageAdapter extends RecyclerView.Adapter<BudgetPageAdapter.Bu
         holder.item_name.setText(myItems.get(position).getNameOfItem());
         holder.item_amount.setText(String.valueOf(myItems.get(position).getPriceOfItem()));
         holder.item_value_of_contract.setText(String.valueOf(myItems.get(position).getContractLength()));
-        holder.budget_yearly_renewal.setText(String.valueOf(myItems.get(position).getYearlyRenewalFee()));
+        //holder.budget_yearly_renewal.setText(String.valueOf(myItems.get(position).getYearlyRenewalFee()));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class BudgetPageAdapter extends RecyclerView.Adapter<BudgetPageAdapter.Bu
             item_name = itemView.findViewById(R.id.item_name);
             item_amount = itemView.findViewById(R.id.item_amount);
             item_value_of_contract = itemView.findViewById(R.id.item_value_of_contract);
-            budget_yearly_renewal = itemView.findViewById(R.id.budget_yearly_renewal);
+            //budget_yearly_renewal = itemView.findViewById(R.id.budget_yearly_renewal);
         }
     }
 }
