@@ -12,6 +12,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.components.Legend;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,13 @@ public class Budget_ChartPage extends AppCompatActivity {
         pieChart.setRotationEnabled(true);
 
         pieChart.animateXY(5000,5000);
+
+        Legend legend = pieChart.getLegend();
+        legend.setTextSize(16f); // Set the text size for the legend
+//        legend.setOrientation(Legend.LegendOrientation.VERTICAL); // Set orientation to vertical
+//        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER); // Adjust vertical alignment
+//        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT); // Adjust horizontal alignment
+//        legend.setDrawInside(false); // Set to false to position the legend outside the chart
     }
 
     private void getData(Intent intent)
@@ -52,19 +60,19 @@ public class Budget_ChartPage extends AppCompatActivity {
         float totEntertain = intent.getFloatExtra("totEntertain",0.0f);
         pieArraylist = new ArrayList<>();
         if(totHousing != 0){
-            pieArraylist.add(new PieEntry(totHousing,totHousing));
+            pieArraylist.add(new PieEntry(totHousing,"Housing($)"));
         }
         if(totUtility != 0){
-            pieArraylist.add(new PieEntry(totUtility,totUtility));
+            pieArraylist.add(new PieEntry(totUtility,"Utility($)"));
         }
         if(totTransport != 0){
-            pieArraylist.add(new PieEntry(totTransport,totTransport));
+            pieArraylist.add(new PieEntry(totTransport,"Transportation($)"));
         }
         if(totFood != 0){
-            pieArraylist.add(new PieEntry(totFood,totFood));
+            pieArraylist.add(new PieEntry(totFood,"Food($)"));
         }
         if(totEntertain != 0){
-            pieArraylist.add(new PieEntry(totEntertain,totEntertain));
+            pieArraylist.add(new PieEntry(totEntertain,"Entertainment($)"));
         }
     }
 }
