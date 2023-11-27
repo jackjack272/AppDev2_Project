@@ -18,6 +18,16 @@ public class Tax_LabourAdapter extends RecyclerView.Adapter<Tax_LabourAdapter.In
 
     List<Tax_Income> myItems;
 
+    Double totalLabourTax,yearlyIncome;
+
+
+
+    public Tax_LabourAdapter(){
+        this.totalLabourTax=0.0;
+        this.yearlyIncome=0.0;
+    }
+
+
     public class InternalClass_labour extends RecyclerView.ViewHolder{
         TextView name, yealyWage, income_taxAmount,yearlyNet;
         public InternalClass_labour(@NonNull View itemView) {
@@ -51,13 +61,17 @@ public class Tax_LabourAdapter extends RecyclerView.Adapter<Tax_LabourAdapter.In
         holder.name.setText(myItems.get(position).getJobTitle());
 
         holder.yealyWage.setText(
-                String.format("interest: $%.2f",yearsIncome ));
+                String.format("Yearly Gross: $%.2f",yearsIncome ));
 
         holder.income_taxAmount.setText(
-                String.format("taxed: $%.2f", taxBurde));
+                String.format("Taxed: $%.2f", taxBurde));
 
         holder.yearlyNet.setText(
-                String.format("gain: $%.2f",yearsIncome-taxBurde));
+                String.format("Yearly Net: $%.2f",yearsIncome-taxBurde));
+
+        this.totalLabourTax+=taxBurde;
+        this.yearlyIncome+=yearlyIncome;
+
 
     }
 
@@ -72,5 +86,27 @@ public class Tax_LabourAdapter extends RecyclerView.Adapter<Tax_LabourAdapter.In
         this.myItems = myItems;
     }
 
+    public List<Tax_Income> getMyItems() {
+        return myItems;
+    }
 
+    public Double getTotalLabourTax() {
+        return totalLabourTax;
+    }
+
+    public void setTotalLabourTax(Double totalLabourTax) {
+        this.totalLabourTax = totalLabourTax;
+    }
+
+
+    public Double getYearlyIncome() {
+        return yearlyIncome;
+    }
+
+    public void setYearlyIncome(Double yearlyIncome) {
+        this.yearlyIncome = yearlyIncome;
+    }
 }
+
+
+

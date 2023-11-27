@@ -41,32 +41,20 @@ public class Tax_InvestRecyAdapter extends RecyclerView.Adapter<Tax_InvestRecyAd
     @Override
     public void onBindViewHolder(@NonNull InternalClass_tax holder, int position) {
 
-//        if(position ==0){
-//            // need to format the output to be same spacing...
-//        }else{
-//            position-=1; // this accounts for +1 in item count, // this lets me add  heading card
-
             Double taxConsequence= getTaxConsequence(position);
             Double netGain=myItems.get(position).getYearlyInterestCharge()- taxConsequence;
-
-
             holder.name.setText(
                     String.format("name: %s", myItems.get(position).getName() ));
-
             holder.interest.setText(
                     String.format("interest: $%.2f", myItems.get(position).getYearlyInterestCharge()));
-
             holder.taxConsequence.setText(
                     String.format("taxed: $%.2f ",taxConsequence ));
-
             holder.netGain.setText(
                     String.format("gain: $%.2f",netGain));
 
 
             this.myNetGain+=netGain;
             this.netTax+=taxConsequence;
-            //        }
-
 
     }
 

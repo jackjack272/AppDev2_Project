@@ -82,7 +82,7 @@ public class Invest_fragmentBond extends Fragment {
                 if(newDebt ==null){
                     return;
                 }
-                newDebt.setForeinKey(getUserId());
+                newDebt.setForeinKey(getForeinKey());
                 newDebt.setIsDebt(false);
 
                 projectDb.debt_makeOne(newDebt);
@@ -173,7 +173,7 @@ public class Invest_fragmentBond extends Fragment {
         return  null;
     }
 
-    public Integer getUserId(){
+    public Integer getForeinKey(){
         SharedPreferences sharedPreferences= requireContext()
                 .getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         String userName=sharedPreferences.getString("username","");

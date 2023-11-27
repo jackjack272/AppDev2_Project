@@ -10,10 +10,12 @@ import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.DataBase.Interfaces.Debts;
 import com.example.appdevproject.DataBase.Interfaces.Income;
 import com.example.appdevproject.DataBase.Interfaces.Items;
+import com.example.appdevproject.DataBase.Interfaces.Stock;
 import com.example.appdevproject.DataBase.Interfaces.Totals;
 import com.example.appdevproject.DataBase.Interfaces.Users;
 
 import com.example.appdevproject.Investment.Models.Invest_Debt;
+import com.example.appdevproject.Investment.Models.Invest_Stock;
 import com.example.appdevproject.Investment.Models.Totals_Save;
 import com.example.appdevproject.Tax.Models.Tax_Income;
 import com.example.appdevproject.User.Models.User;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectDb extends SQLiteOpenHelper
-        implements Debts, Items, Users, Totals, Income
+        implements Debts, Items, Users, Totals, Income, Stock
 
 {
     /** This is the Database for the project
@@ -32,7 +34,6 @@ public class ProjectDb extends SQLiteOpenHelper
 
     private static final String db_name="fall23_AndroidApp";
     private static final Integer db_version=1;
-
     public ProjectDb(Context context) {
         super(context, db_name, null , db_version);
     }
@@ -46,8 +47,8 @@ public class ProjectDb extends SQLiteOpenHelper
         db.execSQL(MAKE_DEBT_TABLE); //fk user
         //totals table
         db.execSQL(MAKE_TOTALS_TABLE);//fk usr
-
         db.execSQL(MAKE_INCOME_TABLE);//fk usr
+        db.execSQL(MAKE_STOCK_TABLE); //fk usr
 
     }
     @Override
@@ -55,7 +56,6 @@ public class ProjectDb extends SQLiteOpenHelper
         db.execSQL("DROP TABLE IF EXISTS "+ USER_TABLE);
         onCreate(db);
     }
-
 
 //DEBT CRUD
     public void debt_makeOne(Invest_Debt debt){
@@ -416,7 +416,8 @@ public class ProjectDb extends SQLiteOpenHelper
                     break;
                 case TOTAL_STOCK_PK:
                     name="Stock";
-                    break;
+                    continue; //stock is being dropped from requirements
+//                    break;
                 default:
                     break;
             }
@@ -553,6 +554,59 @@ public class ProjectDb extends SQLiteOpenHelper
     //update
 
 
+//Stock
+
+//Create
+    public void stock_saveOne(Invest_Stock stock){
+        SQLiteDatabase db= getWritableDatabase();
+        ContentValues cv= new ContentValues();
+
+        cv.put(STOCK_TICKER,stock.getTicker());
+        cv.put(STOCK_PRICE,stock.getPrice());
+
+        cv.put(STOCK_QTY, stock.getQuantity());
+        cv.put(STOCK_DIV,stock.getDividends());
+        cv.put(STOCK_LASTSIXMONTHCLOSE,stock.getLastSixMonthClose());
+        cv.put(STOCK_LASTSIXMONTHOPEN,stock.getLastSixMonthOpen());
+
+        cv.put(STOCK_FORENKEY, stock.getForeignKey());
+
+        db.insert(STOCK_TABLE,null,cv);
+    }
+
+
+//read all
+    public List<Invest_Stock> stock_readAll(int foreignKey){
+        String query=String.format("SELECT %s FROM %s WHERE %s == %d",
+                "*",STOCK_TABLE,STOCK_FORENKEY,foreignKey
+        );
+
+
+        SQLiteDatabase db= getReadableDatabase();
+        Cursor cu= db.rawQuery(query,null);
+        cu.moveToFirst();
+        List<Invest_Stock> myStocks= new ArrayList<>();
+
+        do{
+            if(cu.getCount()==0){
+                return null;
+            }
+
+            myStocks.add(new Invest_Stock(
+                cu.getInt(cu.getColumnIndexOrThrow(STOCK_ID)),
+                foreignKey,
+                cu.getString(cu.getColumnIndexOrThrow(STOCK_TICKER)),
+                cu.getDouble(cu.getColumnIndexOrThrow(STOCK_PRICE)),
+                cu.getDouble(cu.getColumnIndexOrThrow(STOCK_DIV)),
+                cu.getDouble(cu.getColumnIndexOrThrow(STOCK_LASTSIXMONTHCLOSE)),
+                cu.getDouble(cu.getColumnIndexOrThrow(STOCK_LASTSIXMONTHOPEN)),
+                cu.getInt(cu.getColumnIndexOrThrow(STOCK_QTY))
+            ));
+
+        }while(cu.moveToNext());
+
+        return  myStocks;
+    }
 
 
 

@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdevproject.DataBase.ProjectDb;
+import com.example.appdevproject.Investment.Models.Invest_Stock;
 import com.example.appdevproject.Investment.Models.Totals_Save;
 import com.example.appdevproject.R;
 
@@ -17,7 +19,7 @@ import java.util.List;
 public class StockAdapter extends RecyclerView.Adapter<StockAdapter.InternalClass> {
     Context context;
     ProjectDb projectDb;
-    List<Totals_Save> totalsBaseList;
+    List<Invest_Stock> myStock;
 
 
     public StockAdapter (Context context){
@@ -27,9 +29,14 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.InternalClas
     }
 
     public class InternalClass extends RecyclerView.ViewHolder{
+
+        TextView ticker, pricePerEarning, monthlyPay;
         public InternalClass(@NonNull View itemView) {
             super(itemView);
+
+
         }
+
     }
 
     @NonNull
@@ -48,15 +55,16 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.InternalClas
 
     @Override
     public int getItemCount() {
-        return totalsBaseList.size();
+        return myStock.size();
     }
 
-    public void setItems(List<Totals_Save> myTotals){
-        this.totalsBaseList = myTotals;
+    public List<Invest_Stock> getMyStock() {
+        return myStock;
     }
 
-
-
+    public void setMyStock(List<Invest_Stock> myStock) {
+        this.myStock = myStock;
+    }
 }
 
 

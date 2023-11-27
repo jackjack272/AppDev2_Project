@@ -1,5 +1,7 @@
 package com.example.appdevproject.Investment.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -85,7 +87,7 @@ public class Invest_fragmentStock extends Fragment {
     Button save;
     ProjectDb myDb;
     RequestQueue requestQueue;
-
+    Invest_Stock stock;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle saveInstanceState){
@@ -93,70 +95,66 @@ public class Invest_fragmentStock extends Fragment {
         presetValues("xbb"); //assumption of Toronto Stock Exchange.
 
         requestQueue= VollySingleton.getInstace(getContext()).getRequestQueue();
-
-
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String ticker= stockTicker.getText().toString();
                 String url=makeAPIUrl(ticker,"AXGKAKRXD6N4OHYY");
 
-                Invest_Stock stock= makeApiCall(url);
+                makeApiCall(); // This calls a static stock object
+                    //add the URL and parse the json to get real input
+
                 if(stock==null){
                     return;
                 }
-//                myDb.stock_makeOne(stock);
 
+                stock.setForeignKey(getForeinKey());
+                myDb.stock_saveOne(stock);
+
+                Toast.makeText(getContext(), "Stock added successfully",
+                        Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
 
     }
 
-    protected Invest_Stock makeApiCall(String url){
-        Invest_Stock myStock=null;
+    protected void makeApiCall(String url) {
 
-        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try{
-                    Log.e(TAG, response.toString());
-
-//                    JSONArray myArray=response.getJSONArray("Weekly Adjusted Time Series");
-//                    Log.e(TAG,"inside api call");
-//                    Log.e(TAG, myArray.toString());
-
-                    JSONArray timeSeries= response.getJSONArray("Monthly Adjusted Time Series");
-                    Log.e(TAG,timeSeries.toString());
+//        Log.e(TAG,url);
+//        Log.e(TAG,"going to make api call");
 
 
+        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest
+                (Request.Method.GET, url, null, response -> {
+                    try {
+
+                        Log.e(TAG,"api call now ");
+
+                        JSONArray jsonArray= response.getJSONArray("Monthly Adjusted Time Series");
+                        JSONObject dataSet= jsonArray.getJSONObject(1);
+
+//                        dataSet.keys();
+
+                        Log.e(TAG,dataSet.keys().toString());
 
 
-
-
-
-
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                    Log.e(TAG,"dev, bad call");
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "is this stock on TSX?", Toast.LENGTH_SHORT).show();
-
-                Log.e(TAG, error.toString());
-            }
-        });
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //can set the adapter here
+                }, new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //TODO: Handle Error
+                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         requestQueue.add(jsonObjectRequest);
-        return myStock;
+    }
+
+    private void makeApiCall(){
+        stock= new Invest_Stock("ZWC",27.00,.073, 27.00,25.00,15);
     }
 
     private String makeAPIUrl(String ticker, String apiKey){
@@ -182,5 +180,12 @@ public class Invest_fragmentStock extends Fragment {
     }
 
 
+    public Integer getForeinKey(){
+        SharedPreferences sharedPreferences= requireContext()
+                .getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        String userName=sharedPreferences.getString("username","");
+        Integer id= myDb.getUserById(userName);
+        return id;
+    }
 
 }

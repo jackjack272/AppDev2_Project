@@ -74,7 +74,9 @@ public class SumsAdapter extends RecyclerView.Adapter<SumsAdapter.ViewHolder> {
                 public void onClick(View v) {
                     int postion = getAdapterPosition();
 
-                    Intent intent= new Intent(v.getContext(),Invest_ShowClickedCategory.class);
+                    Intent intent= new Intent(v.getContext(),
+                            Invest_ShowClickedCategory.class);
+
                     Bundle bundle= new Bundle();
                     bundle.putInt("category",postion);
 

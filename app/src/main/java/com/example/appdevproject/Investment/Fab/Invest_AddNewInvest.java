@@ -42,20 +42,6 @@ public class Invest_AddNewInvest extends BottomSheetDialogFragment {
             }
         });
 
-
-        stock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "stock", Toast.LENGTH_SHORT).show();
-
-                // Replace the fragment in the specified container view
-                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-                transaction.replace(R.id.invest_fab_fragment, new Invest_fragmentStock());
-                transaction.addToBackStack(null); // Add transaction to back stack if needed
-                transaction.commit();
-            }
-        });
-
         bond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +54,22 @@ public class Invest_AddNewInvest extends BottomSheetDialogFragment {
                 transaction.commit();
             }
         });
+
+
+//        stock.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getContext(), "stock", Toast.LENGTH_SHORT).show();
+//
+//                // Replace the fragment in the specified container view
+//                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+//                transaction.replace(R.id.invest_fab_fragment, new Invest_fragmentStock());
+//                transaction.addToBackStack(null); // Add transaction to back stack if needed
+//                transaction.commit();
+//            }
+//        });
+
+
     }
 
 
@@ -78,7 +80,7 @@ public class Invest_AddNewInvest extends BottomSheetDialogFragment {
 
     public void makeAssocications(){
         debt= getView().findViewById(R.id.invest_add_debt);
-        stock= getView().findViewById(R.id.invest_add_stock);
+//        stock= getView().findViewById(R.id.invest_add_stock);
         bond= getView().findViewById(R.id.invest_add_bond);
         output= getView().findViewById(R.id.invest_fab_fragment);
     }

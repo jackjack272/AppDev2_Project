@@ -44,6 +44,8 @@ public class Invest_Page extends AppCompatActivity {
 
     FloatingActionButton fab;
 
+    Double totalInvested=0.0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +67,20 @@ public class Invest_Page extends AppCompatActivity {
             }
         });
 
+        makeHeading();
+
+
+    }
+
+    public void makeHeading(){
+        marketVale.setText(String.format("$%.2f", this.totalInvested));
     }
 
     public void makeAssociations(){
         fab=findViewById(R.id.invest_fab_addOne);
         recyclerView=findViewById(R.id.invest_list);
+        marketVale=findViewById(R.id.invest_maketValue);
+
         myDb= new ProjectDb(Invest_Page.this);
     }
 
@@ -99,17 +110,22 @@ public class Invest_Page extends AppCompatActivity {
         Totals_Save bonds= xx.getBonds();
         if(bonds != null){
             myTotals.add(bonds);
+            totalInvested+=bonds.getTotalAmount();
+
         }
+
 
         bonds=xx.getDebt();
         if(bonds!=null){
             myTotals.add(bonds);
+            totalInvested-=bonds.getTotalAmount();
         }
 
-        bonds=(xx.getStock());
-        if(bonds !=null){
-            myTotals.add(xx.getStock());
-        }
+//        bonds=(xx.getStock());
+//        if(bonds !=null){
+//            myTotals.add(xx.getStock());
+//        }
+
         return myTotals;
     }
 

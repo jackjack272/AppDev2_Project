@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Investment.Fragments.Invest_fragmentBond;
+import com.example.appdevproject.Investment.Fragments.Invest_fragmentStock;
 import com.example.appdevproject.Investment.Models.Interfaces.Bonds;
 
 import java.util.List;
@@ -73,10 +74,21 @@ public class Totals_Find
 
     @Override
     public Totals_Save getStock() {
+        List<Invest_Stock> myStocks= myDb.stock_readAll(this.foreignKey);
 
+        double principle=0.0,yearlyPercentGain=0.0, yearlyPayOut=0.0;
+        if(myStocks== null){
+            return new Totals_Save("Stock",0.0,0.0,0.0);
+        }
 
+        for(Invest_Stock one: myStocks){
+            principle+=one.getQuantity()*one.getPrice();
+            yearlyPayOut+=one.getYearlyEarn();
+        }
 
-        return new Totals_Save("Stock",0.0,0.0,0.0);
+        yearlyPercentGain=yearlyPayOut/principle*100;
+
+        return new Totals_Save("Stock",yearlyPercentGain,principle,yearlyPayOut);
     }
 
 

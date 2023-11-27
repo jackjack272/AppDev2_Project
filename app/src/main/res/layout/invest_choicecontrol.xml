@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
         android:layout_marginTop="23dp"
-        android:text="stock"
+        android:text=""
         app:layout_constraintStart_toEndOf="@+id/invest_add_debt"
         app:layout_constraintTop_toBottomOf="@+id/invest_choice_heading" />
 
@@ -50,7 +50,7 @@
 
         android:layout_width="0dp"
         android:layout_height="526dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

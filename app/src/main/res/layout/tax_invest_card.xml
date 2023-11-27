@@ -1,70 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-
-    <TextView
-        android:id="@+id/tax_card_name"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="name"
+        android:orientation="vertical">
 
-        android:layout_marginRight="8dp"
-        />
+        <!-- Card 1 -->
+        <LinearLayout
+            android:id="@+id/card1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
+            <TextView
+                android:id="@+id/tax_card_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Name"
+                android:layout_marginEnd="8dp" />
 
-    <TextView
-        android:id="@+id/tax_card_interest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/tax_card_netGain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Net Gain"
+                android:layout_marginEnd="8dp" />
 
-        android:text="interst payment"
-        android:layout_marginRight="8dp"
+        </LinearLayout>
 
+        <!-- Spacing -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
 
+        <!-- Card 2 -->
+        <LinearLayout
+            android:id="@+id/card2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="78dp"
+            <TextView
+                android:id="@+id/tax_card_interest"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Interest Payment"
+                android:layout_marginEnd="8dp" />
 
-        />
+            <TextView
+                android:id="@+id/tax_card_taxConsequence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tax Consequence" />
 
-    <TextView
-        android:id="@+id/tax_card_taxConsequence"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tax consequence"
-        android:layout_marginRight="8dp"
+        </LinearLayout>
 
-
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="3dp" />
-
-    <TextView
-        android:id="@+id/tax_card_netGain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:text="net gain"
-        android:layout_marginRight="8dp"
-
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="261dp"
-        />
-
-
+        <!-- Add more cards or adjust spacing as needed -->
 
     </LinearLayout>
 

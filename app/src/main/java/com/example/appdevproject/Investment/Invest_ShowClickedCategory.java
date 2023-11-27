@@ -48,6 +48,7 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
         makeAssocications();
 
         showHeading();
+
         makeAdapter(getCategory());
 
         updateTotals(); //i control the totals table
@@ -203,6 +204,8 @@ public class Invest_ShowClickedCategory extends AppCompatActivity {
 
         else {
             stockAdapter=new StockAdapter(Invest_ShowClickedCategory.this);
+            stockAdapter.setMyStock( myDb.stock_readAll(getForeighnkey()));
+
             recyclerView.setAdapter(stockAdapter);
         }
 

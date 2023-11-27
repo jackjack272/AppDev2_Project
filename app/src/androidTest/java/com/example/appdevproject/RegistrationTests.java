@@ -44,9 +44,7 @@ public class RegistrationTests {
     @Rule
     public ActivityTestRule <Registration_Page> myact= new ActivityTestRule <>(Registration_Page.class);
 
-
-
-
+    
     @Test
     public void testRegistrationVsSignInFormDisplay() {
         Espresso.onView(ViewMatchers.withId(R.id.switch1))

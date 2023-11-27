@@ -34,7 +34,8 @@ public class Tax_Income {
 
 
     public Double getYearlyIncome(){
-        return this.hourlyWage*52; // 40 hours per week * 52 weeks.
+        return this.hourlyWage*(this.hoursWorked*2)*26;
+        // 80 hours every 2 weeks * (52 annual weeks/2 ) 26 by-weeks
     }
 
 

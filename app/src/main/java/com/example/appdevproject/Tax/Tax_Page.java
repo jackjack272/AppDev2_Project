@@ -91,8 +91,10 @@ public class Tax_Page extends AppCompatActivity {
 
 
     private void makeHeadings(){
-        investFor.setText(String.format("I gained: %.2f",recyAdapter.getMyNetGain()));
-        govWants.setText(String.format("Gov's cut: $%.2f",recyAdapter.getNetTax()));
+        labourFor.setText(String.format("My labour: %.2f. My prize: %.2f",
+                labourAdapter.getYearlyIncome(), labourAdapter.getTotalLabourTax()));
+        investFor.setText(String.format("I gained: %.2f",recyAdapter.getNetTax()));
+        govWants.setText(String.format("Gov's cut: $%.2f", labourAdapter.getTotalLabourTax()+ recyAdapter.getNetTax()));
     }
 
     private void makeAssocications(){
