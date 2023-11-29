@@ -44,7 +44,7 @@ public class Budget_ChartPage extends AppCompatActivity {
         pieChart.animateXY(5000,5000);
 
         Legend legend = pieChart.getLegend();
-        legend.setTextSize(16f); // Set the text size for the legend
+        legend.setTextSize(14f); // Set the text size for the legend
 //        legend.setOrientation(Legend.LegendOrientation.VERTICAL); // Set orientation to vertical
 //        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER); // Adjust vertical alignment
 //        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT); // Adjust horizontal alignment

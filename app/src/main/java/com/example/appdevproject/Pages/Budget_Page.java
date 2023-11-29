@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.appdevproject.Budget.Adapter.BudgetPageAdapter;
@@ -16,6 +17,7 @@ import com.example.appdevproject.Budget.Fab.Budget_AddNewItem;
 import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.R;
 import com.example.appdevproject.DataBase.ProjectDb;
+import com.example.appdevproject.User.Edit_UserPage;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -61,6 +63,7 @@ public class Budget_Page extends AppCompatActivity {
     private FloatingActionButton fab,chart_fab;
     private ProjectDb myDb;
     private TabLayout tabCategories;
+    private ImageView imgRefresh;
 
     List<Item> housingList = new ArrayList<>();
     List<Item> utilityList = new ArrayList<>();
@@ -159,6 +162,13 @@ public class Budget_Page extends AppCompatActivity {
             }
         });
 
+        imgRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Budget_Page.this, Budget_Page.class));
+            }
+        });
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,6 +213,8 @@ public class Budget_Page extends AppCompatActivity {
         totalExp = findViewById(R.id.txtTotal);
         tabCategories = findViewById(R.id.tabCategories);
         chart_fab = findViewById(R.id.bud_chart_fab);
+
+        imgRefresh = findViewById(R.id.refresh);
 
     }
 }
