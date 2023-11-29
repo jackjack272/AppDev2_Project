@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="90dp"
     android:background="#D9DDF4"
@@ -55,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
-            android:layout_weight="2"
+            android:layout_weight="2.2"
             android:orientation="vertical">
 
             <TextView
@@ -68,20 +69,20 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/item_amount"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_weight="1"-->
-<!--                android:text="amount"-->
-<!--                android:textSize="16sp" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/item_amount"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:text="amount"-->
+            <!--                android:textSize="16sp" />-->
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="2.2"
             android:orientation="vertical">
 
             <TextView
@@ -127,6 +128,20 @@
                 android:gravity="center"
                 android:text="contract"
                 android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
         </LinearLayout>
 
     </LinearLayout>
