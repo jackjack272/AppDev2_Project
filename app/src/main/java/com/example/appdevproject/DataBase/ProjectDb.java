@@ -311,9 +311,10 @@ public class ProjectDb extends SQLiteOpenHelper
 
     }
     public void item_remove(int position){
-        SQLiteDatabase db= getWritableDatabase();
+        //SQLiteDatabase db= getWritableDatabase();
 //        db.delete(ITEM_TABLE, ITEM_ID+"== ",)
         //dont remeber the code for this
+        getWritableDatabase().delete(ITEM_TABLE,ITEM_ID+"==?",new String[]{String.valueOf(position)});
     }
 //---------------
 
