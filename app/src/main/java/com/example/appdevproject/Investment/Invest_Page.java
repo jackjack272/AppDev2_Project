@@ -68,8 +68,6 @@ public class Invest_Page extends AppCompatActivity {
         });
 
         makeHeading();
-
-
     }
 
     public void makeHeading(){

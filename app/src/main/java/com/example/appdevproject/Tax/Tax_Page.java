@@ -38,6 +38,7 @@ public class Tax_Page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income);
+
         makeAssocications();
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -52,12 +53,12 @@ public class Tax_Page extends AppCompatActivity {
             }
         });
 
-
-    //top recycler
+//    //top recycler
         makeLabourAdapter();
-    //bottom recycler
+//
+//    //bottom recycler
         makeInvestedAdapter();
-
+//
         makeHeadings();
 
 
@@ -65,6 +66,8 @@ public class Tax_Page extends AppCompatActivity {
 
 
     public void makeLabourAdapter(){
+
+    //breaks when the db is empty.
         //not displaying
         List<Tax_Income> items= myDb.income_readAll(getForeighnkey());
 
