@@ -57,6 +57,10 @@ public class Debt_Repayment extends AppCompatActivity {
                 makeAdapter();
                 debt_adapter.setItems(myDebts);
 
+
+                if(myDebts.size()==0){
+                    return;
+                }
                 minRepay.setText(String.format("just interest: $%.2f",calcRepay(myDebts)));
 
                 setBottomAdapterValues(myDebts);
@@ -69,6 +73,9 @@ public class Debt_Repayment extends AppCompatActivity {
                 makeAdapter();
                 debt_adapter.setItems(myDebts);
 
+                if(myDebts.size()==0){
+                    return;
+                }
                 minRepay.setText(String.format("just interest: $%.2f",calcRepay(myDebts)));
 
                 setBottomAdapterValues(myDebts);
