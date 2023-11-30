@@ -72,7 +72,6 @@ public class Tax_LabourAdapter extends RecyclerView.Adapter<Tax_LabourAdapter.In
         this.totalLabourTax+=taxBurde;
         this.yearlyIncome+=yearlyIncome;
 
-
     }
 
     @Override

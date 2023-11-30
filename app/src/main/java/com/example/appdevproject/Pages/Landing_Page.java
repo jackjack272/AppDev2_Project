@@ -38,9 +38,6 @@ public class Landing_Page extends AppCompatActivity {
         setHeading();
 
         myNav(); //temp nav
-
-
-
     }
 
 
@@ -67,12 +64,6 @@ public class Landing_Page extends AppCompatActivity {
 
     public void myNav(){
 
-        taxCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Landing_Page.this, Tax_Page.class));
-            }
-        });
 
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +71,15 @@ public class Landing_Page extends AppCompatActivity {
                 startActivity(new Intent(Landing_Page.this, Edit_UserPage.class));
             }
         });
+
+        taxCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Landing_Page.this, Tax_Page.class));
+            }
+        });
+
+
         cardBudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

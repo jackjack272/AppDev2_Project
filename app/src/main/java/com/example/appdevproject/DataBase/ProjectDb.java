@@ -532,7 +532,7 @@ public class ProjectDb extends SQLiteOpenHelper
         List<Tax_Income> myTaxedIncome=new ArrayList<>();
         do{
             if(cursor.getCount()==0){
-                return null;
+                return myTaxedIncome;
             }
             myTaxedIncome.add(new Tax_Income(
                     cursor.getInt(cursor.getColumnIndexOrThrow(INCOME_ID)),
