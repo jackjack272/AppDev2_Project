@@ -127,7 +127,7 @@
     <string name="invest_frag_stock_btn">Save</string>
 
 
-<!--    invest edit
+    <!--    invest edit
     invest_edit_
 -->
     <string name="invest_edit_heading">Edit </string>
@@ -138,9 +138,7 @@
     <string name="invest_edit_month">Term In Month</string>
 
 
-
-
-<!--
+    <!--
     Sum Adapter
     sum_adapter_
 -->
@@ -149,7 +147,6 @@
     <string name="sum_adapter_TotalInvested">Total Invested.</string>
     <string name="sum_adapter_avgYearlyInterest">Avg Yearly %</string>
     <string name="sum_adapter_monhtlyPayOut">Monthly Payout!</string>
-
 
 
 </resources>

@@ -8,19 +8,16 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-
-        tools:targetApi="31"
-
-        android:theme="@style/Base.Theme.AppDevProject"
-        android:roundIcon="@mipmap/ic_logo"
         android:icon="@mipmap/ic_logo"
-
-        >
-
-
-<!--        registration-->
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Base.Theme.AppDevProject"
+        tools:targetApi="31">
+        <activity
+            android:name=".Pages.ResourcesActivity"
+            android:exported="false" />
+        <!-- registration -->
         <activity
             android:name=".User.Registration_Page"
             android:exported="true">
@@ -29,41 +26,25 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-<!--        Landing-->
+        </activity> <!-- Landing -->
         <activity
             android:name=".z_oldImplements.z_Loans.LandingPage"
-            android:exported="false" />
-
-
-<!--     Edit user Page   -->
-
+            android:exported="false" /> <!-- Edit user Page -->
         <activity
             android:name=".User.Edit_UserPage"
-            android:exported="false" />
-
-<!--budget page -->
+            android:exported="false" /> <!-- budget page -->
         <activity
             android:name=".Pages.Budget_Page"
             android:exported="false" />
         <activity
             android:name=".Pages.Budget_ChartPage"
             android:exported="false" />
-
-
-
-
-
-
-
         <activity
             android:name=".Investment.Invest_Edit"
             android:exported="false" />
         <activity
             android:name=".Investment.Invest_ShowClickedCategory"
-            android:exported="false"></activity>
-
+            android:exported="false" />
         <activity
             android:name=".Pages.Charts_Page"
             android:exported="false" />
@@ -73,22 +54,15 @@
         <activity
             android:name=".Investment.Invest_Page"
             android:exported="false" />
-
         <activity
             android:name=".Debt_Repayment.Debt_Repayment"
             android:exported="false" />
         <activity
             android:name=".Tax.Tax_Page"
             android:exported="false" />
-
-
-
-
         <activity
             android:name=".Pages.Landing_Page"
             android:exported="false" />
-
-
     </application>
 
 </manifest>
