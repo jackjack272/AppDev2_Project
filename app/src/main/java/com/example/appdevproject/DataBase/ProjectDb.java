@@ -121,7 +121,7 @@ public class ProjectDb extends SQLiteOpenHelper
         List<Invest_Debt> myDebts= new ArrayList<>();
         do{
             if(cursor.getCount()==0){
-                break;
+                return myDebts;
             }
             Invest_Debt debt=new Invest_Debt(
                     cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ID)),
@@ -147,8 +147,6 @@ public class ProjectDb extends SQLiteOpenHelper
                 str=String.format("SELECT * FROM %s WHERE %s == %d AND %s == %d ORDER BY %s %s;",
                         DEBT_TABLE, DEBT_FORENKEY,foreignKey, DEBT_ISDEBT, 1, DEBT_INTERESTRATE,"DESC");
                 break;
-            case 2:
-                break;
             default:
                 break;
         }
@@ -162,7 +160,7 @@ public class ProjectDb extends SQLiteOpenHelper
         List<Invest_Debt> myDebts= new ArrayList<>();
         do{
             if(cursor.getCount()==0){
-                break;
+                return myDebts;
             }
 
             Invest_Debt debt=new Invest_Debt(
