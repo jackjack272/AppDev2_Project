@@ -54,23 +54,24 @@ public class Tax_LabourAdapter extends RecyclerView.Adapter<Tax_LabourAdapter.In
     @Override
     public void onBindViewHolder(@NonNull Tax_LabourAdapter.InternalClass_labour holder, int position) {
 
-        Double yearsIncome= myItems.get(position).getYearlyIncome();
-        Double taxBurde= Tax_Calculator.incomeTaxConsequence(yearsIncome);
+        Double local_yearsIncome= myItems.get(position).getYearlyIncome();
+        Double taxBurde= Tax_Calculator.incomeTaxConsequence(local_yearsIncome);
 
+
+        this.totalLabourTax+=taxBurde;
+        this.yearlyIncome+=local_yearsIncome;
 
         holder.name.setText(myItems.get(position).getJobTitle());
 
         holder.yealyWage.setText(
-                String.format("Yearly Gross: $%.2f",yearsIncome ));
+                String.format("Yearly Gross: $%.2f",local_yearsIncome ));
 
         holder.income_taxAmount.setText(
                 String.format("Taxed: $%.2f", taxBurde));
 
         holder.yearlyNet.setText(
-                String.format("Yearly Net: $%.2f",yearsIncome-taxBurde));
+                String.format("Yearly Net: $%.2f",local_yearsIncome-taxBurde));
 
-        this.totalLabourTax+=taxBurde;
-        this.yearlyIncome+=yearlyIncome;
 
     }
 
@@ -99,7 +100,7 @@ public class Tax_LabourAdapter extends RecyclerView.Adapter<Tax_LabourAdapter.In
 
 
     public Double getYearlyIncome() {
-        return yearlyIncome;
+        return this.yearlyIncome;
     }
 
     public void setYearlyIncome(Double yearlyIncome) {

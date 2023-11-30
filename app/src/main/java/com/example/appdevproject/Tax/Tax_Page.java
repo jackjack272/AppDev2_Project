@@ -59,10 +59,18 @@ public class Tax_Page extends AppCompatActivity {
 //    //bottom recycler
         makeInvestedAdapter();
 //
+
+
+
+        sleepThread(750); //sleep so db can be queried befor this displays
         makeHeadings();
-
-
     }
+
+
+    private void sleepThread(int mils) {
+        try {Thread.sleep(mils);} catch (InterruptedException e) {e.printStackTrace();}
+    }
+
 
 
     public void makeLabourAdapter(){
@@ -81,6 +89,7 @@ public class Tax_Page extends AppCompatActivity {
     }
 
     public void makeInvestedAdapter(){
+
         List<Totals_Save> myTaxableItems= myDb.totals_readTotal(getForeighnkey());
 
         layoutManager= new LinearLayoutManager(this);
@@ -93,10 +102,17 @@ public class Tax_Page extends AppCompatActivity {
 
 
     private void makeHeadings(){
-        labourFor.setText(String.format("My labour: %.2f. My prize: %.2f",
-                labourAdapter.getYearlyIncome(), labourAdapter.getTotalLabourTax()));
-        investFor.setText(String.format("I gained: %.2f",recyAdapter.getNetTax()));
-        govWants.setText(String.format("Gov's cut: $%.2f", labourAdapter.getTotalLabourTax()+ recyAdapter.getNetTax()));
+    //from labour
+        Double totalInc=0.0,totalLabtax=0.0, totalInvestTax=0.0;
+        totalInc= labourAdapter.getYearlyIncome();
+        totalLabtax= labourAdapter.getTotalLabourTax();
+
+    //from investmentes
+        totalInvestTax= recyAdapter.getNetTax();
+
+        labourFor.setText(String.format("My labour: %.2f. My prize: %.2f",totalInc,totalLabtax));
+        investFor.setText(String.format("I gained: %.2f",totalInvestTax));
+        govWants.setText(String.format("Gov's cut: $%.2f", totalLabtax+totalInvestTax));
     }
 
     private void makeAssocications(){
