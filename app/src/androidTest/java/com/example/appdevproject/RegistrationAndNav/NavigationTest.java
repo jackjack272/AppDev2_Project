@@ -9,6 +9,7 @@ import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.appdevproject.Pages.Landing_Page;
 import com.example.appdevproject.R;
 
 import com.example.appdevproject.User.Registration_Page;
@@ -38,13 +39,15 @@ public class NavigationTest extends RegistrationTests {
      *      can i log out?
      */
 
+
+
     @Rule
     public ActivityTestRule <Registration_Page> myact= new ActivityTestRule <>(Registration_Page.class);
 
     //check the edit user page activates
     @Test
     public void clickEditUser(){
-        a_testRegister();
+        b_testLogIn();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.btnEditProfile))
@@ -58,7 +61,7 @@ public class NavigationTest extends RegistrationTests {
 
     @Test
     public void clickBudget(){
-        a_testRegister();
+        b_testLogIn();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.imgBudget))
@@ -67,13 +70,12 @@ public class NavigationTest extends RegistrationTests {
         Espresso.onView(ViewMatchers.withId(R.id.bud_monthlyExp))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 
-
-
+        Espresso.pressBack();
     }
 
     @Test
     public void clickDebt (){
-        a_testRegister();
+        b_testLogIn();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.DebtCard))
@@ -82,13 +84,13 @@ public class NavigationTest extends RegistrationTests {
         Espresso.onView(ViewMatchers.withId(R.id.debt_repay_size))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 
+        Espresso.pressBack();
 
     }
 
     @Test
     public void clickInvest (){
-
-        a_testRegister();
+        b_testLogIn();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.InvestmentCard))
@@ -100,7 +102,7 @@ public class NavigationTest extends RegistrationTests {
 
     @Test
     public void clickTax (){
-        a_testRegister();
+        b_testLogIn();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.GoalCard))
@@ -112,7 +114,7 @@ public class NavigationTest extends RegistrationTests {
 
     @Test
     public void clickLogOut(){
-        a_testRegister();
+        b_testLogIn();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.btnLogout))

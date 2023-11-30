@@ -92,6 +92,7 @@ public class RegistrationTests {
     }
 
 
+
     @Test
     public void b_testLogIn() {
 
@@ -128,9 +129,12 @@ public class RegistrationTests {
         Espresso.onView(ViewMatchers.withId(R.id.textUserName))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 
-        removeUser();
+//        removeUser();
 
     }
+
+
+
 
     private void removeUser(){
         Context context = ApplicationProvider.getApplicationContext();
