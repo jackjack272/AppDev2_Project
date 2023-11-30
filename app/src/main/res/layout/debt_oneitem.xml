@@ -14,64 +14,61 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:background="#D9DDF4"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="DebtName"
             android:id="@+id/debt_oneitem_debtname"
+            android:layout_width="wrap_content"
 
-            android:layout_marginRight="25dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            />
 
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="15dp"
+            android:text="DebtName"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="4%"
             android:id="@+id/debt_oneitem_interest"
+            android:layout_width="wrap_content"
 
-            android:layout_marginRight="25dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            />
 
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="15dp"
+            android:text="4%" />
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="$250"
             android:id="@+id/debt_oneitem_interestPayment"
-            android:layout_marginRight="15dp"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
-            />
+            android:text="$250" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="$10000"
             android:id="@+id/debt_oneitem_totalBorrowed"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
 
-            android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
-            />
-
-
+            android:text="$10000" />
 
 
     </LinearLayout>

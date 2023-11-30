@@ -192,6 +192,7 @@ public class Budget_Page extends AppCompatActivity {
                 i.putExtra("totTransport",totTransport);
                 i.putExtra("totFood",totFood);
                 i.putExtra("totEntertain",totEntertain);
+                i.putExtra("totExpenses",totExpenses);
                 startActivity(i);
             }
         });

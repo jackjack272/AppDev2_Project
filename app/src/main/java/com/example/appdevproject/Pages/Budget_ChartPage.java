@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.appdevproject.R;
 import com.github.mikephil.charting.charts.PieChart;
@@ -18,11 +19,14 @@ import java.util.ArrayList;
 
 public class Budget_ChartPage extends AppCompatActivity {
     ArrayList pieArraylist;
+    TextView txtTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_chart);
+
+        txtTotal = findViewById(R.id.txtTotal);
 
         Intent intent = getIntent();
         PieChart pieChart = findViewById(R.id.budgetpiechart);
@@ -58,6 +62,8 @@ public class Budget_ChartPage extends AppCompatActivity {
         float totTransport = intent.getFloatExtra("totTransport",0.0f);
         float totFood = intent.getFloatExtra("totFood",0.0f);
         float totEntertain = intent.getFloatExtra("totEntertain",0.0f);
+        float totExpenses = intent.getFloatExtra("totExpenses",0.0f);
+        txtTotal.setText("Total Expenses: " + totExpenses + " $");
         pieArraylist = new ArrayList<>();
         if(totHousing != 0){
             pieArraylist.add(new PieEntry(totHousing,"Housing($)"));
