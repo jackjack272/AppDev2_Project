@@ -4,3 +4,5 @@ Need an empty database
 run registration, user will exist
 
 then can run navigation test
+
+admin_preSetField() // the prefilled fields need to be muted for testing

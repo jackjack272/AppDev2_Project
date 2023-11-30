@@ -40,7 +40,7 @@ public class Edit_UserPage extends AppCompatActivity {
         //show the user the values they have already in the db
         autoFillTheFieldsWithvalues(); //not completed
 
-        adminSetValues();
+//        adminSetValues();
 
 
         save.setOnClickListener(new View.OnClickListener() {

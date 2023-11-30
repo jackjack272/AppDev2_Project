@@ -51,7 +51,7 @@ public class RegistrationTests {
      */
 
     private ProjectDb projectDb;
-    private User user;
+
 
     @Rule
     public ActivityTestRule <Registration_Page> myact= new ActivityTestRule <>(Registration_Page.class);
@@ -83,7 +83,6 @@ public class RegistrationTests {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 
         Context context = ApplicationProvider.getApplicationContext();
-
         projectDb = new ProjectDb(context);
         if (null == projectDb.getUserByUsername("james smith")) {
             fail("user was not found in db. ");
