@@ -18,6 +18,7 @@ import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.Pages.Landing_Page;
 
 import com.example.appdevproject.RegistrationAndNav.NavigationTest;
+import com.example.appdevproject.RegistrationAndNav.RegistrationTests;
 import com.example.appdevproject.User.Models.User;
 
 import com.example.appdevproject.User.Registration_Page;
@@ -48,20 +49,29 @@ import android.view.View;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class InvestTests extends NavigationTest {
+public class InvestTests {
     /**
      * This page is mean tto test the invest page.
      *
      */
 
-
     @Rule
     public ActivityTestRule <Registration_Page> myact= new ActivityTestRule <>(Registration_Page.class);
 
+    @Test
+    public void clickInvest(){
+        RegistrationTests.logIn();
+
+        Espresso.onView(ViewMatchers.withId(R.id.InvestmentCard))
+                .perform(ViewActions.click());
+
+        Espresso.onView(ViewMatchers.withId(R.id.invest_fab_addOne))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
 
     @Test
     public void a_testAddDebtToDb(){
-        clickInvest();
+        this.clickInvest();
 
         //click fab
         Espresso.onView(ViewMatchers.withId(R.id.invest_fab_addOne))
@@ -153,7 +163,7 @@ public class InvestTests extends NavigationTest {
 
     @Test
     public void b_testEditDebt(){ //if there are multiple edit buttons it will crash
-        clickInvest();
+        this.clickInvest();
 //
 //        //what is the amount in the heading? //unmute me once other parts are done
 //        Espresso.onView(ViewMatchers.withId(R.id.invest_maketValue))
@@ -223,7 +233,7 @@ public class InvestTests extends NavigationTest {
 
     @Test
     public void c_testDeleteDebt(){
-        clickInvest();
+        this.clickInvest();
 
         //click on recycler view
         Espresso.onView(ViewMatchers.withId(R.id.invest_list))
@@ -245,7 +255,6 @@ public class InvestTests extends NavigationTest {
         Espresso.onView(ViewMatchers.withId(R.id.invest_bond_card_edit))
                 .check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
 
-
         Context context = ApplicationProvider.getApplicationContext();
         ProjectDb projectDb = new ProjectDb(context);
         if (null == projectDb.getUserByUsername("james smith")) {
@@ -261,10 +270,72 @@ public class InvestTests extends NavigationTest {
     }
 
 
-    @Test
-    public void d_testAddBondToDb(){
+
+
+
+//bonds section
+
+//    @Test
+    public void d_testAddBondToDb(){ //not yet implemented just copied and pasted
+        this.clickInvest();
+
+        //click fab
+        Espresso.onView(ViewMatchers.withId(R.id.invest_fab_addOne))
+                .perform(ViewActions.click());
+
+        //click the button for Debt
+        Espresso.onView(ViewMatchers.withId(R.id.invest_add_debt))
+                .perform(ViewActions.click());
+
+        // Check if the TextView with the specified ID has the expected text
+        Espresso.onView(ViewMatchers.withId(R.id.invest_debt_heading))
+                .check(ViewAssertions.matches(ViewMatchers.withText("New Debt")));
+
+        //fill out the form.
+        Espresso.onView(ViewMatchers.withId(R.id.invest_debt_Name))
+                .perform(ViewActions.typeText("testing"),
+                        ViewActions.closeSoftKeyboard());
+
+        Espresso.onView(ViewMatchers.withId(R.id.invest_debt_getAmountBorrowed))
+                .perform(ViewActions.typeText("1000.00"),
+                        ViewActions.closeSoftKeyboard());
+
+        Espresso.onView(ViewMatchers.withId(R.id.invest_debt_getInterestRate))
+                .perform(ViewActions.typeText("11.5"),
+                        ViewActions.closeSoftKeyboard());
+
+        Espresso.onView(ViewMatchers.withId(R.id.invest_debt_getCompoundsPerYear))
+                .perform(ViewActions.typeText("6"),
+                        ViewActions.closeSoftKeyboard());
+
+        Espresso.onView(ViewMatchers.withId(R.id.invest_debt_getTimeInMonths))
+                .perform(ViewActions.typeText("24"),
+                        ViewActions.closeSoftKeyboard());
+
+        //save
+        Espresso.onView(ViewMatchers.withId(R.id.invest_debt_btn))
+                .perform(ViewActions.click());
+
+        Context context = ApplicationProvider.getApplicationContext();
+        ProjectDb projectDb = new ProjectDb(context);
+        if (null == projectDb.getUserByUsername("james smith")) {
+            fail("user was not found in db.");
+        }
+
+        String username= projectDb.getUserByUsername("james smith").getUserName();
+        if(1 != projectDb.debt_readDebt(projectDb.getUserById(username)).size()){
+            fail("item was not added to db");
+        }
+
 
     }
+
+
+
+
+
+
+
 
 
 

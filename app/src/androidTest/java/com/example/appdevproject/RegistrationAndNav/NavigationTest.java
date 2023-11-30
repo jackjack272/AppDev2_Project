@@ -47,7 +47,8 @@ public class NavigationTest extends RegistrationTests {
     //check the edit user page activates
     @Test
     public void clickEditUser(){
-        b_testLogIn();
+        RegistrationTests.logIn();;
+
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.btnEditProfile))
@@ -61,7 +62,8 @@ public class NavigationTest extends RegistrationTests {
 
     @Test
     public void clickBudget(){
-        b_testLogIn();
+        RegistrationTests.logIn();;
+
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.imgBudget))
@@ -75,7 +77,8 @@ public class NavigationTest extends RegistrationTests {
 
     @Test
     public void clickDebt (){
-        b_testLogIn();
+        RegistrationTests.logIn();;
+
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.DebtCard))
@@ -90,7 +93,7 @@ public class NavigationTest extends RegistrationTests {
 
     @Test
     public void clickInvest (){
-        b_testLogIn();
+        RegistrationTests.logIn();
 
         //click investment card
         Espresso.onView(ViewMatchers.withId(R.id.InvestmentCard))
@@ -102,7 +105,7 @@ public class NavigationTest extends RegistrationTests {
 
     @Test
     public void clickTax (){
-        b_testLogIn();
+        RegistrationTests.logIn();;
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.GoalCard))
@@ -114,7 +117,8 @@ public class NavigationTest extends RegistrationTests {
 
     @Test
     public void clickLogOut(){
-        b_testLogIn();
+        RegistrationTests.logIn();;
+
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.btnLogout))
