@@ -1,4 +1,4 @@
-package com.example.appdevproject;
+package com.example.appdevproject.RegistrationAndNav;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
@@ -9,43 +9,33 @@ import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.appdevproject.DataBase.Interfaces.Users;
-import com.example.appdevproject.DataBase.ProjectDb;
-import com.example.appdevproject.Pages.Landing_Page;
-import com.example.appdevproject.User.Models.User;
+import com.example.appdevproject.R;
+
 import com.example.appdevproject.User.Registration_Page;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
-//import org.mockito.Mock;
-//import static org.mockito.Mockito.verify;
-//import static org.mockito.Mockito.when;
-
 import static org.junit.Assert.assertNotNull;
-
-
-import android.content.ComponentName;
-import android.provider.Contacts;
-import android.provider.ContactsContract;
-import android.view.View;
 
 //https://www.youtube.com/watch?v=sDp8JNbITm4&list=PLx5ipGeoOO2hCbqjX784_I4Y4mDsVbVEf&index=2
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class NavigationTest extends RegistrationTests{
+public class NavigationTest extends RegistrationTests {
     /**
      * Be able to click all the application's pages
      *
      * i know i can program to make the application back out then test another button but that's
      *      *  bleeding functionality and i dont like it for debugging sake
      *
+     *
+     * test question:
+     *      can i get to all the pages?
+     *      can i log out?
      */
 
     @Rule
@@ -54,7 +44,7 @@ public class NavigationTest extends RegistrationTests{
     //check the edit user page activates
     @Test
     public void clickEditUser(){
-        testButtonClickOpensLandingPage();
+        a_testRegister();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.btnEditProfile))
@@ -68,7 +58,7 @@ public class NavigationTest extends RegistrationTests{
 
     @Test
     public void clickBudget(){
-        testButtonClickOpensLandingPage();
+        a_testRegister();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.imgBudget))
@@ -83,7 +73,7 @@ public class NavigationTest extends RegistrationTests{
 
     @Test
     public void clickDebt (){
-        testButtonClickOpensLandingPage();
+        a_testRegister();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.DebtCard))
@@ -98,7 +88,7 @@ public class NavigationTest extends RegistrationTests{
     @Test
     public void clickInvest (){
 
-        testButtonClickOpensLandingPage();
+        a_testRegister();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.InvestmentCard))
@@ -110,7 +100,7 @@ public class NavigationTest extends RegistrationTests{
 
     @Test
     public void clickTax (){
-        testButtonClickOpensLandingPage();
+        a_testRegister();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.GoalCard))
@@ -122,7 +112,7 @@ public class NavigationTest extends RegistrationTests{
 
     @Test
     public void clickLogOut(){
-        testButtonClickOpensLandingPage();
+        a_testRegister();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.btnLogout))

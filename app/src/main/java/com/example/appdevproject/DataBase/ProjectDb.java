@@ -334,6 +334,25 @@ public class ProjectDb extends SQLiteOpenHelper
 
         return x;
     }
+
+    public void user_delete(String username) {
+        // Assuming you have a method to retrieve a user by username
+        User user = this.getUserByUsername(username);
+
+        if (user != null) {
+            // Get the user's ID
+            int id = user.getId();
+
+            // Assuming USER_TABLE is a constant representing the table name
+            String whereClause = "id=?";
+            String[] whereArgs = new String[]{String.valueOf(id)};
+
+            // Assuming getWritableDatabase() returns a writable database
+            this.getWritableDatabase().delete(USER_TABLE, whereClause, whereArgs);
+        }
+    }
+
+
     public User getUserByUsername(String _username){
         // this needs to be parameretised- injection attack
         String getUser = String.format("SELECT %s, %s, %s, %s, %s FROM %s WHERE "

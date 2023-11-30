@@ -22,6 +22,8 @@ public interface Users {
             + ")";
 
     public long makeUser(User user);
+    public void user_delete(String username);
+
     public User getUserByUsername(String _username);
     public int getUserById(String username);
     public void updateUser(User user);

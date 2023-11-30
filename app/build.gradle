@@ -46,6 +46,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
 
+    //testing db
+    implementation "androidx.room:room-runtime:2.4.0"
+
     // this is to add the swipe left and right feature
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4'
 

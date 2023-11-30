@@ -52,7 +52,7 @@ public class Registration_Page extends AppCompatActivity {
         setContentView(R.layout.user_registration);
         makeAssociates();
 
-        admin_prePopulate("smith jones");
+//        admin_prePopulate("smith jones");
 //        admin_quickLogIn("smith jones"); // this one needs to exists
 
 

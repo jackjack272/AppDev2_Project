@@ -1,17 +1,33 @@
 package com.example.appdevproject.User.Models;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+@Entity
 public class User {
 
     private static final String TAG= User.class.getSimpleName();
 
+    @PrimaryKey
     private Integer id; // this is the primary key
+
+    @ColumnInfo(name = "username")
     private String userName;
+
+    @ColumnInfo(name = "password")
     private String password;
+
+    @ColumnInfo(name = "email")
     private String email;
+
+    @ColumnInfo(name = "dob")
     private String dob; //saved as a date in the db.
+
+
 
     private Boolean empty;
 
