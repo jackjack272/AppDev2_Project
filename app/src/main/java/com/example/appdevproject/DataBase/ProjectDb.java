@@ -97,7 +97,9 @@ public class ProjectDb extends SQLiteOpenHelper
                 null                           // Order by
         );
 
-        int items= cursor.getCount();
+        if(cursor.getCount()==0){
+            return null;
+        }
 
          return new Invest_Debt(
                 cursor.getInt(cursor.getColumnIndexOrThrow(DEBT_ID)),
@@ -390,7 +392,7 @@ public class ProjectDb extends SQLiteOpenHelper
         cursor.moveToFirst();
 
         Integer userId= cursor.getInt(cursor.getColumnIndexOrThrow(USER_ID));
-
+        db.close();
         return userId;
 
 
