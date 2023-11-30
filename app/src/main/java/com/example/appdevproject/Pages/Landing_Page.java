@@ -95,7 +95,8 @@ public class Landing_Page extends AppCompatActivity {
         cardInvestment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Landing_Page.this, Invest_Page.class));
+                startActivity(new Intent(Landing_Page.this,
+                        Invest_Page.class));
             }
         });
         cardCharts.setOnClickListener(new View.OnClickListener() {

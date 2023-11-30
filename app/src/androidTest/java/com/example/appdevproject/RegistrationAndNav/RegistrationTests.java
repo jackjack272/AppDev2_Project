@@ -52,11 +52,10 @@ public class RegistrationTests {
 
     private ProjectDb projectDb;
 
-
     @Rule
     public ActivityTestRule <Registration_Page> myact= new ActivityTestRule <>(Registration_Page.class);
 
-    @Test //can only do it once
+    @Test //can only do it once, then the user is in the db.
     public void a_testRegister() {
 
         //fill the form.
@@ -88,9 +87,9 @@ public class RegistrationTests {
             fail("user was not found in db. ");
         }
 
+//        int userId=projectDb.getUserById( projectDb.getUserByUsername("james smith").getUserName());
+
     }
-
-
 
     @Test
     public void b_testLogIn() {
@@ -106,6 +105,7 @@ public class RegistrationTests {
 
         Espresso.onView(ViewMatchers.withId(R.id.getDateOfBirth))
                 .check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
+
         Espresso.onView(ViewMatchers.withId(R.id.getEmail))
                 .check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
 
@@ -125,15 +125,13 @@ public class RegistrationTests {
 
 
         //see if the next page has the required username
+
         Espresso.onView(ViewMatchers.withId(R.id.textUserName))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 
 //        removeUser();
 
     }
-
-
-
 
     private void removeUser(){
         Context context = ApplicationProvider.getApplicationContext();

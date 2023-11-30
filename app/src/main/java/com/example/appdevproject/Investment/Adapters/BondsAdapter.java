@@ -52,8 +52,6 @@ public class BondsAdapter extends RecyclerView.Adapter<BondsAdapter.InternalClas
         holder.effectiveInterestRate.setText(String.format("%.2f %%",  myBonds.get(position).getEffectiveInterestRate()));
         holder.payPerPeriod.setText(String.format("$ %.2f",  myBonds.get(position).paymentPerCompound()));
         holder.valueAtMaturity.setText(String.format("$ %.2f",  myBonds.get(position).valueAtMaturity()));
-
-
     }
 
     @Override

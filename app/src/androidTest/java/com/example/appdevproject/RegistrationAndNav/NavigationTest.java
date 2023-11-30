@@ -92,7 +92,7 @@ public class NavigationTest extends RegistrationTests {
     public void clickInvest (){
         b_testLogIn();
 
-        //click edit user.
+        //click investment card
         Espresso.onView(ViewMatchers.withId(R.id.InvestmentCard))
                 .perform(ViewActions.click());
 

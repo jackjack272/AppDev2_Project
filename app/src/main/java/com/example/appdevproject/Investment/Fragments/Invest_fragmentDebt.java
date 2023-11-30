@@ -73,7 +73,7 @@ public class Invest_fragmentDebt extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle saveInstanceState){
         makeAssocications();
 
-        admin_setValues();
+//        admin_setValues();
         //save a debt to the db
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override

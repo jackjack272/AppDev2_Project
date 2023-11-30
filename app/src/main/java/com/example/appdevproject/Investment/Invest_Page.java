@@ -37,13 +37,10 @@ public class Invest_Page extends AppCompatActivity {
     SumsAdapter sumsAdapter;
     ProjectDb myDb;
 
-
 //Page display stuff
     Button btnAddNew;
     TextView marketVale;
-
     FloatingActionButton fab;
-
     Double totalInvested=0.0;
 
 
