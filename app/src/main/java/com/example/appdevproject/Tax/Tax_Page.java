@@ -30,7 +30,6 @@ public class Tax_Page extends AppCompatActivity {
 
     private RecyclerView.LayoutManager layoutManager, labourManager;
 
-
     private Tax_InvestRecyAdapter recyAdapter;
     private Tax_LabourAdapter labourAdapter;
 

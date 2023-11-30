@@ -41,10 +41,10 @@ public class Registration_Page extends AppCompatActivity {
 
     // how do i secure the db from sql injection attacks?
 
-    public ProjectDb projectDb;
-    EditText userName, password, email, dateOfBirth;
-    Switch toggle;
-    Button nextPage;
+    private  ProjectDb projectDb;
+    private EditText userName, password, email, dateOfBirth;
+    private Switch toggle;
+    private Button nextPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,7 +200,6 @@ public class Registration_Page extends AppCompatActivity {
         }
         return null;
     }
-
 
 
 

@@ -22,8 +22,8 @@ import com.example.appdevproject.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class Invest_AddNewInvest extends BottomSheetDialogFragment {
-    Button debt, stock, bond;
-    View output;
+    private Button debt, bond; //stock,
+    private View output;
     //area to make code work.
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle saveBundle){
@@ -78,7 +78,7 @@ public class Invest_AddNewInvest extends BottomSheetDialogFragment {
 
 
 
-    public void makeAssocications(){
+    private void makeAssocications(){
         debt= getView().findViewById(R.id.invest_add_debt);
 //        stock= getView().findViewById(R.id.invest_add_stock);
         bond= getView().findViewById(R.id.invest_add_bond);

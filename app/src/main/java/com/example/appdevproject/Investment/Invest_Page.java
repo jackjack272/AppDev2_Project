@@ -84,7 +84,6 @@ public class Invest_Page extends AppCompatActivity {
         myDb= new ProjectDb(Invest_Page.this);
     }
 
-
     public void setAdapter(){
         layoutManager= new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -95,7 +94,6 @@ public class Invest_Page extends AppCompatActivity {
     }
 
     public int getForenKey(){
-
         SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         int foreignKey= myDb.getUserById(s.getString("username",""));
         return foreignKey;
@@ -114,7 +112,6 @@ public class Invest_Page extends AppCompatActivity {
 
         }
 
-
         bonds=xx.getDebt();
         if(bonds!=null){
             myTotals.add(bonds);
@@ -128,12 +125,6 @@ public class Invest_Page extends AppCompatActivity {
 
         return myTotals;
     }
-
-
-
-
-
-
     public void ogImpl(){
         Invest_Db_old db = new Invest_Db_old(this);
         ArrayList<HashMap<String, String>> investmentList = db.GetInvestments();
@@ -158,6 +149,5 @@ public class Invest_Page extends AppCompatActivity {
         });
 
     }
-
 
 }

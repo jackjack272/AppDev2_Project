@@ -92,7 +92,7 @@ public class Invest_fragmentBond extends Fragment {
 
     }
 
-    public void admin_setValues(){
+    private void admin_setValues(){
         debtName.setText("Bond");
         amountBorrowed.setText("1000");
         interestRate.setText("10");
@@ -100,7 +100,7 @@ public class Invest_fragmentBond extends Fragment {
         monthsOnLoan.setText("24");
     }
 
-    public void makeAssocications(){
+    private void makeAssocications(){
         debtName= getView().findViewById(R.id.invest_debt_Name);
         amountBorrowed= getView().findViewById(R.id.invest_debt_getAmountBorrowed);
         interestRate= getView().findViewById(R.id.invest_debt_getInterestRate);
@@ -116,7 +116,7 @@ public class Invest_fragmentBond extends Fragment {
         heading.setText(getString(R.string.invest_bond_heading));
     }
 
-    public Invest_Debt createNewDebt(){
+    private Invest_Debt createNewDebt(){
 
         Double amountBorrowed, interestRate;
         Integer compounds, loanterm;
@@ -173,7 +173,7 @@ public class Invest_fragmentBond extends Fragment {
         return  null;
     }
 
-    public Integer getForeinKey(){
+    private Integer getForeinKey(){
         SharedPreferences sharedPreferences= requireContext()
                 .getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         String userName=sharedPreferences.getString("username","");
