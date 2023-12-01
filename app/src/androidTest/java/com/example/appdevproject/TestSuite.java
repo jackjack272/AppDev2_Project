@@ -15,10 +15,10 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         RegistrationTests.class,
         NavigationTest.class,
+        Budget.class,
         InvestTests.class,
         RepayTest.class,
         TaxTest.class,
-        Budget.class,
         EditUserTest.class,
 })
 

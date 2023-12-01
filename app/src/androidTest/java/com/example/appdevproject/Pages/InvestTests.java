@@ -115,9 +115,6 @@ public class InvestTests {
         Espresso.onView(ViewMatchers.withId(R.id.invest_choice_card_recycleview))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));
 
-//        try{
-//            Thread.sleep(2000);
-//        }catch (Exception e){}
 
         Espresso.onView(ViewMatchers.withId(R.id.invest_bond_card_edit))
                 .perform(ViewActions.click());

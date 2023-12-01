@@ -1,44 +1,43 @@
 package com.example.appdevproject.Pages;
 
 
-
+import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.fail;
 
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.espresso.action.ViewActions;
-import org.hamcrest.Matchers;
-import org.junit.Rule;
-import org.junit.Test;
+import android.content.Context;
+
 import androidx.test.core.app.ApplicationProvider;
-import androidx.test.espresso.assertion.ViewAssertions;
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
-
+import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.R;
-
 import com.example.appdevproject.RegistrationAndNav.NavigationTest;
 import com.example.appdevproject.User.Registration_Page;
 import com.example.appdevproject.Utility.Utility;
 
 import org.junit.FixMethodOrder;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
-import static org.hamcrest.Matchers.hasToString;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import okhttp3.internal.Util;
 
-import android.content.Context;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -46,55 +45,22 @@ import android.content.Context;
 public class Budget {
 
     @Rule
-    public ActivityTestRule <Registration_Page> myact= new ActivityTestRule <>(Registration_Page.class);
+    public ActivityTestRule <Registration_Page> myact= new ActivityTestRule<>(Registration_Page.class);
 
 
     @Test
     public void a_testAddItem(){
         new NavigationTest().clickBudget();
-
-        //click the fab button
-        onView(withId(R.id.bud_fab))
-                .perform(click());
-
-    //chat GPT generated test
-        //stack over flow answers werent helpfun
-        //own impl wasnsent working.
-        //can you even
-        // Click on the Spinner to open the dropdown
-        Espresso.onView(ViewMatchers.withId(R.id.item_getCategory))
-                .perform(ViewActions.click());
-
-        // Select the item at position 0 in the spinner
-        Espresso.onData(Matchers.anything())
-                .inAdapterView(ViewMatchers.withId(R.id.item_getCategory))
-                .atPosition(1)
-                .perform(ViewActions.click());
-
-        // Check if the selected value at position 0 is displayed in the Spinner
-        Espresso.onView(ViewMatchers.withId(R.id.item_getCategory))
-                .check(ViewAssertions.matches(withSpinnerText(Matchers.any(String.class))));
-
-
         //from string: item_category
-//        fillTheForm("Housing");
-//        fillTheForm("Utility");
-//        fillTheForm("Transportation");
-//        fillTheForm("Food");
-//        fillTheForm("Entertainment");
-
-
-        //test recycler scroll view
-
-        //test category selection
-
-        //test the second FAB
-
+        fillTheForm("Housing");
+        fillTheForm("Utility");
+        fillTheForm("Transportation");
+        fillTheForm("Food");
+        fillTheForm("Entertainment");
     }
 
     @Test
     public void b_testItemInDb(){
-
         Context context = ApplicationProvider.getApplicationContext();
         ProjectDb projectDb = new ProjectDb(context);
         int user_id= projectDb.getUserByUsername("james smith").getId();
@@ -107,12 +73,14 @@ public class Budget {
     @Test
     public void c_testDifferentCategorySelection(){
         new NavigationTest().clickBudget();
+        //housing is the page that it opens on so it might be causing me issues.
 
-        clickTabs("Housing"); //added time delay in method to see actions
+
         clickTabs("Utility");
         clickTabs("Food");
         clickTabs("Transport");
         clickTabs("Entertain");
+        clickTabs("Housing"); //added time delay in method to see actions
     }
 
     @Test
@@ -126,8 +94,46 @@ public class Budget {
                 .check(matches(ViewMatchers.isDisplayed()));
     }
 
+    @Test
+    public void e_testDeleteCards(){
+        new NavigationTest().clickBudget();
+        clickTabsAndDeleteItem("Food");
+        clickTabsAndDeleteItem("Utility");
+        clickTabsAndDeleteItem("Food");
+        clickTabsAndDeleteItem("Transport");
+        clickTabsAndDeleteItem("Entertain");
+        clickTabsAndDeleteItem("Housing");
+    }
 
-//utils
+    @Test
+    public void f_testDeleteItems(){
+        Context context = ApplicationProvider.getApplicationContext();
+        ProjectDb projectDb = new ProjectDb(context);
+        int user_id= projectDb.getUserByUsername("james smith").getId();
+
+        if(0!=projectDb.item_getAll(user_id).size()){
+            fail("budget items not in db ");
+        }
+
+    }
+
+
+    @Test
+    public void g_testChartsButton(){
+        //this will test if the breakdown has changed after
+        //deleting item.
+        new NavigationTest().clickBudget();
+
+        onView(withId(R.id.bud_chart_fab))
+                .perform(click());
+
+        onView(withId(R.id.textView2))
+                .check(matches(ViewMatchers.isDisplayed()));
+    }
+
+
+
+    //utils
     private void clickTabs(String tabName){
         onView(withText(tabName))
                 .perform(click());
@@ -137,13 +143,29 @@ public class Budget {
         Utility.sleepMe(1);
     }
 
+    private void clickTabsAndDeleteItem(String tabName){
+        this.clickTabs(tabName);
+
+        Espresso.onView(ViewMatchers.withId(R.id.bud_recyclerView))
+                .perform(RecyclerViewActions.scrollToPosition(0));
+
+        Espresso.onView(ViewMatchers.withId(R.id.imgDelete))
+                .perform(ViewActions.click());
+
+    }
+
+
     private void fillTheForm(String category){
-        //spinner
+        //click the fab button
+        onView(withId(R.id.bud_fab))
+                .perform(click());
 
 
+        //name
         onView(withId(R.id.item_getName))
             .perform(ViewActions.typeText("test"),ViewActions.closeSoftKeyboard());
 
+        //price
         onView(withId(R.id.item_getPrice))
                 .perform(ViewActions.typeText("50.0"),ViewActions.closeSoftKeyboard());
 
@@ -159,28 +181,14 @@ public class Budget {
         onView(withId(R.id.item_getCancelFee))
                 .perform(ViewActions.typeText("80"),ViewActions.closeSoftKeyboard());
 
+        //spinner
+        onData(allOf(is(instanceOf(String.class)), is(category)))
+                .perform();
+            //this works now
+
+
         onView(withId(R.id.item_btn_addNew))
                 .perform(click());
-
-
-        clearForm();
-    }
-    private void clearForm(){
-
-        onView(withId(R.id.item_getName))
-                .perform(ViewActions.clearText());
-
-        onView(withId(R.id.item_getPrice))
-                .perform(ViewActions.clearText());
-
-        onView(withId(R.id.item_getContract))
-                .perform(ViewActions.clearText());
-
-        onView(withId(R.id.item_getYearlyFee))
-                .perform(ViewActions.clearText());
-
-        onView(withId(R.id.item_getCancelFee))
-                .perform(ViewActions.clearText());
 
     }
 

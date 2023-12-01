@@ -51,7 +51,7 @@ public class RegistrationTests {
     @Test //can only do it once, then the user is in the db.
     public void a_testRegister() {
 
-        //fill the form.
+        //fill the form.james
         Espresso.onView(ViewMatchers.withId(R.id.getUserName))
                 .perform(ViewActions.typeText("james smith"), ViewActions.closeSoftKeyboard());
 
