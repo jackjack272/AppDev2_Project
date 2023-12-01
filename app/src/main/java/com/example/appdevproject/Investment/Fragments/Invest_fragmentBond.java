@@ -70,7 +70,7 @@ public class Invest_fragmentBond extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle saveInstanceState){
         makeAssocications();
 
-        admin_setValues();
+//        admin_setValues();
 
 
         //save a debt to the db
