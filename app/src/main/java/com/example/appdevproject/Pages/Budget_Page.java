@@ -116,7 +116,7 @@ public class Budget_Page extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         totalExp.setText("Total Housing Expenses: " + totHousing + " $");
-        monthlyExp.setText("Total Expenses: " + totExpenses + " $");
+        monthlyExp.setText(String.format("Total Expenses: %.2f $", totExpenses));
 
 
         tabCategories.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
