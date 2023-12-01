@@ -1,12 +1,11 @@
-Need an empty database
-
-
-run registration, user will exist
-
-then can run navigation test
-
-admin_preSetField() // the prefilled fields need to be muted for testing
+//instructions
+    //RepayPage is having issues adding its own debts so need to prepopulate some vlaues.
 
 
 
-cant run the tests stand alone..
+Instructions. :
+1.drop existing db.
+2.register
+3.RepayPage needs haves it cant add its own
+
+
