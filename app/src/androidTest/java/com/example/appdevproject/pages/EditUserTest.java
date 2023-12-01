@@ -15,6 +15,7 @@ import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Pages.Landing_Page;
 import com.example.appdevproject.R;
 import com.example.appdevproject.RegistrationAndNav.NavigationTest;
+import com.example.appdevproject.RegistrationAndNav.RegistrationTests;
 import com.example.appdevproject.User.Models.User;
 
 import com.example.appdevproject.User.Registration_Page;
@@ -41,13 +42,29 @@ import android.view.View;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class EditUserTest extends NavigationTest {
+public class EditUserTest {
     /**
      * do the changes
      */
 
     @Rule
     public ActivityTestRule <Registration_Page> myact= new ActivityTestRule <>(Registration_Page.class);
+
+    @Test
+    public void clickEditUser(){
+        RegistrationTests.logIn();;
+
+
+        //click edit user.
+        Espresso.onView(ViewMatchers.withId(R.id.btnEditProfile))
+                .perform(ViewActions.click());
+
+        Espresso.onView(ViewMatchers.withId(R.id.change_email))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+
+
+    }
+
 
 
     @Test

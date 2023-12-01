@@ -69,6 +69,7 @@ public class InvestTests {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
+//debt section.
     @Test
     public void a_testAddDebtToDb(){
         this.clickInvest();
@@ -124,14 +125,13 @@ public class InvestTests {
 
 
     }
-
     @Test
     public void b_testEditDebt(){ //if there are multiple edit buttons it will crash
         this.clickInvest();
 //
 //        //what is the amount in the heading? //unmute me once other parts are done
-//        Espresso.onView(ViewMatchers.withId(R.id.invest_maketValue))
-//                .check(ViewAssertions.matches(ViewMatchers.withText("$-1000.00")));
+        Espresso.onView(ViewMatchers.withId(R.id.invest_maketValue))
+                .check(ViewAssertions.matches(ViewMatchers.withText("$-1000.00")));
 
         //click on recycler view
         Espresso.onView(ViewMatchers.withId(R.id.invest_list))
@@ -140,12 +140,17 @@ public class InvestTests {
 
 
         //is there an item there?
-        Espresso.onView(ViewMatchers.withId(R.id.invest_choice_card_recycleview))
-                .perform(RecyclerViewActions.scrollToPosition(0));
+//        Espresso.onView(ViewMatchers.withId(R.id.invest_choice_card_recycleview))
+//                .perform(RecyclerViewActions.scrollToPosition(0));
+
 
         //click edit
         Espresso.onView(ViewMatchers.withId(R.id.invest_choice_card_recycleview))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));
+
+//        try{
+//            Thread.sleep(2000);
+//        }catch (Exception e){}
 
         Espresso.onView(ViewMatchers.withId(R.id.invest_bond_card_edit))
                 .perform(ViewActions.click());
@@ -194,7 +199,6 @@ public class InvestTests {
                 .check(ViewAssertions.matches(ViewMatchers.withText("testing-edited")));
 
     }
-
     @Test
     public void c_testDeleteDebt(){
         this.clickInvest();
@@ -232,7 +236,6 @@ public class InvestTests {
         }
 
     }
-
 //bonds section
 
     @Test
@@ -289,7 +292,6 @@ public class InvestTests {
         }
 
     }
-
     @Test
     public void e_testEditBond(){ //if there are multiple edit buttons it will crash
         this.clickInvest();
@@ -360,8 +362,6 @@ public class InvestTests {
                 .check(ViewAssertions.matches(ViewMatchers.withText("testing-edited")));
 
     }
-
-
     @Test
     public void f_testDeleteBond(){
         this.clickInvest();
@@ -399,7 +399,6 @@ public class InvestTests {
         }
 
     }
-
 }
 
 
