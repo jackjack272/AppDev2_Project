@@ -44,11 +44,8 @@ public class RepayPage {
 
     @Test
     public void a_repaymentBySize(){
-//        new InvestTests().a_testAddDebtToDb();
-        //register page need to toggle switch so it can log in with clickDebt()
-//        Espresso.onView(ViewMatchers.withId(R.id.switch1))
-//                .perform(ViewActions.click());
-
+        InvestTests.addDebt();
+        InvestTests.addDebt();
 
         new NavigationTest().clickDebt();
 

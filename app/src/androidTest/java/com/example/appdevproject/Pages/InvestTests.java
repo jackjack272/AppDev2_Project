@@ -378,6 +378,46 @@ public class InvestTests {
 
     }
 
+
+//External utils
+    public static void addDebt(){
+        new InvestTests().a_testAddDebtToDb();
+        Espresso.pressBack();
+        Espresso.pressBack();
+        Espresso.pressBack();
+
+        //toggle register
+        Espresso.onView(ViewMatchers.withId(R.id.switch1))
+                .perform(ViewActions.click());
+
+        Espresso.onView(ViewMatchers.withId(R.id.getUserName))
+                .perform(ViewActions.clearText());
+
+        Espresso.onView(ViewMatchers.withId(R.id.getPassword))
+                .perform(ViewActions.clearText());
+
+    }
+
+    public static void addBond(){
+        new InvestTests().d_testAddBondToDb();
+        Espresso.pressBack();
+        Espresso.pressBack();
+        Espresso.pressBack();
+
+        //toggle register
+        Espresso.onView(ViewMatchers.withId(R.id.switch1))
+                .perform(ViewActions.click());
+
+        Espresso.onView(ViewMatchers.withId(R.id.getUserName))
+                .perform(ViewActions.clearText());
+
+        Espresso.onView(ViewMatchers.withId(R.id.getPassword))
+                .perform(ViewActions.clearText());
+
+    }
+
+
+
 }
 
 
