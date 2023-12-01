@@ -52,11 +52,12 @@ public class Budget {
     public void a_testAddItem(){
         new NavigationTest().clickBudget();
         //from string: item_category
-        fillTheForm("Housing");
+
         fillTheForm("Utility");
         fillTheForm("Transportation");
         fillTheForm("Food");
         fillTheForm("Entertainment");
+        fillTheForm("Housing");
     }
 
     @Test
@@ -129,6 +130,8 @@ public class Budget {
 
         onView(withId(R.id.textView2))
                 .check(matches(ViewMatchers.isDisplayed()));
+
+
     }
 
 

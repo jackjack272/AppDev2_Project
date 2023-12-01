@@ -15,7 +15,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         RegistrationTests.class,
         NavigationTest.class,
-        Budget.class,
+        Budget.class, //bug in testing, adding item to housing category
         InvestTests.class,
         RepayTest.class,
         TaxTest.class,
