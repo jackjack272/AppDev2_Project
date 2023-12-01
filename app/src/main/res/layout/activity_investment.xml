@@ -90,10 +90,10 @@
             android:id="@+id/invest_fab_addOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50px"
             android:layout_marginLeft="50px"
+            android:layout_marginTop="50px"
             android:src="@drawable/baseline_attach_money_24"
-            />
+            app:backgroundTint="#82B1FF" />
 
     </LinearLayout>
 

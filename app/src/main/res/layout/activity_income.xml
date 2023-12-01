@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D9DDF4"
     tools:context=".Tax.Tax_Page">
 
     <TextView
@@ -85,6 +86,7 @@
 
         android:layout_marginBottom="34dp"
         android:src="@drawable/baseline_attach_money_24"
+        app:backgroundTint="#82B1FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
