@@ -35,7 +35,7 @@ public class Edit_UserPage extends AppCompatActivity {
         setContentView(R.layout.user_edit);
         makeAssocications();
 
-        greetUser("You want to change? okay but only this one time, ");
+        greetUser("EDIT PROFILE");
 
         //show the user the values they have already in the db
         autoFillTheFieldsWithvalues(); //not completed
@@ -93,7 +93,8 @@ public class Edit_UserPage extends AppCompatActivity {
 
     private void greetUser(String greet) {
         username = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-        banner.setText(greet + " " + username.getString("username", "no username found"));
+        //banner.setText(greet + " " + username.getString("username", "no username found"));
+        banner.setText(greet);
     }
 
     private User getEditValues() {

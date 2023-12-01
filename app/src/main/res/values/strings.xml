@@ -28,11 +28,11 @@
        prefix: edit_
        -->
     <string name="edit_name">Change your name</string>
-    <string name="edit_password">Change your password</string>
-    <string name="edit_confirm_password">Confirm your new password</string>
+    <string name="edit_password">New password</string>
+    <string name="edit_confirm_password">Confirm new password</string>
     <string name="edit_email">Change your email</string>
     <string name="edit_dob">Change your date of birth</string>
-    <string name="edit_save_btn">Im all new</string>
+    <string name="edit_save_btn">Save</string>
 
 
     <!--    budget
