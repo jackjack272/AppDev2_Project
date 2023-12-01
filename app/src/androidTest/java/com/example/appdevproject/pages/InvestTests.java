@@ -123,42 +123,6 @@ public class InvestTests {
 
 
 
-        //click back
-//        Espresso.pressBack();
-
-//        //click investment card
-//        Espresso.onView(ViewMatchers.withId(R.id.InvestmentCard))
-//          .perform(ViewActions.click());
-                //this bad boy breaks the tests....
-
-
-//        //what is the amount in the heading?
-//        Espresso.onView(ViewMatchers.withId(R.id.invest_maketValue))
-//                .check(ViewAssertions.matches(ViewMatchers.withText("$-1000.00")));
-
-//            //check if total invested is right
-//            //check if avg yearly % is right.
-//            //check if monthly payout is right.
-//
-//
-//        //click on recycler view
-//        Espresso.onView(ViewMatchers.withId(R.id.invest_list))
-//                .perform(RecyclerViewActions.actionOnItemAtPosition(1, ViewActions.click()));
-//        //position 1 is debts, its always there
-//
-//        //is the item there?
-//
-//        // Perform a scroll action to make sure the item is visible (optional)
-//        Espresso.onView(ViewMatchers.withId(R.id.invest_choice_card_recycleview))
-//                .perform(RecyclerViewActions.scrollTo(ViewMatchers.withId(0)));
-//            //scroll to the 0'th position
-//
-//
-//        // Check if the RecyclerView contains the expected value
-//        Espresso.onView(ViewMatchers.withId(R.id.invest_bond_card_heading))
-//                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-
-        //delete the item in the db based on this user id
     }
 
     @Test
@@ -269,13 +233,9 @@ public class InvestTests {
 
     }
 
-
-
-
-
 //bonds section
 
-//    @Test
+    @Test
     public void d_testAddBondToDb(){ //not yet implemented just copied and pasted
         this.clickInvest();
 
@@ -283,13 +243,14 @@ public class InvestTests {
         Espresso.onView(ViewMatchers.withId(R.id.invest_fab_addOne))
                 .perform(ViewActions.click());
 
-        //click the button for Debt
-        Espresso.onView(ViewMatchers.withId(R.id.invest_add_debt))
+        //click the button for bond
+        Espresso.onView(ViewMatchers.withId(R.id.invest_add_bond))
                 .perform(ViewActions.click());
+
 
         // Check if the TextView with the specified ID has the expected text
         Espresso.onView(ViewMatchers.withId(R.id.invest_debt_heading))
-                .check(ViewAssertions.matches(ViewMatchers.withText("New Debt")));
+                .check(ViewAssertions.matches(ViewMatchers.withText("New Bond")));
 
         //fill out the form.
         Espresso.onView(ViewMatchers.withId(R.id.invest_debt_Name))
@@ -323,24 +284,159 @@ public class InvestTests {
         }
 
         String username= projectDb.getUserByUsername("james smith").getUserName();
-        if(1 != projectDb.debt_readDebt(projectDb.getUserById(username)).size()){
+        if(1 != projectDb.debt_readBonds(projectDb.getUserById(username)).size()){
             fail("item was not added to db");
         }
 
+    }
+
+    @Test
+    public void e_testEditBond(){ //if there are multiple edit buttons it will crash
+        this.clickInvest();
+//
+//        //what is the amount in the heading? //unmute me once other parts are done
+//        Espresso.onView(ViewMatchers.withId(R.id.invest_maketValue))
+//                .check(ViewAssertions.matches(ViewMatchers.withText("$-1000.00")));
+
+        //click on recycler view
+        Espresso.onView(ViewMatchers.withId(R.id.invest_list))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));
+        //position 1 is debts, its always there
+
+
+        //is there an item there?
+        Espresso.onView(ViewMatchers.withId(R.id.invest_choice_card_recycleview))
+                .perform(RecyclerViewActions.scrollToPosition(0));
+
+
+        //click edit
+        Espresso.onView(ViewMatchers.withId(R.id.invest_choice_card_recycleview))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));
+
+        Espresso.onView(ViewMatchers.withId(R.id.invest_bond_card_edit))
+                .perform(ViewActions.click());
+
+        //am i at the edit card page?
+        Espresso.onView(ViewMatchers.withId(R.id.invest_edit_heading))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+
+        //fill out the edit form
+        //fill out the form.
+        Espresso.onView(ViewMatchers.withId(R.id.invest_edit_name))
+                .perform(ViewActions.typeText("testing-edited"),
+                        ViewActions.closeSoftKeyboard());
+
+        Espresso.onView(ViewMatchers.withId(R.id.invest_edit_amountBorrowed))
+                .perform(ViewActions.typeText("200.00"),
+                        ViewActions.closeSoftKeyboard());
+
+        Espresso.onView(ViewMatchers.withId(R.id.invest_edit_interestRate))
+                .perform(ViewActions.typeText("1.5"),
+                        ViewActions.closeSoftKeyboard());
+
+        Espresso.onView(ViewMatchers.withId(R.id.invest_edit_compounds))
+                .perform(ViewActions.typeText("5"),
+                        ViewActions.closeSoftKeyboard());
+
+        Espresso.onView(ViewMatchers.withId(R.id.invest_edit_months))
+                .perform(ViewActions.typeText("14"),
+                        ViewActions.closeSoftKeyboard());
+
+        //save button
+        Espresso.onView(ViewMatchers.withId(R.id.invest_edit_edit))
+                .perform(ViewActions.click());
+
+
+        //is the card still there?
+        Espresso.onView(ViewMatchers.withId(R.id.invest_choice_card_recycleview))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));
+
+        try{
+            Thread.sleep(200);
+        }catch (Exception e){};
+
+        //did the changes appear?
+        Espresso.onView(ViewMatchers.withId(R.id.invest_bond_card_heading))
+                .check(ViewAssertions.matches(ViewMatchers.withText("testing-edited")));
 
     }
 
 
+    @Test
+    public void f_testDeleteBond(){
+        this.clickInvest();
 
+        //click on recycler view
+        Espresso.onView(ViewMatchers.withId(R.id.invest_list))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));
+        //position 1 is debts, its always there
 
+        //is there an item there?
+        Espresso.onView(ViewMatchers.withId(R.id.invest_choice_card_recycleview))
+                .perform(RecyclerViewActions.scrollToPosition(1));
 
+        //click delete
+        Espresso.onView(ViewMatchers.withId(R.id.invest_choice_card_recycleview))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, ViewActions.click()));
 
+        Espresso.onView(ViewMatchers.withId(R.id.invest_bond_card_delete))
+                .perform(ViewActions.click());
 
+        //did the edit button disapear
+        Espresso.onView(ViewMatchers.withId(R.id.invest_bond_card_edit))
+                .check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
 
+        Context context = ApplicationProvider.getApplicationContext();
+        ProjectDb projectDb = new ProjectDb(context);
+        if (null == projectDb.getUserByUsername("james smith")) {
+            fail("user was not found in db. ");
+        }
 
+        int userId=projectDb.getUserById( projectDb.getUserByUsername("james smith").getUserName());
+        Invest_Debt debt= projectDb.debt_readOne(userId);
+        if(debt !=null){
+            fail("Debt wasent deleted properly");
+        }
 
-
-
-
+    }
 
 }
+
+
+//meant fir a_ but it breaks the code.
+//click back
+//        Espresso.pressBack();
+
+//        //click investment card
+//        Espresso.onView(ViewMatchers.withId(R.id.InvestmentCard))
+//          .perform(ViewActions.click());
+//this bad boy breaks the tests....
+
+
+//        //what is the amount in the heading?
+//        Espresso.onView(ViewMatchers.withId(R.id.invest_maketValue))
+//                .check(ViewAssertions.matches(ViewMatchers.withText("$-1000.00")));
+
+//            //check if total invested is right
+//            //check if avg yearly % is right.
+//            //check if monthly payout is right.
+//
+//
+//        //click on recycler view
+//        Espresso.onView(ViewMatchers.withId(R.id.invest_list))
+//                .perform(RecyclerViewActions.actionOnItemAtPosition(1, ViewActions.click()));
+//        //position 1 is debts, its always there
+//
+//        //is the item there?
+//
+//        // Perform a scroll action to make sure the item is visible (optional)
+//        Espresso.onView(ViewMatchers.withId(R.id.invest_choice_card_recycleview))
+//                .perform(RecyclerViewActions.scrollTo(ViewMatchers.withId(0)));
+//            //scroll to the 0'th position
+//
+//
+//        // Check if the RecyclerView contains the expected value
+//        Espresso.onView(ViewMatchers.withId(R.id.invest_bond_card_heading))
+//                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+
+//delete the item in the db based on this user id
