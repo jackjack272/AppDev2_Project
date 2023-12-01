@@ -60,6 +60,7 @@ public class NavigationTest extends RegistrationTests {
 
     }
 
+
     @Test
     public void clickBudget(){
         RegistrationTests.logIn();;
