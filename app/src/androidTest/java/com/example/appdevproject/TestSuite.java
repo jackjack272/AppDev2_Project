@@ -1,10 +1,10 @@
 package com.example.appdevproject;
 
-import com.example.appdevproject.Pages.Budget;
-import com.example.appdevproject.Pages.EditUserTest;
-import com.example.appdevproject.Pages.InvestTests;
-import com.example.appdevproject.Pages.RepayTest;
-import com.example.appdevproject.Pages.TaxTest;
+import com.example.appdevproject.Navigation.Budget;
+import com.example.appdevproject.Navigation.EditUserTest;
+import com.example.appdevproject.Navigation.InvestTests;
+import com.example.appdevproject.Navigation.RepayTest;
+import com.example.appdevproject.Navigation.TaxTest;
 import com.example.appdevproject.RegistrationAndNav.NavigationTest;
 import com.example.appdevproject.RegistrationAndNav.RegistrationTests;
 

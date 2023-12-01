@@ -1,4 +1,4 @@
-package com.example.appdevproject.Pages;
+package com.example.appdevproject.Navigation;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
