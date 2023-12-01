@@ -25,7 +25,7 @@ import com.google.android.material.button.MaterialButton;
 public class Landing_Page extends AppCompatActivity {
     CardView cardBudget, cardDebt,cardInvestment,cardCharts, taxCard, HelpCard;
     TextView textUserName;
-    ImageButton btnLogOut;
+    ImageButton btnLogOut,imgProfile;
     MaterialButton editProfile;
 
     @Override
@@ -66,6 +66,13 @@ public class Landing_Page extends AppCompatActivity {
 
 
         editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Landing_Page.this, Edit_UserPage.class));
+            }
+        });
+
+        imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Landing_Page.this, Edit_UserPage.class));
@@ -135,6 +142,7 @@ public class Landing_Page extends AppCompatActivity {
         HelpCard = findViewById(R.id.HelpCard);
         textUserName = findViewById(R.id.textUserName);
         btnLogOut = findViewById(R.id.btnLogout);
+        imgProfile = findViewById(R.id.imgProfile);
 
         editProfile=findViewById(R.id.btnEditProfile);
 

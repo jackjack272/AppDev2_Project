@@ -44,7 +44,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_weight="1"
-        android:text="Debt Analysis"
+        android:text="Investment Analysis (Bonds vs Debts)"
         android:textSize="20sp"
         android:textStyle="bold" />
 
