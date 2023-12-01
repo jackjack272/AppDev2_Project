@@ -23,7 +23,7 @@ public class ResourcesActivity extends AppCompatActivity {
         webView.setWebChromeClient(new WebChromeClient());
 
         WebView webView2 = findViewById(R.id.youtubeView2);
-        String video2 = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/WKC2k1nS9HI?si=NbNjg97nh04pFEtf\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>";
+        String video2 = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/PvEUj_mRfIo?si=e2rHDwWE6r2ygspo\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>";
         webView2.loadData(video2, "text/html","utf-8");
         webView2.getSettings().setJavaScriptEnabled(true);
         webView2.setWebChromeClient(new WebChromeClient());
