@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/tax_addnewCard_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/tax_addnewCard_jobTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="1dp"
+        android:ems="10"
+        android:hint="Job Title"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/tax_addnewCard_hourlyWage"
+        app:layout_constraintTop_toBottomOf="@+id/tax_addnewCard_heading" />
+
+
+    <EditText
+        android:id="@+id/tax_addnewCard_hourlyWage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:ems="10"
+        android:hint="Job Hourly: $45 /hour?"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tax_addnewCard_jobTitle" />
+
+
+    <EditText
+        android:id="@+id/tax_addnewCard_hoursWorked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:ems="10"
+        android:hint="Job Length: 40 hours?"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@+id/tax_addnewCard_hourlyWage"
+        app:layout_constraintTop_toBottomOf="@+id/tax_addnewCard_hourlyWage" />
+
+
+    <EditText
+        android:id="@+id/tax_addnewCard_bonuses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="1dp"
+        android:ems="10"
+        android:hint="bonuses: $200?"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/tax_addnewCard_hoursWorked"
+        app:layout_constraintTop_toBottomOf="@+id/tax_addnewCard_hoursWorked" />
+
+
+    <Button
+        android:id="@+id/tax_addnewCard_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tax_addnewCard_bonuses" />
+
+    <TextView
+        android:id="@+id/tax_addnewCard_errors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="581dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

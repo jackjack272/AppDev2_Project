@@ -4,92 +4,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Pages.BudgetPage">
+    android:background="#D9DDF4"
+    tools:context=".Pages.Budget_Page">
 
     <TextView
         android:id="@+id/bud_subHeader"
-        android:layout_width="227dp"
-        android:layout_height="36dp"
+        android:layout_width="374dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/bud_subHeading"
-        app:layout_constraintBottom_toTopOf="@+id/bud_yearlyExp"
+        app:layout_constraintBottom_toTopOf="@+id/bud_monthlyExp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bud_taxBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/bud_Banner"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/bud_Banner"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="408dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="4dp">
+
+        <TextView
+            android:id="@+id/bud_Banner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1.5"
+            android:text="@string/bud_heading"
+            android:textColor="@color/blue"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/refresh"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0.5"
+            android:padding="10dp"
+
+            app:srcCompat="@drawable/refresh" />
+<!--        app:srcCompat="@drawable/refresh"-->
+
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabCategories"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/bud_heading"
-        android:textSize="@dimen/banners"
+        android:layout_marginTop="146dp"
+        android:background="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabTextColor="@color/white">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Housing"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="169dp" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Utility"
+            tools:layout_editor_absoluteX="149dp"
+            tools:layout_editor_absoluteY="193dp" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Food"
+            tools:layout_editor_absoluteX="279dp"
+            tools:layout_editor_absoluteY="120dp" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transport"
+            tools:layout_editor_absoluteX="279dp"
+            tools:layout_editor_absoluteY="120dp" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entertain"
+            tools:layout_editor_absoluteX="279dp"
+            tools:layout_editor_absoluteY="120dp" />
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Other"-->
+<!--            tools:layout_editor_absoluteX="279dp"-->
+<!--            tools:layout_editor_absoluteY="120dp" />-->
+
+    </com.google.android.material.tabs.TabLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bud_recyclerView"
         android:layout_width="411dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="46dp"
-        app:layout_constraintBottom_toTopOf="@+id/bud_fab"
+        android:layout_height="465dp"
+        android:layout_marginBottom="90dp"
+        android:background="#D9DDF4"
+        app:layout_constraintBottom_toBottomOf="@+id/bud_fab"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bud_monthlyExp" />
+        app:layout_constraintTop_toBottomOf="@+id/tabCategories"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/bud_taxBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/bud_taxSide"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--    <TextView-->
+<!--        android:id="@+id/bud_yearlyExp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="9dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/bud_subHeader"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/bud_subHeader" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/bud_postTaxincome"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="47dp"-->
+<!--        android:layout_marginBottom="29dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/tabCategories"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
     <TextView
         android:id="@+id/bud_monthlyExp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="146dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/bud_yearlyExp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/bud_yearlyNet"
+        android:layout_width="370dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="6dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tabCategories"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/bud_postTaxincome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="35dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/bud_recyclerView"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/bud_yearlyNet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/bud_recyclerView"
+        android:id="@+id/txtTotal"
+        android:layout_width="380dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="80dp"
+        android:freezesText="false"
+        android:gravity="center"
+        android:padding="6dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -97,10 +172,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/baseline_attach_money_24"
+        app:backgroundTint="#82B1FF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bud_chart_fab"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bud_chart_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="16dp"
+        android:src="@android:drawable/ic_menu_sort_by_size"
+        app:backgroundTint="#82B1FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

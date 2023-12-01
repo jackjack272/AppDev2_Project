@@ -4,73 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Pages.EditUserPage">
+    android:background="#D9DDF4"
+    tools:context=".User.Edit_UserPage">
 
     <TextView
         android:id="@+id/editBanner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:hint="TextView"
+        android:layout_marginTop="40dp"
+        android:hint="USER PROFILE"
+        android:textColor="@color/blue"
         android:textSize="@dimen/banners"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="123dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editBanner"
+        app:srcCompat="@drawable/profile" />
 
     <EditText
         android:id="@+id/changePword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/edit_password"
         android:inputType="text"
-        app:layout_constraintStart_toStartOf="@+id/confirmPword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/change_dob" />
 
     <Button
         android:id="@+id/edit_save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
         android:text="@string/edit_save_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPword" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmPword"
+        app:layout_constraintVertical_bias="0.206" />
 
     <EditText
         android:id="@+id/change_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="73dp"
+        android:layout_marginTop="68dp"
         android:ems="10"
         android:hint="@string/edit_email"
         android:inputType="text"
-        app:layout_constraintStart_toStartOf="@+id/change_dob"
-        app:layout_constraintTop_toBottomOf="@+id/editBanner" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <EditText
         android:id="@+id/change_dob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/landPage_DateOfBirth"
         android:inputType="text"
-        app:layout_constraintStart_toStartOf="@+id/changePword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/change_email" />
 
     <EditText
         android:id="@+id/confirmPword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="@string/edit_confirm_password"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changePword" />
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gold"
-    tools:context=".Pages.RegistrationPage">
+    tools:context=".User.Registration_Page">
 
     <ImageView
         android:id="@+id/imageView"
@@ -38,10 +38,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
+        app:layout_constraintTop_toTopOf="@+id/textRegister" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="43dp"
@@ -64,9 +64,9 @@
     <Button
         android:id="@+id/nextPage"
         android:layout_width="171dp"
-        android:layout_height="43dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="64dp"
-        android:text="Button"
+        android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -112,7 +112,7 @@
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="@string/landPage_Password"
-        android:inputType="text"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"

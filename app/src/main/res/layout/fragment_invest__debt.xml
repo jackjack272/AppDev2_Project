@@ -17,7 +17,7 @@
             android:layout_height="69dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="35dp"
-            android:text="@string/invest_debt_frag_heading"
+            android:text=""
             android:textSize="@dimen/reg_log"
             app:layout_constraintBaseline_toBaselineOf="@+id/invest_debt_Name"
             app:layout_constraintEnd_toStartOf="@+id/invest_debt_getAmountBorrowed"

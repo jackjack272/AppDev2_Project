@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppDevProject</string>
+    <string name="app_name">Budget Buddy</string>
 
     <!--    User Registration page.
     prefix this page with:     landPage_
@@ -28,42 +28,42 @@
        prefix: edit_
        -->
     <string name="edit_name">Change your name</string>
-    <string name="edit_password">Change your password</string>
-    <string name="edit_confirm_password">Confirm your new password</string>
+    <string name="edit_password">New password</string>
+    <string name="edit_confirm_password">Confirm new password</string>
     <string name="edit_email">Change your email</string>
     <string name="edit_dob">Change your date of birth</string>
-    <string name="edit_save_btn">Im all new</string>
+    <string name="edit_save_btn">Save</string>
 
 
     <!--    budget
         prefix:bud_
     -->
 
-    <string name="bud_heading">Budgeting</string>
+    <string name="bud_heading">BUDGETING</string>
     <string name="bud_subHeading">Completely transform your personal finances in 30 months!</string>
     <string name="bud_taxSide">Tax ?</string>
 
     <!--  item stuff  -->
 
     <!--        add new item -->
-    <string name="item_Heading">Add a new monthly item.</string>
+    <string name="item_Heading">Add a new item</string>
     <string name="item_name">Name of Item</string>
     <string name="item_select_category">what is the category it belongs to?</string>
 
     <string-array name="item_category">
-        <item>housing</item>
-        <item>utility</item>
-        <item>transporation</item>
-        <item>food</item>
-        <item>fun money</item>
+        <item>Housing</item>
+        <item>Utility</item>
+        <item>Transportation</item>
+        <item>Food</item>
+        <item>Entertainment</item>
 
 
     </string-array>
     <string name="item_price">Price of Item</string>
     <string name="item_yearlyRenewal">Yearly Renewal Fee</string>
-    <string name="item_canel_fee">Cancelation Fee</string>
-    <string name="item_term">2 year contract?</string>
-    <string name="item_button">add new</string>
+    <string name="item_canel_fee">Cancellation Fee</string>
+    <string name="item_term">Period of Contract</string>
+    <string name="item_button">Add Item</string>
 
     <!--        diplay of new item -->
 
@@ -96,10 +96,10 @@
     <string name="invest_moneyOut">Monthly Loss: </string>
     <string name="invest_moneyIn">Monthly Gain: </string>
 
-    <string name="invest_repayOver">50 </string>
+    <string name="invest_repayOver">extra $50</string>
 
 
-    <string name="invest_repayMin">min repayment: 200 </string>
+    <string name="invest_repayMin">min repayment:  </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -108,11 +108,45 @@
 -->
 
     <string name="invest_debt_frag_heading">New Debt</string>
+    <string name="invest_bond_heading">New Bond</string>
+
     <string name="invest_debt_frag_amount">Amount borrowed</string>
     <string name="invest_debt_frag_interest">interest rate</string>
     <string name="invest_debt_frag_compounds">compounds per year</string>
     <string name="invest_debt_frag_term">How many months?</string>
     <string name="invest_debt_frag_button">Add new debt</string>
+
+
+    <!--
+    invest_frag_stock
+    : 
+-->
+    <string name="invest_frag_stock_heading">Stocks </string>
+    <string name="invest_frag_stock_ticker">Ticker of the stock</string>
+    <string name="invest_frag_stock_number">Quantity of stock</string>
+    <string name="invest_frag_stock_btn">Save</string>
+
+
+    <!--    invest edit
+    invest_edit_
+-->
+    <string name="invest_edit_heading">Edit </string>
+    <string name="invest_edit_name">Name</string>
+    <string name="invest_edit_amountBorrwed">Amount Borrowed</string>
+    <string name="invest_edit_interestRate">Interest Rate</string>
+    <string name="invest_edit_compoundsPerYear">Compounds</string>
+    <string name="invest_edit_month">Term In Month</string>
+
+
+    <!--
+    Sum Adapter
+    sum_adapter_
+-->
+
+
+    <string name="sum_adapter_TotalInvested">Total Invested.</string>
+    <string name="sum_adapter_avgYearlyInterest">Avg Yearly %</string>
+    <string name="sum_adapter_monhtlyPayOut">Monthly Payout!</string>
 
 
 </resources>

@@ -15,9 +15,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.appdevproject.Investment.Money.Invest_Debt;
+import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.R;
-import com.example.appdevproject.Utility.ProjectDb;
+import com.example.appdevproject.DataBase.ProjectDb;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,6 +73,7 @@ public class Invest_fragmentDebt extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle saveInstanceState){
         makeAssocications();
 
+//        admin_setValues();
         //save a debt to the db
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,14 +84,25 @@ public class Invest_fragmentDebt extends Fragment {
                     return;
                 }
                 newDebt.setForeinKey(getUserId());
+                newDebt.setIsDebt(true);
+
+
                 projectDb.debt_makeOne(newDebt);
                 Toast.makeText(getContext(), "added a new debt", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
+    public void admin_setValues(){
+        debtName.setText("Debt");
+        amountBorrowed.setText("1000");
+        interestRate.setText("10");
+        compoundsPerYear.setText("2");
+        monthsOnLoan.setText("24");
+    }
 
-    public void makeAssocications(){
+
+    private void makeAssocications(){
         debtName= getView().findViewById(R.id.invest_debt_Name);
         amountBorrowed= getView().findViewById(R.id.invest_debt_getAmountBorrowed);
         interestRate= getView().findViewById(R.id.invest_debt_getInterestRate);
@@ -100,9 +112,14 @@ public class Invest_fragmentDebt extends Fragment {
         saveBtn=getView().findViewById(R.id.invest_debt_btn);
 
         projectDb= new ProjectDb(getContext());
+
+        //this isent used any where else and is for the consmetic
+        TextView heading= getView().findViewById(R.id.invest_debt_heading);
+        heading.setText(getString(R.string.invest_debt_frag_heading));
     }
 
-    public Invest_Debt createNewDebt(){
+    private Invest_Debt createNewDebt(){
+
         Double amountBorrowed, interestRate;
         Integer compounds, loanterm;
         String name= debtName.getText().toString();
@@ -150,18 +167,20 @@ public class Invest_fragmentDebt extends Fragment {
         }else {
             if(amountBorrowed >0 && interestRate> 0 &&
                     compounds>0 && loanterm >0){
+
                 return new Invest_Debt(name,amountBorrowed, interestRate, compounds, loanterm);
             }
         }
         return  null;
     }
 
-    public Integer getUserId(){
+    private Integer getUserId(){
         SharedPreferences sharedPreferences= requireContext()
                 .getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         String userName=sharedPreferences.getString("username","");
         Integer id= projectDb.getUserById(userName);
         return id;
     }
+
 
 }

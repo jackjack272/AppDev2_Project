@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Investment.Invest_Edit">
+
+    <TextView
+        android:id="@+id/invest_edit_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Edit Item"
+        android:textSize="@dimen/subheadings"
+        app:layout_constraintStart_toStartOf="@+id/invest_edit_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/invest_edit_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="66dp"
+        android:text="Save Changes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/invest_edit_amountBorrowed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="35dp"
+        android:ems="10"
+        android:hint="amount borrowed"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/invest_edit_interestRate"
+        app:layout_constraintStart_toStartOf="@+id/invest_edit_interestRate" />
+
+    <EditText
+        android:id="@+id/invest_edit_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/invest_edit_amountBorrowed"
+        app:layout_constraintStart_toStartOf="@+id/invest_edit_amountBorrowed" />
+
+    <EditText
+        android:id="@+id/invest_edit_compounds"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="1dp"
+        android:ems="10"
+        android:hint="compounds per year"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/invest_edit_interestRate"
+        app:layout_constraintStart_toStartOf="@+id/invest_edit_interestRate"
+        app:layout_constraintTop_toBottomOf="@+id/invest_edit_interestRate" />
+
+    <EditText
+        android:id="@+id/invest_edit_months"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="65dp"
+        android:ems="10"
+        android:hint="how many month?"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView28"
+        app:layout_constraintTop_toBottomOf="@+id/invest_edit_compounds" />
+
+    <EditText
+        android:id="@+id/invest_edit_interestRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="interest rate"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/invest_edit_months"
+        app:layout_constraintStart_toStartOf="@+id/invest_edit_months"
+        app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="97dp"
+        android:layout_marginBottom="89dp"
+        android:text="@string/invest_edit_name"
+        app:layout_constraintBottom_toBottomOf="@+id/textView20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="186dp"
+        android:text="@string/invest_edit_amountBorrwed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="55dp"
+        android:text="@string/invest_edit_interestRate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/invest_edit_compoundsPerYear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/invest_edit_compounds" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:text="@string/invest_edit_month"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/invest_edit_months" />
+</androidx.constraintlayout.widget.ConstraintLayout>
