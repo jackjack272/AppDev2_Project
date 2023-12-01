@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.appdevproject.Pages.Budget_Page;
+import com.example.appdevproject.Budget.Budget_Page;
 import com.example.appdevproject.User.Edit_UserPage;
 import com.example.appdevproject.Investment.Invest_Page;
 import com.example.appdevproject.Tax.Tax_Page;

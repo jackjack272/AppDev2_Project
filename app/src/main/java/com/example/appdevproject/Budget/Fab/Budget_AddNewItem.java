@@ -37,7 +37,7 @@ public class Budget_AddNewItem extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle saveInstanceState){
         makeAssociations(view);
 
-        admin_fillFields();
+//        admin_fillFields();
 
         //check if its an update request.
             // fill in the fields with values.

@@ -22,7 +22,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 

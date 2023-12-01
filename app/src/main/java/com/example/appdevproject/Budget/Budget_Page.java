@@ -1,4 +1,4 @@
-package com.example.appdevproject.Pages;
+package com.example.appdevproject.Budget;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,7 +17,6 @@ import com.example.appdevproject.Budget.Fab.Budget_AddNewItem;
 import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.R;
 import com.example.appdevproject.DataBase.ProjectDb;
-import com.example.appdevproject.User.Edit_UserPage;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 

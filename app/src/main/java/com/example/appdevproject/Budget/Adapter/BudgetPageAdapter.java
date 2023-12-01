@@ -1,6 +1,5 @@
 package com.example.appdevproject.Budget.Adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.DataBase.ProjectDb;
-import com.example.appdevproject.Pages.Budget_Page;
 import com.example.appdevproject.R;
-import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BudgetPageAdapter extends RecyclerView.Adapter<BudgetPageAdapter.BudgetViewHolder> {

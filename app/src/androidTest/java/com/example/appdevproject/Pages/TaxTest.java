@@ -2,9 +2,7 @@ package com.example.appdevproject.Pages;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.Espresso;
-import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 
@@ -13,7 +11,6 @@ import androidx.test.rule.ActivityTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.appdevproject.DataBase.ProjectDb;
-import com.example.appdevproject.Pages.Landing_Page;
 import com.example.appdevproject.R;
 
 import com.example.appdevproject.RegistrationAndNav.NavigationTest;
@@ -29,13 +26,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import android.content.Context;
-import android.view.View;
 
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TaxPage {
+public class TaxTest {
 
     @Rule
     public ActivityTestRule <Registration_Page> myact=
@@ -81,11 +77,11 @@ public class TaxPage {
         Context context = ApplicationProvider.getApplicationContext();
         ProjectDb projectDb = new ProjectDb(context);
 
-        String username= projectDb.getUserByUsername("james smith").getUserName();
         int userId=projectDb.getUserById( projectDb.getUserByUsername("james smith").getUserName());
         if(projectDb.income_readAll(userId).size() ==0){
            fail("income was not added to db. ");
         }
+
     }
 
     @Test

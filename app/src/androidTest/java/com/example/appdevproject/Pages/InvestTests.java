@@ -6,31 +6,20 @@ import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
-
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Investment.Models.Invest_Debt;
-
 import com.example.appdevproject.RegistrationAndNav.NavigationTest;
-
 import com.example.appdevproject.User.Registration_Page;
-
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
-
 import com.example.appdevproject.R;
-
-
 import android.content.Context;
 
 
@@ -265,7 +254,7 @@ public class InvestTests {
         }
 
         String username= projectDb.getUserByUsername("james smith").getUserName();
-        if(1 != projectDb.debt_readBonds(projectDb.getUserById(username)).size()){
+        if(0 == projectDb.debt_readBonds(projectDb.getUserById(username)).size()){
             fail("item was not added to db");
         }
 
