@@ -26,7 +26,7 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class NavigationTest extends RegistrationTests {
+public class NavigationTest{
     /**
      * Be able to click all the application's pages
      *
@@ -47,8 +47,7 @@ public class NavigationTest extends RegistrationTests {
     //check the edit user page activates
     @Test
     public void clickEditUser(){
-        RegistrationTests.logIn();;
-
+        new RegistrationTests().b_testLogIn();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.btnEditProfile))
@@ -60,10 +59,9 @@ public class NavigationTest extends RegistrationTests {
 
     }
 
-
     @Test
     public void clickBudget(){
-        RegistrationTests.logIn();;
+        new RegistrationTests().b_testLogIn();
 
 
         //click edit user.
@@ -78,7 +76,7 @@ public class NavigationTest extends RegistrationTests {
 
     @Test
     public void clickDebt (){
-        RegistrationTests.logIn();;
+        new RegistrationTests().b_testLogIn();
 
 
         //click edit user.
@@ -87,14 +85,11 @@ public class NavigationTest extends RegistrationTests {
 
         Espresso.onView(ViewMatchers.withId(R.id.debt_repay_size))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-
-        Espresso.pressBack();
-
     }
 
     @Test
     public void clickInvest (){
-        RegistrationTests.logIn();
+        new RegistrationTests().b_testLogIn();
 
         //click investment card
         Espresso.onView(ViewMatchers.withId(R.id.InvestmentCard))
@@ -106,7 +101,7 @@ public class NavigationTest extends RegistrationTests {
 
     @Test
     public void clickTax (){
-        RegistrationTests.logIn();;
+        new RegistrationTests().b_testLogIn();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.GoalCard))
@@ -118,8 +113,7 @@ public class NavigationTest extends RegistrationTests {
 
     @Test
     public void clickLogOut(){
-        RegistrationTests.logIn();;
-
+        new RegistrationTests().b_testLogIn();
 
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.btnLogout))

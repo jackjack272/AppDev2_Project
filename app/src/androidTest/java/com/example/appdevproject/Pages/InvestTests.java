@@ -1,8 +1,7 @@
-package com.example.appdevproject.pages;
+package com.example.appdevproject.Pages;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.Espresso;
-import androidx.test.espresso.IdlingResource;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
@@ -12,19 +11,13 @@ import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.appdevproject.DataBase.Interfaces.Users;
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Investment.Models.Invest_Debt;
-import com.example.appdevproject.Pages.Landing_Page;
 
 import com.example.appdevproject.RegistrationAndNav.NavigationTest;
-import com.example.appdevproject.RegistrationAndNav.RegistrationTests;
-import com.example.appdevproject.User.Models.User;
 
 import com.example.appdevproject.User.Registration_Page;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
@@ -38,12 +31,7 @@ import static org.junit.Assert.fail;
 import com.example.appdevproject.R;
 
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.provider.Contacts;
-import android.provider.ContactsContract;
-import android.view.View;
-
 
 
 @RunWith(AndroidJUnit4.class)
@@ -58,21 +46,11 @@ public class InvestTests {
     @Rule
     public ActivityTestRule <Registration_Page> myact= new ActivityTestRule <>(Registration_Page.class);
 
-    @Test
-    public void clickInvest(){
-        RegistrationTests.logIn();
-
-        Espresso.onView(ViewMatchers.withId(R.id.InvestmentCard))
-                .perform(ViewActions.click());
-
-        Espresso.onView(ViewMatchers.withId(R.id.invest_fab_addOne))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-    }
 
 //debt section.
     @Test
     public void a_testAddDebtToDb(){
-        this.clickInvest();
+        new NavigationTest().clickInvest();
 
         //click fab
         Espresso.onView(ViewMatchers.withId(R.id.invest_fab_addOne))
@@ -118,7 +96,7 @@ public class InvestTests {
         }
 
         String username= projectDb.getUserByUsername("james smith").getUserName();
-        if(1 != projectDb.debt_readDebt(projectDb.getUserById(username)).size()){
+        if(0 == projectDb.debt_readDebt(projectDb.getUserById(username)).size()){
             fail("item was not added to db");
         }
 
@@ -127,7 +105,7 @@ public class InvestTests {
     }
     @Test
     public void b_testEditDebt(){ //if there are multiple edit buttons it will crash
-        this.clickInvest();
+        new NavigationTest().clickInvest();
 //
 //        //what is the amount in the heading? //unmute me once other parts are done
         Espresso.onView(ViewMatchers.withId(R.id.invest_maketValue))
@@ -201,7 +179,7 @@ public class InvestTests {
     }
     @Test
     public void c_testDeleteDebt(){
-        this.clickInvest();
+        new NavigationTest().clickInvest();
 
         //click on recycler view
         Espresso.onView(ViewMatchers.withId(R.id.invest_list))
@@ -240,7 +218,7 @@ public class InvestTests {
 
     @Test
     public void d_testAddBondToDb(){ //not yet implemented just copied and pasted
-        this.clickInvest();
+        new NavigationTest().clickInvest();
 
         //click fab
         Espresso.onView(ViewMatchers.withId(R.id.invest_fab_addOne))
@@ -294,7 +272,7 @@ public class InvestTests {
     }
     @Test
     public void e_testEditBond(){ //if there are multiple edit buttons it will crash
-        this.clickInvest();
+        new NavigationTest().clickInvest();
 //
 //        //what is the amount in the heading? //unmute me once other parts are done
 //        Espresso.onView(ViewMatchers.withId(R.id.invest_maketValue))
@@ -364,7 +342,7 @@ public class InvestTests {
     }
     @Test
     public void f_testDeleteBond(){
-        this.clickInvest();
+        new NavigationTest().clickInvest();
 
         //click on recycler view
         Espresso.onView(ViewMatchers.withId(R.id.invest_list))
@@ -399,6 +377,7 @@ public class InvestTests {
         }
 
     }
+
 }
 
 

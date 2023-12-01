@@ -1,27 +1,21 @@
-package com.example.appdevproject.pages;
+package com.example.appdevproject.Pages;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.matcher.ViewMatchers;
 
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.appdevproject.DataBase.Interfaces.Users;
 import com.example.appdevproject.DataBase.ProjectDb;
-import com.example.appdevproject.Pages.Landing_Page;
 import com.example.appdevproject.R;
 import com.example.appdevproject.RegistrationAndNav.NavigationTest;
-import com.example.appdevproject.RegistrationAndNav.RegistrationTests;
 import com.example.appdevproject.User.Models.User;
 
 import com.example.appdevproject.User.Registration_Page;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
@@ -32,11 +26,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.provider.Contacts;
-import android.provider.ContactsContract;
-import android.view.View;
 
 //https://www.youtube.com/watch?v=sDp8JNbITm4&list=PLx5ipGeoOO2hCbqjX784_I4Y4mDsVbVEf&index=2
 @RunWith(AndroidJUnit4.class)
@@ -50,26 +40,11 @@ public class EditUserTest {
     @Rule
     public ActivityTestRule <Registration_Page> myact= new ActivityTestRule <>(Registration_Page.class);
 
-    @Test
-    public void clickEditUser(){
-        RegistrationTests.logIn();;
-
-
-        //click edit user.
-        Espresso.onView(ViewMatchers.withId(R.id.btnEditProfile))
-                .perform(ViewActions.click());
-
-        Espresso.onView(ViewMatchers.withId(R.id.change_email))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-
-
-    }
-
 
 
     @Test
     public void updateUser(){
-        clickEditUser();
+        new NavigationTest().clickEditUser();
 
         //update fields
         Espresso.onView(ViewMatchers.withId(R.id.changePword))
