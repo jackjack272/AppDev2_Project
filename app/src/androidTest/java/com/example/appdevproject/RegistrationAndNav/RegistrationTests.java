@@ -11,7 +11,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.R;
-import com.example.appdevproject.User.Models.User;
 import com.example.appdevproject.User.Registration_Page;
 
 import org.junit.FixMethodOrder;
@@ -19,12 +18,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
-
-//import org.mockito.Mock;
-//import static org.mockito.Mockito.verify;
-//import static org.mockito.Mockito.when;
-
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import android.content.Context;
@@ -58,7 +51,7 @@ public class RegistrationTests {
     @Test //can only do it once, then the user is in the db.
     public void a_testRegister() {
 
-        //fill the form.
+        //fill the form.james
         Espresso.onView(ViewMatchers.withId(R.id.getUserName))
                 .perform(ViewActions.typeText("james smith"), ViewActions.closeSoftKeyboard());
 

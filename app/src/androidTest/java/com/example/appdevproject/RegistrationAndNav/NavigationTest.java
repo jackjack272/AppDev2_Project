@@ -8,8 +8,6 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import com.example.appdevproject.Pages.Landing_Page;
 import com.example.appdevproject.R;
 
 import com.example.appdevproject.User.Registration_Page;
@@ -20,9 +18,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
-import static org.junit.Assert.assertNotNull;
-
-//https://www.youtube.com/watch?v=sDp8JNbITm4&list=PLx5ipGeoOO2hCbqjX784_I4Y4mDsVbVEf&index=2
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -63,15 +58,13 @@ public class NavigationTest{
     public void clickBudget(){
         new RegistrationTests().b_testLogIn();
 
-
         //click edit user.
         Espresso.onView(ViewMatchers.withId(R.id.imgBudget))
                 .perform(ViewActions.click());
 
-        Espresso.onView(ViewMatchers.withId(R.id.bud_monthlyExp))
+        Espresso.onView(ViewMatchers.withId(R.id.bud_fab))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 
-        Espresso.pressBack();
     }
 
     @Test
@@ -84,6 +77,8 @@ public class NavigationTest{
                 .perform(ViewActions.click());
 
         Espresso.onView(ViewMatchers.withId(R.id.debt_repay_size))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        Espresso.onView(ViewMatchers.withId(R.id.debt_repay_interest))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 

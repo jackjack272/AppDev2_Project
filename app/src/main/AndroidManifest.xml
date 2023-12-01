@@ -34,10 +34,10 @@
             android:name=".User.Edit_UserPage"
             android:exported="false" /> <!-- budget page -->
         <activity
-            android:name=".Pages.Budget_Page"
+            android:name=".Budget.Budget_Page"
             android:exported="false" />
         <activity
-            android:name=".Pages.Budget_ChartPage"
+            android:name=".Budget.Budget_ChartPage"
             android:exported="false" />
         <activity
             android:name=".Investment.Invest_Edit"

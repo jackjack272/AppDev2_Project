@@ -2,7 +2,6 @@ package com.example.appdevproject.Pages;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 
@@ -10,7 +9,6 @@ import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.appdevproject.Pages.Landing_Page;
 import com.example.appdevproject.R;
 
 import com.example.appdevproject.RegistrationAndNav.NavigationTest;
@@ -28,7 +26,7 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class RepayPage {
+public class RepayTest {
     /**
      *
      * Test question:

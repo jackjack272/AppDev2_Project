@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdevproject.Budget.Model.Item;
-import com.example.appdevproject.Pages.Budget_Page;
+import com.example.appdevproject.Budget.Budget_Page;
 import com.example.appdevproject.R;
 import com.example.appdevproject.DataBase.ProjectDb;
 
