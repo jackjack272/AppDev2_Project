@@ -1,4 +1,4 @@
-package com.example.appdevproject.Pages;
+package com.example.appdevproject.Navigation;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.appdevproject.Budget.Budget_Page;
 import com.example.appdevproject.Debt_Repayment.Debt_Repayment;
 import com.example.appdevproject.Investment.Invest_Page;
 import com.example.appdevproject.R;
@@ -25,7 +26,7 @@ import com.google.android.material.button.MaterialButton;
 public class Landing_Page extends AppCompatActivity {
     CardView cardBudget, cardDebt,cardInvestment,cardCharts, taxCard, HelpCard;
     TextView textUserName;
-    ImageButton btnLogOut;
+    ImageButton btnLogOut,imgProfile;
     MaterialButton editProfile;
 
     @Override
@@ -66,6 +67,13 @@ public class Landing_Page extends AppCompatActivity {
 
 
         editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Landing_Page.this, Edit_UserPage.class));
+            }
+        });
+
+        imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Landing_Page.this, Edit_UserPage.class));
@@ -135,6 +143,7 @@ public class Landing_Page extends AppCompatActivity {
         HelpCard = findViewById(R.id.HelpCard);
         textUserName = findViewById(R.id.textUserName);
         btnLogOut = findViewById(R.id.btnLogout);
+        imgProfile = findViewById(R.id.imgProfile);
 
         editProfile=findViewById(R.id.btnEditProfile);
 

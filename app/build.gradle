@@ -46,6 +46,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
 
+    androidTestImplementation 'org.hamcrest:hamcrest-library:2.2'
+
+
     //testing db
     implementation "androidx.room:room-runtime:2.4.0"
 

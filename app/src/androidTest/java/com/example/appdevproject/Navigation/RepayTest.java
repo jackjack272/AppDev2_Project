@@ -1,8 +1,7 @@
-package com.example.appdevproject.Pages;
+package com.example.appdevproject.Navigation;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 
@@ -10,7 +9,6 @@ import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.appdevproject.Pages.Landing_Page;
 import com.example.appdevproject.R;
 
 import com.example.appdevproject.RegistrationAndNav.NavigationTest;
@@ -28,7 +26,7 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class RepayPage {
+public class RepayTest {
     /**
      *
      * Test question:
@@ -44,11 +42,8 @@ public class RepayPage {
 
     @Test
     public void a_repaymentBySize(){
-//        new InvestTests().a_testAddDebtToDb();
-        //register page need to toggle switch so it can log in with clickDebt()
-//        Espresso.onView(ViewMatchers.withId(R.id.switch1))
-//                .perform(ViewActions.click());
-
+        InvestTests.addDebt();
+        InvestTests.addDebt();
 
         new NavigationTest().clickDebt();
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9DDF4"
-    tools:context=".Pages.Budget_Page">
+    tools:context=".Budget.Budget_Page">
 
     <TextView
         android:id="@+id/bud_subHeader"
@@ -67,7 +67,9 @@
             android:layout_height="wrap_content"
             android:text="Housing"
             tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="169dp" />
+            tools:layout_editor_absoluteY="169dp"
+
+            />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -106,19 +108,6 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/bud_recyclerView"
-        android:layout_width="411dp"
-        android:layout_height="465dp"
-        android:layout_marginBottom="90dp"
-        android:background="#D9DDF4"
-        app:layout_constraintBottom_toBottomOf="@+id/bud_fab"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabCategories"
-        app:layout_constraintVertical_bias="0.0" />
-
     <!--    <TextView-->
 <!--        android:id="@+id/bud_yearlyExp"-->
 <!--        android:layout_width="wrap_content"-->
@@ -136,6 +125,19 @@
 <!--        android:layout_marginBottom="29dp"-->
 <!--        app:layout_constraintBottom_toTopOf="@+id/tabCategories"-->
 <!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bud_recyclerView"
+        android:layout_width="411dp"
+        android:layout_height="465dp"
+        android:layout_marginBottom="90dp"
+        android:background="#D9DDF4"
+        app:layout_constraintBottom_toBottomOf="@+id/bud_fab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabCategories"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/bud_monthlyExp"

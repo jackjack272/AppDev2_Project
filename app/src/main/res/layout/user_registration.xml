@@ -48,6 +48,7 @@
         android:layout_marginBottom="50dp"
         android:text="@string/landPage_register"
         android:textSize="@dimen/reg_log"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/getUserName"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -58,6 +59,7 @@
         android:layout_marginEnd="43dp"
         android:text="@string/landPage_login"
         android:textSize="@dimen/reg_log"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/switch1" />
 

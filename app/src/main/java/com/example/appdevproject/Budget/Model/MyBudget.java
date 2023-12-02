@@ -19,7 +19,6 @@ public class MyBudget implements Budget {
     
     //need lab 15 to be able to add items to the table.
 
-
     private List<Item>  myItems;
     private String[] myCategories;
     private Integer userId;

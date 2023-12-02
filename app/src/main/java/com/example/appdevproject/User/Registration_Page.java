@@ -13,7 +13,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 //<<<<<<< HEAD:app/src/main/java/com/example/appdevproject/Pages/RegistrationPage.java
-import com.example.appdevproject.Pages.Landing_Page;
+import com.example.appdevproject.Navigation.Landing_Page;
 import com.example.appdevproject.R;
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.User.Models.User;

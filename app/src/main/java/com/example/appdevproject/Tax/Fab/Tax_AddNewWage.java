@@ -59,7 +59,7 @@ public class Tax_AddNewWage extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle saveInstanceState){
         makeAssociations(view);
 
-        admin_prepopulateForm();
+//        admin_prepopulateForm();
 
         setHeading();
         //get the object, save the object.
