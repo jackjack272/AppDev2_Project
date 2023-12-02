@@ -15,7 +15,7 @@
         tools:targetApi="31"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Pages.ResourcesActivity"
+            android:name=".Navigation.ResourcesActivity"
             android:exported="false" />
         <!-- registration -->
         <activity
@@ -46,7 +46,7 @@
             android:name=".Investment.Invest_ShowClickedCategory"
             android:exported="false" />
         <activity
-            android:name=".Pages.Charts_Page"
+            android:name=".Navigation.Charts_Page"
             android:exported="false" />
         <activity
             android:name=".z_oldImplements.z_Loans.Invest_AddNew_old"
@@ -61,7 +61,7 @@
             android:name=".Tax.Tax_Page"
             android:exported="false" />
         <activity
-            android:name=".Pages.Landing_Page"
+            android:name=".Navigation.Landing_Page"
             android:exported="false" />
     </application>
 

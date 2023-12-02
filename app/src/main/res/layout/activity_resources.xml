@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#D9DDF4"
     android:orientation="vertical"
-    tools:context=".Pages.ResourcesActivity">
+    tools:context=".Navigation.ResourcesActivity">
 
     <ScrollView
         android:layout_width="match_parent"
