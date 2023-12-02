@@ -27,9 +27,7 @@ public class Tax_Page extends AppCompatActivity {
     private RecyclerView labour_recycle, invest_recycle;
     private FloatingActionButton fab;
     private ProjectDb myDb;
-
     private RecyclerView.LayoutManager layoutManager, labourManager;
-
     private Tax_InvestRecyAdapter recyAdapter;
     private Tax_LabourAdapter labourAdapter;
 
@@ -65,14 +63,9 @@ public class Tax_Page extends AppCompatActivity {
         sleepThread(750); //sleep so db can be queried befor this displays
         makeHeadings();
     }
-
-
     private void sleepThread(int mils) {
         try {Thread.sleep(mils);} catch (InterruptedException e) {e.printStackTrace();}
     }
-
-
-
     public void makeLabourAdapter(){
 
     //breaks when the db is empty.
@@ -87,7 +80,6 @@ public class Tax_Page extends AppCompatActivity {
         labour_recycle.setAdapter(labourAdapter);
 
     }
-
     public void makeInvestedAdapter(){
 
         List<Totals_Save> myTaxableItems= myDb.totals_readTotal(getForeighnkey());
@@ -99,8 +91,6 @@ public class Tax_Page extends AppCompatActivity {
         recyAdapter.setMyItems(myTaxableItems);
         invest_recycle.setAdapter(recyAdapter);
     }
-
-
     private void makeHeadings(){
     //from labour
         Double totalInc=0.0,totalLabtax=0.0, totalInvestTax=0.0;
@@ -114,7 +104,6 @@ public class Tax_Page extends AppCompatActivity {
         investFor.setText(String.format("I gained: %.2f",totalInvestTax));
         govWants.setText(String.format("Gov's cut: $%.2f", totalLabtax+totalInvestTax));
     }
-
     private void makeAssocications(){
 //    textviews
         labourFor= findViewById(R.id.inc_labour);
@@ -129,13 +118,9 @@ public class Tax_Page extends AppCompatActivity {
         myDb= new ProjectDb(Tax_Page.this);
         fab= findViewById(R.id.inc_fab);
     }
-
-
     public int getForeighnkey() {
         SharedPreferences s=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         int foreignKey= myDb.getUserById(s.getString("username",""));
         return foreignKey;
     }
-
-
 }
