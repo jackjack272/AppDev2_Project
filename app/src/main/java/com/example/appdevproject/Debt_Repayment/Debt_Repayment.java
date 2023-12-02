@@ -28,11 +28,7 @@ public class Debt_Repayment extends AppCompatActivity {
     private RecyclerView debts,repayScheduale;
     private EditText overMinRepay;
     private TextView minRepay, lifeTimeSave;
-
-
-
     ProjectDb projectDb;
-
     Debt_Adapter debt_adapter;
     RepaymentScheduale_Adapter scheduale_adapter;
     RecyclerView.LayoutManager topLayout, bottomLayout;

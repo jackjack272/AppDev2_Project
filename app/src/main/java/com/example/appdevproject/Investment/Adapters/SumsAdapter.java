@@ -89,8 +89,6 @@ public class SumsAdapter extends RecyclerView.Adapter<SumsAdapter.ViewHolder> {
 
     }
 
-
-//Crud.
     public void setSums(List<Totals_Save> myDebts){
         this.totals = myDebts;
     }
