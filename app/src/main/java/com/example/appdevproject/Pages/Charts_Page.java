@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.appdevproject.Budget.Model.Item;
 import com.example.appdevproject.DataBase.ProjectDb;
 import com.example.appdevproject.Investment.Models.Invest_Debt;
 import com.example.appdevproject.R;
+import com.example.appdevproject.Tax.Models.Tax_Income;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -40,6 +42,8 @@ public class Charts_Page extends AppCompatActivity {
     float totEntertain = 0;
     float totDebt = 0;
     float totBonds = 0;
+    float totExpenses = 0;
+    float totIncome = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -66,8 +70,16 @@ public class Charts_Page extends AppCompatActivity {
             }
         }
 
+        totExpenses = totHousing + totUtility + totTransport + totFood + totEntertain;
+
         List<Invest_Debt> myLoans= myDb.debt_readDebt(foreignKey);
         List<Invest_Debt> myBonds= myDb.debt_readBonds(foreignKey);
+        List<Tax_Income> myIncome = myDb.income_readAll(foreignKey);
+
+        for (int i = 0; i < myIncome.size(); i++){
+            totIncome = totIncome + myIncome.get(i).getYearlyIncome().floatValue() +
+                    myIncome.get(i).getBonuses().floatValue();
+        }
 
         for (int i = 0; i < myLoans.size(); i++){
             totDebt = totDebt + myLoans.get(i).getAmountBorred().floatValue();
@@ -108,7 +120,11 @@ public class Charts_Page extends AppCompatActivity {
         barChart.setData(barData);
 
         //color bar data set
-        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        int[] customColors = {Color.parseColor("#01579B"),
+                Color.parseColor("#B71C1C"),
+                Color.parseColor("#B71C1C"),
+                Color.parseColor("#1B5E20")};
+        barDataSet.setColors(customColors);
 
         barChart.animateY(5000);
 
@@ -131,16 +147,23 @@ public class Charts_Page extends AppCompatActivity {
         xAxis.setDrawGridLines(false);
 
         // Set string values for x-axis
-        final String[] labels = new String[]{"","Bonds", "Debts"};
+        final String[] labels = new String[]{"","Income","Debts","Expenses", "Bonds"};
         xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+
+        float overallStanding = (totIncome + totBonds - totDebt - totExpenses);
+        TextView overall = findViewById(R.id.overall);
+        overall.setText(String.format("Overall Standing: %.2f $", overallStanding));
 
     }
 
     private void getData()
     {
         barArraylist = new ArrayList<>();
-        barArraylist.add(new BarEntry(1f, totBonds));
+
+        barArraylist.add(new BarEntry(1f, totIncome));
         barArraylist.add(new BarEntry(2f, totDebt));
+        barArraylist.add(new BarEntry(3f, totExpenses));
+        barArraylist.add(new BarEntry(4f, totBonds));
 
         pieArraylist = new ArrayList<>();
         if(totHousing != 0){
