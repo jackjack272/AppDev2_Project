@@ -150,7 +150,7 @@ public class Charts_Page extends AppCompatActivity {
         final String[] labels = new String[]{"","Income","Debts","Expenses", "Bonds"};
         xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
 
-        float overallStanding = (totIncome + totBonds - totDebt - totExpenses);
+        float overallStanding = (totIncome + totBonds - totDebt - totExpenses)*12; //cristi
         TextView overall = findViewById(R.id.overall);
         overall.setText(String.format("Overall Standing: %.2f $", overallStanding));
 
