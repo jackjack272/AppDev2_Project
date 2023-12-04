@@ -5,18 +5,16 @@ public class Tax_Calculator {
 
     //get tax consequence
     public static double bondTaxConsequence() {
-
-        return -1.0;
+        return 6.0;
     }
 
     public static double stockTaxConsequence() {
         //personal finc week4:"Dividend invome": owning stock that pays div
-        return -1.0;
+        return 4.0;
     }
 
     public static double debtTaxConsequence(Double amount) {
-
-        return -1.0;
+        return 5.0;
     }
 
     public static double incomeTaxConsequence(Double yearEarning) {
